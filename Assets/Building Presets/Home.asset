@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Home
   m_EditorClassIdentifier: 
   displayName: 
-  cost: 0
-  costPerTurn: 0
+  cost: 10
+  costPerTurn: 5
   prefab: {fileID: 1965889798308529730, guid: b88e36cea99744afca0fa1b6a1334c3f, type: 3}
-  population: 0
+  population: 10
   jobs: 0
   food: 0

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Road
   m_EditorClassIdentifier: 
   displayName: 
-  cost: 0
-  costPerTurn: 0
+  cost: 5
+  costPerTurn: 5
   prefab: {fileID: 2720603765421064581, guid: 82aea7edd152a4bbfa68211197f4fa71, type: 3}
   population: 0
   jobs: 0
