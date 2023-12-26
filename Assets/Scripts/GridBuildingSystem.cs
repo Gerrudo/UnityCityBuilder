@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -10,13 +9,11 @@ public class GridBuildingSystem : MonoBehaviour
 
     public GridLayout gridLayout;
     public Tilemap placementTileMap;
-    public Tilemap indicatorTileMap;
 
     private static Dictionary<TileType, TileBase> tileBases = new Dictionary<TileType, TileBase>();
 
     private Building tempBuilding;
     private Vector3 prevPosition;
-    private BoundsInt prevArea;
 
     private static int CalculateArea(BoundsInt area)
     {
@@ -33,12 +30,11 @@ public class GridBuildingSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string tilePath = "Assets/Tiles/";
+        string tilePath = "Tiles/";
 
-        tileBases.Add(TileType.Empty, null);
-        tileBases.Add(TileType.White, Resources.Load<TileBase>(tilePath + "WhiteTile"));
-        tileBases.Add(TileType.Green, Resources.Load<TileBase>(tilePath + "GreenTile"));
-        tileBases.Add(TileType.Red, Resources.Load<TileBase>(tilePath + "RedTile"));
+        tileBases.Add(TileType.Available, Resources.Load<TileBase>(tilePath + "AvailableTile"));
+        tileBases.Add(TileType.Reserved, Resources.Load<TileBase>(tilePath + "ReservedTile"));
+        tileBases.Add(TileType.Unavailable, Resources.Load<TileBase>(tilePath + "UnavailableTile"));
     }
 
     // Update is called once per frame
@@ -63,7 +59,7 @@ public class GridBuildingSystem : MonoBehaviour
 
                 if (prevPosition != cellPos)
                 {
-                    tempBuilding.transform.localPosition = gridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f));
+                    tempBuilding.transform.localPosition = gridLayout.CellToLocalInterpolated(cellPos + new Vector3(0f, 0f, 0f));
                     prevPosition = cellPos;
 
                     FollowBuilding();
@@ -79,7 +75,6 @@ public class GridBuildingSystem : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ClearArea();
             Destroy(tempBuilding.gameObject);
         }
     }
@@ -90,26 +85,9 @@ public class GridBuildingSystem : MonoBehaviour
 
     public enum TileType
     {
-        Empty,
-        White,
-        Green,
-        Red
-    }
-
-    private static TileBase[] GetTilesBlock(BoundsInt area, Tilemap tilemap)
-    {
-        TileBase[] array = new TileBase[CalculateArea(area)];
-        int counter = 0;
-
-        foreach (var v in area.allPositionsWithin)
-        {
-            Vector3Int pos = new Vector3Int(v.x, v.y, 0);
-            array[counter] = tilemap.GetTile(pos);
-
-            counter++;
-        }
-
-        return array;
+        Available,
+        Reserved,
+        Unavailable
     }
 
     private static void FillTiles(TileBase[] array, TileType type)
@@ -140,50 +118,31 @@ public class GridBuildingSystem : MonoBehaviour
         FollowBuilding();
     }
 
-    private void ClearArea()
-    {
-        TileBase[] toClear = new TileBase[CalculateArea(prevArea)];
-
-        FillTiles(toClear, TileType.Empty);
-
-        indicatorTileMap.SetTilesBlock(prevArea, toClear);
-    }
-
     private void FollowBuilding()
     {
-        ClearArea();
-
         tempBuilding.area.position = gridLayout.WorldToCell(tempBuilding.gameObject.transform.position);
         BoundsInt buildingArea = tempBuilding.area;
 
-        TileBase[] baseArray = GetTilesBlock(buildingArea, placementTileMap);
-        TileBase[] tileArray = new TileBase[baseArray.Length];
+        TileBase[] baseArray = placementTileMap.GetTilesBlock(buildingArea);
 
         for (int i = 0; i < baseArray.Length; i++)
         {
-            if (baseArray[i] == tileBases[TileType.White])
+            if (baseArray[i] == tileBases[TileType.Available])
             {
-                tileArray[i] = tileBases[TileType.Green];
-            }
-            else
-            {
-                FillTiles(tileArray, TileType.Red);
-                break;
+                Debug.Log("Building placement allowed here.");
             }
         }
-
-        placementTileMap.SetTilesBlock(buildingArea, tileArray);
-        prevArea = buildingArea;
     }
 
     public bool CanTakeArea(BoundsInt area)
     {
-        TileBase[] baseArray = GetTilesBlock(area, placementTileMap);
+        TileBase[] baseArray = placementTileMap.GetTilesBlock(area);
 
         foreach (var b in baseArray)
         {
-            if (b != tileBases[TileType.White])
+            if (b != tileBases[TileType.Available])
             {
+                Debug.Log("Building cannot be placed here.");
                 return false;
             }
         }
@@ -193,8 +152,7 @@ public class GridBuildingSystem : MonoBehaviour
 
     public void TakeArea(BoundsInt area)
     {
-        SetTilesBlock(area, TileType.Empty, indicatorTileMap);
-        SetTilesBlock(area, TileType.Green, placementTileMap);
+        SetTilesBlock(area, TileType.Reserved, placementTileMap);
     }
 
     #endregion
