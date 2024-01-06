@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
+using System;
 
 public class GridBuildingSystem : MonoBehaviour
 {
@@ -15,11 +16,6 @@ public class GridBuildingSystem : MonoBehaviour
     private Building tempBuilding;
     private Vector3 prevPosition;
 
-    private static int CalculateArea(BoundsInt area)
-    {
-        return area.size.x * area.size.y * area.size.z;
-    }
-
     #region Unity
 
     private void Awake()
@@ -27,7 +23,6 @@ public class GridBuildingSystem : MonoBehaviour
         current = this;
     }
     
-    // Start is called before the first frame update
     void Start()
     {
         string tilePath = "Tiles/";
@@ -37,45 +32,46 @@ public class GridBuildingSystem : MonoBehaviour
         tileBases.Add(TileType.Unavailable, Resources.Load<TileBase>(tilePath + "UnavailableTile"));
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!tempBuilding)
         {
             return;
         }
-
-        if (Input.GetMouseButtonDown(0))
+        else
         {
-            if (EventSystem.current.IsPointerOverGameObject(0))
+            if (Input.GetMouseButtonDown(0))
             {
-                return;
-            }
-
-            if (!tempBuilding.Placed)
-            {
-                Vector2 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector3Int cellPos = gridLayout.LocalToCell(clickPos);
-
-                if (prevPosition != cellPos)
+                if (EventSystem.current.IsPointerOverGameObject(0))
                 {
-                    tempBuilding.transform.localPosition = gridLayout.CellToLocalInterpolated(cellPos + new Vector3(0f, 0f, 0f));
-                    prevPosition = cellPos;
+                    return;
+                }
 
-                    FollowBuilding();
+                if (!tempBuilding.Placed)
+                {
+                    Vector2 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Vector3Int cellPos = gridLayout.LocalToCell(clickPos);
+
+                    if (prevPosition != cellPos)
+                    {
+                        tempBuilding.transform.localPosition = gridLayout.CellToLocalInterpolated(cellPos + new Vector3(0f, 0f, 0f));
+                        prevPosition = cellPos;
+
+                        FollowBuilding();
+                    }
                 }
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (tempBuilding.CanBePlaced())
+            else if (Input.GetKeyDown(KeyCode.Space))
             {
-                tempBuilding.Place();
+                if (tempBuilding.CanBePlaced())
+                {
+                    tempBuilding.Place();
+                }
             }
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Destroy(tempBuilding.gameObject);
+            else if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Destroy(tempBuilding.gameObject);
+            }
         }
     }
 
@@ -88,23 +84,6 @@ public class GridBuildingSystem : MonoBehaviour
         Available,
         Reserved,
         Unavailable
-    }
-
-    private static void FillTiles(TileBase[] array, TileType type)
-    {
-        for (int i = 0; i < array.Length; i++)
-        {
-            array[i] = tileBases[type];
-        }
-    }
-
-    private static void SetTilesBlock(BoundsInt area, TileType type, Tilemap tilemap)
-    {
-        TileBase[] tileArray = new TileBase[CalculateArea(area)];
-
-        FillTiles(tileArray, type);
-
-        tilemap.SetTilesBlock(area, tileArray);
     }
 
     #endregion
@@ -152,7 +131,14 @@ public class GridBuildingSystem : MonoBehaviour
 
     public void TakeArea(BoundsInt area)
     {
-        SetTilesBlock(area, TileType.Reserved, placementTileMap);
+        TileBase[] tileArray = new TileBase[area.size.x * area.size.y * area.size.z];
+
+        for (int i = 0; i < tileArray.Length; i++)
+        {
+            tileArray[i] = tileBases[TileType.Reserved];
+        }
+
+        placementTileMap.SetTilesBlock(area, tileArray);
     }
 
     #endregion
