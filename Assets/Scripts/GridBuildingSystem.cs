@@ -30,10 +30,24 @@ public class GridBuildingSystem : MonoBehaviour
         tileBases.Add(TileType.Available, Resources.Load<TileBase>(tilePath + "AvailableTile"));
         tileBases.Add(TileType.Reserved, Resources.Load<TileBase>(tilePath + "ReservedTile"));
         tileBases.Add(TileType.Unavailable, Resources.Load<TileBase>(tilePath + "UnavailableTile"));
+
+        placementTileMap.GetComponent<TilemapRenderer>().enabled = false;
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            if (placementTileMap.GetComponent<TilemapRenderer>().enabled == false)
+            {
+                ShowTileMap(placementTileMap, true);
+            }
+            else
+            {
+                ShowTileMap(placementTileMap, false);
+            }
+        }
+
         if (!tempBuilding)
         {
             return;
@@ -66,14 +80,16 @@ public class GridBuildingSystem : MonoBehaviour
                 if (tempBuilding.CanBePlaced())
                 {
                     tempBuilding.Place();
+                    ShowTileMap(placementTileMap, false);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Destroy(tempBuilding.gameObject);
+                ShowTileMap(placementTileMap, false);
             }
         }
-    }
+    } 
 
     #endregion
 
@@ -90,8 +106,24 @@ public class GridBuildingSystem : MonoBehaviour
 
     #region Placement
 
+    private void ShowTileMap(Tilemap tileMap, bool isVisable)
+    {
+        if (isVisable)
+        {
+            Debug.Log("Disabling Tilemap...");
+        }
+        else if (!isVisable)
+        {
+            Debug.Log("Disabling Tilemap...");
+        }
+
+        tileMap.GetComponent<TilemapRenderer>().enabled = isVisable;
+    }
+
     public void InitialiseWithBuilding(GameObject building)
     {
+        ShowTileMap(placementTileMap, true);
+
         tempBuilding = Instantiate(building, Vector3.zero, Quaternion.identity).GetComponent<Building>();
 
         FollowBuilding();
