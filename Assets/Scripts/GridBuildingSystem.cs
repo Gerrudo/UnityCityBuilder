@@ -89,7 +89,7 @@ public class GridBuildingSystem : MonoBehaviour
                 ShowTileMap(placementTileMap, false);
             }
         }
-    } 
+    }
 
     #endregion
 

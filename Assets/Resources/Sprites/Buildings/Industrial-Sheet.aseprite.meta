@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 54c2a051093cf4a409bcea35e45f8adf
+guid: 31631930970524a8bb274a5c19a094f4
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638376651179751260
+  platformSettingsDirtyTick: 638489662828497290
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,10 +119,10 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Apartments-Sheet
+  - name: Industrial-Sheet
     originalName: 
-    pivot: {x: 1.5, y: -0.45454547}
-    alignment: 9
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -130,7 +130,7 @@ ScriptedImporter:
       y: 4
       width: 32
       height: 33
-    spriteID: 70ff742705ddc4ed9a3412df9ce1e58c
+    spriteID: b8242ef0501114492ae73417ba1fe09d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -138,9 +138,9 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: -12, y: -11}
+    uvTransform: {x: -44, y: -44}
   spriteSheetImportData:
-  - name: Apartments-Sheet_0
+  - name: Industrial-Sheet_0
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7
@@ -151,27 +151,7 @@ ScriptedImporter:
       y: 4
       width: 32
       height: 33
-    spriteID: dd646634b891d46c2b7553c9fff7e178
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: Apartments-Sheet_1
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 68
-      y: 4
-      width: 32
-      height: 33
-    spriteID: e6e8e84ec638a49dc96dc48092b58979
+    spriteID: 95e57ac7581a44e599e81376314a431c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,20 +162,20 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: 679833141
-    name: Apartments-Sheet
+    guid: -2099615019
+    name: Industrial-Sheet
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Apartments-Sheet
+    - name: Industrial-Sheet
       frameIndex: 0
       cellRect:
         x: 0
         y: 0
         width: 128
         height: 128
-      spriteId: 70ff742705ddc4ed9a3412df9ce1e58c
+      spriteId: b8242ef0501114492ae73417ba1fe09d
     linkedCells: []
     parentIndex: -1
   platformSettings:

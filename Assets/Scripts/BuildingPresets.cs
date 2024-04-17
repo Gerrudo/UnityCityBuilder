@@ -5,9 +5,10 @@ public class BuildingPreset : ScriptableObject
 {
     public string displayName;
     public int cost;
-    public int costPerTurn;
-    public GameObject prefab;
     public int population;
     public int jobs;
-    public int food;
+    public int costPerTurn;
+    public int waterPerTurn;
+    public int powerPerTurn;
+    public GameObject prefab;
 }
