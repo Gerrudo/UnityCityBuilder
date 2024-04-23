@@ -21,6 +21,12 @@ public class SimulationManager : MonoBehaviour
         current = this;
     }
 
+    private void Start()
+    {
+        //Repeating starts instantly, repeats every second.
+        InvokeRepeating("UpdateStatistics", 0.0f, 1.0f);
+    }
+
     public void OnPlaceBuilding(BuildingPreset building)
     {
         //Building has maximum values which need to be handled when seeing how much the city can grow.
@@ -91,5 +97,13 @@ public class SimulationManager : MonoBehaviour
         {
             consumables += building.production;
         }
+    }
+
+    void UpdateStatistics()
+    {
+        CalculateIncome();
+        CalcuatePopulation();
+        CalculateEmployment();
+        CalculateConsumables();
     }
 }

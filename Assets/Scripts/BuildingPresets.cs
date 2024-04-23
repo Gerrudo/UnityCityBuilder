@@ -4,6 +4,7 @@ using UnityEngine;
 public class BuildingPreset : ScriptableObject
 {
     public string displayName;
+    public int costToBuild;
     public int taxes;
     public int expenses;
     public int population;

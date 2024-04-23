@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d193ea0c1bb9457195ae057e1f4ec1c, type: 3}
   m_Name: Apartment Green
   m_EditorClassIdentifier: 
-  displayName: 
-  cost: 0
-  population: 0
-  jobs: 0
-  costPerTurn: 0
-  waterPerTurn: 0
-  powerPerTurn: 0
+  displayName: Apartment
+  costToBuild: 10
+  taxes: 0
+  expenses: 5
+  population: 10
+  employees: 0
+  production: 0
   prefab: {fileID: 9087390101379272570, guid: 73a1bb1a324954c4fa10c810ad996ab4, type: 3}

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d193ea0c1bb9457195ae057e1f4ec1c, type: 3}
   m_Name: Commerical
   m_EditorClassIdentifier: 
-  displayName: 
-  cost: 0
+  displayName: Commerical
+  costToBuild: 10
+  taxes: 0
+  expenses: 5
   population: 0
-  jobs: 0
-  costPerTurn: 0
-  waterPerTurn: 0
-  powerPerTurn: 0
+  employees: 0
+  production: 5
   prefab: {fileID: 6022751064410698102, guid: 69ef4b08f7df24f55828c5dd35f49049, type: 3}
