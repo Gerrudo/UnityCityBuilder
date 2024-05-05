@@ -20,8 +20,6 @@ public class SimulationManager : MonoBehaviour
 
     private List<BuildingPreset> buildings = new List<BuildingPreset>();
 
-    public static SimulationManager instantly;
-
     private void Awake()
     {
         current = this;

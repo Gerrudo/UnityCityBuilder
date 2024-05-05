@@ -4,32 +4,45 @@ public class Building : MonoBehaviour
 {
     public bool Placed { get; private set; }
     public BoundsInt area;
+    private BuildingPreset currentBuildingPreset;
 
     #region Build
 
     public bool CanBePlaced()
     {
-        Vector3Int positionInt = GridBuildingSystem.current.gridLayout.LocalToCell(transform.position);
+        Vector3Int positionInt = GridManager.current.gridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
 
-        if (GridBuildingSystem.current.CanTakeArea(areaTemp))
+        //If the GridManager can take the area
+        if (!GridManager.current.CanTakeArea(areaTemp))
+        {
+            return false;
+        }
+        //If the simulation manager allows for the cost to be subtracted from the treasury
+        else if(SimulationManager.current.treasury < currentBuildingPreset.costToBuild)
+        {
+            return false;
+        }
+        //If all checks succeed return true;
+        else
         {
             return true;
         }
-
-        return false;
     }
 
     public void Place()
     {
-        Vector3Int positionInt = GridBuildingSystem.current.gridLayout.LocalToCell(transform.position);
+        Vector3Int positionInt = GridManager.current.gridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
 
         Placed = true;
 
-        GridBuildingSystem.current.TakeArea(areaTemp);
+        GridManager.current.TakeArea(areaTemp);
+
+        //Where I left off, this won't work, need to understand this better in C# if I need to send the value to a method in the SimulationManager class for it to handle
+        //SimulationManager.current.treasury - currentBuildingPreset.costToBuild;
     }
 
     #endregion
