@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SimulationManager : MonoBehaviour
 {
     public static SimulationManager current;
 
+    public int day;
     public int treasury;
     public int population;
     public int employment;
@@ -14,7 +16,11 @@ public class SimulationManager : MonoBehaviour
     public int maxEmployment;
     public int tax;
 
+    public TextMeshProUGUI statsText;
+
     private List<BuildingPreset> buildings = new List<BuildingPreset>();
+
+    public static SimulationManager instantly;
 
     private void Awake()
     {
@@ -101,9 +107,13 @@ public class SimulationManager : MonoBehaviour
 
     void UpdateStatistics()
     {
+        day++;
         CalculateIncome();
         CalcuatePopulation();
         CalculateEmployment();
         CalculateConsumables();
+
+        //I copied this from a tutorial and I hate it, surely there's a way of casting variables to UI text better than this
+        statsText.text = string.Format("Day: {0}   Treasury: £{1}   Population: {2} / {3}   Employment: {4} / {5}   Consumeables: {6}", new object[7] { day, treasury, population, maxPopulation, employment, maxEmployment, consumables });
     }
 }
