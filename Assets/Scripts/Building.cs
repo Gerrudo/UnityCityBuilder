@@ -41,8 +41,7 @@ public class Building : MonoBehaviour
 
         GridManager.current.TakeArea(areaTemp);
 
-        //Where I left off, this won't work, need to understand this better in C# if I need to send the value to a method in the SimulationManager class for it to handle
-        //SimulationManager.current.treasury - currentBuildingPreset.costToBuild;
+        SimulationManager.current.OnPlaceBuilding(currentBuildingPreset);
     }
 
     #endregion

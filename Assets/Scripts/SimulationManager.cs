@@ -31,6 +31,18 @@ public class SimulationManager : MonoBehaviour
         InvokeRepeating("UpdateStatistics", 0.0f, 1.0f);
     }
 
+    public void NewBuilding(BuildingPreset building)
+    {
+        if (SimulationManager.current.treasury < building.costToBuild)
+        {
+            Debug.Log("Not enough funds to place building.");
+
+            return;
+        }
+
+        //curBuildingPreset = buildingPreset;
+    }
+
     public void OnPlaceBuilding(BuildingPreset building)
     {
         //Building has maximum values which need to be handled when seeing how much the city can grow.
