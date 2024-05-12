@@ -4,7 +4,7 @@ public class Building : MonoBehaviour
 {
     public bool Placed { get; private set; }
     public BoundsInt area;
-    private BuildingPreset currentBuildingPreset;
+    public BuildingPreset currentBuildingPreset;
 
     #region Build
 
@@ -19,12 +19,6 @@ public class Building : MonoBehaviour
         {
             return false;
         }
-        //If the simulation manager allows for the cost to be subtracted from the treasury
-        else if(SimulationManager.current.treasury < currentBuildingPreset.costToBuild)
-        {
-            return false;
-        }
-        //If all checks succeed return true;
         else
         {
             return true;

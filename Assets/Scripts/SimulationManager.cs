@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -31,7 +30,7 @@ public class SimulationManager : MonoBehaviour
         InvokeRepeating("UpdateStatistics", 0.0f, 1.0f);
     }
 
-    public void NewBuilding(BuildingPreset building)
+    public void OnPlaceBuilding(BuildingPreset building)
     {
         if (SimulationManager.current.treasury < building.costToBuild)
         {
@@ -40,11 +39,6 @@ public class SimulationManager : MonoBehaviour
             return;
         }
 
-        //curBuildingPreset = buildingPreset;
-    }
-
-    public void OnPlaceBuilding(BuildingPreset building)
-    {
         //Building has maximum values which need to be handled when seeing how much the city can grow.
         maxPopulation += building.population;
         maxEmployment += building.employees;
