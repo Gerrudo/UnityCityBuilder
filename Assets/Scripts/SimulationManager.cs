@@ -32,18 +32,20 @@ public class SimulationManager : MonoBehaviour
 
     public void OnPlaceBuilding(BuildingPreset building)
     {
-        if (SimulationManager.current.treasury < building.costToBuild)
+        if (treasury > building.costToBuild)
+        {
+            //Building has maximum values which need to be handled when seeing how much the city can grow.
+            maxPopulation += building.population;
+            maxEmployment += building.employees;
+
+            treasury -= building.costToBuild;
+
+            buildings.Add(building);
+        }
+        else
         {
             Debug.Log("Not enough funds to place building.");
-
-            return;
         }
-
-        //Building has maximum values which need to be handled when seeing how much the city can grow.
-        maxPopulation += building.population;
-        maxEmployment += building.employees;
-
-        buildings.Add(building);
     }
 
     void CalculateIncome()

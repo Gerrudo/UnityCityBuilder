@@ -14,9 +14,14 @@ public class Building : MonoBehaviour
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
 
-        //If the GridManager can take the area
         if (!GridManager.current.CanTakeArea(areaTemp))
         {
+            return false;
+        }
+        else if (SimulationManager.current.treasury < currentBuildingPreset.costToBuild)
+        {
+            Debug.Log("Not enough funds to place building.");
+
             return false;
         }
         else
