@@ -7,13 +7,11 @@ public class SimulationManager : MonoBehaviour
     public static SimulationManager current;
 
     public int day;
-    public int treasury;
+    public int bricks;
     public int population;
     public int employment;
-    public int consumables;
     public int maxPopulation;
     public int maxEmployment;
-    public int tax;
 
     public TextMeshProUGUI statsText;
 
@@ -32,32 +30,27 @@ public class SimulationManager : MonoBehaviour
 
     public void OnPlaceBuilding(BuildingPreset building)
     {
-        if (treasury > building.costToBuild)
+        if (bricks > building.costToBuild)
         {
             //Building has maximum values which need to be handled when seeing how much the city can grow.
             maxPopulation += building.population;
             maxEmployment += building.employees;
 
-            treasury -= building.costToBuild;
+            bricks -= building.costToBuild;
 
             buildings.Add(building);
         }
         else
         {
-            Debug.Log("Not enough funds to place building.");
+            Debug.Log("Not enough bricks to place building.");
         }
     }
 
-    void CalculateIncome()
+    void CalculateBricks()
     {
-        //Collect taxes from each RCI building.
-        treasury += employment * tax;
-
         foreach (BuildingPreset building in buildings)
         {
-            //Expenses to manage, these need to be handled elserwhere and totalled up to here.
-            //Expenses will need to be expanded and not managed on a perbuilding level, as buildings will use different amounts of several resources.
-            treasury -= building.expenses;
+            bricks += building.brickProduction;
         }
     }
 
@@ -69,19 +62,6 @@ public class SimulationManager : MonoBehaviour
         foreach (BuildingPreset building in buildings)
         {
             maxPopulation += building.population;
-        }
-
-        //if consumables are greater than the population and population is less than the maximum, increase population.
-        if (consumables >= population && population < maxPopulation)
-        {
-            //Each population requires 4 consumables
-            consumables -= population / 4;
-            //Yeah I copied this. Will find whichever is smaller: the population + the amount of consumables divided by 4, or the current population. Probably.
-            population = Mathf.Min(population + (consumables / 4), population);
-        }
-        else if (consumables < population)
-        {
-            population = consumables;
         }
     }
 
@@ -100,26 +80,14 @@ public class SimulationManager : MonoBehaviour
         employment = Mathf.Min(population, maxEmployment);
     }
 
-    void CalculateConsumables()
-    {
-        //xD
-        consumables = 0;
-
-        foreach (BuildingPreset building in buildings)
-        {
-            consumables += building.production;
-        }
-    }
-
     void UpdateStatistics()
     {
         day++;
-        CalculateIncome();
+        CalculateBricks();
         CalcuatePopulation();
         CalculateEmployment();
-        CalculateConsumables();
 
         //I copied this from a tutorial and I hate it, surely there's a way of casting variables to UI text better than this
-        statsText.text = string.Format("Day: {0}   Treasury: £{1}   Population: {2} / {3}   Employment: {4} / {5}   Consumeables: {6}", new object[7] { day, treasury, population, maxPopulation, employment, maxEmployment, consumables });
+        statsText.text = string.Format("Day: {0}   Bricks: {1}   Population: {2} / {3}   Employment: {4} / {5}", new object[7] { day, bricks, population, maxPopulation, employment, maxEmployment, consumables });
     }
 }

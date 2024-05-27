@@ -18112,8 +18112,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Day: 0   Income: 0   Population: 0/0   Employment: 0/0   Consumeables:
-    0'
+  m_text: 'Day: 0   Bricks: 0   Population: 0/0   Employment: 0/0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -34513,13 +34512,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   day: 0
-  treasury: 200
+  bricks: 0
   population: 0
   employment: 0
   consumables: 0
   maxPopulation: 0
   maxEmployment: 0
-  tax: 0
   statsText: {fileID: 225649162}
 --- !u!4 &2145640043
 Transform:
