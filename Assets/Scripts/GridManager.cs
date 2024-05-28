@@ -2,11 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
-using System;
 
-public class GridBuildingSystem : MonoBehaviour
+public class GridManager : MonoBehaviour
 {
-    public static GridBuildingSystem current;
+    public static GridManager current;
 
     public GridLayout gridLayout;
     public Tilemap placementTileMap;
@@ -14,6 +13,7 @@ public class GridBuildingSystem : MonoBehaviour
     private static Dictionary<TileType, TileBase> tileBases = new Dictionary<TileType, TileBase>();
 
     private Building tempBuilding;
+
     private Vector3 prevPosition;
 
     #region Unity
@@ -120,11 +120,14 @@ public class GridBuildingSystem : MonoBehaviour
         tileMap.GetComponent<TilemapRenderer>().enabled = isVisable;
     }
 
-    public void InitialiseWithBuilding(GameObject building)
+    public void InitialiseWithBuilding(BuildingPreset buildingPreset)
     {
         ShowTileMap(placementTileMap, true);
 
-        tempBuilding = Instantiate(building, Vector3.zero, Quaternion.identity).GetComponent<Building>();
+        tempBuilding = Instantiate(buildingPreset.prefab, Vector3.zero, Quaternion.identity).GetComponent<Building>();
+
+        //This is required for the Simulation Manager class to access the values from the BuildingPreset via the Building class.
+        tempBuilding.currentBuildingPreset = buildingPreset;
 
         FollowBuilding();
     }

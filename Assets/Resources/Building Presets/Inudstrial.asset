@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d193ea0c1bb9457195ae057e1f4ec1c, type: 3}
   m_Name: Inudstrial
   m_EditorClassIdentifier: 
-  displayName: 
-  cost: 0
+  displayName: Industrial
+  bricksToBuild: 10
   population: 0
-  jobs: 0
-  costPerTurn: 0
-  waterPerTurn: 0
-  powerPerTurn: 0
+  energyConsumption: 2
+  energyProduction: 0
+  brickProduction: 1
   prefab: {fileID: 6022751064410698102, guid: 90c8b142b2bad4de8a212b533e85aacf, type: 3}

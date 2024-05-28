@@ -4,32 +4,43 @@ public class Building : MonoBehaviour
 {
     public bool Placed { get; private set; }
     public BoundsInt area;
+    public BuildingPreset currentBuildingPreset;
 
     #region Build
 
     public bool CanBePlaced()
     {
-        Vector3Int positionInt = GridBuildingSystem.current.gridLayout.LocalToCell(transform.position);
+        Vector3Int positionInt = GridManager.current.gridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
 
-        if (GridBuildingSystem.current.CanTakeArea(areaTemp))
+        if (!GridManager.current.CanTakeArea(areaTemp))
+        {
+            return false;
+        }
+        else if (SimulationManager.current.bricks < currentBuildingPreset.bricksToBuild)
+        {
+            Debug.Log("Not enough bricks to place building.");
+
+            return false;
+        }
+        else
         {
             return true;
         }
-
-        return false;
     }
 
     public void Place()
     {
-        Vector3Int positionInt = GridBuildingSystem.current.gridLayout.LocalToCell(transform.position);
+        Vector3Int positionInt = GridManager.current.gridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
 
         Placed = true;
 
-        GridBuildingSystem.current.TakeArea(areaTemp);
+        GridManager.current.TakeArea(areaTemp);
+
+        SimulationManager.current.OnPlaceBuilding(currentBuildingPreset);
     }
 
     #endregion
