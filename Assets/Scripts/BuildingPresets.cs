@@ -4,9 +4,10 @@ using UnityEngine;
 public class BuildingPreset : ScriptableObject
 {
     public string displayName;
-    public int costToBuild;
+    public int bricksToBuild;
     public int population;
-    public int employees;
+    public int energyConsumption;
+    public int energyProduction;
     public int brickProduction;
         
     public GameObject prefab;

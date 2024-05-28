@@ -10,8 +10,9 @@ public class SimulationManager : MonoBehaviour
     public int bricks;
     public int population;
     public int employment;
-    public int maxPopulation;
-    public int maxEmployment;
+    public int energy;
+    public int maxEnergyProduction;
+    public int maxEnergyConsumption;
 
     public TextMeshProUGUI statsText;
 
@@ -24,19 +25,14 @@ public class SimulationManager : MonoBehaviour
 
     private void Start()
     {
-        //Repeating starts instantly, repeats every second.
         InvokeRepeating("UpdateStatistics", 0.0f, 1.0f);
     }
 
     public void OnPlaceBuilding(BuildingPreset building)
     {
-        if (bricks > building.costToBuild)
+        if (bricks > building.bricksToBuild)
         {
-            //Building has maximum values which need to be handled when seeing how much the city can grow.
-            maxPopulation += building.population;
-            maxEmployment += building.employees;
-
-            bricks -= building.costToBuild;
+            bricks -= building.bricksToBuild;
 
             buildings.Add(building);
         }
@@ -54,40 +50,39 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    void CalcuatePopulation()
+    void CalculateEnergy()
     {
-        //I don't like doing this, must be better way. Instead check if anything has changed and process, rather than resetting the value.
-        maxPopulation = 0;
+        energy = 0;
+        maxEnergyProduction = 0;
+        maxEnergyConsumption = 0;
 
         foreach (BuildingPreset building in buildings)
         {
-            maxPopulation += building.population;
+            maxEnergyProduction += building.energyProduction;
+            maxEnergyConsumption += building.energyConsumption;
         }
+
+        energy = (maxEnergyProduction - maxEnergyConsumption);
     }
 
-    void CalculateEmployment()
+    void CalcuatePopulation()
     {
-        //Don't like, same as maxPopulation being zero'd
-        employment = 0;
-        maxEmployment = 0;
+        population = 0;
 
         foreach (BuildingPreset building in buildings)
         {
-            maxEmployment += building.employees;
+            population += building.population;
         }
-
-        //Employment cannot be higher than population.
-        employment = Mathf.Min(population, maxEmployment);
     }
 
     void UpdateStatistics()
     {
         day++;
         CalculateBricks();
+        CalculateEnergy();
         CalcuatePopulation();
-        CalculateEmployment();
 
         //I copied this from a tutorial and I hate it, surely there's a way of casting variables to UI text better than this
-        statsText.text = string.Format("Day: {0}   Bricks: {1}   Population: {2} / {3}   Employment: {4} / {5}", new object[7] { day, bricks, population, maxPopulation, employment, maxEmployment, consumables });
+        statsText.text = string.Format("Day: {0}   Bricks: {1}   Population: {2}   Energy: {3}", new object[4] { day, bricks, population, energy });
     }
 }

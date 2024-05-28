@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Apartment
   m_EditorClassIdentifier: 
   displayName: Apartment
-  costToBuild: 10
-  taxes: 0
-  expenses: 5
+  bricksToBuild: 0
   population: 10
-  employees: 0
-  production: 0
+  energyConsumption: 1
+  energyProduction: 0
+  brickProduction: 0
   prefab: {fileID: 6623170100631341131, guid: 7784ed187d329457e80ffa5db926cf1f, type: 3}

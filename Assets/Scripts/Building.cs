@@ -18,7 +18,7 @@ public class Building : MonoBehaviour
         {
             return false;
         }
-        else if (SimulationManager.current.bricks < currentBuildingPreset.costToBuild)
+        else if (SimulationManager.current.bricks < currentBuildingPreset.bricksToBuild)
         {
             Debug.Log("Not enough bricks to place building.");
 

@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Road
   m_EditorClassIdentifier: 
   displayName: Road
-  costToBuild: 5
-  taxes: 0
-  expenses: 5
+  bricksToBuild: 1
   population: 0
-  employees: 0
-  production: 0
+  energyConsumption: 0
+  energyProduction: 0
+  brickProduction: 0
   prefab: {fileID: 2631407196947316033, guid: 64533fc21acda4c85b440913ceb716cb, type: 3}

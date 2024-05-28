@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Inudstrial
   m_EditorClassIdentifier: 
   displayName: Industrial
-  costToBuild: 20
-  taxes: 0
-  expenses: 5
+  bricksToBuild: 10
   population: 0
-  employees: 10
-  production: 0
+  energyConsumption: 2
+  energyProduction: 0
+  brickProduction: 1
   prefab: {fileID: 6022751064410698102, guid: 90c8b142b2bad4de8a212b533e85aacf, type: 3}
