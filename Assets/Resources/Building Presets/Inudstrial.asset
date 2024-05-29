@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Inudstrial
   m_EditorClassIdentifier: 
   displayName: Industrial
-  bricksToBuild: 10
+  bricksToBuild: 30
   population: 0
-  energyConsumption: 2
+  jobs: 5
+  energyConsumption: 5
   energyProduction: 0
-  brickProduction: 1
+  brickProduction: 5
   prefab: {fileID: 6022751064410698102, guid: 90c8b142b2bad4de8a212b533e85aacf, type: 3}

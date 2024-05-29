@@ -34512,9 +34512,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   day: 0
-  bricks: 10
+  bricks: 200
+  maxBrickProduction: 0
   population: 0
-  employment: 0
+  workers: 0
+  maxWorkers: 0
   energy: 0
   maxEnergyProduction: 0
   maxEnergyConsumption: 0
