@@ -8,8 +8,10 @@ public class SimulationManager : MonoBehaviour
 
     public int day;
     public int bricks;
+    public int maxBrickProduction;
     public int population;
-    public int employment;
+    public int workers;
+    public int maxWorkers;
     public int energy;
     public int maxEnergyProduction;
     public int maxEnergyConsumption;
@@ -30,24 +32,26 @@ public class SimulationManager : MonoBehaviour
 
     public void OnPlaceBuilding(BuildingPreset building)
     {
-        if (bricks > building.bricksToBuild)
-        {
-            bricks -= building.bricksToBuild;
+        bricks -= building.bricksToBuild;
 
-            buildings.Add(building);
-        }
-        else
-        {
-            Debug.Log("Not enough bricks to place building.");
-        }
+        buildings.Add(building);
     }
 
     void CalculateBricks()
     {
+        if (workers == 0)
+        {
+            return;
+        }
+
+        maxBrickProduction = 0;
+
         foreach (BuildingPreset building in buildings)
         {
-            bricks += building.brickProduction;
+            maxBrickProduction += building.brickProduction;
         }
+
+        bricks += maxBrickProduction * (workers / maxWorkers);
     }
 
     void CalculateEnergy()
@@ -75,14 +79,35 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
+    void CalculateWorkers()
+    {
+        workers = 0;
+        maxWorkers = 0;
+
+        foreach (BuildingPreset building in buildings)
+        {
+            maxWorkers += building.jobs;
+        }
+
+        if (population > maxWorkers)
+        {
+            workers = maxWorkers;
+        }
+        else if (population < maxWorkers)
+        {
+            workers = population;
+        }
+    }
+
     void UpdateStatistics()
     {
         day++;
-        CalculateBricks();
         CalculateEnergy();
         CalcuatePopulation();
+        CalculateWorkers();
+        CalculateBricks();
 
         //I copied this from a tutorial and I hate it, surely there's a way of casting variables to UI text better than this
-        statsText.text = string.Format("Day: {0}   Bricks: {1}   Population: {2}   Energy: {3}", new object[4] { day, bricks, population, energy });
+        statsText.text = string.Format("Day: {0}   Bricks: {1}   Population: {2}   Energy: {3}   Workers: {4}", new object[5] { day, bricks, population, energy, workers });
     }
 }
