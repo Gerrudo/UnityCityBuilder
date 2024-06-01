@@ -8,13 +8,13 @@ public class SimulationManager : MonoBehaviour
 
     public int day;
     public int bricks;
-    public int maxBrickProduction;
     public int population;
     public int workers;
     public int maxWorkers;
     public int energy;
     public int maxEnergyProduction;
     public int maxEnergyConsumption;
+    public decimal totalBrickModifier;
 
     public TextMeshProUGUI statsText;
 
@@ -37,37 +37,6 @@ public class SimulationManager : MonoBehaviour
         buildings.Add(building);
     }
 
-    void CalculateBricks()
-    {
-        if (workers == 0)
-        {
-            return;
-        }
-
-        maxBrickProduction = 0;
-
-        foreach (BuildingPreset building in buildings)
-        {
-            maxBrickProduction += building.brickProduction;
-        }
-
-        bricks += maxBrickProduction * (workers / maxWorkers);
-    }
-
-    void CalculateEnergy()
-    {
-        energy = 0;
-        maxEnergyProduction = 0;
-        maxEnergyConsumption = 0;
-
-        foreach (BuildingPreset building in buildings)
-        {
-            maxEnergyProduction += building.energyProduction;
-            maxEnergyConsumption += building.energyConsumption;
-        }
-
-        energy = (maxEnergyProduction - maxEnergyConsumption);
-    }
 
     void CalcuatePopulation()
     {
@@ -99,15 +68,79 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
+    void CalculateEnergy()
+    {
+        energy = 0;
+        maxEnergyProduction = 0;
+        maxEnergyConsumption = 0;
+
+        foreach (BuildingPreset building in buildings)
+        {
+            maxEnergyProduction += building.energyProduction;
+            maxEnergyConsumption += building.energyConsumption;
+        }
+
+        energy = (maxEnergyProduction - maxEnergyConsumption);
+    }
+
+    void CalculateModifiers()
+    {
+        decimal totalBrickModifier = 1;
+
+        List<decimal> modiifiers = new List<decimal>();
+
+        //To not divide by zero.
+        if (workers > 0)
+        {
+            decimal workerModifier = (decimal)workers / (decimal)maxWorkers;
+
+            modiifiers.Add(workerModifier);
+        }
+
+        //To not divide by zero.
+        if (maxEnergyProduction > 0)
+        {
+            decimal energyModifer = (decimal)maxEnergyProduction / (decimal)maxEnergyConsumption;
+
+            modiifiers.Add(energyModifer);
+        }
+
+        foreach (var modiifier in modiifiers)
+        {
+            //The modifier cannot be greater than 100% production rate.
+            if (modiifier < 1)
+            {
+                totalBrickModifier += modiifier / modiifiers.Count;
+            }
+            else
+            {
+                totalBrickModifier += 1 / modiifiers.Count;
+            }
+        }
+    }
+
+    void CalculateBricks()
+    {
+        int maxBrickProduction = 0;
+
+        foreach (BuildingPreset building in buildings)
+        {
+            maxBrickProduction += building.brickProduction;
+        }
+
+        bricks += maxBrickProduction * totalBrickModifier;
+    }
+
     void UpdateStatistics()
     {
         day++;
-        CalculateEnergy();
         CalcuatePopulation();
         CalculateWorkers();
+        CalculateEnergy();
+        CalculateModifiers();
         CalculateBricks();
 
         //I copied this from a tutorial and I hate it, surely there's a way of casting variables to UI text better than this
-        statsText.text = string.Format("Day: {0}   Bricks: {1}   Population: {2}   Energy: {3}   Workers: {4}", new object[5] { day, bricks, population, energy, workers });
+        statsText.text = string.Format("Day: {0}   Bricks: {1}   Population: {2}   Energy: {3}   Workers: {4}    Production Rate: {5}", new object[6] { day, bricks, population, energy, workers, totalBrickModifier });
     }
 }
