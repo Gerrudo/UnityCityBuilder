@@ -18112,7 +18112,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Day: 0   Bricks: 0   Population: 0   Energy: 0'
+  m_text: 'Day: 0   Bricks: 0   Population: 0   Energy: 0/0   Workers: 0/0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -34513,13 +34513,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   day: 0
   bricks: 200
-  maxBrickProduction: 0
   population: 0
-  workers: 0
-  maxWorkers: 0
-  energy: 0
-  maxEnergyProduction: 0
-  maxEnergyConsumption: 0
+  jobs: 0
+  energyProduction: 0
+  energyConsumption: 0
   statsText: {fileID: 225649162}
 --- !u!4 &2145640043
 Transform:
