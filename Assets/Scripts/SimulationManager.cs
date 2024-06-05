@@ -74,14 +74,20 @@ public class SimulationManager : MonoBehaviour
 
         if (energyProduction < energyConsumption)
         {
-            Debug.Log("Not enough power to produce bricks.");
+            string statusMessage = "Not enough power to produce bricks.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
 
             return;
         }
 
         if (population < jobs)
         {
-            Debug.Log("Not enough workers to produce bricks.");
+            string statusMessage = "Not enough workers to produce bricks.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
 
             return;
         }

@@ -20,7 +20,10 @@ public class Building : MonoBehaviour
         }
         else if (SimulationManager.current.bricks < currentBuildingPreset.bricksToBuild)
         {
-            Debug.Log("Not enough bricks to place building.");
+            string statusMessage = "Not enough bricks to place building.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
 
             return false;
         }
