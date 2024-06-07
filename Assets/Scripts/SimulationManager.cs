@@ -70,7 +70,7 @@ public class SimulationManager : MonoBehaviour
 
     void CalculateBricks()
     {
-        int maxBrickProduction = 0;
+        int brickProduction = 0;
 
         if (energyProduction < energyConsumption)
         {
@@ -94,10 +94,10 @@ public class SimulationManager : MonoBehaviour
 
         foreach (BuildingPreset building in buildings)
         {
-            maxBrickProduction += building.brickProduction;
+            brickProduction += building.brickProduction;
         }
 
-        bricks += maxBrickProduction;
+        bricks += brickProduction;
     }
 
     void UpdateStatistics()
