@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Commerical
   m_EditorClassIdentifier: 
   displayName: Commerical
-  bricksToBuild: 5
+  bricksToBuild: 30
   population: 0
+  jobs: 0
   energyConsumption: 0
   energyProduction: 20
   brickProduction: 0

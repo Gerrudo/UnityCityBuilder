@@ -9,10 +9,9 @@ public class SimulationManager : MonoBehaviour
     public int day;
     public int bricks;
     public int population;
-    public int employment;
-    public int energy;
-    public int maxEnergyProduction;
-    public int maxEnergyConsumption;
+    public int jobs;
+    public int energyProduction;
+    public int energyConsumption;
 
     public TextMeshProUGUI statsText;
 
@@ -30,40 +29,11 @@ public class SimulationManager : MonoBehaviour
 
     public void OnPlaceBuilding(BuildingPreset building)
     {
-        if (bricks > building.bricksToBuild)
-        {
-            bricks -= building.bricksToBuild;
+        bricks -= building.bricksToBuild;
 
-            buildings.Add(building);
-        }
-        else
-        {
-            Debug.Log("Not enough bricks to place building.");
-        }
+        buildings.Add(building);
     }
 
-    void CalculateBricks()
-    {
-        foreach (BuildingPreset building in buildings)
-        {
-            bricks += building.brickProduction;
-        }
-    }
-
-    void CalculateEnergy()
-    {
-        energy = 0;
-        maxEnergyProduction = 0;
-        maxEnergyConsumption = 0;
-
-        foreach (BuildingPreset building in buildings)
-        {
-            maxEnergyProduction += building.energyProduction;
-            maxEnergyConsumption += building.energyConsumption;
-        }
-
-        energy = (maxEnergyProduction - maxEnergyConsumption);
-    }
 
     void CalcuatePopulation()
     {
@@ -75,14 +45,70 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
+    void CalculateJobs()
+    {
+        //workers is not accounted for, as it is the total population.
+        jobs = 0;
+
+        foreach (BuildingPreset building in buildings)
+        {
+            jobs += building.jobs;
+        }
+    }
+
+    void CalculateEnergy()
+    {
+        energyProduction = 0;
+        energyConsumption = 0;
+
+        foreach (BuildingPreset building in buildings)
+        {
+            energyProduction += building.energyProduction;
+            energyConsumption += building.energyConsumption;
+        }
+    }
+
+    void CalculateBricks()
+    {
+        int brickProduction = 0;
+
+        if (energyProduction < energyConsumption)
+        {
+            string statusMessage = "Not enough power to produce bricks.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
+
+            return;
+        }
+
+        if (population < jobs)
+        {
+            string statusMessage = "Not enough workers to produce bricks.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
+
+            return;
+        }
+
+        foreach (BuildingPreset building in buildings)
+        {
+            brickProduction += building.brickProduction;
+        }
+
+        bricks += brickProduction;
+    }
+
     void UpdateStatistics()
     {
         day++;
-        CalculateBricks();
-        CalculateEnergy();
         CalcuatePopulation();
+        CalculateJobs();
+        CalculateEnergy();
+        CalculateBricks();
 
         //I copied this from a tutorial and I hate it, surely there's a way of casting variables to UI text better than this
-        statsText.text = string.Format("Day: {0}   Bricks: {1}   Population: {2}   Energy: {3}", new object[4] { day, bricks, population, energy });
+        statsText.text = string.Format("Day: {0}   Bricks: {1}   Population: {2}   Energy: {3}/{4}   Workers: {5}/{6}", new object[7] { day, bricks, population, energyProduction, energyConsumption, population, jobs });
     }
 }

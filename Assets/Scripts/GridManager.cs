@@ -156,7 +156,11 @@ public class GridManager : MonoBehaviour
         {
             if (b != tileBases[TileType.Available])
             {
-                Debug.Log("Building cannot be placed here.");
+                string statusMessage = "Building cannot be placed here.";
+
+                Debug.Log(statusMessage);
+                StatusMessage.current.UpdateStatusMessage(statusMessage);
+
                 return false;
             }
         }
