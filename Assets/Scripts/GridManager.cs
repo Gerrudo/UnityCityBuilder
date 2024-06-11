@@ -21,8 +21,10 @@ public class GridManager : MonoBehaviour
     private void Awake()
     {
         current = this;
+
+        ShowTileMap(placementTileMap, false);
     }
-    
+
     void Start()
     {
         string tilePath = "Tiles/";
@@ -30,15 +32,13 @@ public class GridManager : MonoBehaviour
         tileBases.Add(TileType.Available, Resources.Load<TileBase>(tilePath + "AvailableTile"));
         tileBases.Add(TileType.Reserved, Resources.Load<TileBase>(tilePath + "ReservedTile"));
         tileBases.Add(TileType.Unavailable, Resources.Load<TileBase>(tilePath + "UnavailableTile"));
-
-        placementTileMap.GetComponent<TilemapRenderer>().enabled = false;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            if (placementTileMap.GetComponent<TilemapRenderer>().enabled == false)
+            if (!placementTileMap.GetComponent<TilemapRenderer>().enabled)
             {
                 ShowTileMap(placementTileMap, true);
             }
@@ -106,7 +106,7 @@ public class GridManager : MonoBehaviour
 
     #region Placement
 
-    private void ShowTileMap(Tilemap tileMap, bool isVisable)
+    public void ShowTileMap(Tilemap tileMap, bool isVisable)
     {
         if (isVisable)
         {
