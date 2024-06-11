@@ -46,6 +46,11 @@ public class SimulationManager : MonoBehaviour
         }
 
         money -= buildingCostPerDay;
+
+        if (money <= 0)
+        {
+            UIManager.current.StartGameOver();
+        }
     }
 
     void CalcuatePopulation()
