@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Apartment Green
   m_EditorClassIdentifier: 
   displayName: Apartment
+  moneyToBuild: 20
   bricksToBuild: 30
   population: 10
   jobs: 0
   energyConsumption: 5
   energyProduction: 0
   brickProduction: 0
+  costPerDay: 10
   prefab: {fileID: 9087390101379272570, guid: 73a1bb1a324954c4fa10c810ad996ab4, type: 3}

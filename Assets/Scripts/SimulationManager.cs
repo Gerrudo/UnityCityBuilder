@@ -7,6 +7,7 @@ public class SimulationManager : MonoBehaviour
     public static SimulationManager current;
 
     public int day;
+    public int money;
     public int bricks;
     public int population;
     public int jobs;
@@ -29,11 +30,28 @@ public class SimulationManager : MonoBehaviour
 
     public void OnPlaceBuilding(BuildingPreset building)
     {
+        money -= building.moneyToBuild;
         bricks -= building.bricksToBuild;
 
         buildings.Add(building);
     }
 
+    void CalculateMoney()
+    {
+        int buildingCostPerDay = 0;
+
+        foreach (BuildingPreset building in buildings)
+        {
+            buildingCostPerDay += building.costPerDay;
+        }
+
+        money -= buildingCostPerDay;
+
+        if (money <= 0)
+        {
+            UIManager.current.StartGameOver();
+        }
+    }
 
     void CalcuatePopulation()
     {
@@ -103,12 +121,14 @@ public class SimulationManager : MonoBehaviour
     void UpdateStatistics()
     {
         day++;
+        CalculateMoney();
         CalcuatePopulation();
         CalculateJobs();
         CalculateEnergy();
         CalculateBricks();
 
         //I copied this from a tutorial and I hate it, surely there's a way of casting variables to UI text better than this
-        statsText.text = string.Format("Day: {0}   Bricks: {1}   Population: {2}   Energy: {3}/{4}   Workers: {5}/{6}", new object[7] { day, bricks, population, energyProduction, energyConsumption, population, jobs });
+        //Maybe we should move all the variables out to their out text object.
+        statsText.text = string.Format("Day: {0}   Money: ${1}   Bricks: {2} Tons   Energy: {3} MW/{4} MW   Workers: {5}/{6}", new object[7] { day, money,  bricks, energyProduction, energyConsumption, population, jobs });
     }
 }

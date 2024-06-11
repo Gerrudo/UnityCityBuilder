@@ -27,6 +27,15 @@ public class Building : MonoBehaviour
 
             return false;
         }
+        else if (SimulationManager.current.money < currentBuildingPreset.moneyToBuild)
+        {
+            string statusMessage = "Not enough money to place building.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
+
+            return false;
+        }
         else
         {
             return true;
