@@ -34769,7 +34769,7 @@ GameObject:
   - component: {fileID: 2110473518}
   - component: {fileID: 2110473517}
   m_Layer: 5
-  m_Name: CommericallButton
+  m_Name: GeneratorButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34843,7 +34843,7 @@ MonoBehaviour:
         m_MethodName: InitialiseWithBuilding
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 65b5fdbe7225e471881ffc7de09d5f13, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: baee50e1561d84a07b8275374dd811b4, type: 2}
           m_ObjectArgumentAssemblyTypeName: BuildingPreset, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -34870,7 +34870,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1306436190030542318, guid: 2d14ed51e08ad4807b9af0ed4202c3d1, type: 3}
+  m_Sprite: {fileID: -3728870911380461295, guid: 138170a9ac72f4e13bc7593a6e47b353, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
