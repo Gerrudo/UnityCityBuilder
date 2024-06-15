@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Commerical
   moneyToBuild: 20
+  costPerDay: 10
+  brickProduction: 0
   bricksToBuild: 30
   population: 0
   jobs: 0
   energyConsumption: 0
-  energyProduction: 20
-  brickProduction: 0
-  costPerDay: 10
+  energyProduction: 40
+  waterProduction: 0
+  waterConsumption: 10
   prefab: {fileID: 2571368396060977432, guid: 7eb6aaabbb80547d4899c9960c0bb7e0, type: 3}

@@ -6,13 +6,20 @@ public class SimulationManager : MonoBehaviour
 {
     public static SimulationManager current;
 
-    public int day;
+    private int day;
+
     public int money;
+
     public int bricks;
-    public int population;
-    public int jobs;
-    public int energyProduction;
-    public int energyConsumption;
+
+    private int population;
+    private int jobs;
+
+    private int energyProduction;
+    private int energyConsumption;
+
+    private int waterProduction;
+    private int waterConsumption;
 
     public TextMeshProUGUI statsText;
 
@@ -86,6 +93,18 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
+    void CalculateWater()
+    {
+        waterProduction = 0;
+        waterConsumption = 0;
+
+        foreach (BuildingPreset building in buildings)
+        {
+            waterProduction += building.waterProduction;
+            waterConsumption += building.waterConsumption;
+        }
+    }
+
     void CalculateBricks()
     {
         int brickProduction = 0;
@@ -110,6 +129,16 @@ public class SimulationManager : MonoBehaviour
             return;
         }
 
+        if (waterProduction < waterConsumption)
+        {
+            string statusMessage = "Not enough water to produce bricks.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
+
+            return;
+        }
+
         foreach (BuildingPreset building in buildings)
         {
             brickProduction += building.brickProduction;
@@ -125,10 +154,11 @@ public class SimulationManager : MonoBehaviour
         CalcuatePopulation();
         CalculateJobs();
         CalculateEnergy();
+        CalculateWater();
         CalculateBricks();
 
         //I copied this from a tutorial and I hate it, surely there's a way of casting variables to UI text better than this
         //Maybe we should move all the variables out to their out text object.
-        statsText.text = string.Format("Day: {0}   Money: ${1}   Bricks: {2} Tons   Energy: {3} MW/{4} MW   Workers: {5}/{6}", new object[7] { day, money,  bricks, energyProduction, energyConsumption, population, jobs });
+        statsText.text = string.Format("Day: {0}   Money: ${1}   Bricks: {2} Tons   Energy: {3} MW/{4} MW   Water: {5} Kl/{6} Kl   Workers: {7}/{8}", new object[9] { day, money,  bricks, energyConsumption, energyProduction, waterConsumption, waterProduction, population, jobs });
     }
 }
