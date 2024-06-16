@@ -1,27 +1,27 @@
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class SimulationManager : MonoBehaviour
 {
     public static SimulationManager current;
 
-    private int day;
+    public int day;
 
     public int money;
+    public int income;
+    public int expenses;
 
     public int bricks;
+    public int brickProduction;
 
-    private int population;
-    private int jobs;
+    public int population;
+    public int jobs;
 
-    private int energyProduction;
-    private int energyConsumption;
+    public int energyConsumption;
+    public int energyProduction;
 
-    private int waterProduction;
-    private int waterConsumption;
-
-    public TextMeshProUGUI statsText;
+    public int waterConsumption;
+    public int waterProduction;
 
     private List<BuildingPreset> buildings = new List<BuildingPreset>();
 
@@ -45,14 +45,16 @@ public class SimulationManager : MonoBehaviour
 
     void CalculateMoney()
     {
-        int buildingCostPerDay = 0;
+        //Income is not yet being used
+        income = 0;
+        expenses = 0;
 
         foreach (BuildingPreset building in buildings)
         {
-            buildingCostPerDay += building.costPerDay;
+            expenses += building.costPerDay;
         }
 
-        money -= buildingCostPerDay;
+        money -= expenses;
 
         if (money <= 0)
         {
@@ -88,8 +90,8 @@ public class SimulationManager : MonoBehaviour
 
         foreach (BuildingPreset building in buildings)
         {
-            energyProduction += building.energyProduction;
             energyConsumption += building.energyConsumption;
+            energyProduction += building.energyProduction;
         }
     }
 
@@ -100,14 +102,14 @@ public class SimulationManager : MonoBehaviour
 
         foreach (BuildingPreset building in buildings)
         {
-            waterProduction += building.waterProduction;
             waterConsumption += building.waterConsumption;
+            waterProduction += building.waterProduction;
         }
     }
 
     void CalculateBricks()
     {
-        int brickProduction = 0;
+        brickProduction = 0;
 
         if (energyProduction < energyConsumption)
         {
@@ -157,8 +159,6 @@ public class SimulationManager : MonoBehaviour
         CalculateWater();
         CalculateBricks();
 
-        //I copied this from a tutorial and I hate it, surely there's a way of casting variables to UI text better than this
-        //Maybe we should move all the variables out to their out text object.
-        statsText.text = string.Format("Day: {0}   Money: ${1}   Bricks: {2} Tons   Energy: {3} MW/{4} MW   Water: {5} Kl/{6} Kl   Workers: {7}/{8}", new object[9] { day, money,  bricks, energyConsumption, energyProduction, waterConsumption, waterProduction, population, jobs });
+        UIManager.current.UpdateStatsUI();
     }
 }
