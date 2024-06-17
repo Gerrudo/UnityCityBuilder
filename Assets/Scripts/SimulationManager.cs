@@ -51,9 +51,11 @@ public class SimulationManager : MonoBehaviour
 
         foreach (BuildingPreset building in buildings)
         {
+            income += building.taxesPerDay;
             expenses += building.costPerDay;
         }
 
+        money += income;
         money -= expenses;
 
         if (money <= 0)

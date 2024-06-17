@@ -15,11 +15,12 @@ MonoBehaviour:
   displayName: Industrial
   moneyToBuild: 20
   costPerDay: 10
+  taxesPerDay: 0
   brickProduction: 5
   bricksToBuild: 30
   population: 0
   jobs: 5
-  energyConsumption: 5
+  energyConsumption: 15
   energyProduction: 0
   waterProduction: 0
   waterConsumption: 5

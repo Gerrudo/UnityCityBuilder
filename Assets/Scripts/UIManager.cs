@@ -89,7 +89,7 @@ public class UIManager : MonoBehaviour
         incomeText.text = $"Income: ${SimulationManager.current.income}";
         expensesText.text = $"Expenses: ${SimulationManager.current.expenses}";
 
-        brickProductionText.text = $"Bricks: {SimulationManager.current.brickProduction}Ton Per Day";
+        brickProductionText.text = $"Bricks: {SimulationManager.current.brickProduction} Ton Per Day";
 
         energyConsumptionText.text = $"Energy Usage: {SimulationManager.current.energyConsumption}Mw";
         energyProductionText.text = $"Energy Production: {SimulationManager.current.energyProduction}Mw";
