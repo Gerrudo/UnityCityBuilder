@@ -7,6 +7,7 @@ public class BuildingPreset : ScriptableObject
 
     public int moneyToBuild;
     public int costPerDay;
+    public int taxesPerDay;
 
     public int brickProduction;
     public int bricksToBuild;

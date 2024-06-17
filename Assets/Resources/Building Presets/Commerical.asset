@@ -15,12 +15,13 @@ MonoBehaviour:
   displayName: Commerical
   moneyToBuild: 20
   costPerDay: 10
+  taxesPerDay: 40
   brickProduction: 0
   bricksToBuild: 30
   population: 0
-  jobs: 0
-  energyConsumption: 0
-  energyProduction: 20
+  jobs: 5
+  energyConsumption: 10
+  energyProduction: 0
   waterProduction: 0
   waterConsumption: 5
   prefab: {fileID: 6022751064410698102, guid: 69ef4b08f7df24f55828c5dd35f49049, type: 3}

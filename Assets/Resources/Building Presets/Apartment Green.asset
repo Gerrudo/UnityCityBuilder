@@ -15,6 +15,7 @@ MonoBehaviour:
   displayName: Apartment
   moneyToBuild: 20
   costPerDay: 10
+  taxesPerDay: 5
   brickProduction: 0
   bricksToBuild: 30
   population: 10
