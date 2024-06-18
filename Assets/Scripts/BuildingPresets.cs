@@ -20,6 +20,9 @@ public class BuildingPreset : ScriptableObject
 
     public int waterProduction;
     public int waterConsumption;
-        
+
+    public bool producesClay;
+    public bool producesCoal;
+
     public GameObject prefab;
 }

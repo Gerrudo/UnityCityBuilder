@@ -14,6 +14,22 @@ public class Building : MonoBehaviour
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
 
+        if (currentBuildingPreset.producesClay)
+        {
+            if (!GridManager.current.IsOnResource(areaTemp, GridManager.TileType.Clay))
+            {
+                return false;
+            }
+        }
+
+        if (currentBuildingPreset.producesCoal)
+        {
+            if (!GridManager.current.IsOnResource(areaTemp, GridManager.TileType.Coal))
+            {
+                return false;
+            }
+        }
+
         if (!GridManager.current.CanTakeArea(areaTemp))
         {
             return false;

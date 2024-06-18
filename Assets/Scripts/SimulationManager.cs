@@ -11,12 +11,14 @@ public class SimulationManager : MonoBehaviour
     public int income;
     public int expenses;
 
+    public int clay;
     public int bricks;
     public int brickProduction;
 
     public int population;
     public int jobs;
 
+    public int coal;
     public int energyConsumption;
     public int energyProduction;
 
@@ -41,6 +43,17 @@ public class SimulationManager : MonoBehaviour
         bricks -= building.bricksToBuild;
 
         buildings.Add(building);
+    }
+
+    void CalculateRawResources()
+    {
+        foreach (BuildingPreset building in buildings)
+        {
+            if (building) //type is clay mine or coal mine
+            {
+
+            }
+        }
     }
 
     void CalculateMoney()
