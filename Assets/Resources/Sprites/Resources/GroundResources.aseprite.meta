@@ -140,7 +140,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: -12, y: -12}
   spriteSheetImportData:
-  - name: CoalTile
+  - name: CoalTileSprite
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7
@@ -160,7 +160,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: ClayTile
+  - name: ClayTileSprite
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7

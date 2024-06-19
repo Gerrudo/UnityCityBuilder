@@ -190,13 +190,13 @@ public class GridManager : MonoBehaviour
 
     public bool IsOnResource(BoundsInt area, TileType resourceTile)
     {
-        TileBase[] baseArray = placementTileMap.GetTilesBlock(area);
+        TileBase[] baseArray = resourceTileMap.GetTilesBlock(area);
 
         foreach (var b in baseArray)
         {
-            if (b != tileBases[TileType.Available] && b != tileBases[resourceTile])
+            if (b != tileBases[resourceTile])
             {
-                string statusMessage = "Building cannot be placed here.";
+                string statusMessage = "Building must be placed on a resource tile.";
 
                 Debug.Log(statusMessage);
                 StatusMessage.current.UpdateStatusMessage(statusMessage);

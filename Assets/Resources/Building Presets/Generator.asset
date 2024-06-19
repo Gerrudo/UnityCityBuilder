@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d193ea0c1bb9457195ae057e1f4ec1c, type: 3}
   m_Name: Generator
   m_EditorClassIdentifier: 
-  displayName: Commerical
+  displayName: Generator
   moneyToBuild: 20
   costPerDay: 10
   taxesPerDay: 0
@@ -24,4 +24,6 @@ MonoBehaviour:
   energyProduction: 40
   waterProduction: 0
   waterConsumption: 10
+  producesClay: 0
+  producesCoal: 0
   prefab: {fileID: 2571368396060977432, guid: 7eb6aaabbb80547d4899c9960c0bb7e0, type: 3}

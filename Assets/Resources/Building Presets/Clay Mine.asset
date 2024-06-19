@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d193ea0c1bb9457195ae057e1f4ec1c, type: 3}
-  m_Name: Water Tower
+  m_Name: Clay Mine
   m_EditorClassIdentifier: 
-  displayName: Water Tower
+  displayName: Clay Mine
   moneyToBuild: 10
-  costPerDay: 5
+  costPerDay: 10
   taxesPerDay: 0
   brickProduction: 0
-  bricksToBuild: 2
+  bricksToBuild: 30
   population: 0
-  jobs: 1
-  energyConsumption: 2
+  jobs: 5
+  energyConsumption: 10
   energyProduction: 0
-  waterProduction: 25
-  waterConsumption: 0
-  producesClay: 0
+  waterProduction: 0
+  waterConsumption: 5
+  producesClay: 1
   producesCoal: 0
-  prefab: {fileID: 163730901133721359, guid: b720e6a6c4fb342d5bec86308a7f42ab, type: 3}
+  prefab: {fileID: 2527088161971992616, guid: 9892ea8a984734c0697a7978551b945f, type: 3}

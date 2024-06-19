@@ -12,6 +12,8 @@ public class SimulationManager : MonoBehaviour
     public int expenses;
 
     public int clay;
+    public int clayConsumption;
+    public int clayProduction;
     public int bricks;
     public int brickProduction;
 
@@ -19,6 +21,8 @@ public class SimulationManager : MonoBehaviour
     public int jobs;
 
     public int coal;
+    public int coalConsumption;
+    public int coalProduction;
     public int energyConsumption;
     public int energyProduction;
 
@@ -34,7 +38,7 @@ public class SimulationManager : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("UpdateStatistics", 0.0f, 1.0f);
+        InvokeRepeating("UpdateStatistics", 0.0f, 2.0f);
     }
 
     public void OnPlaceBuilding(BuildingPreset building)
@@ -49,9 +53,13 @@ public class SimulationManager : MonoBehaviour
     {
         foreach (BuildingPreset building in buildings)
         {
-            if (building) //type is clay mine or coal mine
+            if (building.producesCoal)
             {
-
+                coal += 10;
+            }
+            else if (building.producesClay)
+            {
+                clay += 10;
             }
         }
     }
@@ -167,6 +175,7 @@ public class SimulationManager : MonoBehaviour
     void UpdateStatistics()
     {
         day++;
+        CalculateRawResources();
         CalculateMoney();
         CalcuatePopulation();
         CalculateJobs();
