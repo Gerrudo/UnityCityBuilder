@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Road
   moneyToBuild: 10
+  costPerDay: 5
+  taxesPerDay: 0
+  brickProduction: 0
   bricksToBuild: 2
   population: 0
   jobs: 0
   energyConsumption: 0
   energyProduction: 0
-  brickProduction: 0
-  costPerDay: 5
+  waterProduction: 0
+  waterConsumption: 0
+  producesClay: 0
+  producesCoal: 0
   prefab: {fileID: 2631407196947316033, guid: 64533fc21acda4c85b440913ceb716cb, type: 3}
