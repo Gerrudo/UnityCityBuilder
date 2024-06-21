@@ -25,5 +25,9 @@ MonoBehaviour:
   waterProduction: 0
   waterConsumption: 10
   producesClay: 0
+  clayConsumption: 0
+  clayProduction: 10
   producesCoal: 1
+  coalConsumption: 0
+  coalProduction: 10
   prefab: {fileID: 2527088161971992616, guid: 0ea44fe3c711b48ea8433ef346684f9a, type: 3}

@@ -49,21 +49,6 @@ public class SimulationManager : MonoBehaviour
         buildings.Add(building);
     }
 
-    void CalculateRawResources()
-    {
-        foreach (BuildingPreset building in buildings)
-        {
-            if (building.producesCoal)
-            {
-                coal += 10;
-            }
-            else if (building.producesClay)
-            {
-                clay += 10;
-            }
-        }
-    }
-
     void CalculateMoney()
     {
         //Income is not yet being used
@@ -106,18 +91,6 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    void CalculateEnergy()
-    {
-        energyProduction = 0;
-        energyConsumption = 0;
-
-        foreach (BuildingPreset building in buildings)
-        {
-            energyConsumption += building.energyConsumption;
-            energyProduction += building.energyProduction;
-        }
-    }
-
     void CalculateWater()
     {
         waterProduction = 0;
@@ -130,52 +103,119 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
+    void CalculateCoal()
+    {
+        coalConsumption = 0;
+        coalProduction = 0;
+
+        foreach (BuildingPreset building in buildings)
+        {
+            coalConsumption += building.coalConsumption;
+            coalProduction += building.coalProduction;
+        }
+    }
+
+    void CalculateClay()
+    {
+        clayConsumption = 0;
+        clayProduction = 0;
+
+        foreach (BuildingPreset building in buildings)
+        {
+            clayConsumption += building.clayConsumption;
+            clayProduction += building.clayProduction;
+        }
+    }
+
+    void CalculateEnergy()
+    {
+        energyProduction = 0;
+        energyConsumption = 0;
+
+        foreach (BuildingPreset building in buildings)
+        {
+            energyConsumption += building.energyConsumption;
+            energyProduction += building.energyProduction;
+        }
+
+        if (coalProduction < coalConsumption)
+        {
+            energyProduction = 0;
+
+            string statusMessage = "Not enough coal.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
+
+            return;
+        }
+    }
+
     void CalculateBricks()
     {
         brickProduction = 0;
 
-        if (energyProduction < energyConsumption)
+        if (CanProduce())
         {
-            string statusMessage = "Not enough power to produce bricks.";
-
-            Debug.Log(statusMessage);
-            StatusMessage.current.UpdateStatusMessage(statusMessage);
-
-            return;
-        }
-
-        if (population < jobs)
-        {
-            string statusMessage = "Not enough workers to produce bricks.";
-
-            Debug.Log(statusMessage);
-            StatusMessage.current.UpdateStatusMessage(statusMessage);
-
-            return;
-        }
-
-        if (waterProduction < waterConsumption)
-        {
-            string statusMessage = "Not enough water to produce bricks.";
-
-            Debug.Log(statusMessage);
-            StatusMessage.current.UpdateStatusMessage(statusMessage);
-
-            return;
-        }
-
-        foreach (BuildingPreset building in buildings)
-        {
-            brickProduction += building.brickProduction;
+            foreach (BuildingPreset building in buildings)
+            {
+                brickProduction += building.brickProduction;
+            }
         }
 
         bricks += brickProduction;
     }
 
+    private bool CanProduce()
+    {
+        if (energyProduction < energyConsumption)
+        {
+            string statusMessage = "Not enough power.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
+
+            return false;
+        }
+
+        if (population < jobs)
+        {
+            string statusMessage = "Not enough workers.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
+
+            return false;
+        }
+
+        if (waterProduction < waterConsumption)
+        {
+            string statusMessage = "Not enough water.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
+
+            return false;
+        }
+
+        if (clayProduction < clayConsumption)
+        {
+            string statusMessage = "Not enough clay.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
+
+            return false;
+        }
+
+        return true;
+    }
+
     void UpdateStatistics()
     {
         day++;
-        CalculateRawResources();
+        CalculateCoal();
+        CalculateClay();
         CalculateMoney();
         CalcuatePopulation();
         CalculateJobs();

@@ -22,7 +22,12 @@ public class BuildingPreset : ScriptableObject
     public int waterConsumption;
 
     public bool producesClay;
+    public int clayConsumption;
+    public int clayProduction;
+
     public bool producesCoal;
+    public int coalConsumption;
+    public int coalProduction;
 
     public GameObject prefab;
 }
