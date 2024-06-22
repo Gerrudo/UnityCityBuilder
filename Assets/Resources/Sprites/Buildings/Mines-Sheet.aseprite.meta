@@ -140,7 +140,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: -12, y: -12}
   spriteSheetImportData:
-  - name: CoalMineSprite
+  - name: Mines-Sheet_0
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7
@@ -150,8 +150,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 32
-      height: 32
-    spriteID: 3d11daf09f6a04494b27b211b7365c04
+      height: 28
+    spriteID: a43ad8e20aff0431fa4a9f923f111627
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -160,7 +160,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: ClayMineSprite
+  - name: Mines-Sheet_1
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7
@@ -170,8 +170,8 @@ ScriptedImporter:
       x: 68
       y: 4
       width: 32
-      height: 32
-    spriteID: 755f5c3db57354f7298f9a100d42c361
+      height: 28
+    spriteID: 59c3f47ae1493402f92bc38b858a845b
     spriteBone: []
     spriteOutline: []
     vertices: []

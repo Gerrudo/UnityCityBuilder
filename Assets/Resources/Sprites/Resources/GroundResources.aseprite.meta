@@ -191,10 +191,10 @@ ScriptedImporter:
     - name: GroundResources
       frameIndex: 0
       cellRect:
-        x: 0
-        y: 0
-        width: 128
-        height: 128
+        x: 16
+        y: 16
+        width: 96
+        height: 16
       spriteId: 052b01a0748534c6abdc2a8af4bdabaf
     linkedCells: []
     parentIndex: -1
