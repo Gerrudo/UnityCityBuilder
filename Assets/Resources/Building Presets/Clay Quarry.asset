@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d193ea0c1bb9457195ae057e1f4ec1c, type: 3}
-  m_Name: Clay Mine
+  m_Name: Clay Quarry
   m_EditorClassIdentifier: 
-  displayName: Clay Mine
+  displayName: Clay Quarry
+  buildingType: 7
   moneyToBuild: 10
   costPerDay: 10
   taxesPerDay: 0
@@ -24,10 +25,8 @@ MonoBehaviour:
   energyProduction: 0
   waterProduction: 0
   waterConsumption: 5
-  producesClay: 1
   clayConsumption: 0
   clayProduction: 10
-  producesCoal: 0
   coalConsumption: 0
   coalProduction: 0
   prefab: {fileID: 2527088161971992616, guid: 9892ea8a984734c0697a7978551b945f, type: 3}

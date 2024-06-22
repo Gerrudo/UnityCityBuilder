@@ -1,4 +1,5 @@
 using UnityEngine;
+using static BuildingPreset;
 
 public class Building : MonoBehaviour
 {
@@ -14,12 +15,12 @@ public class Building : MonoBehaviour
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
 
-        if (currentBuildingPreset.producesClay && !GridManager.current.IsOnResource(areaTemp, GridManager.TileType.Clay))
+        if (currentBuildingPreset.buildingType == BuildingType.Quarry && !GridManager.current.IsOnResource(areaTemp, GridManager.TileType.Clay))
         {
             return false;
         }
 
-        if (currentBuildingPreset.producesCoal && !GridManager.current.IsOnResource(areaTemp, GridManager.TileType.Coal))
+        if (currentBuildingPreset.buildingType == BuildingType.Mine && !GridManager.current.IsOnResource(areaTemp, GridManager.TileType.Coal))
         {
             return false;
         }

@@ -35952,7 +35952,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -786.15015, y: 234.58002}
+  m_AnchoredPosition: {x: -786.1501, y: 234.58002}
   m_SizeDelta: {x: -1612.3, y: -577.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1334108295
@@ -37851,13 +37851,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   day: 0
-  money: 5000
+  money: 10000
   income: 0
   expenses: 0
   clay: 0
   clayConsumption: 0
   clayProduction: 0
-  bricks: 200
+  bricks: 500
   brickProduction: 0
   population: 0
   jobs: 0

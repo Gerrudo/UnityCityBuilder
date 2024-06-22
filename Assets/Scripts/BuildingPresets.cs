@@ -5,6 +5,20 @@ public class BuildingPreset : ScriptableObject
 {
     public string displayName;
 
+    public enum BuildingType
+    {
+        Residential,
+        Commerical,
+        Industrial,
+        Generator,
+        Water,
+        Road,
+        Mine,
+        Quarry
+    }
+
+    public BuildingType buildingType;
+
     public int moneyToBuild;
     public int costPerDay;
     public int taxesPerDay;
@@ -21,11 +35,9 @@ public class BuildingPreset : ScriptableObject
     public int waterProduction;
     public int waterConsumption;
 
-    public bool producesClay;
     public int clayConsumption;
     public int clayProduction;
 
-    public bool producesCoal;
     public int coalConsumption;
     public int coalProduction;
 

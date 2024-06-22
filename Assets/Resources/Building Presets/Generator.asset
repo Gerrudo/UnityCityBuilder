@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Generator
   m_EditorClassIdentifier: 
   displayName: Generator
+  buildingType: 3
   moneyToBuild: 20
   costPerDay: 10
   taxesPerDay: 0
@@ -24,10 +25,8 @@ MonoBehaviour:
   energyProduction: 100
   waterProduction: 0
   waterConsumption: 10
-  producesClay: 0
   clayConsumption: 0
   clayProduction: 0
-  producesCoal: 0
   coalConsumption: 20
   coalProduction: 0
   prefab: {fileID: 2571368396060977432, guid: 7eb6aaabbb80547d4899c9960c0bb7e0, type: 3}

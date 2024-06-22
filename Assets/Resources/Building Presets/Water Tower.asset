@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Water Tower
   m_EditorClassIdentifier: 
   displayName: Water Tower
+  buildingType: 4
   moneyToBuild: 10
   costPerDay: 5
   taxesPerDay: 0
@@ -24,6 +25,8 @@ MonoBehaviour:
   energyProduction: 0
   waterProduction: 25
   waterConsumption: 0
-  producesClay: 0
-  producesCoal: 0
+  clayConsumption: 0
+  clayProduction: 0
+  coalConsumption: 0
+  coalProduction: 0
   prefab: {fileID: 163730901133721359, guid: b720e6a6c4fb342d5bec86308a7f42ab, type: 3}

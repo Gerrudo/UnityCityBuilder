@@ -49,7 +49,7 @@ public class SimulationManager : MonoBehaviour
         buildings.Add(building);
     }
 
-    void CalculateMoney()
+    private void CalculateMoney()
     {
         //Income is not yet being used
         income = 0;
@@ -70,7 +70,7 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    void CalcuatePopulation()
+    private void CalcuatePopulation()
     {
         population = 0;
 
@@ -80,7 +80,7 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    void CalculateJobs()
+    private void CalculateJobs()
     {
         //workers is not accounted for, as it is the total population.
         jobs = 0;
@@ -91,7 +91,7 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    void CalculateWater()
+    private void CalculateWater()
     {
         waterProduction = 0;
         waterConsumption = 0;
@@ -103,7 +103,7 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    void CalculateCoal()
+    private void CalculateCoal()
     {
         coalConsumption = 0;
         coalProduction = 0;
@@ -113,9 +113,11 @@ public class SimulationManager : MonoBehaviour
             coalConsumption += building.coalConsumption;
             coalProduction += building.coalProduction;
         }
+
+        coal += coalProduction;
     }
 
-    void CalculateClay()
+    private void CalculateClay()
     {
         clayConsumption = 0;
         clayProduction = 0;
@@ -125,9 +127,11 @@ public class SimulationManager : MonoBehaviour
             clayConsumption += building.clayConsumption;
             clayProduction += building.clayProduction;
         }
+
+        clay += clayProduction;
     }
 
-    void CalculateEnergy()
+    private void CalculateEnergy()
     {
         energyProduction = 0;
         energyConsumption = 0;
@@ -135,7 +139,13 @@ public class SimulationManager : MonoBehaviour
         foreach (BuildingPreset building in buildings)
         {
             energyConsumption += building.energyConsumption;
-            energyProduction += building.energyProduction;
+
+            if (building.buildingType == BuildingPreset.BuildingType.Generator)
+            {
+                coal -= building.coalConsumption;
+
+                energyProduction += building.energyProduction;
+            }
         }
 
         if (coalProduction < coalConsumption)
@@ -151,7 +161,7 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    void CalculateBricks()
+    private void CalculateBricks()
     {
         brickProduction = 0;
 
@@ -159,7 +169,11 @@ public class SimulationManager : MonoBehaviour
         {
             foreach (BuildingPreset building in buildings)
             {
-                brickProduction += building.brickProduction;
+                if (building.buildingType == BuildingPreset.BuildingType.Industrial)
+                {
+                    clay -= building.clayConsumption;
+                    brickProduction += building.brickProduction;
+                }
             }
         }
 
@@ -211,7 +225,7 @@ public class SimulationManager : MonoBehaviour
         return true;
     }
 
-    void UpdateStatistics()
+    private void UpdateStatistics()
     {
         day++;
         CalculateCoal();

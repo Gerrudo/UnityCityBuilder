@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Road
   m_EditorClassIdentifier: 
   displayName: Road
+  buildingType: 5
   moneyToBuild: 10
   costPerDay: 5
   taxesPerDay: 0
@@ -24,6 +25,8 @@ MonoBehaviour:
   energyProduction: 0
   waterProduction: 0
   waterConsumption: 0
-  producesClay: 0
-  producesCoal: 0
+  clayConsumption: 0
+  clayProduction: 0
+  coalConsumption: 0
+  coalProduction: 0
   prefab: {fileID: 2631407196947316033, guid: 64533fc21acda4c85b440913ceb716cb, type: 3}
