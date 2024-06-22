@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d193ea0c1bb9457195ae057e1f4ec1c, type: 3}
-  m_Name: Inudstrial
+  m_Name: Coal Mine
   m_EditorClassIdentifier: 
-  displayName: Industrial
-  buildingType: 2
+  displayName: Coal Mine
+  buildingType: 6
   moneyToBuild: 20
   costPerDay: 10
   taxesPerDay: 0
-  brickProduction: 5
+  brickProduction: 0
   bricksToBuild: 30
   population: 0
   jobs: 5
-  energyConsumption: 15
+  energyConsumption: 10
   energyProduction: 0
   waterProduction: 0
-  waterConsumption: 5
-  clayConsumption: 20
+  waterConsumption: 10
+  clayConsumption: 0
   clayProduction: 0
   coalConsumption: 0
-  coalProduction: 0
-  prefab: {fileID: 6022751064410698102, guid: 90c8b142b2bad4de8a212b533e85aacf, type: 3}
+  coalProduction: 10
+  prefab: {fileID: 2527088161971992616, guid: 0ea44fe3c711b48ea8433ef346684f9a, type: 3}

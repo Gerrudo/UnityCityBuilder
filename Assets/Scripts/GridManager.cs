@@ -9,6 +9,7 @@ public class GridManager : MonoBehaviour
 
     public GridLayout gridLayout;
     public Tilemap placementTileMap;
+    public Tilemap resourceTileMap;
 
     private static Dictionary<TileType, TileBase> tileBases = new Dictionary<TileType, TileBase>();
 
@@ -29,9 +30,14 @@ public class GridManager : MonoBehaviour
     {
         string tilePath = "Tiles/";
 
+        //Placement Indication
         tileBases.Add(TileType.Available, Resources.Load<TileBase>(tilePath + "AvailableTile"));
         tileBases.Add(TileType.Reserved, Resources.Load<TileBase>(tilePath + "ReservedTile"));
         tileBases.Add(TileType.Unavailable, Resources.Load<TileBase>(tilePath + "UnavailableTile"));
+
+        //Resources
+        tileBases.Add(TileType.Clay, Resources.Load<TileBase>(tilePath + "ClayTile"));
+        tileBases.Add(TileType.Coal, Resources.Load<TileBase>(tilePath + "CoalTile"));
     }
 
     void Update()
@@ -99,7 +105,9 @@ public class GridManager : MonoBehaviour
     {
         Available,
         Reserved,
-        Unavailable
+        Unavailable,
+        Clay,
+        Coal
     }
 
     #endregion
@@ -178,6 +186,26 @@ public class GridManager : MonoBehaviour
         }
 
         placementTileMap.SetTilesBlock(area, tileArray);
+    }
+
+    public bool IsOnResource(BoundsInt area, TileType resourceTile)
+    {
+        TileBase[] baseArray = resourceTileMap.GetTilesBlock(area);
+
+        foreach (var b in baseArray)
+        {
+            if (b != tileBases[resourceTile])
+            {
+                string statusMessage = "Building must be placed on a resource tile.";
+
+                Debug.Log(statusMessage);
+                StatusMessage.current.UpdateStatusMessage(statusMessage);
+
+                return false;
+            }
+        }
+
+        return true;
     }
 
     #endregion

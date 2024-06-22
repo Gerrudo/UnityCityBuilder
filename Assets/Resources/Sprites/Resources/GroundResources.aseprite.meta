@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c2b6c160851b048998959616d35e187e
+guid: 75665cf26dcba4bbeae36a603c1ef695
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638376651033103410
+  platformSettingsDirtyTick: 638542890589982060
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,9 +119,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Roads-Sheet
+  - name: GroundResources
     originalName: 
-    pivot: {x: 0.5, y: -0.5}
+    pivot: {x: 0.5, y: -1}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -129,8 +129,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 96
-      height: 32
-    spriteID: a0ec71fa9602240dfa2a03a91cd34bf3
+      height: 16
+    spriteID: 052b01a0748534c6abdc2a8af4bdabaf
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -140,18 +140,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: -12, y: -12}
   spriteSheetImportData:
-  - name: Roads-Sheet_0
+  - name: CoalTileSprite
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
       width: 32
-      height: 32
-    spriteID: 0d53c36f4438b432098153307d62451d
+      height: 16
+    spriteID: 2705b9d94db334e32a18d4f6e6ec6724
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -160,18 +160,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Roads-Sheet_1
+  - name: ClayTileSprite
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 68
       y: 4
       width: 32
-      height: 32
-    spriteID: a15743a2e73144658b2ddcd1fd065bbc
+      height: 16
+    spriteID: b8c79b6dd5c4a4ba7a3a3150c33eb40c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,20 +182,20 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: 156315625
-    name: Roads-Sheet
+    guid: 66097590
+    name: GroundResources
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Roads-Sheet
+    - name: GroundResources
       frameIndex: 0
       cellRect:
         x: 16
-        y: 32
+        y: 16
         width: 96
-        height: 80
-      spriteId: a0ec71fa9602240dfa2a03a91cd34bf3
+        height: 16
+      spriteId: 052b01a0748534c6abdc2a8af4bdabaf
     linkedCells: []
     parentIndex: -1
   platformSettings:

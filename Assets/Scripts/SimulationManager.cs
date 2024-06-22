@@ -11,12 +11,18 @@ public class SimulationManager : MonoBehaviour
     public int income;
     public int expenses;
 
+    public int clay;
+    public int clayConsumption;
+    public int clayProduction;
     public int bricks;
     public int brickProduction;
 
     public int population;
     public int jobs;
 
+    public int coal;
+    public int coalConsumption;
+    public int coalProduction;
     public int energyConsumption;
     public int energyProduction;
 
@@ -32,7 +38,7 @@ public class SimulationManager : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("UpdateStatistics", 0.0f, 1.0f);
+        InvokeRepeating("UpdateStatistics", 0.0f, 2.0f);
     }
 
     public void OnPlaceBuilding(BuildingPreset building)
@@ -43,7 +49,7 @@ public class SimulationManager : MonoBehaviour
         buildings.Add(building);
     }
 
-    void CalculateMoney()
+    private void CalculateMoney()
     {
         //Income is not yet being used
         income = 0;
@@ -64,7 +70,7 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    void CalcuatePopulation()
+    private void CalcuatePopulation()
     {
         population = 0;
 
@@ -74,7 +80,7 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    void CalculateJobs()
+    private void CalculateJobs()
     {
         //workers is not accounted for, as it is the total population.
         jobs = 0;
@@ -85,19 +91,7 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    void CalculateEnergy()
-    {
-        energyProduction = 0;
-        energyConsumption = 0;
-
-        foreach (BuildingPreset building in buildings)
-        {
-            energyConsumption += building.energyConsumption;
-            energyProduction += building.energyProduction;
-        }
-    }
-
-    void CalculateWater()
+    private void CalculateWater()
     {
         waterProduction = 0;
         waterConsumption = 0;
@@ -109,51 +103,133 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    void CalculateBricks()
+    private void CalculateCoal()
     {
-        brickProduction = 0;
-
-        if (energyProduction < energyConsumption)
-        {
-            string statusMessage = "Not enough power to produce bricks.";
-
-            Debug.Log(statusMessage);
-            StatusMessage.current.UpdateStatusMessage(statusMessage);
-
-            return;
-        }
-
-        if (population < jobs)
-        {
-            string statusMessage = "Not enough workers to produce bricks.";
-
-            Debug.Log(statusMessage);
-            StatusMessage.current.UpdateStatusMessage(statusMessage);
-
-            return;
-        }
-
-        if (waterProduction < waterConsumption)
-        {
-            string statusMessage = "Not enough water to produce bricks.";
-
-            Debug.Log(statusMessage);
-            StatusMessage.current.UpdateStatusMessage(statusMessage);
-
-            return;
-        }
+        coalConsumption = 0;
+        coalProduction = 0;
 
         foreach (BuildingPreset building in buildings)
         {
-            brickProduction += building.brickProduction;
+            coalConsumption += building.coalConsumption;
+            coalProduction += building.coalProduction;
+        }
+
+        coal += coalProduction;
+    }
+
+    private void CalculateClay()
+    {
+        clayConsumption = 0;
+        clayProduction = 0;
+
+        foreach (BuildingPreset building in buildings)
+        {
+            clayConsumption += building.clayConsumption;
+            clayProduction += building.clayProduction;
+        }
+
+        clay += clayProduction;
+    }
+
+    private void CalculateEnergy()
+    {
+        energyProduction = 0;
+        energyConsumption = 0;
+
+        foreach (BuildingPreset building in buildings)
+        {
+            energyConsumption += building.energyConsumption;
+
+            if (building.buildingType == BuildingPreset.BuildingType.Generator)
+            {
+                coal -= building.coalConsumption;
+
+                energyProduction += building.energyProduction;
+            }
+        }
+
+        if (coalProduction < coalConsumption)
+        {
+            energyProduction = 0;
+
+            string statusMessage = "Not enough coal.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
+
+            return;
+        }
+    }
+
+    private void CalculateBricks()
+    {
+        brickProduction = 0;
+
+        if (CanProduce())
+        {
+            foreach (BuildingPreset building in buildings)
+            {
+                if (building.buildingType == BuildingPreset.BuildingType.Industrial)
+                {
+                    clay -= building.clayConsumption;
+                    brickProduction += building.brickProduction;
+                }
+            }
         }
 
         bricks += brickProduction;
     }
 
-    void UpdateStatistics()
+    private bool CanProduce()
+    {
+        if (energyProduction < energyConsumption)
+        {
+            string statusMessage = "Not enough power.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
+
+            return false;
+        }
+
+        if (population < jobs)
+        {
+            string statusMessage = "Not enough workers.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
+
+            return false;
+        }
+
+        if (waterProduction < waterConsumption)
+        {
+            string statusMessage = "Not enough water.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
+
+            return false;
+        }
+
+        if (clayProduction < clayConsumption)
+        {
+            string statusMessage = "Not enough clay.";
+
+            Debug.Log(statusMessage);
+            StatusMessage.current.UpdateStatusMessage(statusMessage);
+
+            return false;
+        }
+
+        return true;
+    }
+
+    private void UpdateStatistics()
     {
         day++;
+        CalculateCoal();
+        CalculateClay();
         CalculateMoney();
         CalcuatePopulation();
         CalculateJobs();

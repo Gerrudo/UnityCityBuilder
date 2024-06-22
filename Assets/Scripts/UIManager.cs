@@ -18,8 +18,14 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI brickProductionText;
 
+    [SerializeField] private TextMeshProUGUI clayConsumptionText;
+    [SerializeField] private TextMeshProUGUI clayProductionText;
+
     [SerializeField] private TextMeshProUGUI energyConsumptionText;
     [SerializeField] private TextMeshProUGUI energyProductionText;
+
+    [SerializeField] private TextMeshProUGUI coalConsumptionText;
+    [SerializeField] private TextMeshProUGUI coalProductionText;
 
     [SerializeField] private TextMeshProUGUI waterConsumptionText;
     [SerializeField] private TextMeshProUGUI waterProductionText;
@@ -83,7 +89,7 @@ public class UIManager : MonoBehaviour
         //Maybe we could have the UI read a value instead of updating it individually?
 
         //Update Toolbar
-        statsText.text = string.Format("Day: {0}   Money: ${1}   Bricks: {2} Tons", new object[3] { SimulationManager.current.day, SimulationManager.current.money, SimulationManager.current.bricks });
+        statsText.text = string.Format("Day: {0}   Money: ${1}   Bricks: {2} Tons   Clay: {3} Tons   Coal: {4} Tons", new object[5] { SimulationManager.current.day, SimulationManager.current.money, SimulationManager.current.bricks, SimulationManager.current.clay, SimulationManager.current.coal });
 
         //Update Panel
         incomeText.text = $"Income: ${SimulationManager.current.income}";
@@ -91,8 +97,14 @@ public class UIManager : MonoBehaviour
 
         brickProductionText.text = $"Bricks: {SimulationManager.current.brickProduction} Ton Per Day";
 
+        clayConsumptionText.text = $"Clay Usage: {SimulationManager.current.clayConsumption} Ton Per Day";
+        clayProductionText.text = $"Clay Produced: {SimulationManager.current.clayProduction} Ton Per Day";
+
         energyConsumptionText.text = $"Energy Usage: {SimulationManager.current.energyConsumption}Mw";
-        energyProductionText.text = $"Energy Production: {SimulationManager.current.energyProduction}Mw";
+        energyProductionText.text = $"Energy Produced: {SimulationManager.current.energyProduction}Mw";
+
+        coalConsumptionText.text = $"Coal Usage: {SimulationManager.current.coalConsumption} Ton Per Day";
+        coalProductionText.text = $"Coal Produced: {SimulationManager.current.coalProduction} Ton Per Day";
 
         waterConsumptionText.text = $"Water Usage: {SimulationManager.current.waterConsumption}Kl";
         waterProductionText.text = $"Water Available: {SimulationManager.current.waterProduction}Kl";

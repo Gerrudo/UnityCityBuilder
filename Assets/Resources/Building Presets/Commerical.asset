@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Commerical
   m_EditorClassIdentifier: 
   displayName: Commerical
+  buildingType: 1
   moneyToBuild: 20
   costPerDay: 10
   taxesPerDay: 40
@@ -24,4 +25,8 @@ MonoBehaviour:
   energyProduction: 0
   waterProduction: 0
   waterConsumption: 5
+  clayConsumption: 0
+  clayProduction: 0
+  coalConsumption: 0
+  coalProduction: 0
   prefab: {fileID: 6022751064410698102, guid: 69ef4b08f7df24f55828c5dd35f49049, type: 3}
