@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5282731395681371449}
   - component: {fileID: 4809109509247499128}
+  - component: {fileID: 4090831996563671322}
   m_Layer: 0
   m_Name: Building_Generator
   m_TagString: Untagged
@@ -49,6 +50,22 @@ MonoBehaviour:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 1, y: 1, z: 1}
   currentBuildingPreset: {fileID: 0}
+--- !u!114 &4090831996563671322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571368396060977432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617aee78e573a44728a46e5bec4c8395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 2
+  timeToProduce: 2
+  multiplier: 1
+  baseProduction: 10
 --- !u!1 &4142982815157977968
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,7 +29,7 @@ public class Building : MonoBehaviour
         {
             return false;
         }
-        else if (SimulationManager.current.bricks < currentBuildingPreset.bricksToBuild)
+        else if (SimulationManager.instance.bricks < currentBuildingPreset.bricksToBuild)
         {
             string statusMessage = "Not enough bricks to place building.";
 
@@ -38,7 +38,7 @@ public class Building : MonoBehaviour
 
             return false;
         }
-        else if (SimulationManager.current.money < currentBuildingPreset.moneyToBuild)
+        else if (SimulationManager.instance.money < currentBuildingPreset.moneyToBuild)
         {
             string statusMessage = "Not enough money to place building.";
 
@@ -63,7 +63,7 @@ public class Building : MonoBehaviour
 
         GridManager.current.TakeArea(areaTemp);
 
-        SimulationManager.current.OnPlaceBuilding(currentBuildingPreset);
+        SimulationManager.instance.OnPlaceBuilding(currentBuildingPreset);
     }
 
     #endregion

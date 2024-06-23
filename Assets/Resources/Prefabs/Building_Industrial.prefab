@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4489615638921719240}
   - component: {fileID: 213024219967673504}
+  - component: {fileID: -9218423582607451423}
   m_Layer: 0
   m_Name: Building_Industrial
   m_TagString: Untagged
@@ -48,6 +49,23 @@ MonoBehaviour:
   area:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 1, y: 1, z: 1}
+  currentBuildingPreset: {fileID: 0}
+--- !u!114 &-9218423582607451423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6022751064410698102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617aee78e573a44728a46e5bec4c8395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 6
+  timeToProduce: 2
+  multiplier: 1
+  baseProduction: 10
 --- !u!1 &8382890768187373621
 GameObject:
   m_ObjectHideFlags: 0
