@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 555334305614286438}
   - component: {fileID: 3547631119362793164}
+  - component: {fileID: -4360771880579122347}
   m_Layer: 0
   m_Name: Building_WaterTower
   m_TagString: Untagged
@@ -49,6 +50,22 @@ MonoBehaviour:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 1, y: 1, z: 1}
   currentBuildingPreset: {fileID: 0}
+--- !u!114 &-4360771880579122347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163730901133721359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617aee78e573a44728a46e5bec4c8395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 3
+  timeToProduce: 2
+  multiplier: 1
+  baseProduction: 10
 --- !u!1 &370240646219302093
 GameObject:
   m_ObjectHideFlags: 0

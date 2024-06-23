@@ -5,43 +5,29 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager current;
+    public static UIManager instance;
 
     [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] private TextMeshProUGUI text;
     private bool gameOver = false;
 
-    [SerializeField] private TextMeshProUGUI statsText;
-
-    [SerializeField] private TextMeshProUGUI incomeText;
-    [SerializeField] private TextMeshProUGUI expensesText;
-
-    [SerializeField] private TextMeshProUGUI brickProductionText;
-
-    [SerializeField] private TextMeshProUGUI clayConsumptionText;
-    [SerializeField] private TextMeshProUGUI clayProductionText;
-
-    [SerializeField] private TextMeshProUGUI energyConsumptionText;
-    [SerializeField] private TextMeshProUGUI energyProductionText;
-
-    [SerializeField] private TextMeshProUGUI coalConsumptionText;
-    [SerializeField] private TextMeshProUGUI coalProductionText;
-
-    [SerializeField] private TextMeshProUGUI waterConsumptionText;
-    [SerializeField] private TextMeshProUGUI waterProductionText;
-
-    [SerializeField] private TextMeshProUGUI populationText;
-    [SerializeField] private TextMeshProUGUI jobsText;
+    [SerializeField] private TextMeshProUGUI dayText;
+    [SerializeField] private TextMeshProUGUI workersText;
+    [SerializeField] private TextMeshProUGUI moneyText;
+    [SerializeField] private TextMeshProUGUI powerText;
+    [SerializeField] private TextMeshProUGUI waterText;
+    [SerializeField] private TextMeshProUGUI clayText;
+    [SerializeField] private TextMeshProUGUI coalText;
+    [SerializeField] private TextMeshProUGUI bricksText;
 
     void Awake()
     {
-        current = this;
+        instance = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        gameOverPanel.SetActive(false);    
+        gameOverPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -71,7 +57,7 @@ public class UIManager : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
 
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(5);
     }
 
     public void StartGameOver()
@@ -89,28 +75,16 @@ public class UIManager : MonoBehaviour
         //Maybe we could have the UI read a value instead of updating it individually?
 
         //Update Toolbar
-        statsText.text = string.Format("Day: {0}   Money: ${1}   Bricks: {2} Tons   Clay: {3} Tons   Coal: {4} Tons", new object[5] { SimulationManager.current.day, SimulationManager.current.money, SimulationManager.current.bricks, SimulationManager.current.clay, SimulationManager.current.coal });
+        dayText.text = $"Day: {SimulationManager.instance.day}";
 
         //Update Panel
-        incomeText.text = $"Income: ${SimulationManager.current.income}";
-        expensesText.text = $"Expenses: ${SimulationManager.current.expenses}";
-
-        brickProductionText.text = $"Bricks: {SimulationManager.current.brickProduction} Ton Per Day";
-
-        clayConsumptionText.text = $"Clay Usage: {SimulationManager.current.clayConsumption} Ton Per Day";
-        clayProductionText.text = $"Clay Produced: {SimulationManager.current.clayProduction} Ton Per Day";
-
-        energyConsumptionText.text = $"Energy Usage: {SimulationManager.current.energyConsumption}Mw";
-        energyProductionText.text = $"Energy Produced: {SimulationManager.current.energyProduction}Mw";
-
-        coalConsumptionText.text = $"Coal Usage: {SimulationManager.current.coalConsumption} Ton Per Day";
-        coalProductionText.text = $"Coal Produced: {SimulationManager.current.coalProduction} Ton Per Day";
-
-        waterConsumptionText.text = $"Water Usage: {SimulationManager.current.waterConsumption}Kl";
-        waterProductionText.text = $"Water Available: {SimulationManager.current.waterProduction}Kl";
-
-        populationText.text = $"Workers: {SimulationManager.current.population}";
-        jobsText.text = $"Jobs Available: {SimulationManager.current.jobs}";
+        workersText.text = $"Workers: {SimulationManager.instance.workers}";
+        moneyText.text = $"Money: ${SimulationManager.instance.money}";
+        powerText.text = $"Power: {SimulationManager.instance.power}MW";
+        waterText.text = $"Water: {SimulationManager.instance.water}kL";
+        clayText.text = $"Clay: {SimulationManager.instance.clay} Ton";
+        coalText.text = $"Coal: {SimulationManager.instance.coal} Ton";
+        bricksText.text = $"Bricks: {SimulationManager.instance.bricks} Ton";
     }
 
     public void OpenStatsPanel(GameObject statsPanel)

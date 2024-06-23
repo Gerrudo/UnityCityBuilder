@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 612235470765945192}
   - component: {fileID: 2326397999908420299}
+  - component: {fileID: -4532216090441443385}
   m_Layer: 0
   m_Name: Building_Apartment_Green
   m_TagString: Untagged
@@ -132,3 +133,20 @@ MonoBehaviour:
   area:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 1, y: 1, z: 1}
+  currentBuildingPreset: {fileID: 0}
+--- !u!114 &-4532216090441443385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9087390101379272570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617aee78e573a44728a46e5bec4c8395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceType: 0
+  timeToProduce: 2
+  multiplier: 1
+  baseProduction: 10
