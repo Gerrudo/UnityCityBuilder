@@ -148,9 +148,9 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
+      y: 36
       width: 32
-      height: 32
+      height: 28
     spriteID: 0d53c36f4438b432098153307d62451d
     spriteBone: []
     spriteOutline: []
@@ -167,11 +167,31 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 68
+      x: 4
       y: 4
       width: 32
       height: 32
     spriteID: a15743a2e73144658b2ddcd1fd065bbc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: Roads-Sheet_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 68
+      y: 4
+      width: 32
+      height: 32
+    spriteID: 95393ba897d0547098599115db31930c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -191,10 +211,10 @@ ScriptedImporter:
     - name: Roads-Sheet
       frameIndex: 0
       cellRect:
-        x: 16
-        y: 32
-        width: 96
-        height: 80
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       spriteId: a0ec71fa9602240dfa2a03a91cd34bf3
     linkedCells: []
     parentIndex: -1
