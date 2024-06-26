@@ -44,6 +44,8 @@ public class RoadTile : Tile
                 break;
             }
         }
+
+        tileData.sprite = fittingSprite;
     }
 
     private static int ConditionCheck(TileBase tile, bool condition)

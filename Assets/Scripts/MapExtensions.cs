@@ -21,4 +21,15 @@ public static class MapExtensions
     {
         return vector + Vector3Int.right;
     }
+
+    public static Vector3Int[] Neighbours(this Vector3Int vector)
+    {
+        return new Vector3Int[4]
+        {
+        vector.North(),
+        vector.East(),
+        vector.South(),
+        vector.West()
+        };
+    }
 }
