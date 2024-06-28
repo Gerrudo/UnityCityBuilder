@@ -69,5 +69,5 @@ MonoBehaviour:
     eastConnected: 1
     southConnected: 1
     westConnected: 1
-    sprite: {fileID: 3337280725206855584, guid: c2b6c160851b048998959616d35e187e, type: 3}
+    sprite: {fileID: 6034781207730686270, guid: c2b6c160851b048998959616d35e187e, type: 3}
   defaultSprite: {fileID: 6034781207730686270, guid: c2b6c160851b048998959616d35e187e, type: 3}

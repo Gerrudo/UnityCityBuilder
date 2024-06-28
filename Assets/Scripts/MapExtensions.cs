@@ -2,24 +2,25 @@
 
 public static class MapExtensions
 {
+    //The methods of each vector may look strange but this is because we are using an Z as Y tilemap.
     public static Vector3Int North(this Vector3Int vector)
-    {
-        return vector + Vector3Int.up;
-    }
-
-    public static Vector3Int East(this Vector3Int vector)
     {
         return vector + Vector3Int.left;
     }
 
+    public static Vector3Int East(this Vector3Int vector)
+    {
+        return vector + Vector3Int.up;
+    }
+
     public static Vector3Int South(this Vector3Int vector)
     {
-        return vector + Vector3Int.down;
+        return vector + Vector3Int.right;
     }
 
     public static Vector3Int West(this Vector3Int vector)
     {
-        return vector + Vector3Int.right;
+        return vector + Vector3Int.down;
     }
 
     public static Vector3Int[] Neighbours(this Vector3Int vector)

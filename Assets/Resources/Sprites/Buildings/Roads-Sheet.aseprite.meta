@@ -142,15 +142,15 @@ ScriptedImporter:
   spriteSheetImportData:
   - name: Roads-Sheet_0
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 36
       width: 32
-      height: 28
+      height: 16
     spriteID: 0d53c36f4438b432098153307d62451d
     spriteBone: []
     spriteOutline: []
@@ -162,15 +162,15 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Roads-Sheet_1
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
       width: 32
-      height: 32
+      height: 16
     spriteID: a15743a2e73144658b2ddcd1fd065bbc
     spriteBone: []
     spriteOutline: []
@@ -182,15 +182,15 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Roads-Sheet_2
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 68
       y: 4
       width: 32
-      height: 32
+      height: 16
     spriteID: 95393ba897d0547098599115db31930c
     spriteBone: []
     spriteOutline: []

@@ -16,7 +16,6 @@ public class GridManager : MonoBehaviour
     private static Dictionary<TileType, TileBase> tileBases = new Dictionary<TileType, TileBase>();
     private Building tempBuilding;
     private Vector3 prevPosition;
-    private bool drawingRoad = false;
 
     #region Unity
 
@@ -43,6 +42,12 @@ public class GridManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            CreateRoad();
+            Debug.Log("Drawing road");
+        }
+
         if (!tempBuilding)
         {
             return;
@@ -81,23 +86,6 @@ public class GridManager : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Destroy(tempBuilding.gameObject);
-                ShowTileMap(placementTileMap, false);
-            }
-        }
-
-        if (drawingRoad)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                CreateRoad();
-            }
-            else if (Input.GetMouseButtonDown(1))
-            {
-                CreateRoad(false);
-            }
-            else if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                drawingRoad = false;
                 ShowTileMap(placementTileMap, false);
             }
         }
@@ -146,21 +134,20 @@ public class GridManager : MonoBehaviour
         FollowBuilding();
     }
 
-    public void StartDrawingRoad()
+    private void CreateRoad()
     {
-        ShowTileMap(placementTileMap, true);
+        Vector2 clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int cellPos = gridLayout.LocalToCell(clickPos);
 
-        drawingRoad = true;
-    }
+        if (prevPosition != cellPos)
+        {
+            Debug.Log($"Drawing road at {cellPos}");
 
-    private void CreateRoad(bool erase = false)
-    {
-        Vector3Int hoveredCellPostion = roadMap.WorldToCell(Camera.main.ScreenToViewportPoint(Input.mousePosition));
+            roadMap.SetTile(cellPos, roadTile);
+            roadMap.RefreshAllTiles();
 
-        hoveredCellPostion = new Vector3Int(hoveredCellPostion.x, hoveredCellPostion.y, 0);
-
-        roadMap.SetTile(hoveredCellPostion, erase ? null : roadTile);
-        roadMap.RefreshAllTiles();
+            prevPosition = cellPos;
+        }
     }
 
     private void FollowBuilding()
