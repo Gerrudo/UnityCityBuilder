@@ -25,14 +25,6 @@ public class SimulationManager : MonoBehaviour
         StartCoroutine(CountDays());
     }
 
-    public void OnPlaceBuilding(BuildingPreset building)
-    {
-        money -= building.moneyToBuild;
-        bricks -= building.bricksToBuild;
-
-        UIManager.instance.UpdateStatsUI();
-    }
-
     private IEnumerator CountDays()
     {
         yield return new WaitForSeconds(10);

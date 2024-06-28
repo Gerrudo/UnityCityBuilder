@@ -142,8 +142,8 @@ ScriptedImporter:
   spriteSheetImportData:
   - name: Apartments-Sheet_0
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -162,8 +162,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: Apartments-Sheet_1
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
