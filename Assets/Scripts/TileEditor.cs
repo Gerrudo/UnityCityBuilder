@@ -11,7 +11,7 @@ public class TileEditor : Singleton<TileEditor>
 
     [SerializeField] Tilemap previewMap, defaultMap;
     TileBase tileBase;
-    ZoneTileBase selectedObj;
+    PlaceableTile selectedObj;
 
     Vector2 mousePos;
     Vector3Int curGridPos;
@@ -32,7 +32,10 @@ public class TileEditor : Singleton<TileEditor>
         {
             //Setting pos as a Vector3 causes issues
             Vector2 pos = _camera.ScreenToWorldPoint(mousePos);
+
             Vector3Int gridPos = previewMap.WorldToCell(pos);
+
+            gridPos = new Vector3Int(gridPos.x, gridPos.y, 1);
 
             if (gridPos != curGridPos)
             {
@@ -62,7 +65,7 @@ public class TileEditor : Singleton<TileEditor>
         playerInput.Gameplay.MousePosition.performed -= OnMouseMove;
     }
 
-    private ZoneTileBase SelectedObj
+    private PlaceableTile SelectedObj
     {
         set
         {
@@ -93,7 +96,7 @@ public class TileEditor : Singleton<TileEditor>
         SelectedObj = null;
     }
 
-    public void ObjectSelected(ZoneTileBase obj)
+    public void ObjectSelected(PlaceableTile obj)
     {
         SelectedObj = obj;
     }
@@ -107,5 +110,8 @@ public class TileEditor : Singleton<TileEditor>
     private void DrawItem()
     {
         defaultMap.SetTile(curGridPos, tileBase);
+
+        //Required for out network tile rules
+        defaultMap.RefreshAllTiles();
     }
 }

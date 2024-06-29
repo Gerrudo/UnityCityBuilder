@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fba716a8dc494fa7989b75fe7fe9b94, type: 3}
-  m_Name: CommericalZone
+  m_Name: IndustrialPlaceableTile
   m_EditorClassIdentifier: 
-  tileType: 1
-  tileBase: {fileID: 11400000, guid: 597fe624fef8f4850a6e41c16af444a5, type: 2}
+  tileType: 3
+  tileBase: {fileID: 11400000, guid: 8c52ec63bddd846a9a8020b98bb9c9f9, type: 2}

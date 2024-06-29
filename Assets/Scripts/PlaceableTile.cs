@@ -3,13 +3,17 @@ using UnityEngine.Tilemaps;
 
 public enum TileType
 {
+    Road,
     Residential,
     Commerical,
-    Industrial
+    Industrial,
+    Generator,
+    WaterTower,
+    CoalMine
 }
 
-[CreateAssetMenu(fileName = "Zone Tile Base", menuName = "Create Zone Tile Base")]
-public class ZoneTileBase : ScriptableObject
+[CreateAssetMenu(fileName = "PlaceableTile", menuName = "PlaceableTile")]
+public class PlaceableTile : ScriptableObject
 {
     [SerializeField] TileType tileType;
     [SerializeField] TileBase tileBase;

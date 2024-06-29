@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fba716a8dc494fa7989b75fe7fe9b94, type: 3}
-  m_Name: ResidentialZone
+  m_Name: GeneratorPlaceableTile
   m_EditorClassIdentifier: 
-  tileType: 0
-  tileBase: {fileID: 11400000, guid: 15bcea4dec4c141f592e3a39f78ed974, type: 2}
+  tileType: 4
+  tileBase: {fileID: 11400000, guid: 3687c21cb14a74782a53e7dca647f5f2, type: 2}

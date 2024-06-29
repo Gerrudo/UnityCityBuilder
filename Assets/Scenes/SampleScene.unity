@@ -18526,6 +18526,7 @@ GameObject:
   - component: {fileID: 222772471}
   - component: {fileID: 222772470}
   - component: {fileID: 222772469}
+  - component: {fileID: 222772472}
   m_Layer: 5
   m_Name: CoalMineButton
   m_TagString: Untagged
@@ -18634,6 +18635,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222772467}
   m_CullTransparentMesh: 1
+--- !u!114 &222772472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222772467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db647680d32c348de915edacf672b464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: c360266665a3645278629871ca360cc3, type: 2}
 --- !u!1 &225649160
 GameObject:
   m_ObjectHideFlags: 0
@@ -18914,6 +18928,7 @@ GameObject:
   - component: {fileID: 438428167}
   - component: {fileID: 438428166}
   - component: {fileID: 438428165}
+  - component: {fileID: 438428168}
   m_Layer: 5
   m_Name: WaterTowerButton
   m_TagString: Untagged
@@ -19022,6 +19037,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438428163}
   m_CullTransparentMesh: 1
+--- !u!114 &438428168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438428163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db647680d32c348de915edacf672b464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 1e8af507c7fa84fc385875bff8301486, type: 2}
 --- !u!1 &516585224
 GameObject:
   m_ObjectHideFlags: 0
@@ -19509,6 +19537,7 @@ GameObject:
   - component: {fileID: 684834630}
   - component: {fileID: 684834629}
   - component: {fileID: 684834631}
+  - component: {fileID: 684834632}
   m_Layer: 5
   m_Name: RoadButton
   m_TagString: Untagged
@@ -19617,6 +19646,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &684834632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684834627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db647680d32c348de915edacf672b464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: e158eeb5c76bd4712a9de0f8a5240802, type: 2}
 --- !u!1 &705518901
 GameObject:
   m_ObjectHideFlags: 0
@@ -21661,6 +21703,7 @@ GameObject:
   - component: {fileID: 2110473519}
   - component: {fileID: 2110473518}
   - component: {fileID: 2110473517}
+  - component: {fileID: 2110473520}
   m_Layer: 5
   m_Name: GeneratorButton
   m_TagString: Untagged
@@ -21769,6 +21812,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110473515}
   m_CullTransparentMesh: 1
+--- !u!114 &2110473520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110473515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db647680d32c348de915edacf672b464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 2f6d61be642104e76965672f6cee0fb0, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

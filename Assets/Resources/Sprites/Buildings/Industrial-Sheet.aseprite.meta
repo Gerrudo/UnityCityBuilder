@@ -142,15 +142,15 @@ ScriptedImporter:
   spriteSheetImportData:
   - name: Industrial-Sheet_0
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
       width: 32
-      height: 33
+      height: 32
     spriteID: 95e57ac7581a44e599e81376314a431c
     spriteBone: []
     spriteOutline: []
