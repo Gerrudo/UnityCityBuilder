@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RCI-sheet_0
+      name: RCI_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 208c0aa4e62844283a18f607738b0c17
-      internalID: -977003732
+      spriteID: 418cccfd9f3db4ed7950ca425dfdb98b
+      internalID: -2007700573
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RCI-sheet_1
+      name: RCI_1
       rect:
         serializedVersion: 2
         x: 32
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 972b1fffbc41a410786a6843837d2ce9
-      internalID: 2083868773
+      spriteID: 8ad6e3f2dd567409dac3f79a6bca47a2
+      internalID: -714971142
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RCI-sheet_2
+      name: RCI_2
       rect:
         serializedVersion: 2
         x: 64
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2159e27b7b0744f5c9a1585301b3b1d7
-      internalID: 648271601
+      spriteID: eb8b588b07c0b483a9c12c97bea74780
+      internalID: 176563359
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RCI-sheet_3
+      name: RCI_3
       rect:
         serializedVersion: 2
         x: 96
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eda1bb5809fa44c8caa35ca57486ae09
-      internalID: -1552021875
+      spriteID: 86c9873428e904a6d83b2419fdb16f3b
+      internalID: -1177947172
       vertices: []
       indices: 
       edges: []
@@ -217,10 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      RCI-sheet_0: -977003732
-      RCI-sheet_1: 2083868773
-      RCI-sheet_2: 648271601
-      RCI-sheet_3: -1552021875
+      RCI_0: -2007700573
+      RCI_1: -714971142
+      RCI_2: 176563359
+      RCI_3: -1177947172
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

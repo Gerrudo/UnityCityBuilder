@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class TileEditButtonHandler : MonoBehaviour
 {
-    [SerializeField] PlaceableTile item;
-    Button button;
+    [SerializeField] private PlaceableTile item;
+    private Button button;
 
     TileEditor tileEditor;
 

@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Roads-Sheet_0
+      name: Roads_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac1b7d12e59024b8c8a67efd79b8ca3c
-      internalID: 656700663
+      spriteID: 319e4b807d3624a7ba3df10c19af2d45
+      internalID: 1301241630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Roads-Sheet_1
+      name: Roads_1
       rect:
         serializedVersion: 2
         x: 32
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba5887c1da451408888de9dac7280db7
-      internalID: -1539193706
+      spriteID: 50b9db0d4c608474d96a1dba796c73de
+      internalID: 1801624891
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Roads-Sheet_2
+      name: Roads_2
       rect:
         serializedVersion: 2
         x: 64
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bf03e529bc2e401d98fe427058d3255
-      internalID: -821221160
+      spriteID: dd4bf662e885542af90dc909de50fbda
+      internalID: -913760727
       vertices: []
       indices: 
       edges: []
@@ -196,9 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Roads-Sheet_0: 656700663
-      Roads-Sheet_1: -1539193706
-      Roads-Sheet_2: -821221160
+      Roads_0: 1301241630
+      Roads_1: 1801624891
+      Roads_2: -913760727
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

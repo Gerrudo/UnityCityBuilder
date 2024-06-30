@@ -15,8 +15,8 @@ public enum TileType
 [CreateAssetMenu(fileName = "PlaceableTile", menuName = "PlaceableTile")]
 public class PlaceableTile : ScriptableObject
 {
-    [SerializeField] TileType tileType;
-    [SerializeField] TileBase tileBase;
+    [SerializeField] private TileType tileType;
+    [SerializeField] private TileBase tileBase;
 
     public TileBase TileBase
     {

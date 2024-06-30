@@ -9,13 +9,13 @@ public class TileEditor : Singleton<TileEditor>
 
     Camera _camera;
 
-    [SerializeField] Tilemap previewMap, defaultMap;
-    TileBase tileBase;
-    PlaceableTile selectedObj;
+    [SerializeField] private Tilemap previewMap, defaultMap;
+    private TileBase tileBase;
+    private PlaceableTile selectedObj;
 
-    Vector2 mousePos;
-    Vector3Int curGridPos;
-    Vector3Int prevGridPos;
+    private Vector2 mousePos;
+    private Vector3Int curGridPos;
+    private Vector3Int prevGridPos;
 
     protected override void Awake()
     {
@@ -36,7 +36,7 @@ public class TileEditor : Singleton<TileEditor>
             Vector3Int gridPos = previewMap.WorldToCell(pos);
 
             //We create a new vector 3 to place the buildings on 1 for the Z axis, we need to move our map down by 1 instead in the future.
-            gridPos = new Vector3Int(gridPos.x, gridPos.y, 1);
+            gridPos = new Vector3Int(gridPos.x, gridPos.y, 0);
 
             if (gridPos != curGridPos)
             {
