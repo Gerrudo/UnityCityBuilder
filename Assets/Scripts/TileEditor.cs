@@ -35,6 +35,7 @@ public class TileEditor : Singleton<TileEditor>
 
             Vector3Int gridPos = previewMap.WorldToCell(pos);
 
+            //We create a new vector 3 to place the buildings on 1 for the Z axis, we need to move our map down by 1 instead in the future.
             gridPos = new Vector3Int(gridPos.x, gridPos.y, 1);
 
             if (gridPos != curGridPos)

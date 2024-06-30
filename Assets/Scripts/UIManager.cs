@@ -15,9 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private TextMeshProUGUI powerText;
     [SerializeField] private TextMeshProUGUI waterText;
-    [SerializeField] private TextMeshProUGUI clayText;
     [SerializeField] private TextMeshProUGUI coalText;
-    [SerializeField] private TextMeshProUGUI bricksText;
 
     void Awake()
     {
@@ -82,9 +80,7 @@ public class UIManager : MonoBehaviour
         moneyText.text = $"Money: ${SimulationManager.instance.money}";
         powerText.text = $"Power: {SimulationManager.instance.power}MW";
         waterText.text = $"Water: {SimulationManager.instance.water}kL";
-        clayText.text = $"Clay: {SimulationManager.instance.clay} Ton";
         coalText.text = $"Coal: {SimulationManager.instance.coal} Ton";
-        bricksText.text = $"Bricks: {SimulationManager.instance.bricks} Ton";
     }
 
     public void OpenStatsPanel(GameObject statsPanel)

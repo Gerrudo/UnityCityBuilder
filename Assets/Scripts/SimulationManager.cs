@@ -10,8 +10,6 @@ public class SimulationManager : MonoBehaviour
     public int money;
     public int power;
     public int water;
-    public int clay;
-    public int bricks;
     public int workers;
     public int coal;
 

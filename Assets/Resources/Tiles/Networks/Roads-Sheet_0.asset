@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e23e55fb1457b426ba833b2f2fcb569d, type: 3}
   m_Name: Roads-Sheet_0
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 6034781207730686270, guid: c2b6c160851b048998959616d35e187e, type: 3}
+  m_Sprite: {fileID: 656700663, guid: fb3a231ec91ae4ca29364feb1e3a53cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -39,35 +39,35 @@ MonoBehaviour:
     eastConnected: 0
     southConnected: 0
     westConnected: 0
-    sprite: {fileID: 3337280725206855584, guid: c2b6c160851b048998959616d35e187e, type: 3}
+    sprite: {fileID: -1539193706, guid: fb3a231ec91ae4ca29364feb1e3a53cc, type: 3}
   - northConnected: 0
     eastConnected: 1
     southConnected: 0
     westConnected: 0
-    sprite: {fileID: 3727618239987294604, guid: c2b6c160851b048998959616d35e187e, type: 3}
+    sprite: {fileID: -821221160, guid: fb3a231ec91ae4ca29364feb1e3a53cc, type: 3}
   - northConnected: 0
     eastConnected: 0
     southConnected: 1
     westConnected: 0
-    sprite: {fileID: 3337280725206855584, guid: c2b6c160851b048998959616d35e187e, type: 3}
+    sprite: {fileID: -1539193706, guid: fb3a231ec91ae4ca29364feb1e3a53cc, type: 3}
   - northConnected: 0
     eastConnected: 0
     southConnected: 0
     westConnected: 1
-    sprite: {fileID: 3727618239987294604, guid: c2b6c160851b048998959616d35e187e, type: 3}
+    sprite: {fileID: -821221160, guid: fb3a231ec91ae4ca29364feb1e3a53cc, type: 3}
   - northConnected: 1
     eastConnected: 0
     southConnected: 1
     westConnected: 0
-    sprite: {fileID: 3337280725206855584, guid: c2b6c160851b048998959616d35e187e, type: 3}
+    sprite: {fileID: -1539193706, guid: fb3a231ec91ae4ca29364feb1e3a53cc, type: 3}
   - northConnected: 0
     eastConnected: 1
     southConnected: 0
     westConnected: 1
-    sprite: {fileID: 3727618239987294604, guid: c2b6c160851b048998959616d35e187e, type: 3}
+    sprite: {fileID: -821221160, guid: fb3a231ec91ae4ca29364feb1e3a53cc, type: 3}
   - northConnected: 1
     eastConnected: 1
     southConnected: 1
     westConnected: 1
-    sprite: {fileID: 6034781207730686270, guid: c2b6c160851b048998959616d35e187e, type: 3}
-  defaultSprite: {fileID: 6034781207730686270, guid: c2b6c160851b048998959616d35e187e, type: 3}
+    sprite: {fileID: 656700663, guid: fb3a231ec91ae4ca29364feb1e3a53cc, type: 3}
+  defaultSprite: {fileID: 656700663, guid: fb3a231ec91ae4ca29364feb1e3a53cc, type: 3}

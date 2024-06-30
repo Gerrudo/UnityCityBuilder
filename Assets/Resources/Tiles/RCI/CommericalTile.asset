@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: CommericalTile
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 3625043607559282579, guid: b1f7e25cd5f5a4632a2bedaaa0360b3c, type: 3}
-  m_Color: {r: 0, g: 0.045587063, b: 1, a: 0.5019608}
+  m_Sprite: {fileID: -1552021875, guid: 0f3c83ce6369140d7a09210599fdf3f7, type: 3}
+  m_Color: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 0.2509804}
   m_Transform:
     e00: 1
     e01: 0
