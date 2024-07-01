@@ -13,13 +13,17 @@ public class TileEditor : Singleton<TileEditor>
     private TileBase tileBase;
     private PlaceableTile selectedObj;
 
-    private Vector2 mousePos;
-    private Vector3Int curGridPos;
-    private Vector3Int prevGridPos;
+    private Vector2 mousePosition;
+    private Vector3Int currentGridPosition;
+    private Vector3Int previousGridPosition;
+
+    City city;
 
     protected override void Awake()
     {
         base.Awake();
+
+        city = City.GetInstance();
 
         playerInput = new PlayerInput();
 
@@ -31,17 +35,17 @@ public class TileEditor : Singleton<TileEditor>
         if (selectedObj != null)
         {
             //Setting pos as a Vector3 causes issues
-            Vector2 pos = _camera.ScreenToWorldPoint(mousePos);
+            Vector2 pos = _camera.ScreenToWorldPoint(mousePosition);
 
             Vector3Int gridPos = previewMap.WorldToCell(pos);
 
             //We create a new vector 3 to place the buildings on 1 for the Z axis, we need to move our map down by 1 instead in the future.
             gridPos = new Vector3Int(gridPos.x, gridPos.y, 0);
 
-            if (gridPos != curGridPos)
+            if (gridPos != currentGridPosition)
             {
-                prevGridPos = curGridPos;
-                curGridPos = gridPos;
+                previousGridPosition = currentGridPosition;
+                currentGridPosition = gridPos;
 
                 UpdatePreview();
             }
@@ -81,14 +85,14 @@ public class TileEditor : Singleton<TileEditor>
 
     private void OnMouseMove(InputAction.CallbackContext ctx)
     {
-        mousePos = ctx.ReadValue<Vector2>();
+        mousePosition = ctx.ReadValue<Vector2>();
     }
 
     private void OnLeftClick(InputAction.CallbackContext ctx)
     {
         if (selectedObj != null && !EventSystem.current.IsPointerOverGameObject())
         {
-            DrawItem();
+            HandleDrawing();
         }
     }
 
@@ -104,13 +108,23 @@ public class TileEditor : Singleton<TileEditor>
 
     private void UpdatePreview()
     {
-        previewMap.SetTile(prevGridPos, null);
-        previewMap.SetTile(curGridPos, tileBase);
+        previewMap.SetTile(previousGridPosition, null);
+        previewMap.SetTile(currentGridPosition, tileBase);
+    }
+
+    private void HandleDrawing()
+    {
+        bool tileAllowed = city.NewTile(currentGridPosition, selectedObj);
+
+        if (tileAllowed)
+        {
+            DrawItem();
+        }
     }
 
     private void DrawItem()
     {
-        defaultMap.SetTile(curGridPos, tileBase);
+        defaultMap.SetTile(currentGridPosition, tileBase);
 
         //Required for out network tile rules
         defaultMap.RefreshAllTiles();

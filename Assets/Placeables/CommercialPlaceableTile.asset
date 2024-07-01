@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileType: 2
   tileBase: {fileID: 11400000, guid: 597fe624fef8f4850a6e41c16af444a5, type: 2}
+  moneyPerDay: 1
+  costToBuild: 0

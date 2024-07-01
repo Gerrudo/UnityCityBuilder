@@ -17,6 +17,8 @@ public class CityStatistics : Singleton<CityStatistics>
         base.Awake();
 
         city = City.GetInstance();
+
+        UpdateUI();
     }
 
     public void UpdateUI()
@@ -24,13 +26,13 @@ public class CityStatistics : Singleton<CityStatistics>
         //Maybe we could have the UI read a value instead of updating it individually?
 
         //Update Toolbar
-        dayText.text = $"Day: {city.day}";
+        dayText.text = $"Day: {city.Day}";
 
         //Update Panel
-        populationText.text = $"Population: {city.population}";
-        moneyText.text = $"Money: ${city.money}";
-        powerText.text = $"Power: {city.power}MW";
-        waterText.text = $"Water: {city.water}kL";
-        coalText.text = $"Coal: {city.coal} Ton";
+        populationText.text = $"Population: {city.Population}";
+        moneyText.text = $"Money: ${city.Money}";
+        powerText.text = $"Power: {city.Power}MW";
+        waterText.text = $"Water: {city.Water}kL";
+        coalText.text = $"Coal: {city.Coal} Ton";
     }
 }
