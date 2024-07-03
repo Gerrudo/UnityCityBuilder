@@ -3,21 +3,12 @@ using UnityEngine;
 
 public class StatusMessage : MonoBehaviour
 {
-    public static StatusMessage current;
-
     public TextMeshProUGUI message;
 
     private float timeToAppear = 2f;
     private float timeWhenDissapear;
 
-    void Awake()
-    {
-        current = this;
-
-        message.enabled = false;
-    }
-
-    void Update()
+    private void Update()
     {
         if (message.enabled && (Time.time >= timeWhenDissapear))
         {
