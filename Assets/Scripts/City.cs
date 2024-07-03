@@ -61,17 +61,19 @@ public class City : Singleton<City>
     }
     #endregion
 
-    private Dictionary<Vector3, PlaceableTile> cityTiles;
+    private Dictionary<Vector3Int, PlaceableTile> cityTiles;
 
+    TileEditor tileEditor;
     CityStatistics cityStatistics;
 
     protected override void Awake()
     {
         base.Awake();
 
+        tileEditor = TileEditor.GetInstance();
         cityStatistics = CityStatistics.GetInstance();
 
-        cityTiles = new Dictionary<Vector3, PlaceableTile>();
+        cityTiles = new Dictionary<Vector3Int, PlaceableTile>();
     }
 
     private void Start()
@@ -85,13 +87,14 @@ public class City : Singleton<City>
 
         day++;
         CalculateIncome();
+        CheckForUpgrades();
 
         cityStatistics.UpdateUI();
 
         StartCoroutine(CountDays());
     }
 
-    public bool NewTile(Vector3 tilePositon, PlaceableTile tile)
+    public bool NewTile(Vector3Int tilePositon, PlaceableTile tile)
     {
         if (money < tile.CostToBuild)
         {
@@ -122,6 +125,30 @@ public class City : Singleton<City>
             }
 
             cityStatistics.UpdateUI();
+        }
+    }
+
+    private void CheckForUpgrades()
+    {
+        if (cityTiles.Count >= 1)
+        {
+            foreach (var tile in cityTiles)
+            {
+                switch (tile.Value.TileType)
+                {
+                    case TileType.Residential:
+                        tileEditor.DrawItem(tile.Key, tile.Value.Level1Tilebase);
+                        break;
+                    case TileType.Commerical:
+                        tileEditor.DrawItem(tile.Key, tile.Value.Level1Tilebase);
+                        break;
+                    case TileType.Industrial:
+                        tileEditor.DrawItem(tile.Key, tile.Value.Level1Tilebase);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }

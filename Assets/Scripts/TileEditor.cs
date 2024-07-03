@@ -9,7 +9,7 @@ public class TileEditor : Singleton<TileEditor>
 
     Camera _camera;
 
-    [SerializeField] private Tilemap previewMap, defaultMap;
+    [SerializeField] private Tilemap previewMap, defaultMap, terrainMap;
     private TileBase tileBase;
     private PlaceableTile selectedObj;
 
@@ -38,9 +38,6 @@ public class TileEditor : Singleton<TileEditor>
             Vector2 pos = _camera.ScreenToWorldPoint(mousePosition);
 
             Vector3Int gridPos = previewMap.WorldToCell(pos);
-
-            //We create a new vector 3 to place the buildings on 1 for the Z axis, we need to move our map down by 1 instead in the future.
-            gridPos = new Vector3Int(gridPos.x, gridPos.y, 0);
 
             if (gridPos != currentGridPosition)
             {
@@ -90,7 +87,7 @@ public class TileEditor : Singleton<TileEditor>
 
     private void OnLeftClick(InputAction.CallbackContext ctx)
     {
-        if (selectedObj != null && !EventSystem.current.IsPointerOverGameObject())
+        if (selectedObj != null && !EventSystem.current.IsPointerOverGameObject() && PlacementAllowed())
         {
             HandleDrawing();
         }
@@ -114,19 +111,32 @@ public class TileEditor : Singleton<TileEditor>
 
     private void HandleDrawing()
     {
-        bool tileAllowed = city.NewTile(currentGridPosition, selectedObj);
+        bool cityCheck = city.NewTile(currentGridPosition, selectedObj);
 
-        if (tileAllowed)
+        if (cityCheck)
         {
-            DrawItem();
+            DrawItem(currentGridPosition, tileBase);
         }
     }
 
-    private void DrawItem()
+    public void DrawItem(Vector3Int gridPosition, TileBase tile)
     {
-        defaultMap.SetTile(currentGridPosition, tileBase);
+        defaultMap.SetTile(gridPosition, tile);
 
         //Required for out network tile rules
         defaultMap.RefreshAllTiles();
+    }
+
+    private bool PlacementAllowed()
+    {
+        if (!terrainMap.HasTile(currentGridPosition) || defaultMap.HasTile(currentGridPosition))
+        {
+            Debug.Log("Cannot place tile on water or other buildings.");
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }

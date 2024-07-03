@@ -17,6 +17,7 @@ public class PlaceableTile : ScriptableObject
 {
     [SerializeField] private TileType tileType;
     [SerializeField] private TileBase tileBase;
+    [SerializeField] private TileBase level1Tilebase;
     [SerializeField] private int moneyPerDay;
     [SerializeField] private int costToBuild;
 
@@ -25,6 +26,14 @@ public class PlaceableTile : ScriptableObject
         get
         {
             return tileBase;
+        }
+    }
+
+    public TileBase Level1Tilebase
+    {
+        get
+        {
+            return level1Tilebase;
         }
     }
 
