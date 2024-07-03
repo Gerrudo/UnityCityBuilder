@@ -56,6 +56,8 @@ public class TileEditor : Singleton<TileEditor>
         playerInput.Gameplay.MouseLeftClick.performed += OnLeftClick;
         playerInput.Gameplay.MouseRightClick.performed += OnRightClick;
         playerInput.Gameplay.MousePosition.performed += OnMouseMove;
+
+        playerInput.Gameplay.KeyboardEsc.performed += OnKeyboardEsc;
     }
 
     private void OnDisable()
@@ -95,6 +97,11 @@ public class TileEditor : Singleton<TileEditor>
 
     private void OnRightClick(InputAction.CallbackContext ctx)
     {
+        RemoveItem();
+    }
+
+    private void OnKeyboardEsc(InputAction.CallbackContext ctx)
+    {
         SelectedObj = null;
     }
 
@@ -122,6 +129,16 @@ public class TileEditor : Singleton<TileEditor>
     public void DrawItem(Vector3Int gridPosition, TileBase tile)
     {
         defaultMap.SetTile(gridPosition, tile);
+
+        //Required for out network tile rules
+        defaultMap.RefreshAllTiles();
+    }
+
+    private void RemoveItem()
+    {
+        city.RemoveTile(currentGridPosition);
+
+        defaultMap.SetTile(currentGridPosition, null);
 
         //Required for out network tile rules
         defaultMap.RefreshAllTiles();

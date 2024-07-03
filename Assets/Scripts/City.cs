@@ -94,7 +94,7 @@ public class City : Singleton<City>
         StartCoroutine(CountDays());
     }
 
-    public bool NewTile(Vector3Int tilePositon, PlaceableTile tile)
+    public bool NewTile(Vector3Int tilePosition, PlaceableTile tile)
     {
         if (money < tile.CostToBuild)
         {
@@ -105,11 +105,16 @@ public class City : Singleton<City>
         
         money -= tile.CostToBuild;
 
-        cityTiles.Add(tilePositon, tile);
+        cityTiles.Add(tilePosition, tile);
 
         cityStatistics.UpdateUI();
 
         return true;
+    }
+
+    public void RemoveTile(Vector3Int tilePosition)
+    {
+        cityTiles.Remove(tilePosition);
     }
 
     private void CalculateIncome()
