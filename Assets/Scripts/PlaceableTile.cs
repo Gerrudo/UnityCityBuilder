@@ -20,6 +20,7 @@ public class PlaceableTile : ScriptableObject
     [SerializeField] private TileBase level1Tilebase;
     [SerializeField] private int moneyPerDay;
     [SerializeField] private int costToBuild;
+    private bool isConnectedToRoad;
 
     public TileBase TileBase
     {
@@ -57,6 +58,18 @@ public class PlaceableTile : ScriptableObject
         get
         {
             return costToBuild;
+        }
+    }
+
+    public bool IsConnectedToRoad
+    {
+        get
+        {
+            return isConnectedToRoad;
+        }
+        set
+        {
+            isConnectedToRoad = value;
         }
     }
 }

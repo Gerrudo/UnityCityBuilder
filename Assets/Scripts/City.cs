@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class City : Singleton<City>
 {
@@ -86,8 +87,12 @@ public class City : Singleton<City>
         yield return new WaitForSeconds(10);
 
         day++;
-        CalculateIncome();
-        CheckForUpgrades();
+        foreach (var tile in cityTiles)
+        {
+            CheckNetworkConnections(tile.Key);
+            CalculateIncome(tile.Key);
+            CheckForUpgrades(tile.Key);
+        }
 
         cityStatistics.UpdateUI();
 
@@ -117,43 +122,63 @@ public class City : Singleton<City>
         cityTiles.Remove(tilePosition);
     }
 
-    private void CalculateIncome()
+    private void CalculateIncome(Vector3Int tilePosition)
     {
-        if (cityTiles.Count >= 1)
+        if (cityTiles[tilePosition].TileType == TileType.Commerical)
         {
-            foreach (var tile in cityTiles)
-            {
-                if (tile.Value.TileType == TileType.Commerical)
-                {
-                    money += tile.Value.MoneyPerDay;
-                }
-            }
-
-            cityStatistics.UpdateUI();
+            money += cityTiles[tilePosition].MoneyPerDay;
         }
     }
 
-    private void CheckForUpgrades()
+    private void CheckForUpgrades(Vector3Int tilePosition)
     {
-        if (cityTiles.Count >= 1)
+        switch (cityTiles[tilePosition].TileType)
         {
-            foreach (var tile in cityTiles)
+            case TileType.Residential:
+                tileEditor.DrawItem(tilePosition, cityTiles[tilePosition].Level1Tilebase);
+                break;
+            case TileType.Commerical:
+                tileEditor.DrawItem(tilePosition, cityTiles[tilePosition].Level1Tilebase);
+                break;
+            case TileType.Industrial:
+                tileEditor.DrawItem(tilePosition, cityTiles[tilePosition].Level1Tilebase);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void CheckNetworkConnections(Vector3Int tilePosition)
+    {
+        bool connectedToNetwork = false;
+        Vector3Int[] neighbours = TilemapExtension.Neighbours(tilePosition);
+
+        int i = 0;
+        while(!connectedToNetwork || i == 3)
+        {
+            PlaceableTile connectedTile;
+
+            if (cityTiles.TryGetValue(neighbours[i], out connectedTile))
             {
-                switch (tile.Value.TileType)
+                if (connectedTile.TileType == TileType.Road)
                 {
-                    case TileType.Residential:
-                        tileEditor.DrawItem(tile.Key, tile.Value.Level1Tilebase);
-                        break;
-                    case TileType.Commerical:
-                        tileEditor.DrawItem(tile.Key, tile.Value.Level1Tilebase);
-                        break;
-                    case TileType.Industrial:
-                        tileEditor.DrawItem(tile.Key, tile.Value.Level1Tilebase);
-                        break;
-                    default:
-                        break;
+                    cityTiles[tilePosition].IsConnectedToRoad = true;
+
+                    connectedToNetwork = true;
+
+                    Debug.Log("Tile connected to road.");
+                }
+                else
+                {
+                    Debug.Log("Tile not connected to road.");
                 }
             }
+            else
+            {
+                Debug.Log($"No tile at {neighbours[i]}");
+            }
+
+            i++;
         }
     }
 }
