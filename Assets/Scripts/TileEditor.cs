@@ -9,7 +9,7 @@ public class TileEditor : Singleton<TileEditor>
 
     Camera _camera;
 
-    [SerializeField] private Tilemap previewMap, defaultMap, terrainMap, roadMap;
+    [SerializeField] private Tilemap previewMap, defaultMap, terrainMap;
     private TileBase tileBase;
     private PlaceableTile selectedObj;
 

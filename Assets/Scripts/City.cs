@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class City : Singleton<City>
 {
@@ -90,8 +89,16 @@ public class City : Singleton<City>
         foreach (var tile in cityTiles)
         {
             CheckNetworkConnections(tile.Key);
-            CalculateIncome(tile.Key);
-            CheckForUpgrades(tile.Key);
+
+            if (tile.Value.IsConnectedToRoad)
+            {
+                CalculateIncome(tile.Key);
+                CheckForUpgrades(tile.Key);
+            }
+            else
+            {
+                Debug.Log($"{tile.Key} is not connected to road!");
+            }
         }
 
         cityStatistics.UpdateUI();
@@ -150,13 +157,13 @@ public class City : Singleton<City>
 
     private void CheckNetworkConnections(Vector3Int tilePosition)
     {
-        bool connectedToNetwork = false;
         Vector3Int[] neighbours = TilemapExtension.Neighbours(tilePosition);
 
-        int i = 0;
-        while(!connectedToNetwork || i == 3)
+        for (int i = 0; i < neighbours.Length; i++)
         {
             PlaceableTile connectedTile;
+
+            cityTiles[tilePosition].IsConnectedToRoad = false;
 
             if (cityTiles.TryGetValue(neighbours[i], out connectedTile))
             {
@@ -164,21 +171,9 @@ public class City : Singleton<City>
                 {
                     cityTiles[tilePosition].IsConnectedToRoad = true;
 
-                    connectedToNetwork = true;
-
-                    Debug.Log("Tile connected to road.");
-                }
-                else
-                {
-                    Debug.Log("Tile not connected to road.");
+                    break;
                 }
             }
-            else
-            {
-                Debug.Log($"No tile at {neighbours[i]}");
-            }
-
-            i++;
         }
     }
 }
