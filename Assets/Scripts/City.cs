@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class City : Singleton<City>
 {
     private int day;
+    [SerializeField] private int secondsPerDay;
     [SerializeField] private int money;
     private int power;
     private int water;
@@ -83,22 +85,16 @@ public class City : Singleton<City>
 
     private IEnumerator CountDays()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(secondsPerDay);
 
         day++;
+
+        //Values to be recalculated
+        population = 0;
+
         foreach (var tile in cityTiles)
         {
-            CheckNetworkConnections(tile.Key);
-
-            if (tile.Value.IsConnectedToRoad)
-            {
-                CalculateIncome(tile.Key);
-                CheckForUpgrades(tile.Key);
-            }
-            else
-            {
-                Debug.Log($"{tile.Key} is not connected to road!");
-            }
+            RequiredChecks(tile.Key);
         }
 
         cityStatistics.UpdateUI();
@@ -139,20 +135,7 @@ public class City : Singleton<City>
 
     private void CheckForUpgrades(Vector3Int tilePosition)
     {
-        switch (cityTiles[tilePosition].TileType)
-        {
-            case TileType.Residential:
-                tileEditor.DrawItem(tilePosition, cityTiles[tilePosition].Level1Tilebase);
-                break;
-            case TileType.Commerical:
-                tileEditor.DrawItem(tilePosition, cityTiles[tilePosition].Level1Tilebase);
-                break;
-            case TileType.Industrial:
-                tileEditor.DrawItem(tilePosition, cityTiles[tilePosition].Level1Tilebase);
-                break;
-            default:
-                break;
-        }
+        tileEditor.DrawItem(tilePosition, cityTiles[tilePosition].Level1Tilebase);
     }
 
     private void CheckNetworkConnections(Vector3Int tilePosition)
@@ -174,6 +157,54 @@ public class City : Singleton<City>
                     break;
                 }
             }
+        }
+    }
+
+    private void CalculatePopulation(Vector3Int tilePosition)
+    {
+        bool isMaxPopulation = cityTiles[tilePosition].CurrentPopulation > cityTiles[tilePosition].MaxPopulation;
+
+        if (!isMaxPopulation)
+        {
+            cityTiles[tilePosition].CurrentPopulation += 10;
+        }
+
+        population += cityTiles[tilePosition].CurrentPopulation;
+    }
+
+    private void RequiredChecks(Vector3Int tilePosition)
+    {
+        CheckNetworkConnections(tilePosition);
+
+        switch (cityTiles[tilePosition].TileType)
+        {
+            case TileType.Residential:
+                if (cityTiles[tilePosition].IsConnectedToRoad)
+                {
+                    CheckForUpgrades(tilePosition);
+                    CalculatePopulation(tilePosition);
+                    CalculateIncome(tilePosition);
+                }
+
+                break;
+            case TileType.Commerical:
+                if (cityTiles[tilePosition].IsConnectedToRoad)
+                {
+                    CheckForUpgrades(tilePosition);
+                    CalculateIncome(tilePosition);
+                }
+
+                break;
+            case TileType.Industrial:
+                if (cityTiles[tilePosition].IsConnectedToRoad)
+                {
+                    CheckForUpgrades(tilePosition);
+                    CalculateIncome(tilePosition);
+                }
+
+                break;
+            default:
+                break;
         }
     }
 }

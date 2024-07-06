@@ -16,11 +16,17 @@ public enum TileType
 public class PlaceableTile : ScriptableObject
 {
     [SerializeField] private TileType tileType;
+
     [SerializeField] private TileBase tileBase;
     [SerializeField] private TileBase level1Tilebase;
+
     [SerializeField] private int moneyPerDay;
     [SerializeField] private int costToBuild;
+
     private bool isConnectedToRoad = false;
+
+    [SerializeField] private int maxPopulation;
+    private int currentPopulation = 0;
 
     public TileBase TileBase
     {
@@ -70,6 +76,26 @@ public class PlaceableTile : ScriptableObject
         set
         {
             isConnectedToRoad = value;
+        }
+    }
+
+    public int MaxPopulation
+    {
+        get
+        {
+            return maxPopulation;
+        }
+    }
+
+    public int CurrentPopulation
+    {
+        get
+        {
+            return currentPopulation;
+        }
+        set
+        {
+            currentPopulation = value;
         }
     }
 }

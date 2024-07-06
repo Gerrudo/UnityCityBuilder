@@ -17,3 +17,4 @@ MonoBehaviour:
   level1Tilebase: {fileID: 11400000, guid: 070fc2455b11148fc80a38987335ef2b, type: 2}
   moneyPerDay: 1
   costToBuild: 10
+  maxPopulation: 1000
