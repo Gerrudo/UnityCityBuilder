@@ -438,8 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d2fb38c510e4edbb657f1bb0c3cc0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SecondsPerDay>k__BackingField: 2
-  <Population>k__BackingField: 0
+  <SecondsPerDay>k__BackingField: 10
   <Money>k__BackingField: 1000
 --- !u!114 &149672891
 MonoBehaviour:

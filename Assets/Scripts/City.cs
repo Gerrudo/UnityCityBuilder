@@ -9,7 +9,6 @@ public class City : Singleton<City>
     [field: SerializeField]
     public int SecondsPerDay { get; private set; }
 
-    [field: SerializeField]
     public int Population { get; private set; }
 
     [field: SerializeField]
@@ -49,10 +48,12 @@ public class City : Singleton<City>
 
         //Values to be recalculated
         Population = 0;
+        Power = 0;
+        Water = 0;
 
         foreach (var tile in cityTiles)
         {
-            RequiredChecks(tile.Key);
+            ProcessTile(tile.Key);
         }
 
         cityStatistics.UpdateUI();
@@ -83,20 +84,7 @@ public class City : Singleton<City>
         cityTiles.Remove(tilePosition);
     }
 
-    private void CalculateIncome(Vector3Int tilePosition)
-    {
-        if (cityTiles[tilePosition].TileType is TileType.Residential or TileType.Commerical or TileType.Industrial)
-        {
-            Money += cityTiles[tilePosition].Taxes;
-        }
-    }
-
-    private void CheckForUpgrades(Vector3Int tilePosition)
-    {
-        tileEditor.DrawItem(tilePosition, cityTiles[tilePosition].Level1Tilebase);
-    }
-
-    private void CheckNetworkConnections(Vector3Int tilePosition)
+    private void CheckRoadConnection(Vector3Int tilePosition)
     {
         Vector3Int[] neighbours = TilemapExtension.Neighbours(tilePosition);
 
@@ -130,39 +118,120 @@ public class City : Singleton<City>
         Population += cityTiles[tilePosition].CurrentPopulation;
     }
 
-    private void RequiredChecks(Vector3Int tilePosition)
+    private void CalculateWater(Vector3Int tilePosition)
     {
-        CheckNetworkConnections(tilePosition);
+        Water += 100;
+    }
 
-        switch (cityTiles[tilePosition].TileType)
+    private void CalculatePower(Vector3Int tilePosition)
+    {
+        Power += 100;
+    }
+
+    private void CalculateUtilityUsage(Vector3Int tilePosition)
+    {
+        Power -= cityTiles[tilePosition].PowerDemand;
+        Water -= cityTiles[tilePosition].WaterDemand;
+
+        if (Power > cityTiles[tilePosition].PowerDemand)
         {
-            case TileType.Residential:
-                if (cityTiles[tilePosition].IsConnectedToRoad)
-                {
-                    CheckForUpgrades(tilePosition);
+            cityTiles[tilePosition].IsPowered = true;
+        }
+        else
+        {
+            cityTiles[tilePosition].IsPowered = false;
+        }
+
+        if (Water > cityTiles[tilePosition].WaterDemand)
+        {
+            cityTiles[tilePosition].IsWatered = true;
+        }
+        else
+        {
+            cityTiles[tilePosition].IsWatered = false;
+        }
+    }
+
+    private void CalculateIncome(Vector3Int tilePosition)
+    {
+        Money += 10;
+    }
+
+    private void CalculateExpenses(Vector3Int tilePosition)
+    {
+        Money -= 10;
+    }
+
+    private void UpgradeBuilding(Vector3Int tilePosition)
+    {
+        tileEditor.DrawItem(tilePosition, cityTiles[tilePosition].Level1Tilebase);
+    }
+
+    private void ProcessTile(Vector3Int tilePosition)
+    {
+        CheckRoadConnection(tilePosition);
+
+        if (cityTiles[tilePosition].IsConnectedToRoad)
+        {
+            bool hasUtilites = cityTiles[tilePosition].IsPowered && cityTiles[tilePosition].IsWatered;
+
+            switch (cityTiles[tilePosition].TileType)
+            {
+                case TileType.Residential:
+                    UpgradeBuilding(tilePosition);
+                    CalculateUtilityUsage(tilePosition);
                     CalculatePopulation(tilePosition);
-                    CalculateIncome(tilePosition);
-                }
 
-                break;
-            case TileType.Commerical:
-                if (cityTiles[tilePosition].IsConnectedToRoad)
-                {
-                    CheckForUpgrades(tilePosition);
-                    CalculateIncome(tilePosition);
-                }
+                    if (hasUtilites)
+                    {
+                        CalculateIncome(tilePosition);
+                    }
 
-                break;
-            case TileType.Industrial:
-                if (cityTiles[tilePosition].IsConnectedToRoad)
-                {
-                    CheckForUpgrades(tilePosition);
-                    CalculateIncome(tilePosition);
-                }
+                    CalculateExpenses(tilePosition);
 
-                break;
-            default:
-                break;
+                    break;
+                case TileType.Commerical:
+                    UpgradeBuilding(tilePosition);
+                    CalculateUtilityUsage(tilePosition);
+
+                    if (hasUtilites)
+                    {
+                        CalculateIncome(tilePosition);
+                    }
+
+                    CalculateExpenses(tilePosition);
+
+                    break;
+                case TileType.Industrial:
+                    UpgradeBuilding(tilePosition);
+                    CalculateUtilityUsage(tilePosition);
+
+                    if (hasUtilites)
+                    {
+                        CalculateIncome(tilePosition);
+                    }
+
+                    CalculateExpenses(tilePosition);
+
+                    break;
+                case TileType.Generator:
+                    CalculatePower(tilePosition);
+                    CalculateExpenses(tilePosition);
+                    break;
+                case TileType.WaterTower:
+                    CalculateWater(tilePosition);
+                    CalculateExpenses(tilePosition);
+
+                    break;
+                default:
+                    CalculateExpenses(tilePosition);
+
+                    break;
+            }
+        }
+        else
+        {
+            Debug.Log($"{cityTiles[tilePosition].TileType} is not connected to a road!");
         }
     }
 }

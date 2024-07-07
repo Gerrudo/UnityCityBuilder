@@ -9,7 +9,7 @@ public enum TileType
     Industrial,
     Generator,
     WaterTower,
-    CoalMine
+    Mine
 }
 
 [CreateAssetMenu(fileName = "PlaceableTile", menuName = "PlaceableTile")]
@@ -26,17 +26,20 @@ public class PlaceableTile : ScriptableObject
     public TileBase Level1Tilebase { get; private set; }
 
     [field: SerializeField]
-    public int Taxes { get; private set; }
-
-    [field: SerializeField]
     public int CostToBuild { get; private set; }
 
     [field: SerializeField]
     public int MaxPopulation { get; private set; }
 
+    [field: SerializeField]
+    public int PowerDemand { get; private set; }
+
+    [field: SerializeField]
+    public int WaterDemand { get; private set; }
+
     public int CurrentPopulation { get; set; }
 
     public bool IsConnectedToRoad { get; set; }
-    public bool IsWatered { get; set; }
     public bool IsPowered { get; set; }
+    public bool IsWatered { get; set; }
 }
