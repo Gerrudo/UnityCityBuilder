@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fba716a8dc494fa7989b75fe7fe9b94, type: 3}
   m_Name: RoadPlaceableTile
   m_EditorClassIdentifier: 
-  tileType: 0
-  tileBase: {fileID: 11400000, guid: c9ca7a5e3171d4a3c925aec7705ee06f, type: 2}
-  moneyPerDay: 1
-  costToBuild: 1
+  <TileType>k__BackingField: 0
+  <TileBase>k__BackingField: {fileID: 11400000, guid: c9ca7a5e3171d4a3c925aec7705ee06f, type: 2}
+  <Level1Tilebase>k__BackingField: {fileID: 0}
+  <Taxes>k__BackingField: 0
+  <CostToBuild>k__BackingField: 10
+  <MaxPopulation>k__BackingField: 0

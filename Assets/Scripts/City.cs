@@ -1,67 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class City : Singleton<City>
 {
-    private int day;
-    [SerializeField] private int secondsPerDay;
-    [SerializeField] private int money;
-    private int power;
-    private int water;
-    private int population;
-    private int coal;
+    public int Day { get; private set; }
 
-    #region Get
-    public int Day
-    {
-        get
-        {
-            return day;
-        }
-    }
+    [field: SerializeField]
+    public int SecondsPerDay { get; private set; }
 
-    public int Money
-    {
-        get
-        {
-            return money;
-        }
-    }
+    [field: SerializeField]
+    public int Population { get; private set; }
 
-    public int Power
-    {
-        get
-        {
-            return power;
-        }
-    }
+    [field: SerializeField]
+    public int Money { get; private set; }
 
-    public int Water
-    {
-        get
-        {
-            return water;
-        }
-    }
+    public int Power { get; private set; }
 
-    public int Population
-    {
-        get
-        {
-            return population;
-        }
-    }
+    public int Water { get; private set; }
 
-    public int Coal
-    {
-        get
-        {
-            return coal;
-        }
-    }
-    #endregion
+    public int Coal { get; private set; }
 
     private Dictionary<Vector3Int, PlaceableTile> cityTiles;
 
@@ -85,12 +43,12 @@ public class City : Singleton<City>
 
     private IEnumerator CountDays()
     {
-        yield return new WaitForSeconds(secondsPerDay);
+        yield return new WaitForSeconds(SecondsPerDay);
 
-        day++;
+        Day++;
 
         //Values to be recalculated
-        population = 0;
+        Population = 0;
 
         foreach (var tile in cityTiles)
         {
@@ -104,14 +62,14 @@ public class City : Singleton<City>
 
     public bool NewTile(Vector3Int tilePosition, PlaceableTile tile)
     {
-        if (money < tile.CostToBuild)
+        if (Money < tile.CostToBuild)
         {
             Debug.Log("Cannot afford to place tile.");
 
             return false;
         }
         
-        money -= tile.CostToBuild;
+        Money -= tile.CostToBuild;
 
         cityTiles.Add(tilePosition, tile);
 
@@ -127,9 +85,9 @@ public class City : Singleton<City>
 
     private void CalculateIncome(Vector3Int tilePosition)
     {
-        if (cityTiles[tilePosition].TileType == TileType.Commerical)
+        if (cityTiles[tilePosition].TileType is TileType.Residential or TileType.Commerical or TileType.Industrial)
         {
-            money += cityTiles[tilePosition].MoneyPerDay;
+            Money += cityTiles[tilePosition].Taxes;
         }
     }
 
@@ -162,14 +120,14 @@ public class City : Singleton<City>
 
     private void CalculatePopulation(Vector3Int tilePosition)
     {
-        bool isMaxPopulation = cityTiles[tilePosition].CurrentPopulation > cityTiles[tilePosition].MaxPopulation;
+        bool isMaxPopulation = cityTiles[tilePosition].CurrentPopulation >= cityTiles[tilePosition].MaxPopulation;
 
         if (!isMaxPopulation)
         {
             cityTiles[tilePosition].CurrentPopulation += 10;
         }
 
-        population += cityTiles[tilePosition].CurrentPopulation;
+        Population += cityTiles[tilePosition].CurrentPopulation;
     }
 
     private void RequiredChecks(Vector3Int tilePosition)

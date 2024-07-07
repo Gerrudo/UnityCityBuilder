@@ -147,7 +147,7 @@ public class TileEditor : Singleton<TileEditor>
     private bool PlacementAllowed()
     {
         bool hasTerrainTile = terrainMap.HasTile(currentGridPosition - new Vector3Int(1, 1, 0));
-        bool hasBuildingTile = defaultMap.HasTile(currentGridPosition - new Vector3Int(0, 0, 0));
+        bool hasBuildingTile = defaultMap.HasTile(currentGridPosition);
 
         if (hasTerrainTile && !hasBuildingTile)
         {

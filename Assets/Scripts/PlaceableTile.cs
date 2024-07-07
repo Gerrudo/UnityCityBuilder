@@ -15,87 +15,28 @@ public enum TileType
 [CreateAssetMenu(fileName = "PlaceableTile", menuName = "PlaceableTile")]
 public class PlaceableTile : ScriptableObject
 {
-    [SerializeField] private TileType tileType;
+    //Private setter is required for serialised fields.
+    [field: SerializeField]
+    public TileType TileType { get; private set; }
 
-    [SerializeField] private TileBase tileBase;
-    [SerializeField] private TileBase level1Tilebase;
+    [field: SerializeField]
+    public TileBase TileBase { get; private set; }
 
-    [SerializeField] private int moneyPerDay;
-    [SerializeField] private int costToBuild;
+    [field: SerializeField]
+    public TileBase Level1Tilebase { get; private set; }
 
-    private bool isConnectedToRoad = false;
+    [field: SerializeField]
+    public int Taxes { get; private set; }
 
-    [SerializeField] private int maxPopulation;
-    private int currentPopulation = 0;
+    [field: SerializeField]
+    public int CostToBuild { get; private set; }
 
-    public TileBase TileBase
-    {
-        get
-        {
-            return tileBase;
-        }
-    }
+    [field: SerializeField]
+    public int MaxPopulation { get; private set; }
 
-    public TileBase Level1Tilebase
-    {
-        get
-        {
-            return level1Tilebase;
-        }
-    }
+    public int CurrentPopulation { get; set; }
 
-    public TileType TileType
-    {
-        get
-        {
-            return tileType;
-        }
-    }
-
-    public int MoneyPerDay
-    {
-        get
-        {
-            return moneyPerDay;
-        }
-    }
-
-    public int CostToBuild {
-        get
-        {
-            return costToBuild;
-        }
-    }
-
-    public bool IsConnectedToRoad
-    {
-        get
-        {
-            return isConnectedToRoad;
-        }
-        set
-        {
-            isConnectedToRoad = value;
-        }
-    }
-
-    public int MaxPopulation
-    {
-        get
-        {
-            return maxPopulation;
-        }
-    }
-
-    public int CurrentPopulation
-    {
-        get
-        {
-            return currentPopulation;
-        }
-        set
-        {
-            currentPopulation = value;
-        }
-    }
+    public bool IsConnectedToRoad { get; set; }
+    public bool IsWatered { get; set; }
+    public bool IsPowered { get; set; }
 }
