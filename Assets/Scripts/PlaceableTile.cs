@@ -15,48 +15,28 @@ public enum TileType
 [CreateAssetMenu(fileName = "PlaceableTile", menuName = "PlaceableTile")]
 public class PlaceableTile : ScriptableObject
 {
-    [SerializeField] private TileType tileType;
-    [SerializeField] private TileBase tileBase;
-    [SerializeField] private TileBase level1Tilebase;
-    [SerializeField] private int moneyPerDay;
-    [SerializeField] private int costToBuild;
+    //Private setter is required for serialised fields.
+    [field: SerializeField]
+    public TileType TileType { get; private set; }
 
-    public TileBase TileBase
-    {
-        get
-        {
-            return tileBase;
-        }
-    }
+    [field: SerializeField]
+    public TileBase TileBase { get; private set; }
 
-    public TileBase Level1Tilebase
-    {
-        get
-        {
-            return level1Tilebase;
-        }
-    }
+    [field: SerializeField]
+    public TileBase Level1Tilebase { get; private set; }
 
-    public TileType TileType
-    {
-        get
-        {
-            return tileType;
-        }
-    }
+    [field: SerializeField]
+    public int Taxes { get; private set; }
 
-    public int MoneyPerDay
-    {
-        get
-        {
-            return moneyPerDay;
-        }
-    }
+    [field: SerializeField]
+    public int CostToBuild { get; private set; }
 
-    public int CostToBuild {
-        get
-        {
-            return costToBuild;
-        }
-    }
+    [field: SerializeField]
+    public int MaxPopulation { get; private set; }
+
+    public int CurrentPopulation { get; set; }
+
+    public bool IsConnectedToRoad { get; set; }
+    public bool IsWatered { get; set; }
+    public bool IsPowered { get; set; }
 }

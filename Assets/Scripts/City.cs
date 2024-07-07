@@ -4,62 +4,22 @@ using UnityEngine;
 
 public class City : Singleton<City>
 {
-    private int day;
-    [SerializeField] private int money;
-    private int power;
-    private int water;
-    private int population;
-    private int coal;
+    public int Day { get; private set; }
 
-    #region Get
-    public int Day
-    {
-        get
-        {
-            return day;
-        }
-    }
+    [field: SerializeField]
+    public int SecondsPerDay { get; private set; }
 
-    public int Money
-    {
-        get
-        {
-            return money;
-        }
-    }
+    [field: SerializeField]
+    public int Population { get; private set; }
 
-    public int Power
-    {
-        get
-        {
-            return power;
-        }
-    }
+    [field: SerializeField]
+    public int Money { get; private set; }
 
-    public int Water
-    {
-        get
-        {
-            return water;
-        }
-    }
+    public int Power { get; private set; }
 
-    public int Population
-    {
-        get
-        {
-            return population;
-        }
-    }
+    public int Water { get; private set; }
 
-    public int Coal
-    {
-        get
-        {
-            return coal;
-        }
-    }
-    #endregion
+    public int Coal { get; private set; }
 
     private Dictionary<Vector3Int, PlaceableTile> cityTiles;
 
@@ -83,11 +43,17 @@ public class City : Singleton<City>
 
     private IEnumerator CountDays()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(SecondsPerDay);
 
-        day++;
-        CalculateIncome();
-        CheckForUpgrades();
+        Day++;
+
+        //Values to be recalculated
+        Population = 0;
+
+        foreach (var tile in cityTiles)
+        {
+            RequiredChecks(tile.Key);
+        }
 
         cityStatistics.UpdateUI();
 
@@ -96,14 +62,14 @@ public class City : Singleton<City>
 
     public bool NewTile(Vector3Int tilePosition, PlaceableTile tile)
     {
-        if (money < tile.CostToBuild)
+        if (Money < tile.CostToBuild)
         {
             Debug.Log("Cannot afford to place tile.");
 
             return false;
         }
         
-        money -= tile.CostToBuild;
+        Money -= tile.CostToBuild;
 
         cityTiles.Add(tilePosition, tile);
 
@@ -117,43 +83,86 @@ public class City : Singleton<City>
         cityTiles.Remove(tilePosition);
     }
 
-    private void CalculateIncome()
+    private void CalculateIncome(Vector3Int tilePosition)
     {
-        if (cityTiles.Count >= 1)
+        if (cityTiles[tilePosition].TileType is TileType.Residential or TileType.Commerical or TileType.Industrial)
         {
-            foreach (var tile in cityTiles)
-            {
-                if (tile.Value.TileType == TileType.Commerical)
-                {
-                    money += tile.Value.MoneyPerDay;
-                }
-            }
-
-            cityStatistics.UpdateUI();
+            Money += cityTiles[tilePosition].Taxes;
         }
     }
 
-    private void CheckForUpgrades()
+    private void CheckForUpgrades(Vector3Int tilePosition)
     {
-        if (cityTiles.Count >= 1)
+        tileEditor.DrawItem(tilePosition, cityTiles[tilePosition].Level1Tilebase);
+    }
+
+    private void CheckNetworkConnections(Vector3Int tilePosition)
+    {
+        Vector3Int[] neighbours = TilemapExtension.Neighbours(tilePosition);
+
+        for (int i = 0; i < neighbours.Length; i++)
         {
-            foreach (var tile in cityTiles)
+            PlaceableTile connectedTile;
+
+            cityTiles[tilePosition].IsConnectedToRoad = false;
+
+            if (cityTiles.TryGetValue(neighbours[i], out connectedTile))
             {
-                switch (tile.Value.TileType)
+                if (connectedTile.TileType == TileType.Road)
                 {
-                    case TileType.Residential:
-                        tileEditor.DrawItem(tile.Key, tile.Value.Level1Tilebase);
-                        break;
-                    case TileType.Commerical:
-                        tileEditor.DrawItem(tile.Key, tile.Value.Level1Tilebase);
-                        break;
-                    case TileType.Industrial:
-                        tileEditor.DrawItem(tile.Key, tile.Value.Level1Tilebase);
-                        break;
-                    default:
-                        break;
+                    cityTiles[tilePosition].IsConnectedToRoad = true;
+
+                    break;
                 }
             }
+        }
+    }
+
+    private void CalculatePopulation(Vector3Int tilePosition)
+    {
+        bool isMaxPopulation = cityTiles[tilePosition].CurrentPopulation >= cityTiles[tilePosition].MaxPopulation;
+
+        if (!isMaxPopulation)
+        {
+            cityTiles[tilePosition].CurrentPopulation += 10;
+        }
+
+        Population += cityTiles[tilePosition].CurrentPopulation;
+    }
+
+    private void RequiredChecks(Vector3Int tilePosition)
+    {
+        CheckNetworkConnections(tilePosition);
+
+        switch (cityTiles[tilePosition].TileType)
+        {
+            case TileType.Residential:
+                if (cityTiles[tilePosition].IsConnectedToRoad)
+                {
+                    CheckForUpgrades(tilePosition);
+                    CalculatePopulation(tilePosition);
+                    CalculateIncome(tilePosition);
+                }
+
+                break;
+            case TileType.Commerical:
+                if (cityTiles[tilePosition].IsConnectedToRoad)
+                {
+                    CheckForUpgrades(tilePosition);
+                    CalculateIncome(tilePosition);
+                }
+
+                break;
+            case TileType.Industrial:
+                if (cityTiles[tilePosition].IsConnectedToRoad)
+                {
+                    CheckForUpgrades(tilePosition);
+                    CalculateIncome(tilePosition);
+                }
+
+                break;
+            default:
+                break;
         }
     }
 }

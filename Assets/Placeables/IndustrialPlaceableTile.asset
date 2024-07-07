@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fba716a8dc494fa7989b75fe7fe9b94, type: 3}
   m_Name: IndustrialPlaceableTile
   m_EditorClassIdentifier: 
-  tileType: 3
-  tileBase: {fileID: 11400000, guid: 8c52ec63bddd846a9a8020b98bb9c9f9, type: 2}
-  level1Tilebase: {fileID: 11400000, guid: ea41b16a30fd640928c13a49b48177f6, type: 2}
-  moneyPerDay: 1
-  costToBuild: 0
+  <TileType>k__BackingField: 3
+  <TileBase>k__BackingField: {fileID: 11400000, guid: 8c52ec63bddd846a9a8020b98bb9c9f9, type: 2}
+  <Level1Tilebase>k__BackingField: {fileID: 11400000, guid: ea41b16a30fd640928c13a49b48177f6, type: 2}
+  <Taxes>k__BackingField: 20
+  <CostToBuild>k__BackingField: 0
+  <MaxPopulation>k__BackingField: 0

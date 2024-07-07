@@ -146,14 +146,17 @@ public class TileEditor : Singleton<TileEditor>
 
     private bool PlacementAllowed()
     {
-        if (!terrainMap.HasTile(currentGridPosition) || defaultMap.HasTile(currentGridPosition))
+        bool hasTerrainTile = terrainMap.HasTile(currentGridPosition - new Vector3Int(1, 1, 0));
+        bool hasBuildingTile = defaultMap.HasTile(currentGridPosition);
+
+        if (hasTerrainTile && !hasBuildingTile)
         {
-            Debug.Log("Cannot place tile on water or other buildings.");
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            Debug.Log("Cannot place tile on water or other buildings.");
+            return false;
         }
     }
 }
