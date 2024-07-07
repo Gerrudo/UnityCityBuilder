@@ -12,13 +12,15 @@ public class City : Singleton<City>
     public int Population { get; private set; }
 
     [field: SerializeField]
-    public int Money { get; private set; }
+    public int Funds { get; private set; }
+
+    public int Earnings { get; private set; }
 
     public int Power { get; private set; }
 
     public int Water { get; private set; }
 
-    public int Coal { get; private set; }
+    public int Goods { get; private set; }
 
     private Dictionary<Vector3Int, PlaceableTile> cityTiles;
 
@@ -37,6 +39,7 @@ public class City : Singleton<City>
 
     private void Start()
     {
+        StartCoroutine(UpdateCity());
         StartCoroutine(CountDays());
     }
 
@@ -45,6 +48,18 @@ public class City : Singleton<City>
         yield return new WaitForSeconds(SecondsPerDay);
 
         Day++;
+
+        Funds += Earnings;
+        Earnings = 0;
+
+        cityStatistics.UpdateUI();
+
+        StartCoroutine(CountDays());
+    }
+
+    private IEnumerator UpdateCity()
+    {
+        yield return new WaitForSeconds(1);
 
         //Values to be recalculated
         Population = 0;
@@ -58,19 +73,19 @@ public class City : Singleton<City>
 
         cityStatistics.UpdateUI();
 
-        StartCoroutine(CountDays());
+        StartCoroutine(UpdateCity());
     }
 
     public bool NewTile(Vector3Int tilePosition, PlaceableTile tile)
     {
-        if (Money < tile.CostToBuild)
+        if (Funds < tile.CostToBuild)
         {
             Debug.Log("Cannot afford to place tile.");
 
             return false;
         }
-        
-        Money -= tile.CostToBuild;
+
+        Funds -= tile.CostToBuild;
 
         cityTiles.Add(tilePosition, tile);
 
@@ -82,6 +97,8 @@ public class City : Singleton<City>
     public void RemoveTile(Vector3Int tilePosition)
     {
         cityTiles.Remove(tilePosition);
+
+        cityStatistics.UpdateUI();
     }
 
     private void CheckRoadConnection(Vector3Int tilePosition)
@@ -154,12 +171,23 @@ public class City : Singleton<City>
 
     private void CalculateIncome(Vector3Int tilePosition)
     {
-        Money += 10;
+        Earnings += 100;
     }
 
     private void CalculateExpenses(Vector3Int tilePosition)
     {
-        Money -= 10;
+        Earnings -= 10;
+    }
+
+    private void SellGoods(Vector3Int tilePosition)
+    {
+        Goods -= 50;
+        Earnings += 100;
+    }
+
+    private void ProduceGoods(Vector3Int tilePosition)
+    {
+        Goods += 100;
     }
 
     private void UpgradeBuilding(Vector3Int tilePosition)
@@ -196,6 +224,7 @@ public class City : Singleton<City>
 
                     if (hasUtilites)
                     {
+                        SellGoods(tilePosition);
                         CalculateIncome(tilePosition);
                     }
 
@@ -208,6 +237,7 @@ public class City : Singleton<City>
 
                     if (hasUtilites)
                     {
+                        ProduceGoods(tilePosition);
                         CalculateIncome(tilePosition);
                     }
 
