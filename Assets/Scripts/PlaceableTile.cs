@@ -42,4 +42,6 @@ public class PlaceableTile : ScriptableObject
     public bool IsConnectedToRoad { get; set; }
     public bool IsPowered { get; set; }
     public bool IsWatered { get; set; }
+
+    public int Happiness { get; set; }
 }

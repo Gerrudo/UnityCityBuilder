@@ -10,6 +10,7 @@ public class CityStatistics : Singleton<CityStatistics>
     [SerializeField] private TextMeshProUGUI powerText;
     [SerializeField] private TextMeshProUGUI waterText;
     [SerializeField] private TextMeshProUGUI goodsText;
+    [SerializeField] private TextMeshProUGUI approvalText;
 
     City city;
 
@@ -44,5 +45,6 @@ public class CityStatistics : Singleton<CityStatistics>
         powerText.text = $"Power: {city.Power}MW";
         waterText.text = $"Water: {city.Water}kL";
         goodsText.text = $"Goods: {city.Goods} Ton";
+        approvalText.text = $"Approval: {city.ApprovalRating}%";
     }
 }

@@ -155,7 +155,6 @@ public class TileEditor : Singleton<TileEditor>
         }
         else
         {
-            Debug.Log("Cannot place tile on water or other buildings.");
             return false;
         }
     }
