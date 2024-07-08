@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -228,7 +229,7 @@ public class City : Singleton<City>
                 }
             }
 
-            ApprovalRating = 100 * (approval / votes);
+            ApprovalRating = (int)Math.Round(((double)approval / (double)votes) * 100);
         }
     }
 
