@@ -54,7 +54,7 @@ public class City : Singleton<City>
 
     private IEnumerator UpdateCity()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
 
         //Values to be recalculated
         Population = 0;
