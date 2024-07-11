@@ -1,23 +1,33 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.Loading;
 
 [ExecuteInEditMode()]
 public class Tooltip : MonoBehaviour
 {
-    public TextMeshProUGUI headerField;
+    [SerializeField] private TextMeshProUGUI headerField;
+    [SerializeField] private TextMeshProUGUI bodyField;
+    [SerializeField] private LayoutElement layoutElement;
+    [SerializeField] private int characterWrapLimit;
 
-    public TextMeshProUGUI bodyField;
+    public void SetText(string header, string body)
+    {
+        if (string.IsNullOrEmpty(header))
+        {
+            headerField.gameObject.SetActive(false);
+        }
+        else
+        {
+            headerField.gameObject.SetActive(true);
+            headerField.text = header;
+        }
 
-    public LayoutElement layoutElement;
-
-    public int characterWrapLimit;
+        bodyField.text = body;
+    }
 
     private void Update()
     {
-        int headerLength = headerField.text.Length;
-        int bodyLength = bodyField.text.Length;
-
-        layoutElement.enabled = (headerLength > characterWrapLimit || bodyLength > characterWrapLimit) ? true : false;
+        layoutElement.enabled = headerField.preferredWidth > layoutElement.preferredWidth || bodyField.preferredWidth > layoutElement.preferredWidth;
     }
 }

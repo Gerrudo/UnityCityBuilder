@@ -5,6 +5,9 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 {
     TooltipSystem tooltipSystem;
 
+    [SerializeField] private string header;
+    [SerializeField] private string body;
+
     private void Awake()
     {
         tooltipSystem = TooltipSystem.GetInstance();
@@ -12,7 +15,7 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        tooltipSystem.ShowTooltip();
+        tooltipSystem.ShowTooltip(header, body);
     }
 
     public void OnPointerExit(PointerEventData eventData)

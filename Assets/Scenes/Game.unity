@@ -3393,6 +3393,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784046147c074d0980a0713b66dc2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  header: Coal Mine
+  body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend convallis
+    sem, nec fringilla mauris facilisis id. Quisque rutrum lorem felis, fringilla
+    iaculis ante pretium sed. Vivamus lacinia vulputate nibh. Sed felis lectus, dictum
+    nec commodo nec, laoreet ac nunc. Curabitur eget dui feugiat, tincidunt enim
+    vitae, interdum diam. Aenean vulputate arcu vel ex efficitur, sed sodales ex
+    dapibus. Nunc in mauris eget metus accumsan dignissim. Ut egestas ornare ex,
+    ut sagittis leo pulvinar ac. Vestibulum ante ipsum primis in faucibus orci luctus
+    et ultrices posuere cubilia curae; Donec maximus accumsan hendrerit. Sed ac tellus
+    ut erat ultricies accumsan.
 --- !u!1 &225649160
 GameObject:
   m_ObjectHideFlags: 0
@@ -3674,6 +3684,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784046147c074d0980a0713b66dc2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  header: Water Tower
+  body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend convallis
+    sem, nec fringilla mauris facilisis id. Quisque rutrum lorem felis, fringilla
+    iaculis ante pretium sed. Vivamus lacinia vulputate nibh. Sed felis lectus, dictum
+    nec commodo nec, laoreet ac nunc. Curabitur eget dui feugiat, tincidunt enim
+    vitae, interdum diam. Aenean vulputate arcu vel ex efficitur, sed sodales ex
+    dapibus. Nunc in mauris eget metus accumsan dignissim. Ut egestas ornare ex,
+    ut sagittis leo pulvinar ac. Vestibulum ante ipsum primis in faucibus orci luctus
+    et ultrices posuere cubilia curae; Donec maximus accumsan hendrerit. Sed ac tellus
+    ut erat ultricies accumsan.
 --- !u!1 &516585224
 GameObject:
   m_ObjectHideFlags: 0
@@ -3821,6 +3841,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784046147c074d0980a0713b66dc2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  header: Residential Zone
+  body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend convallis
+    sem, nec fringilla mauris facilisis id. Quisque rutrum lorem felis, fringilla
+    iaculis ante pretium sed. Vivamus lacinia vulputate nibh. Sed felis lectus, dictum
+    nec commodo nec, laoreet ac nunc. Curabitur eget dui feugiat, tincidunt enim
+    vitae, interdum diam. Aenean vulputate arcu vel ex efficitur, sed sodales ex
+    dapibus. Nunc in mauris eget metus accumsan dignissim. Ut egestas ornare ex,
+    ut sagittis leo pulvinar ac. Vestibulum ante ipsum primis in faucibus orci luctus
+    et ultrices posuere cubilia curae; Donec maximus accumsan hendrerit. Sed ac tellus
+    ut erat ultricies accumsan.
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4256,6 +4286,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784046147c074d0980a0713b66dc2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  header: Low Density Road
+  body: 'Cost: $10  Maintenance: $1  All buildings must be connected to a road in
+    order to function. Roads can be placed in a line by clicking and dragging once
+    the road is selected. Roads can be built over water to create bridges'
 --- !u!1 &696586995
 GameObject:
   m_ObjectHideFlags: 0
@@ -4288,10 +4322,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1705679581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 108.005, y: -27.004997}
-  m_SizeDelta: {x: 216.01, y: 54.01}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &696586997
 MonoBehaviour:
@@ -4313,7 +4347,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tooltip Header
+  m_text: Low Density Road
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 738884343ced24108954a54d9844569a, type: 2}
   m_sharedMaterial: {fileID: -7503263923809491466, guid: 738884343ced24108954a54d9844569a, type: 2}
@@ -4340,8 +4374,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4615,6 +4649,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784046147c074d0980a0713b66dc2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  header: Industrial Zone
+  body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend convallis
+    sem, nec fringilla mauris facilisis id. Quisque rutrum lorem felis, fringilla
+    iaculis ante pretium sed. Vivamus lacinia vulputate nibh. Sed felis lectus, dictum
+    nec commodo nec, laoreet ac nunc. Curabitur eget dui feugiat, tincidunt enim
+    vitae, interdum diam. Aenean vulputate arcu vel ex efficitur, sed sodales ex
+    dapibus. Nunc in mauris eget metus accumsan dignissim. Ut egestas ornare ex,
+    ut sagittis leo pulvinar ac. Vestibulum ante ipsum primis in faucibus orci luctus
+    et ultrices posuere cubilia curae; Donec maximus accumsan hendrerit. Sed ac tellus
+    ut erat ultricies accumsan.
 --- !u!1 &794079016
 GameObject:
   m_ObjectHideFlags: 0
@@ -4781,10 +4825,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1705679581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 88.505, y: -81.015}
-  m_SizeDelta: {x: 177.01, y: 54.01}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &978444182
 MonoBehaviour:
@@ -4806,7 +4850,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tooltip Body
+  m_text: 'Cost: $10
+
+
+    Maintenance: $1
+
+
+    All buildings must be connected
+    to a road in order to function.
+
+    Roads can be placed in a line by clicking
+    and dragging once the road is selected.
+
+    Roads can be built over water to
+    create bridges'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 738884343ced24108954a54d9844569a, type: 2}
   m_sharedMaterial: {fileID: -7503263923809491466, guid: 738884343ced24108954a54d9844569a, type: 2}
@@ -4833,8 +4890,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 36
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -20101,6 +20158,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784046147c074d0980a0713b66dc2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  header: Commerical Zone
+  body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend convallis
+    sem, nec fringilla mauris facilisis id. Quisque rutrum lorem felis, fringilla
+    iaculis ante pretium sed. Vivamus lacinia vulputate nibh. Sed felis lectus, dictum
+    nec commodo nec, laoreet ac nunc. Curabitur eget dui feugiat, tincidunt enim
+    vitae, interdum diam. Aenean vulputate arcu vel ex efficitur, sed sodales ex
+    dapibus. Nunc in mauris eget metus accumsan dignissim. Ut egestas ornare ex,
+    ut sagittis leo pulvinar ac. Vestibulum ante ipsum primis in faucibus orci luctus
+    et ultrices posuere cubilia curae; Donec maximus accumsan hendrerit. Sed ac tellus
+    ut erat ultricies accumsan.
 --- !u!1 &1701278318
 GameObject:
   m_ObjectHideFlags: 0
@@ -20242,7 +20309,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1705679581
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20257,12 +20324,12 @@ RectTransform:
   m_Children:
   - {fileID: 696586996}
   - {fileID: 978444181}
-  m_Father: {fileID: 1802280237}
+  m_Father: {fileID: 1979291679}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 960.00006, y: -540.1111}
-  m_SizeDelta: {x: 256, y: 256}
+  m_SizeDelta: {x: 0, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1705679582
 MonoBehaviour:
@@ -20277,7 +20344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
-  m_VerticalFit: 2
+  m_VerticalFit: 0
 --- !u!114 &1705679583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20291,12 +20358,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
+    m_Left: 25
+    m_Right: 25
+    m_Top: 10
+    m_Bottom: 10
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 5
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
@@ -20333,7 +20400,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 4
+  m_PixelsPerUnitMultiplier: 8
 --- !u!222 &1705679585
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20354,8 +20421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe617267e6b14f29b9b2c9a00f163a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headerField: {fileID: 978444182}
-  bodyField: {fileID: 696586997}
+  headerField: {fileID: 696586997}
+  bodyField: {fileID: 978444182}
   layoutElement: {fileID: 1705679587}
   characterWrapLimit: 80
 --- !u!114 &1705679587
@@ -20373,87 +20440,11 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 500
+  m_PreferredWidth: 400
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!1 &1802280236
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1802280237}
-  - component: {fileID: 1802280239}
-  - component: {fileID: 1802280238}
-  m_Layer: 5
-  m_Name: TooltipContainer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1802280237
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802280236}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1705679581}
-  m_Father: {fileID: 1979291679}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1802280238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802280236}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1802280239
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1802280236}
-  m_CullTransparentMesh: 1
 --- !u!1 &1930987173
 GameObject:
   m_ObjectHideFlags: 0
@@ -20787,7 +20778,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1802280237}
+  - {fileID: 1705679581}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -21223,6 +21214,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3784046147c074d0980a0713b66dc2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  header: Coal Power Plant
+  body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend convallis
+    sem, nec fringilla mauris facilisis id. Quisque rutrum lorem felis, fringilla
+    iaculis ante pretium sed. Vivamus lacinia vulputate nibh. Sed felis lectus, dictum
+    nec commodo nec, laoreet ac nunc. Curabitur eget dui feugiat, tincidunt enim
+    vitae, interdum diam. Aenean vulputate arcu vel ex efficitur, sed sodales ex
+    dapibus. Nunc in mauris eget metus accumsan dignissim. Ut egestas ornare ex,
+    ut sagittis leo pulvinar ac. Vestibulum ante ipsum primis in faucibus orci luctus
+    et ultrices posuere cubilia curae; Donec maximus accumsan hendrerit. Sed ac tellus
+    ut erat ultricies accumsan.
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

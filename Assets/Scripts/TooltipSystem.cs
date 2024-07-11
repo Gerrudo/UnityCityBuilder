@@ -13,8 +13,10 @@ public class TooltipSystem : Singleton<TooltipSystem>
         tooltipSystem = TooltipSystem.GetInstance();
     }
 
-    public void ShowTooltip()
+    public void ShowTooltip(string header, string body)
     {
+        tooltip.SetText(header, body);
+
         tooltip.gameObject.SetActive(true);
     }
 
