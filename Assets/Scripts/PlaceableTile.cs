@@ -32,10 +32,10 @@ public class PlaceableTile : ScriptableObject
     public int MaxPopulation { get; private set; }
 
     [field: SerializeField]
-    public int PowerDemand { get; private set; }
+    public int PowerDemand { get; set; }
 
     [field: SerializeField]
-    public int WaterDemand { get; private set; }
+    public int WaterDemand { get; set; }
 
     public int CurrentPopulation { get; set; }
 

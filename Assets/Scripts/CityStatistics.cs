@@ -34,11 +34,11 @@ public class CityStatistics : Singleton<CityStatistics>
 
         if (city.Earnings > 0)
         {
-            earningsText.text = $"Funds: ${city.Earnings}+";
+            earningsText.text = $"Earnings: ${city.Earnings}+";
         }
         else
         {
-            earningsText.text = $"Funds: ${city.Earnings}";
+            earningsText.text = $"Earnings: ${city.Earnings}";
         }
 
         //Update Panel

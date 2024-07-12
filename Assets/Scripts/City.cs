@@ -61,7 +61,7 @@ public class City : Singleton<City>
 
         foreach (var tile in cityTiles)
         {
-            ProcessTile(tile.Key);
+            TileCalculations(tile.Key);
         }
 
         CalculateApprovalRating();
@@ -116,34 +116,6 @@ public class City : Singleton<City>
         }
     }
 
-    private void CalculatePopulation(Vector3Int tilePosition)
-    {
-        bool isMaxPopulation = cityTiles[tilePosition].CurrentPopulation >= cityTiles[tilePosition].MaxPopulation;
-
-        if (!isMaxPopulation && cityTiles[tilePosition].Happiness == 3)
-        {
-            cityTiles[tilePosition].CurrentPopulation += 10;
-        }
-
-        Population += cityTiles[tilePosition].CurrentPopulation;
-    }
-
-    private void CalculateWater(Vector3Int tilePosition)
-    {
-        if (Water <= 500)
-        {
-            Water += 100;
-        }
-    }
-
-    private void CalculatePower(Vector3Int tilePosition)
-    {
-        if (Power <= 500)
-        {
-            Power += 100;
-        }
-    }
-
     private void CheckUtilities(Vector3Int tilePosition)
     {
         Power -= cityTiles[tilePosition].PowerDemand;
@@ -168,50 +140,9 @@ public class City : Singleton<City>
         }
     }
 
-    private void CalculateIncome(Vector3Int tilePosition)
-    {
-        Earnings += 100;
-    }
-
-    private void CalculateExpenses(Vector3Int tilePosition)
-    {
-        Earnings -= 10;
-    }
-
-    private void SellGoods(Vector3Int tilePosition)
-    {
-        Goods -= 50;
-        Earnings += 100;
-    }
-
-    private void ProduceGoods(Vector3Int tilePosition)
-    {
-        Goods += 100;
-    }
-
     private void UpgradeBuilding(Vector3Int tilePosition)
     {
         tileEditor.DrawItem(tilePosition, cityTiles[tilePosition].Level1Tilebase);
-    }
-
-    private void CalculateHappiness(Vector3Int tilePosition)
-    {
-        int happinessScore = 0;
-
-        if (cityTiles[tilePosition].IsConnectedToRoad)
-        {
-            happinessScore++;
-        }
-        if (cityTiles[tilePosition].IsPowered)
-        {
-            happinessScore++;
-        }
-        if (cityTiles[tilePosition].IsWatered)
-        {
-            happinessScore++;
-        }
-
-        cityTiles[tilePosition].Happiness = happinessScore;
     }
 
     private void CalculateApprovalRating()
@@ -233,70 +164,12 @@ public class City : Singleton<City>
         }
     }
 
-    private void ProcessTile(Vector3Int tilePosition)
+    private void TileCalculations(Vector3Int tilePosition)
     {
-        CheckRoadConnection(tilePosition);
+        ICalculable calculable = new Placeable();
 
-        if (cityTiles[tilePosition].IsConnectedToRoad)
-        {
-            switch (cityTiles[tilePosition].TileType)
-            {
-                case TileType.Residential:
-                    CheckUtilities(tilePosition);
+        PlaceableTile updatedTile = calculable.Calculate(cityTiles[tilePosition]);
 
-                    if (cityTiles[tilePosition].IsPowered && cityTiles[tilePosition].IsWatered)
-                    {
-                        UpgradeBuilding(tilePosition);
-                        CalculateHappiness(tilePosition);
-                        CalculatePopulation(tilePosition);
-                        CalculateIncome(tilePosition);
-                    }
-
-                    CalculateExpenses(tilePosition);
-
-                    break;
-                case TileType.Commerical:
-                    CheckUtilities(tilePosition);
-
-                    if (cityTiles[tilePosition].IsPowered && cityTiles[tilePosition].IsWatered)
-                    {
-                        UpgradeBuilding(tilePosition);
-                        CalculateHappiness(tilePosition);
-                        SellGoods(tilePosition);
-                        CalculateIncome(tilePosition);
-                    }
-
-                    CalculateExpenses(tilePosition);
-
-                    break;
-                case TileType.Industrial:
-                    CheckUtilities(tilePosition);
-
-                    if (cityTiles[tilePosition].IsPowered && cityTiles[tilePosition].IsWatered)
-                    {
-                        UpgradeBuilding(tilePosition);
-                        CalculateHappiness(tilePosition);
-                        ProduceGoods(tilePosition);
-                        CalculateIncome(tilePosition);
-                    }
-
-                    CalculateExpenses(tilePosition);
-
-                    break;
-                case TileType.Generator:
-                    CalculatePower(tilePosition);
-                    CalculateExpenses(tilePosition);
-                    break;
-                case TileType.WaterTower:
-                    CalculateWater(tilePosition);
-                    CalculateExpenses(tilePosition);
-
-                    break;
-                default:
-                    CalculateExpenses(tilePosition);
-
-                    break;
-            }
-        }
+        cityTiles[tilePosition] = updatedTile;
     }
 }
