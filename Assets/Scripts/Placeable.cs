@@ -7,31 +7,26 @@ public class Placeable : ICalculable
 {
     public PlaceableTile Calculate(PlaceableTile tile)
     {
-        PlaceableTile newTile = tile;
-
         switch (tile.TileType)
         {
             case TileType.Residential:
-                tile.CurrentPopulation = Calculations.Population(tile.MaxPopulation, tile.Happiness, tile.CurrentPopulation);
+                tile.CurrentPopulation = Calculations.Population(tile.MaxPopulation, tile.CurrentPopulation);
                 tile.WaterDemand = Calculations.Water(tile.CurrentPopulation);
-
+                tile.PowerDemand = Calculations.Power(tile.CurrentPopulation);
+                tile.Taxes = Calculations.Income(tile.CurrentPopulation);
                 break;
-            case TileType.Commerical:
-
+            case TileType.Commercial:
+                tile.WaterDemand = Calculations.Water(tile.CurrentPopulation);
+                tile.PowerDemand = Calculations.Power(tile.CurrentPopulation);
+                tile.Taxes = Calculations.Income(tile.CurrentPopulation);
                 break;
             case TileType.Industrial:
-
-                break;
-            case TileType.Generator:
-
-                break;
-            case TileType.WaterTower:
-
-                break;
-            default:
+                tile.WaterDemand = Calculations.Water(tile.CurrentPopulation);
+                tile.PowerDemand = Calculations.Power(tile.CurrentPopulation);
+                tile.Taxes = Calculations.Income(tile.CurrentPopulation);
                 break;
         }
 
-        return newTile;
+        return tile;
     }
 }

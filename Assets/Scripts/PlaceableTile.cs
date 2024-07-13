@@ -5,11 +5,10 @@ public enum TileType
 {
     Road,
     Residential,
-    Commerical,
+    Commercial,
     Industrial,
     Generator,
-    WaterTower,
-    Mine
+    WaterTower
 }
 
 [CreateAssetMenu(fileName = "PlaceableTile", menuName = "PlaceableTile")]
@@ -30,18 +29,29 @@ public class PlaceableTile : ScriptableObject
 
     [field: SerializeField]
     public int MaxPopulation { get; private set; }
-
-    [field: SerializeField]
+    
     public int PowerDemand { get; set; }
-
+    
     [field: SerializeField]
+    public int PowerProduction { get; set; }
+    
     public int WaterDemand { get; set; }
+    
+    [field: SerializeField]
+    public int WaterProduction { get; set; }
 
     public int CurrentPopulation { get; set; }
 
     public bool IsConnectedToRoad { get; set; }
+    
     public bool IsPowered { get; set; }
+    
     public bool IsWatered { get; set; }
 
     public int Happiness { get; set; }
+    
+    public int Taxes { get; set; }
+    
+    [field: SerializeField]
+    public int Expenses { get; set; }
 }

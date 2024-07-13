@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d2fb38c510e4edbb657f1bb0c3cc0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SecondsPerDay>k__BackingField: 60
+  <SecondsPerDay>k__BackingField: 24
   <Funds>k__BackingField: 40000
 --- !u!114 &149672891
 MonoBehaviour:
@@ -20979,7 +20979,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Power: 0MW'
+  m_text: 'Power: 0kW'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 738884343ced24108954a54d9844569a, type: 2}
   m_sharedMaterial: {fileID: -7503263923809491466, guid: 738884343ced24108954a54d9844569a, type: 2}

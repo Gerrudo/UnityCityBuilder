@@ -1,16 +1,10 @@
-﻿public class Calculations
+﻿public static class Calculations
 {
-    public static int Population(int maxPopulation, int happiness, int currentPopulation)
+    public static int Population(int maxPopulation, int currentPopulation)
     {
-        bool isMaxPopulation = currentPopulation >= maxPopulation;
-
-        if (!isMaxPopulation && happiness == 3)
+        if (currentPopulation < maxPopulation)
         {
-            currentPopulation += 10;
-        }
-        else if (!isMaxPopulation && happiness == 0)
-        {
-            currentPopulation -= 10;
+            currentPopulation++;
         }
 
         return currentPopulation;
@@ -18,36 +12,16 @@
 
     public static int Water(int currentPopulation)
     {
-        int waterDemand = currentPopulation;
-
-        return waterDemand;
+        return currentPopulation;
     }
 
     public static int Power(int currentPopulation)
     {
-        int powerDemand = currentPopulation;
-
-        return powerDemand;
+        return currentPopulation;
     }
 
     public static int Income(int currentPopulation)
     {
-        int income = currentPopulation * 10;
-
-        return income;
-    }
-
-    public static int Expenses(int currentPopulation)
-    {
-        int expenses = currentPopulation * 10;
-
-        return expenses;
-    }
-
-    public static int Happiness()
-    {
-        int happiness = 3;
-
-        return happiness;
+        return currentPopulation * 10;
     }
 }

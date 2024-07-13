@@ -42,7 +42,7 @@ public class CityStatistics : Singleton<CityStatistics>
         }
 
         //Update Panel
-        powerText.text = $"Power: {city.Power}MW";
+        powerText.text = $"Power: {city.Power}kW";
         waterText.text = $"Water: {city.Water}kL";
         goodsText.text = $"Goods: {city.Goods} Ton";
         approvalText.text = $"Approval: {city.ApprovalRating}%";
