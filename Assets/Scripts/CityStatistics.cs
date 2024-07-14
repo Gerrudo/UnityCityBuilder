@@ -12,7 +12,7 @@ public class CityStatistics : Singleton<CityStatistics>
     [SerializeField] private TextMeshProUGUI goodsText;
     [SerializeField] private TextMeshProUGUI approvalText;
 
-    City city;
+    private City city;
 
     protected override void Awake()
     {

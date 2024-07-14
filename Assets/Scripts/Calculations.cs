@@ -1,27 +1,41 @@
 ﻿public static class Calculations
 {
-    public static int Population(int maxPopulation, int currentPopulation)
+    public static int GetPopulation(int maxPopulation, int currentPopulation)
     {
-        if (currentPopulation < maxPopulation)
+
+
+        return currentPopulation;
+    }
+
+    public static int ConsumeWater(int currentPopulation)
+    {
+        return currentPopulation * 2;
+    }
+
+    public static int ConsumePower(int currentPopulation)
+    {
+        return currentPopulation * 4;
+    }
+
+    public static int GeneratePower(int workers,  int maxWorkers)
+    {
+        var powerGenerated = 0;
+       
+        if (workers < maxWorkers)
         {
-            currentPopulation++;
+            powerGenerated = workers * 3;
         }
 
-        return currentPopulation;
+        return powerGenerated;
+    }
+    
+    public static int GenerateWater()
+    {
+        return 1;
     }
 
-    public static int Water(int currentPopulation)
+    public static int PayTaxes(int currentPopulation)
     {
-        return currentPopulation;
-    }
-
-    public static int Power(int currentPopulation)
-    {
-        return currentPopulation;
-    }
-
-    public static int Income(int currentPopulation)
-    {
-        return currentPopulation * 10;
+        return currentPopulation * 4;
     }
 }

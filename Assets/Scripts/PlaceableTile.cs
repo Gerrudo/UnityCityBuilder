@@ -15,30 +15,23 @@ public enum TileType
 public class PlaceableTile : ScriptableObject
 {
     //Private setter is required for serialised fields.
-    [field: SerializeField]
-    public TileType TileType { get; private set; }
+    [field: SerializeField] public TileType TileType { get; private set; }
 
-    [field: SerializeField]
-    public TileBase TileBase { get; private set; }
+    [field: SerializeField] public TileBase TileBase { get; private set; }
 
-    [field: SerializeField]
-    public TileBase Level1Tilebase { get; private set; }
+    [field: SerializeField] public TileBase Level1Tilebase { get; private set; }
 
-    [field: SerializeField]
-    public int CostToBuild { get; private set; }
+    [field: SerializeField] public int CostToBuild { get; private set; }
 
-    [field: SerializeField]
-    public int MaxPopulation { get; private set; }
+    [field: SerializeField] public int MaxPopulation { get; private set; }
     
     public int PowerDemand { get; set; }
     
-    [field: SerializeField]
-    public int PowerProduction { get; set; }
+    [field: SerializeField] public int PowerProduction { get; set; }
     
     public int WaterDemand { get; set; }
     
-    [field: SerializeField]
-    public int WaterProduction { get; set; }
+    [field: SerializeField] public int WaterProduction { get; set; }
 
     public int CurrentPopulation { get; set; }
 
@@ -52,6 +45,9 @@ public class PlaceableTile : ScriptableObject
     
     public int Taxes { get; set; }
     
-    [field: SerializeField]
-    public int Expenses { get; set; }
+    [field: SerializeField] public int Expenses { get; set; }
+    
+    public int Workers { get; set; }
+    
+    public int MaxWorkers { get; set; }
 }

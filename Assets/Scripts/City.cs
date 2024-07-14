@@ -10,6 +10,7 @@ public class City : Singleton<City>
     [field: SerializeField]
     public int SecondsPerDay { get; private set; }
     public int Population { get; private set; }
+    public int PopulationPool { get; private set; }
     [field: SerializeField]
     public int Funds { get; private set; }
     public int Earnings { get; private set; }
@@ -21,8 +22,8 @@ public class City : Singleton<City>
 
     private Dictionary<Vector3Int, PlaceableTile> cityTiles;
 
-    TileEditor tileEditor;
-    CityStatistics cityStatistics;
+    private TileEditor tileEditor;
+    private CityStatistics cityStatistics;
 
     protected override void Awake()
     {
@@ -60,16 +61,20 @@ public class City : Singleton<City>
         
         foreach (var key in cityTiles.Keys.ToList())
         {
-            CheckRoadConnection(key);
+            cityTiles[key].IsConnectedToRoad = CheckRoadConnection(key);
 
             if (!cityTiles[key].IsConnectedToRoad) continue;
 
             UpgradeBuilding(key);
-                
-            TileCalculations(key);
+
+            cityTiles[key] = TileCalculations(cityTiles[key]);
         }
 
         UpdateCity();
+        
+        CalculateApprovalRating();
+        
+        cityStatistics.UpdateUI();
         
         StartCoroutine(UpdateTiles());
     }
@@ -97,10 +102,6 @@ public class City : Singleton<City>
         }
 
         Earnings -= Expenses;
-        
-        CalculateApprovalRating();
-        
-        cityStatistics.UpdateUI();
     }
 
     public bool NewTile(Vector3Int tilePosition, PlaceableTile tile)
@@ -112,6 +113,8 @@ public class City : Singleton<City>
 
         Funds -= tile.CostToBuild;
 
+        PopulationPool += tile.MaxPopulation;
+
         cityTiles.Add(tilePosition, tile);
 
         cityStatistics.UpdateUI();
@@ -121,29 +124,30 @@ public class City : Singleton<City>
 
     public void RemoveTile(Vector3Int tilePosition)
     {
+        PopulationPool -= cityTiles[tilePosition].MaxPopulation;
+        
         cityTiles.Remove(tilePosition);
 
         cityStatistics.UpdateUI();
     }
 
-    private void CheckRoadConnection(Vector3Int tilePosition)
+    private bool CheckRoadConnection(Vector3Int tilePosition)
     {
+        var connected = false;
         var neighbours = TilemapExtension.Neighbours(tilePosition);
 
         foreach (var neighbour in neighbours)
         {
-            cityTiles[tilePosition].IsConnectedToRoad = false;
+            if (!cityTiles.TryGetValue(neighbour, out var connectedTile)) continue;
 
-            if (cityTiles.TryGetValue(neighbour, out var connectedTile))
-            {
-                if (connectedTile.TileType == TileType.Road)
-                {
-                    cityTiles[tilePosition].IsConnectedToRoad = true;
-
-                    break;
-                }
-            }
+            if (connectedTile.TileType != TileType.Road) continue;
+                
+            connected = true;
+            
+            break;
         }
+
+        return connected;
     }
 
     private void UpgradeBuilding(Vector3Int tilePosition)
@@ -156,27 +160,51 @@ public class City : Singleton<City>
 
     private void CalculateApprovalRating()
     {
-        int approval = 0;
-        int votes = cityTiles.Count;
+        var approval = 0;
+        var votes = cityTiles.Count;
 
-        if (votes != 0)
+        if (votes == 0) return;
+        
+        foreach (var tile in cityTiles)
         {
-            foreach (var tile in cityTiles)
+            if (tile.Value.Happiness == 3)
             {
-                if (tile.Value.Happiness == 3)
-                {
-                    approval++;
-                }
+                approval++;
             }
-
-            ApprovalRating = (int)Math.Round(((double)approval / (double)votes) * 100);
         }
+
+        ApprovalRating = (int)Math.Round(((double)approval / votes) * 100);
     }
 
-    private void TileCalculations(Vector3Int tilePosition)
+    private static PlaceableTile TileCalculations(PlaceableTile tile)
     {
-        ICalculable calculable = new Placeable();
-
-        cityTiles[tilePosition] = calculable.Calculate(cityTiles[tilePosition]);
+        switch (tile.TileType)
+        {
+            case TileType.Road:
+                return tile;
+            case TileType.Residential:
+                tile.CurrentPopulation = Calculations.GetPopulation(tile.MaxPopulation, tile.CurrentPopulation);
+                tile.WaterDemand = Calculations.ConsumeWater(tile.CurrentPopulation);
+                tile.PowerDemand = Calculations.ConsumePower(tile.CurrentPopulation);
+                tile.Taxes = Calculations.PayTaxes(tile.CurrentPopulation);
+                return tile;
+            case TileType.Commercial:
+                tile.WaterDemand = Calculations.ConsumeWater(tile.CurrentPopulation);
+                tile.PowerDemand = Calculations.ConsumePower(tile.CurrentPopulation);
+                tile.Taxes = Calculations.PayTaxes(tile.CurrentPopulation);
+                return tile;
+            case TileType.Industrial:
+                tile.WaterDemand = Calculations.ConsumeWater(tile.CurrentPopulation);
+                tile.PowerDemand = Calculations.ConsumePower(tile.CurrentPopulation);
+                tile.Taxes = Calculations.PayTaxes(tile.CurrentPopulation);
+                return tile;
+            case TileType.Generator:
+                tile.PowerProduction = Calculations.GeneratePower(tile.Workers, tile.MaxWorkers);
+                return tile;
+            case TileType.WaterTower:
+                return tile;
+            default:
+                return tile;
+        }
     }
 }
