@@ -17,6 +17,6 @@ MonoBehaviour:
   <Level1Tilebase>k__BackingField: {fileID: 0}
   <CostToBuild>k__BackingField: 10000
   <MaxPopulation>k__BackingField: 0
-  <PowerProduction>k__BackingField: 500000
+  <PowerProduction>k__BackingField: 50000
   <WaterProduction>k__BackingField: 0
   <Expenses>k__BackingField: 2500

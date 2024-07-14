@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class TileEditButtonHandler : MonoBehaviour
 {
-    [SerializeField] private PlaceableTile item;
+    [SerializeField] private GameTile item;
     private Button button;
 
     TileEditor tileEditor;
@@ -17,7 +17,6 @@ public class TileEditButtonHandler : MonoBehaviour
 
     private void ButtonClicked()
     {
-        Debug.Log("Button was clicked: " + item.name);
         tileEditor.ObjectSelected(item);
     }
 }

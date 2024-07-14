@@ -2,7 +2,10 @@
 {
     public static int GetPopulation(int maxPopulation, int currentPopulation)
     {
-
+        if (currentPopulation <= maxPopulation)
+        {
+            currentPopulation++;
+        }
 
         return currentPopulation;
     }

@@ -11,13 +11,13 @@ public class TileEditor : Singleton<TileEditor>
 
     [SerializeField] private Tilemap previewMap, defaultMap, terrainMap;
     private TileBase tileBase;
-    private PlaceableTile selectedObj;
+    private GameTile selectedObj;
 
     private Vector2 mousePosition;
     private Vector3Int currentGridPosition;
     private Vector3Int previousGridPosition;
 
-    City city;
+    private City city;
 
     protected override void Awake()
     {
@@ -69,7 +69,7 @@ public class TileEditor : Singleton<TileEditor>
         playerInput.Gameplay.MousePosition.performed -= OnMouseMove;
     }
 
-    private PlaceableTile SelectedObj
+    private GameTile SelectedObj
     {
         set
         {
@@ -105,7 +105,7 @@ public class TileEditor : Singleton<TileEditor>
         SelectedObj = null;
     }
 
-    public void ObjectSelected(PlaceableTile obj)
+    public void ObjectSelected(GameTile obj)
     {
         SelectedObj = obj;
     }
