@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class City : Singleton<City>
@@ -59,12 +57,22 @@ public class City : Singleton<City>
     {
         yield return new WaitForSeconds(1);
         
-        foreach (var building in cityTiles.Values.ToList())
+        Population = 0;
+        Earnings = 0;
+        
+        foreach (var building in cityTiles)
         {
-            Debug.Log($"{building.Data.TileType}");
-            
-            building.Data.Taxes += Earnings;
+            if (!CheckTileConnection(building.Key, TileType.Road)) continue;
+
+            UpgradeBuilding(building.Key);
+                
+            building.Value.UpdateBuilding();
+
+            Population += building.Value.Data.CurrentPopulation;
+            Earnings += building.Value.Data.Taxes;
         }
+        
+        cityStatistics.UpdateUI();
         
         StartCoroutine(UpdateCity());
     }
@@ -98,5 +106,32 @@ public class City : Singleton<City>
         cityTiles.Remove(tilePosition);
 
         cityStatistics.UpdateUI();
+    }
+    
+    //Should be moved to interface
+    private bool CheckTileConnection(Vector3Int tilePosition, TileType tileToCheck)
+    {
+        var connected = false;
+        
+        var neighbours = TilemapExtension.Neighbours(tilePosition);
+
+        foreach (var neighbour in neighbours)
+        {
+            if (!cityTiles.TryGetValue(neighbour, out var connectedTile)) continue;
+                if (connectedTile.Data.TileType != tileToCheck) continue;
+                    connected = true;
+                    break;
+        }
+
+        return connected;
+    }
+    
+    //Should be moved to interface
+    private void UpgradeBuilding(Vector3Int tilePosition)
+    {
+        if (cityTiles[tilePosition].Data.TileType is TileType.Residential or TileType.Commercial or TileType.Industrial)
+        {
+            tileEditor.DrawItem(tilePosition, cityTiles[tilePosition].Data.Level1TilBase);
+        }
     }
 }    

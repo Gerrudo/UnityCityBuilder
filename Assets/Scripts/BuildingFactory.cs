@@ -1,3 +1,5 @@
+using UnityEngine.Tilemaps;
+
 public interface IBuildable
 {
     BuildingData Data
@@ -6,6 +8,12 @@ public interface IBuildable
         set;
     }
     BuildingData NewBuildingData(GameTile gameTile);
+    void UpdateBuilding();
+}
+
+public interface ITaxable
+{
+    void UpdateTaxes();
 }
 
 public interface IBuildingFactory
@@ -16,102 +24,11 @@ public interface IBuildingFactory
 public class BuildingData
 {
     public TileType TileType { get; set; }
-    public int PowerDemand { get; set; }
-    public int WaterDemand { get; set; }
+    public TileBase Level1TilBase { get; set; }
     public int CurrentPopulation { get; set; }
-    public bool IsConnectedToRoad { get; set; }
-    public bool IsPowered { get; set; }
-    public bool IsWatered { get; set; }
-    public int Happiness { get; set; }
+    public int MaxPopulation { get; set; }
     public int Taxes { get; set; }
     public int Expenses { get; set; }
-    public int Workers { get; set; }
-    public int MaxWorkers { get; set; }
-}
-
-public class Road : IBuildable
-{
-    public BuildingData Data { get; set; }
-    
-    public BuildingData NewBuildingData(GameTile gameTile)
-    {
-        Data = new BuildingData();
-            
-        Data.Taxes = 10;
-        
-        return Data;
-    }
-}
-
-public class Residential : IBuildable
-{
-    public BuildingData Data { get; set; }
-    
-    public BuildingData NewBuildingData(GameTile gameTile)
-    {
-        Data = new BuildingData();
-        
-        Data.Taxes = 10;
-        
-        return Data;
-    }
-}
-
-public class Commercial : IBuildable
-{
-    public BuildingData Data { get; set; }
-    
-    public BuildingData NewBuildingData(GameTile gameTile)
-    {
-        Data = new BuildingData();
-        
-        Data.Taxes = 10;
-        
-        return Data;
-    }
-}
-
-
-public class Industrial : IBuildable
-{
-    public BuildingData Data { get; set; }
-    
-    public BuildingData NewBuildingData(GameTile gameTile)
-    {
-        Data = new BuildingData();
-        
-        Data.Taxes = 10;
-        
-        return Data;
-    }
-}
-
-public class Generator : IBuildable
-{
-    public BuildingData Data { get; set; }
-    
-    public BuildingData NewBuildingData(GameTile gameTile)
-    {
-        Data = new BuildingData();
-        
-        Data.Taxes = 10;
-        
-        return Data;
-    }
-}
-
-public class WaterTower : IBuildable
-{
-    public BuildingData Data { get; set; }
-    
-    public BuildingData NewBuildingData(GameTile gameTile)
-    {
-        Data = new BuildingData();
-        
-        Data.Taxes = 10;
-        
-        return Data;
-    }
 }
 
 public class BuildingFactory : IBuildingFactory
