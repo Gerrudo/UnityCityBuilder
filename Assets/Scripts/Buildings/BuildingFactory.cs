@@ -1,34 +1,6 @@
-using UnityEngine.Tilemaps;
-
-public interface IBuildable
-{
-    BuildingData Data
-    {
-        get;
-        set;
-    }
-    BuildingData NewBuildingData(GameTile gameTile);
-    void UpdateBuilding();
-}
-
-public interface ITaxable
-{
-    void UpdateTaxes();
-}
-
 public interface IBuildingFactory
 {
     IBuildable CreateBuilding(TileType tileType);
-}
-
-public class BuildingData
-{
-    public TileType TileType { get; set; }
-    public TileBase Level1TilBase { get; set; }
-    public int CurrentPopulation { get; set; }
-    public int MaxPopulation { get; set; }
-    public int Taxes { get; set; }
-    public int Expenses { get; set; }
 }
 
 public class BuildingFactory : IBuildingFactory

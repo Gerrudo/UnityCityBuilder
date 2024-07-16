@@ -1,4 +1,4 @@
-public class Industrial : IBuildable, ITaxable
+public class Generator : IBuildable
 {
     public BuildingData Data { get; set; }
     
@@ -6,17 +6,18 @@ public class Industrial : IBuildable, ITaxable
     {
         Data = new BuildingData();
         Data.TileType = gameTile.TileType;
+        Data.Expenses = gameTile.Expenses;
         
         return Data;
     }
     
     public void UpdateBuilding()
     {
-        UpdateTaxes();
+        UpdateExpenses();
     }
     
-    public void UpdateTaxes()
+    void UpdateExpenses()
     {
-        Data.Taxes = 10;
+            
     }
 }
