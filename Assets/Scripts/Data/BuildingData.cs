@@ -10,6 +10,6 @@ public class BuildingData
     public int Expenses { get; set; }
     public int BuildingLevel { get; set; }
     public bool IsConnectedToRoad { get; set; }
-    public int CurrentWorkers { get; set; }
-    public int MaxWorkers { get; set; }
+    public int Employees { get; set; }
+    public int MaxEmployees { get; set; }
 }

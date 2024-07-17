@@ -9,7 +9,6 @@ public class GameTile : ScriptableObject
     [field: SerializeField] public TileBase Level1TilBase { get; private set; }
     [field: SerializeField] public int CostToBuild { get; private set; }
     [field: SerializeField] public int MaxPopulation { get; private set; }
-    [field: SerializeField] public int PowerProduction { get; private set; }
-    [field: SerializeField] public int WaterProduction { get; private set; }
+    [field: SerializeField] public int MaxEmployees { get; private set; }
     [field: SerializeField] public int Expenses { get; private set; }
 }

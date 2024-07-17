@@ -46,7 +46,6 @@ public class City : Singleton<City>
         //Better way to do this?
         CityData.Population = 0;
         CityData.Earnings = 0;
-        CityData.Expenses = 0;
         
         foreach (var building in cityTiles)
         {
@@ -58,7 +57,7 @@ public class City : Singleton<City>
             
             //Better way to do this?
             CityData.Population += building.Value.Data.CurrentPopulation;
-            CityData.Expenses += building.Value.Data.Expenses;
+            CityData.Earnings -= building.Value.Data.Expenses;
             CityData.Earnings += building.Value.Data.Taxes;
         }
         
@@ -91,6 +90,8 @@ public class City : Singleton<City>
 
     public void RemoveTile(Vector3Int tilePosition)
     {
+        cityTiles[tilePosition].DestroyBuilding();
+        
         cityTiles.Remove(tilePosition);
 
         cityStatistics.UpdateUI();

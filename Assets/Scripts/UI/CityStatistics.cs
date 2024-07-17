@@ -11,7 +11,8 @@ public class CityStatistics : Singleton<CityStatistics>
     [SerializeField] private TextMeshProUGUI waterText;
     [SerializeField] private TextMeshProUGUI goodsText;
     [SerializeField] private TextMeshProUGUI approvalText;
-
+    [SerializeField] private TextMeshProUGUI unemployedText;
+    
     protected override void Awake()
     {
         base.Awake();
@@ -42,5 +43,6 @@ public class CityStatistics : Singleton<CityStatistics>
         waterText.text = $"Water: {CityData.Water}kL";
         goodsText.text = $"Goods: {CityData.Goods} Ton";
         approvalText.text = $"Approval: {CityData.ApprovalRating}%";
+        unemployedText.text = $"Unemployed: {CityData.Unemployed}";
     }
 }

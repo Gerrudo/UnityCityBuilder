@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <TileType>k__BackingField: 0
   <TileBase>k__BackingField: {fileID: 11400000, guid: c9ca7a5e3171d4a3c925aec7705ee06f, type: 2}
-  <Level1Tilebase>k__BackingField: {fileID: 0}
+  <Level1TilBase>k__BackingField: {fileID: 0}
   <CostToBuild>k__BackingField: 100
   <MaxPopulation>k__BackingField: 0
-  <PowerProduction>k__BackingField: 0
-  <WaterProduction>k__BackingField: 0
-  <Expenses>k__BackingField: 0
+  <MaxEmployees>k__BackingField: 0
+  <Expenses>k__BackingField: 10

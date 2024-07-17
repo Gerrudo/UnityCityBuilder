@@ -1,4 +1,4 @@
-public class Residential : IBuildable, ITaxable, IGrowable
+public class Residential : IBuildable, ITaxable, IGrowable, IPowerable, IWaterable
 {
     public BuildingData Data { get; set; }
     
@@ -17,6 +17,8 @@ public class Residential : IBuildable, ITaxable, IGrowable
     {
         CheckBuildingLevel();
         UpdatePopulation();
+        ConsumePower();
+        ConsumeWater();
         UpdateTaxes();
     }
 
@@ -25,6 +27,7 @@ public class Residential : IBuildable, ITaxable, IGrowable
         if (Data.CurrentPopulation < Data.MaxPopulation && Data.IsConnectedToRoad)
         {
             Data.CurrentPopulation++;
+            CityData.Unemployed++;
         }
     }
 
@@ -39,5 +42,20 @@ public class Residential : IBuildable, ITaxable, IGrowable
         {
             Data.BuildingLevel = 1;
         }
+    }
+    
+    public void ConsumePower()
+    {
+        CityData.Power -= Data.CurrentPopulation * 4;
+    }
+
+    public void ConsumeWater()
+    {
+        CityData.Water -= Data.CurrentPopulation * 2;
+    }
+    
+    public void DestroyBuilding()
+    {
+        CityData.Unemployed -= Data.CurrentPopulation;
     }
 }

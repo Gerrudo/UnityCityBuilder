@@ -1,4 +1,4 @@
-public class Commercial : IBuildable, ITaxable, IGrowable
+public class Commercial : IBuildable, IGrowable, IEmployable, IPowerable, IWaterable
 {
     public BuildingData Data { get; set; }
     
@@ -10,6 +10,7 @@ public class Commercial : IBuildable, ITaxable, IGrowable
 
         Data.TileType = gameTile.TileType;
         Data.Level1TilBase = gameTile.Level1TilBase;
+        Data.MaxEmployees = gameTile.MaxEmployees;
         
         return Data;
     }
@@ -17,13 +18,10 @@ public class Commercial : IBuildable, ITaxable, IGrowable
     public void UpdateBuilding()
     {
         CheckBuildingLevel();
-        UpdateTaxes();
+        HireEmployees();
+        ConsumePower();
+        ConsumeWater();
         SellGoods();
-    }
-    
-    public void UpdateTaxes()
-    {
-        Data.Taxes = 10;
     }
     
     public void CheckBuildingLevel()
@@ -33,9 +31,40 @@ public class Commercial : IBuildable, ITaxable, IGrowable
             Data.BuildingLevel = 1;
         }
     }
+    
+    public void HireEmployees()
+    {
+        if (Data.Employees == Data.MaxEmployees) return;
+
+        CityData.Unemployed--;
+        Data.Employees++;
+    }
+    
+    public void FireEmployees()
+    {
+        CityData.Unemployed += Data.Employees;
+    }
 
     private void SellGoods()
     {
-        CityData.Goods -= 5;
+        if (CityData.Goods <= 0) return;
+
+        CityData.Goods -= Data.Employees * 10;
+        CityData.Earnings += 10;
+    }
+    
+    public void ConsumePower()
+    {
+        CityData.Power -= Data.Employees * 4;
+    }
+
+    public void ConsumeWater()
+    {
+        CityData.Water -= Data.Employees * 2;
+    }
+
+    public void DestroyBuilding()
+    {
+        FireEmployees();
     }
 }

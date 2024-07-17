@@ -16,4 +16,9 @@ public class Road : IBuildable
     {
         
     }
+    
+    public void DestroyBuilding()
+    {
+        
+    }
 }

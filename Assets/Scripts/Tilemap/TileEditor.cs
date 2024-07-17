@@ -118,7 +118,7 @@ public class TileEditor : Singleton<TileEditor>
 
     private void HandleDrawing()
     {
-        bool cityCheck = city.NewTile(currentGridPosition, selectedObj);
+        var cityCheck = city.NewTile(currentGridPosition, selectedObj);
 
         if (cityCheck)
         {
@@ -136,6 +136,8 @@ public class TileEditor : Singleton<TileEditor>
 
     private void RemoveItem()
     {
+        if(!defaultMap.HasTile(currentGridPosition)) return;
+        
         city.RemoveTile(currentGridPosition);
 
         defaultMap.SetTile(currentGridPosition, null);

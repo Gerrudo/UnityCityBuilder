@@ -7,4 +7,5 @@ public interface IBuildable
     }
     BuildingData NewBuildingData(GameTile gameTile);
     void UpdateBuilding();
+    void DestroyBuilding();
 }
