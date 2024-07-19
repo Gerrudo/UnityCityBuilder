@@ -17,6 +17,5 @@ MonoBehaviour:
   <Level1TilBase>k__BackingField: {fileID: 11400000, guid: ea41b16a30fd640928c13a49b48177f6, type: 2}
   <CostToBuild>k__BackingField: 0
   <MaxPopulation>k__BackingField: 0
-  <PowerProduction>k__BackingField: 0
-  <WaterProduction>k__BackingField: 0
+  <MaxEmployees>k__BackingField: 60
   <Expenses>k__BackingField: 0

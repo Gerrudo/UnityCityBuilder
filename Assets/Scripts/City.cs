@@ -34,8 +34,6 @@ public class City : Singleton<City>
         CityData.Funds += CityData.Earnings;
         CityData.Earnings = 0;
 
-        cityStatistics.UpdateUI();
-
         StartCoroutine(CountDays());
     }
     
@@ -46,6 +44,10 @@ public class City : Singleton<City>
         //Better way to do this?
         CityData.Population = 0;
         CityData.Earnings = 0;
+        CityData.Unemployed = 0;
+        CityData.Power = 0;
+        CityData.Water = 0;
+        CityData.Goods = 0;
         
         foreach (var building in cityTiles)
         {
@@ -57,6 +59,19 @@ public class City : Singleton<City>
             
             //Better way to do this?
             CityData.Population += building.Value.Data.CurrentPopulation;
+
+            CityData.Unemployed += building.Value.Data.Unemployed;
+            CityData.Unemployed -= building.Value.Data.Employees;
+
+            CityData.Power -= building.Value.Data.PowerConsumption;
+            CityData.Power += building.Value.Data.PowerProduction;
+            
+            CityData.Water -= building.Value.Data.WaterConsumption;
+            CityData.Water += building.Value.Data.WaterProduction;
+            
+            CityData.Goods -= building.Value.Data.GoodsConsumption;
+            CityData.Goods += building.Value.Data.GoodsProduction;
+            
             CityData.Earnings -= building.Value.Data.Expenses;
             CityData.Earnings += building.Value.Data.Taxes;
         }

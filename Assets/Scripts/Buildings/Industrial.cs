@@ -32,31 +32,30 @@ public class Industrial : IBuildable, IGrowable, IEmployable, IPowerable, IWater
     
     public void HireEmployees()
     {
-        if (Data.Employees == Data.MaxEmployees) return;
+        if (Data.Employees >= Data.MaxEmployees) return;
 
-        CityData.Unemployed--;
-        Data.Employees++;
+        Data.Unemployed -= 2;
+        Data.Employees += 2;
     }
 
     public void FireEmployees()
     {
-        CityData.Unemployed += Data.Employees;
+        Data.Unemployed -= Data.Employees;
     }
     
     private void ProduceGoods()
     {
-        CityData.Goods += Data.Employees * 10;
-        CityData.Earnings += 5;
+        Data.GoodsProduction = Data.Employees * 10;
     }
     
     public void ConsumePower()
     {
-        CityData.Power -= Data.Employees * 4;
+        Data.PowerConsumption = Data.Employees * 4;
     }
 
     public void ConsumeWater()
     {
-        CityData.Water -= Data.Employees * 2;
+        Data.WaterConsumption = Data.Employees * 2;
     }
     
     public void DestroyBuilding()

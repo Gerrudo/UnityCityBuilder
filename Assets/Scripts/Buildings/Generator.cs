@@ -7,6 +7,8 @@ public class Generator : IBuildable, IEmployable, IWaterable
         Data = new BuildingData();
         Data.TileType = gameTile.TileType;
         Data.Expenses = gameTile.Expenses;
+        Data.MaxEmployees = gameTile.MaxEmployees;
+        Data.PowerProduction = 500000;
         
         return Data;
     }
@@ -15,30 +17,24 @@ public class Generator : IBuildable, IEmployable, IWaterable
     {
         HireEmployees();
         ConsumeWater();
-        ProducePower();
     }
     
     public void HireEmployees()
     {
-        if (Data.Employees == Data.MaxEmployees) return;
+        if (Data.Employees >= Data.MaxEmployees) return;
 
-        CityData.Unemployed--;
-        Data.Employees++;
+        Data.Unemployed -= 2;
+        Data.Employees += 2;
     }
-    
+
     public void FireEmployees()
     {
-        CityData.Unemployed += Data.Employees;
-    }
-
-    private void ProducePower()
-    {
-        CityData.Power += Data.Employees * 100;
+        Data.Unemployed -= Data.Employees;
     }
 
     public void ConsumeWater()
     {
-        CityData.Water -= Data.Employees * 2;
+        Data.WaterConsumption = Data.Employees * 2;
     }
     
     public void DestroyBuilding()

@@ -27,7 +27,7 @@ public class Residential : IBuildable, ITaxable, IGrowable, IPowerable, IWaterab
         if (Data.CurrentPopulation < Data.MaxPopulation && Data.IsConnectedToRoad)
         {
             Data.CurrentPopulation++;
-            CityData.Unemployed++;
+            Data.Unemployed++;
         }
     }
 
@@ -46,16 +46,16 @@ public class Residential : IBuildable, ITaxable, IGrowable, IPowerable, IWaterab
     
     public void ConsumePower()
     {
-        CityData.Power -= Data.CurrentPopulation * 4;
+        Data.PowerConsumption = Data.CurrentPopulation * 4;
     }
 
     public void ConsumeWater()
     {
-        CityData.Water -= Data.CurrentPopulation * 2;
+        Data.WaterConsumption = Data.CurrentPopulation * 2;
     }
     
     public void DestroyBuilding()
     {
-        CityData.Unemployed -= Data.CurrentPopulation;
+        Data.Unemployed -= Data.CurrentPopulation;
     }
 }

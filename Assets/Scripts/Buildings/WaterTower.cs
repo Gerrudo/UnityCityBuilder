@@ -1,4 +1,4 @@
-public class WaterTower : IBuildable, IEmployable
+public class WaterTower : IBuildable, IEmployable, IPowerable
 {
     public BuildingData Data { get; set; }
     
@@ -7,6 +7,8 @@ public class WaterTower : IBuildable, IEmployable
         Data = new BuildingData();
         Data.TileType = gameTile.TileType;
         Data.Expenses = gameTile.Expenses;
+        Data.MaxEmployees = gameTile.MaxEmployees;
+        Data.WaterProduction = 250000;
         
         return Data;
     }
@@ -14,25 +16,25 @@ public class WaterTower : IBuildable, IEmployable
     public void UpdateBuilding()
     {
         HireEmployees();
-        ProduceWater();
+        ConsumePower();
     }
     
     public void HireEmployees()
     {
-        if (Data.Employees == Data.MaxEmployees) return;
+        if (Data.Employees >= Data.MaxEmployees) return;
 
-        CityData.Unemployed--;
-        Data.Employees++;
+        Data.Unemployed -= 2;
+        Data.Employees += 2;
     }
 
     public void FireEmployees()
     {
-        CityData.Unemployed += Data.Employees;
+        Data.Unemployed -= Data.Employees;
     }
     
-    private void ProduceWater()
+    public void ConsumePower()
     {
-        CityData.Water += Data.Employees * 1000;
+        Data.PowerConsumption = Data.Employees * 4;
     }
     
     public void DestroyBuilding()
