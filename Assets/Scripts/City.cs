@@ -4,27 +4,10 @@ using UnityEngine;
 
 public class City : Singleton<City>
 {
-    public int Day { get; private set; }
-
-    [field: SerializeField]
-    public int SecondsPerDay { get; private set; }
-
-    [field: SerializeField]
-    public int Population { get; private set; }
-
-    [field: SerializeField]
-    public int Money { get; private set; }
-
-    public int Power { get; private set; }
-
-    public int Water { get; private set; }
-
-    public int Coal { get; private set; }
-
-    private Dictionary<Vector3Int, PlaceableTile> cityTiles;
-
-    TileEditor tileEditor;
-    CityStatistics cityStatistics;
+    private Dictionary<Vector3Int, IBuildable> cityTiles;
+    
+    private TileEditor tileEditor;
+    private CityStatistics cityStatistics;
 
     protected override void Awake()
     {
@@ -33,45 +16,87 @@ public class City : Singleton<City>
         tileEditor = TileEditor.GetInstance();
         cityStatistics = CityStatistics.GetInstance();
 
-        cityTiles = new Dictionary<Vector3Int, PlaceableTile>();
+        cityTiles = new Dictionary<Vector3Int, IBuildable>();
     }
 
     private void Start()
     {
+        StartCoroutine(UpdateCity());
         StartCoroutine(CountDays());
     }
 
     private IEnumerator CountDays()
     {
-        yield return new WaitForSeconds(SecondsPerDay);
+        yield return new WaitForSeconds(24);
 
-        Day++;
+        CityData.Day++;
 
-        //Values to be recalculated
-        Population = 0;
-
-        foreach (var tile in cityTiles)
-        {
-            RequiredChecks(tile.Key);
-        }
-
-        cityStatistics.UpdateUI();
+        CityData.Funds += CityData.Earnings;
+        CityData.Earnings = 0;
 
         StartCoroutine(CountDays());
     }
-
-    public bool NewTile(Vector3Int tilePosition, PlaceableTile tile)
+    
+    private IEnumerator UpdateCity()
     {
-        if (Money < tile.CostToBuild)
+        yield return new WaitForSeconds(1);
+        
+        //Better way to do this?
+        CityData.Population = 0;
+        CityData.Earnings = 0;
+        CityData.Unemployed = 0;
+        CityData.Power = 0;
+        CityData.Water = 0;
+        CityData.Goods = 0;
+        
+        foreach (var building in cityTiles)
         {
-            Debug.Log("Cannot afford to place tile.");
+            building.Value.Data.IsConnectedToRoad = CheckTileConnection(building.Key, TileType.Road);
+            
+            building.Value.UpdateBuilding();
+            
+            UpgradeBuilding(building.Key);
+            
+            //Better way to do this?
+            CityData.Population += building.Value.Data.CurrentPopulation;
 
-            return false;
+            CityData.Unemployed += building.Value.Data.Unemployed;
+            CityData.Unemployed -= building.Value.Data.Employees;
+
+            CityData.Power -= building.Value.Data.PowerConsumption;
+            CityData.Power += building.Value.Data.PowerProduction;
+            
+            CityData.Water -= building.Value.Data.WaterConsumption;
+            CityData.Water += building.Value.Data.WaterProduction;
+            
+            CityData.Goods -= building.Value.Data.GoodsConsumption;
+            CityData.Goods += building.Value.Data.GoodsProduction;
+            
+            CityData.Earnings -= building.Value.Data.Expenses;
+            CityData.Earnings += building.Value.Data.Taxes;
         }
         
-        Money -= tile.CostToBuild;
+        cityStatistics.UpdateUI();
+        
+        StartCoroutine(UpdateCity());
+    }
 
-        cityTiles.Add(tilePosition, tile);
+    public bool NewTile(Vector3Int tilePosition, GameTile gameTile)
+    {
+        if (CityData.Funds < gameTile.CostToBuild)
+        {
+            return false;
+        }
+
+        CityData.Funds -= gameTile.CostToBuild;
+        
+        IBuildingFactory buildingFactory = new BuildingFactory();
+
+        var buildable = buildingFactory.CreateBuilding(gameTile.TileType);
+
+        buildable.NewBuildingData(gameTile);
+
+        cityTiles.Add(tilePosition, buildable);
 
         cityStatistics.UpdateUI();
 
@@ -80,89 +105,39 @@ public class City : Singleton<City>
 
     public void RemoveTile(Vector3Int tilePosition)
     {
+        cityTiles[tilePosition].DestroyBuilding();
+        
         cityTiles.Remove(tilePosition);
-    }
 
-    private void CalculateIncome(Vector3Int tilePosition)
+        cityStatistics.UpdateUI();
+    }
+    
+    //Should be moved to interface
+    private bool CheckTileConnection(Vector3Int tilePosition, TileType tileToCheck)
     {
-        if (cityTiles[tilePosition].TileType is TileType.Residential or TileType.Commerical or TileType.Industrial)
+        var connected = false;
+        
+        var neighbours = TilemapExtension.Neighbours(tilePosition);
+
+        foreach (var neighbour in neighbours)
         {
-            Money += cityTiles[tilePosition].Taxes;
-        }
-    }
-
-    private void CheckForUpgrades(Vector3Int tilePosition)
-    {
-        tileEditor.DrawItem(tilePosition, cityTiles[tilePosition].Level1Tilebase);
-    }
-
-    private void CheckNetworkConnections(Vector3Int tilePosition)
-    {
-        Vector3Int[] neighbours = TilemapExtension.Neighbours(tilePosition);
-
-        for (int i = 0; i < neighbours.Length; i++)
-        {
-            PlaceableTile connectedTile;
-
-            cityTiles[tilePosition].IsConnectedToRoad = false;
-
-            if (cityTiles.TryGetValue(neighbours[i], out connectedTile))
-            {
-                if (connectedTile.TileType == TileType.Road)
-                {
-                    cityTiles[tilePosition].IsConnectedToRoad = true;
-
+            if (!cityTiles.TryGetValue(neighbour, out var connectedTile)) continue;
+                if (connectedTile.Data.TileType != tileToCheck) continue;
+                    connected = true;
                     break;
-                }
-            }
         }
-    }
 
-    private void CalculatePopulation(Vector3Int tilePosition)
+        return connected;
+    }
+    
+    //Should be moved to interface
+    private void UpgradeBuilding(Vector3Int tilePosition)
     {
-        bool isMaxPopulation = cityTiles[tilePosition].CurrentPopulation >= cityTiles[tilePosition].MaxPopulation;
-
-        if (!isMaxPopulation)
+        if (cityTiles[tilePosition].Data.BuildingLevel != 1) return;
+        
+        if (cityTiles[tilePosition].Data.TileType is TileType.Residential or TileType.Commercial or TileType.Industrial)
         {
-            cityTiles[tilePosition].CurrentPopulation += 10;
-        }
-
-        Population += cityTiles[tilePosition].CurrentPopulation;
-    }
-
-    private void RequiredChecks(Vector3Int tilePosition)
-    {
-        CheckNetworkConnections(tilePosition);
-
-        switch (cityTiles[tilePosition].TileType)
-        {
-            case TileType.Residential:
-                if (cityTiles[tilePosition].IsConnectedToRoad)
-                {
-                    CheckForUpgrades(tilePosition);
-                    CalculatePopulation(tilePosition);
-                    CalculateIncome(tilePosition);
-                }
-
-                break;
-            case TileType.Commerical:
-                if (cityTiles[tilePosition].IsConnectedToRoad)
-                {
-                    CheckForUpgrades(tilePosition);
-                    CalculateIncome(tilePosition);
-                }
-
-                break;
-            case TileType.Industrial:
-                if (cityTiles[tilePosition].IsConnectedToRoad)
-                {
-                    CheckForUpgrades(tilePosition);
-                    CalculateIncome(tilePosition);
-                }
-
-                break;
-            default:
-                break;
+            tileEditor.DrawItem(tilePosition, cityTiles[tilePosition].Data.Level1TilBase);
         }
     }
-}
+}    
