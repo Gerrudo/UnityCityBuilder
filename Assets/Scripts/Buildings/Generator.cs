@@ -8,7 +8,7 @@ public class Generator : IBuildable, IEmployable, IWaterable
         Data.TileType = gameTile.TileType;
         Data.Expenses = gameTile.Expenses;
         Data.MaxEmployees = gameTile.MaxEmployees;
-        Data.PowerProduction = 500000;
+        Data.PowerOutput = 500000;
         
         return Data;
     }
@@ -34,7 +34,7 @@ public class Generator : IBuildable, IEmployable, IWaterable
 
     public void ConsumeWater()
     {
-        Data.WaterConsumption = Data.Employees * 2;
+        Data.WaterInput = Data.Employees * 2;
     }
     
     public void DestroyBuilding()

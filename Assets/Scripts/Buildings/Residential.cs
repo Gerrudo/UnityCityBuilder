@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class Residential : IBuildable, ITaxable, IGrowable, IPowerable, IWaterable
 {
     public BuildingData Data { get; set; }
@@ -9,6 +11,8 @@ public class Residential : IBuildable, ITaxable, IGrowable, IPowerable, IWaterab
         Data.TileType = gameTile.TileType;
         Data.Level1TilBase = gameTile.Level1TilBase;
         Data.MaxPopulation = gameTile.MaxPopulation;
+        
+        Data.Residents = new List<Citizen>();
         
         return Data;
     }
@@ -24,9 +28,14 @@ public class Residential : IBuildable, ITaxable, IGrowable, IPowerable, IWaterab
 
     private void UpdatePopulation()
     {
-        if (Data.CurrentPopulation < Data.MaxPopulation && Data.IsConnectedToRoad)
+        Data.CurrentPopulation = Data.Residents.Count;
+
+        Data.Unemployed = 0;
+
+        foreach (var resident in Data.Residents)
         {
-            Data.CurrentPopulation++;
+            if (!resident.IsEmployed) continue;
+
             Data.Unemployed++;
         }
     }
@@ -46,12 +55,12 @@ public class Residential : IBuildable, ITaxable, IGrowable, IPowerable, IWaterab
     
     public void ConsumePower()
     {
-        Data.PowerConsumption = Data.CurrentPopulation * 4;
+        Data.PowerInput = Data.CurrentPopulation * 4;
     }
 
     public void ConsumeWater()
     {
-        Data.WaterConsumption = Data.CurrentPopulation * 2;
+        Data.WaterInput = Data.CurrentPopulation * 2;
     }
     
     public void DestroyBuilding()

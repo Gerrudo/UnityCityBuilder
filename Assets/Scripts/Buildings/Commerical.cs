@@ -45,17 +45,17 @@ public class Commercial : IBuildable, IGrowable, IEmployable, IPowerable, IWater
 
     private void SellGoods()
     {
-        Data.GoodsConsumption = Data.Employees * 10;
+        Data.GoodsInput = Data.Employees * 10;
     }
     
     public void ConsumePower()
     {
-        Data.PowerConsumption = Data.Employees * 4;
+        Data.PowerInput = Data.Employees * 4;
     }
 
     public void ConsumeWater()
     {
-        Data.WaterConsumption = Data.Employees * 2;
+        Data.WaterInput = Data.Employees * 2;
     }
 
     public void DestroyBuilding()

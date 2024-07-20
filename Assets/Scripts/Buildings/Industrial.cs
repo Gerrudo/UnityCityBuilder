@@ -45,17 +45,17 @@ public class Industrial : IBuildable, IGrowable, IEmployable, IPowerable, IWater
     
     private void ProduceGoods()
     {
-        Data.GoodsProduction = Data.Employees * 10;
+        Data.GoodsOutput = Data.Employees * 10;
     }
     
     public void ConsumePower()
     {
-        Data.PowerConsumption = Data.Employees * 4;
+        Data.PowerInput = Data.Employees * 4;
     }
 
     public void ConsumeWater()
     {
-        Data.WaterConsumption = Data.Employees * 2;
+        Data.WaterInput = Data.Employees * 2;
     }
     
     public void DestroyBuilding()
