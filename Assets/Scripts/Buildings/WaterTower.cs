@@ -8,7 +8,7 @@ public class WaterTower : IBuildable, IEmployable, IPowerable
         Data.TileType = gameTile.TileType;
         Data.Expenses = gameTile.Expenses;
         Data.MaxEmployees = gameTile.MaxEmployees;
-        Data.WaterOutput = 250000;
+        Data.WaterOutput = 25000;
         
         return Data;
     }

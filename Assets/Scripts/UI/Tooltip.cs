@@ -6,28 +6,22 @@ using Unity.Loading;
 [ExecuteInEditMode()]
 public class Tooltip : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI headerField;
-    [SerializeField] private TextMeshProUGUI bodyField;
+    [SerializeField] private TextMeshProUGUI buildingNameText;
+    [SerializeField] private TextMeshProUGUI costText;
+    [SerializeField] private TextMeshProUGUI expensesText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private LayoutElement layoutElement;
-    [SerializeField] private int characterWrapLimit;
 
-    public void SetText(string header, string body)
+    public void SetText(string buildingName, string cost, string expenses, string description)
     {
-        if (string.IsNullOrEmpty(header))
-        {
-            headerField.gameObject.SetActive(false);
-        }
-        else
-        {
-            headerField.gameObject.SetActive(true);
-            headerField.text = header;
-        }
-
-        bodyField.text = body;
+        buildingNameText.text = buildingName;
+        costText.text = cost;
+        expensesText.text = expenses;
+        descriptionText.text = description;
     }
 
     private void Update()
     {
-        layoutElement.enabled = headerField.preferredWidth > layoutElement.preferredWidth || bodyField.preferredWidth > layoutElement.preferredWidth;
+        layoutElement.enabled = buildingNameText.preferredWidth > layoutElement.preferredWidth || descriptionText.preferredWidth > layoutElement.preferredWidth;
     }
 }

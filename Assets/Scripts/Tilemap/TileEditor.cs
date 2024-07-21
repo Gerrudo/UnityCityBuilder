@@ -7,7 +7,7 @@ public class TileEditor : Singleton<TileEditor>
 {
     PlayerInput playerInput;
 
-    Camera _camera;
+    Camera camera;
 
     [SerializeField] private Tilemap previewMap, defaultMap, terrainMap;
     private TileBase tileBase;
@@ -27,7 +27,7 @@ public class TileEditor : Singleton<TileEditor>
 
         playerInput = new PlayerInput();
 
-        _camera = Camera.main;
+        camera = Camera.main;
     }
 
     private void Update()
@@ -35,7 +35,7 @@ public class TileEditor : Singleton<TileEditor>
         if (selectedObj != null)
         {
             //Setting pos as a Vector3 causes issues
-            Vector2 pos = _camera.ScreenToWorldPoint(mousePosition);
+            Vector2 pos = camera.ScreenToWorldPoint(mousePosition);
 
             Vector3Int gridPos = previewMap.WorldToCell(pos);
 
@@ -130,7 +130,7 @@ public class TileEditor : Singleton<TileEditor>
     {
         defaultMap.SetTile(gridPosition, tile);
 
-        //Required for out network tile rules
+        //Required for our network tile rules
         defaultMap.RefreshAllTiles();
     }
 

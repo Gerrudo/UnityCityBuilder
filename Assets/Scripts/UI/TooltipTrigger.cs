@@ -5,8 +5,7 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 {
     TooltipSystem tooltipSystem;
 
-    [SerializeField] private string header;
-    [SerializeField] private string body;
+    [SerializeField] private GameTile gameTile;
 
     private void Awake()
     {
@@ -15,7 +14,8 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        tooltipSystem.ShowTooltip(header, body);
+        //TODO: See if there's a nicer way to do this
+        tooltipSystem.ShowTooltip(gameTile.TileName, $"Cost: ${gameTile.CostToBuild.ToString()}", $"Expenses: ${gameTile.Expenses.ToString()}", gameTile.Description);
     }
 
     public void OnPointerExit(PointerEventData eventData)

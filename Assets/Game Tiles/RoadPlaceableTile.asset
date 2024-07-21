@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fba716a8dc494fa7989b75fe7fe9b94, type: 3}
   m_Name: RoadPlaceableTile
   m_EditorClassIdentifier: 
+  <TileName>k__BackingField: Road
+  <Description>k__BackingField: Can connect buildings together.
   <TileType>k__BackingField: 0
   <TileBase>k__BackingField: {fileID: 11400000, guid: c9ca7a5e3171d4a3c925aec7705ee06f, type: 2}
   <Level1TilBase>k__BackingField: {fileID: 0}

@@ -13,9 +13,9 @@ public class TooltipSystem : Singleton<TooltipSystem>
         tooltipSystem = TooltipSystem.GetInstance();
     }
 
-    public void ShowTooltip(string header, string body)
+    public void ShowTooltip(string buildingName, string cost, string expenses, string description)
     {
-        tooltip.SetText(header, body);
+        tooltip.SetText(buildingName, cost, expenses, description);
 
         tooltip.gameObject.SetActive(true);
     }
