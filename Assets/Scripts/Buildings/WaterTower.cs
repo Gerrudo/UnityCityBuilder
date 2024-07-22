@@ -8,7 +8,7 @@ public class WaterTower : IBuildable, IEmployable, IPowerable
         Data.TileType = gameTile.TileType;
         Data.Expenses = gameTile.Expenses;
         Data.MaxEmployees = gameTile.MaxEmployees;
-        Data.WaterProduction = 250000;
+        Data.WaterOutput = 25000;
         
         return Data;
     }
@@ -34,7 +34,7 @@ public class WaterTower : IBuildable, IEmployable, IPowerable
     
     public void ConsumePower()
     {
-        Data.PowerConsumption = Data.Employees * 4;
+        Data.PowerInput = Data.Employees * 4;
     }
     
     public void DestroyBuilding()

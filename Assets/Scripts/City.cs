@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,13 +42,7 @@ public class City : Singleton<City>
     {
         yield return new WaitForSeconds(1);
         
-        //Better way to do this?
-        CityData.Population = 0;
-        CityData.Earnings = 0;
-        CityData.Unemployed = 0;
-        CityData.Power = 0;
-        CityData.Water = 0;
-        CityData.Goods = 0;
+        ResetValues();
         
         foreach (var building in cityTiles)
         {
@@ -56,29 +51,55 @@ public class City : Singleton<City>
             building.Value.UpdateBuilding();
             
             UpgradeBuilding(building.Key);
-            
-            //Better way to do this?
-            CityData.Population += building.Value.Data.CurrentPopulation;
 
-            CityData.Unemployed += building.Value.Data.Unemployed;
-            CityData.Unemployed -= building.Value.Data.Employees;
-
-            CityData.Power -= building.Value.Data.PowerConsumption;
-            CityData.Power += building.Value.Data.PowerProduction;
+            GenerateCitizen(building.Key, building.Value);
             
-            CityData.Water -= building.Value.Data.WaterConsumption;
-            CityData.Water += building.Value.Data.WaterProduction;
-            
-            CityData.Goods -= building.Value.Data.GoodsConsumption;
-            CityData.Goods += building.Value.Data.GoodsProduction;
-            
-            CityData.Earnings -= building.Value.Data.Expenses;
-            CityData.Earnings += building.Value.Data.Taxes;
+            SumValues(building.Value);
         }
         
         cityStatistics.UpdateUI();
         
         StartCoroutine(UpdateCity());
+    }
+    
+    private static void ResetValues()
+    {
+        CityData.Population = 0;
+        CityData.Earnings = 0;
+        CityData.Unemployed = 0;
+        CityData.Power = 0;
+        CityData.Water = 0;
+        CityData.Goods = 0;
+    }
+
+    private void SumValues(IBuildable building)
+    {
+        //Better way to do this? Maybe we can just add all the values in our building class then do a sum?
+        CityData.Population += building.Data.CurrentPopulation;
+
+        CityData.Unemployed += building.Data.Unemployed;
+        CityData.Unemployed -= building.Data.Employees;
+
+        CityData.Power -= building.Data.PowerInput;
+        CityData.Power += building.Data.PowerOutput;
+            
+        CityData.Water -= building.Data.WaterInput;
+        CityData.Water += building.Data.WaterOutput;
+            
+        CityData.Goods -= building.Data.GoodsInput;
+        CityData.Goods += building.Data.GoodsOutput;
+            
+        CityData.Earnings -= building.Data.Expenses;
+        CityData.Earnings += building.Data.Taxes;
+    }
+
+    private void GenerateCitizen(Vector3Int tilePosition, IBuildable building)
+    {
+        if (building.Data.TileType != TileType.Residential) return;
+        if (building.Data.CurrentPopulation > building.Data.MaxPopulation) return;
+        
+        var newCitizen = new Citizen(tilePosition);
+        building.Data.Residents.Add(newCitizen);
     }
 
     public bool NewTile(Vector3Int tilePosition, GameTile gameTile)

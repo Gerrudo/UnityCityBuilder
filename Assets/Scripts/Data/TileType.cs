@@ -5,5 +5,11 @@ public enum TileType
     Commercial,
     Industrial,
     Generator,
-    WaterTower
+    WaterTower,
+    Extractor,
+    Medical,
+    Police,
+    Fire,
+    Communications,
+    Storage
 }

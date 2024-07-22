@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 
 public class BuildingData
@@ -5,6 +6,7 @@ public class BuildingData
     public TileType TileType { get; set; }
     public TileBase Level1TilBase { get; set; }
     public int CurrentPopulation { get; set; }
+    public List<Citizen> Residents { get; set; }
     public int MaxPopulation { get; set; }
     public int Taxes { get; set; }
     public int Expenses { get; set; }
@@ -13,11 +15,10 @@ public class BuildingData
     public int Unemployed { get; set; }
     public int Employees { get; set; }
     public int MaxEmployees { get; set; }
-    public int PowerConsumption { get; set; }
-    public int PowerProduction { get; set; }
-    public int WaterConsumption { get; set; }
-    public int WaterProduction { get; set; }
-    
-    public int GoodsConsumption { get; set; }
-    public int GoodsProduction { get; set; }
+    public int PowerInput { get; set; }
+    public int PowerOutput { get; set; }
+    public int WaterInput { get; set; }
+    public int WaterOutput { get; set; }
+    public int GoodsInput { get; set; }
+    public int GoodsOutput { get; set; }
 }

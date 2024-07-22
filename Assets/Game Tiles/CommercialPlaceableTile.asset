@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fba716a8dc494fa7989b75fe7fe9b94, type: 3}
   m_Name: CommercialPlaceableTile
   m_EditorClassIdentifier: 
+  <TileName>k__BackingField: Commercial Zone
+  <Description>k__BackingField: Must be placed next to a road. Provides jobs. Sells
+    goods from industiral zones. Requires Power and Water.
   <TileType>k__BackingField: 2
   <TileBase>k__BackingField: {fileID: 11400000, guid: 597fe624fef8f4850a6e41c16af444a5, type: 2}
-  <Level1TilBase>k__BackingField: {fileID: 11400000, guid: 070fc2455b11148fc80a38987335ef2b, type: 2}
-  <CostToBuild>k__BackingField: 0
+  <Level1TilBase>k__BackingField: {fileID: 11400000, guid: c697bb80d92a741608071cb21e1571a8, type: 2}
+  <CostToBuild>k__BackingField: 100
   <MaxPopulation>k__BackingField: 0
   <MaxEmployees>k__BackingField: 15
   <Expenses>k__BackingField: 0
