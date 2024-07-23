@@ -1,12 +1,12 @@
 public class Communications : IBuildable, IPowerable, IWaterable, IEmployable
 {
     public BuildingData Data { get; set; }
-    public BuildingData NewBuildingData(GameTile gameTile)
+    public BuildingData NewBuildingData(Preset buildingPreset)
     {
         Data = new BuildingData();
 
-        Data.TileType = gameTile.TileType;
-        Data.MaxEmployees = gameTile.MaxEmployees;
+        Data.TileType = buildingPreset.TileType;
+        Data.MaxEmployees = buildingPreset.MaxEmployees;
         
         return Data;
     }

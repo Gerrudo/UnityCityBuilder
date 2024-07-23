@@ -2,13 +2,13 @@ public class Commercial : IBuildable, IGrowable, IEmployable, IPowerable, IWater
 {
     public BuildingData Data { get; set; }
     
-    public BuildingData NewBuildingData(GameTile gameTile)
+    public BuildingData NewBuildingData(Preset buildingPreset)
     {
         Data = new BuildingData();
 
-        Data.TileType = gameTile.TileType;
-        Data.Level1TilBase = gameTile.Level1TilBase;
-        Data.MaxEmployees = gameTile.MaxEmployees;
+        Data.TileType = buildingPreset.TileType;
+        Data.Level1TilBase = buildingPreset.Level1TilBase;
+        Data.MaxEmployees = buildingPreset.MaxEmployees;
         
         return Data;
     }

@@ -1,7 +1,7 @@
 public class Extractor : IBuildable
 {
     public BuildingData Data { get; set; }
-    public BuildingData NewBuildingData(GameTile gameTile)
+    public BuildingData NewBuildingData(Preset buildingPreset)
     {
         throw new System.NotImplementedException();
     }

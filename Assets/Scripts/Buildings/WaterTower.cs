@@ -2,12 +2,12 @@ public class WaterTower : IBuildable, IEmployable, IPowerable
 {
     public BuildingData Data { get; set; }
     
-    public BuildingData NewBuildingData(GameTile gameTile)
+    public BuildingData NewBuildingData(Preset buildingPreset)
     {
         Data = new BuildingData();
-        Data.TileType = gameTile.TileType;
-        Data.Expenses = gameTile.Expenses;
-        Data.MaxEmployees = gameTile.MaxEmployees;
+        Data.TileType = buildingPreset.TileType;
+        Data.Expenses = buildingPreset.Expenses;
+        Data.MaxEmployees = buildingPreset.MaxEmployees;
         Data.WaterOutput = 25000;
         
         return Data;
