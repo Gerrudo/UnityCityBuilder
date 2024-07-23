@@ -102,20 +102,20 @@ public class City : Singleton<City>
         building.Data.Residents.Add(newCitizen);
     }
 
-    public bool NewTile(Vector3Int tilePosition, GameTile gameTile)
+    public bool NewTile(Vector3Int tilePosition, Preset buildingPreset)
     {
-        if (CityData.Funds < gameTile.CostToBuild)
+        if (CityData.Funds < buildingPreset.CostToBuild)
         {
             return false;
         }
 
-        CityData.Funds -= gameTile.CostToBuild;
+        CityData.Funds -= buildingPreset.CostToBuild;
         
         IBuildingFactory buildingFactory = new BuildingFactory();
 
-        var buildable = buildingFactory.CreateBuilding(gameTile.TileType);
+        var buildable = buildingFactory.CreateBuilding(buildingPreset.TileType);
 
-        buildable.NewBuildingData(gameTile);
+        buildable.NewBuildingData(buildingPreset);
 
         cityTiles.Add(tilePosition, buildable);
 
