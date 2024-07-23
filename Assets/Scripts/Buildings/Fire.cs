@@ -1,33 +1,21 @@
-public class Industrial : IBuildable, IGrowable, IEmployable, IPowerable, IWaterable
+public class Fire : IBuildable, IPowerable, IWaterable, IEmployable
 {
     public BuildingData Data { get; set; }
-    
     public BuildingData NewBuildingData(Preset buildingPreset)
     {
         Data = new BuildingData();
 
         Data.TileType = buildingPreset.TileType;
-        Data.Level1TilBase = buildingPreset.Level1TilBase;
         Data.MaxEmployees = buildingPreset.MaxEmployees;
         
         return Data;
     }
-    
+
     public void UpdateBuilding()
     {
-        CheckBuildingLevel();
         HireEmployees();
         ConsumePower();
         ConsumeWater();
-        ProduceGoods();
-    }
-    
-    public void CheckBuildingLevel()
-    {
-        if (Data.IsConnectedToRoad)
-        {
-            Data.BuildingLevel = 1;
-        }
     }
     
     public void HireEmployees()
@@ -37,15 +25,10 @@ public class Industrial : IBuildable, IGrowable, IEmployable, IPowerable, IWater
         Data.Unemployed -= 2;
         Data.Employees += 2;
     }
-
+    
     public void FireEmployees()
     {
         Data.Unemployed -= Data.Employees;
-    }
-    
-    private void ProduceGoods()
-    {
-        Data.GoodsOutput = Data.Employees * 10;
     }
     
     public void ConsumePower()
@@ -57,7 +40,7 @@ public class Industrial : IBuildable, IGrowable, IEmployable, IPowerable, IWater
     {
         Data.WaterInput = Data.Employees * 2;
     }
-    
+
     public void DestroyBuilding()
     {
         FireEmployees();

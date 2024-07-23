@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class TileEditButtonHandler : MonoBehaviour
 {
-    [SerializeField] private GameTile item;
+    [SerializeField] private Preset item;
     private Button button;
 
     TileEditor tileEditor;

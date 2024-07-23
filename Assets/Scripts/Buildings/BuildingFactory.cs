@@ -15,6 +15,11 @@ public class BuildingFactory : IBuildingFactory
             TileType.Industrial => new Industrial(),
             TileType.Generator => new Generator(),
             TileType.WaterTower => new WaterTower(),
+            TileType.Extractor => new Extractor(),
+            TileType.Medical => new Medical(),
+            TileType.Fire => new Fire(),
+            TileType.Police => new Police(),
+            TileType.Communications => new Communications(),
             _ => throw new System.Exception("No TileType was provided.")
         };
     }

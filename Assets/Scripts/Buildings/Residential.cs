@@ -4,13 +4,13 @@ public class Residential : IBuildable, ITaxable, IGrowable, IPowerable, IWaterab
 {
     public BuildingData Data { get; set; }
     
-    public BuildingData NewBuildingData(GameTile gameTile)
+    public BuildingData NewBuildingData(Preset buildingPreset)
     {
         Data = new BuildingData();
         
-        Data.TileType = gameTile.TileType;
-        Data.Level1TilBase = gameTile.Level1TilBase;
-        Data.MaxPopulation = gameTile.MaxPopulation;
+        Data.TileType = buildingPreset.TileType;
+        Data.Level1TilBase = buildingPreset.Level1TilBase;
+        Data.MaxPopulation = buildingPreset.MaxPopulation;
         
         Data.Residents = new List<Citizen>();
         

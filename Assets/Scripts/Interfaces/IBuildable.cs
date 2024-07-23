@@ -5,7 +5,7 @@ public interface IBuildable
         get;
         set;
     }
-    BuildingData NewBuildingData(GameTile gameTile);
+    BuildingData NewBuildingData(Preset buildingPreset);
     void UpdateBuilding();
     void DestroyBuilding();
 }
