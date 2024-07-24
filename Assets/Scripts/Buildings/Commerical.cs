@@ -33,9 +33,6 @@ public class Commercial : IBuildable, IGrowable, IEmployable, IPowerable, IWater
     public void HireEmployees()
     {
         if (Data.Employees >= Data.MaxEmployees) return;
-
-        Data.Unemployed -= 2;
-        Data.Employees += 2;
     }
     
     public void FireEmployees()

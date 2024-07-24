@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections.Generic;
 
 public class Residential : IBuildable, ITaxable, IGrowable, IPowerable, IWaterable
@@ -20,24 +21,21 @@ public class Residential : IBuildable, ITaxable, IGrowable, IPowerable, IWaterab
     public void UpdateBuilding()
     {
         CheckBuildingLevel();
-        UpdatePopulation();
+        CountPopulation();
+        CountUnemployed();
         ConsumePower();
         ConsumeWater();
         UpdateTaxes();
     }
 
-    private void UpdatePopulation()
+    private void CountPopulation()
     {
         Data.CurrentPopulation = Data.Residents.Count;
+    }
 
-        Data.Unemployed = 0;
-
-        foreach (var resident in Data.Residents)
-        {
-            if (!resident.IsEmployed) continue;
-
-            Data.Unemployed++;
-        }
+    private void CountUnemployed()
+    {
+        Data.Unemployed = Data.Residents.Count(citizen => !citizen.IsEmployed);
     }
 
     public void UpdateTaxes()

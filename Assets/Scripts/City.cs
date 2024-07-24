@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class City : Singleton<City>
 {
     private Dictionary<Vector3Int, IBuildable> cityTiles;
+    private List<Citizen> citizens;
     
     private TileEditor tileEditor;
     private CityStatistics cityStatistics;
@@ -18,6 +21,7 @@ public class City : Singleton<City>
         cityStatistics = CityStatistics.GetInstance();
 
         cityTiles = new Dictionary<Vector3Int, IBuildable>();
+        citizens = new List<Citizen>();
     }
 
     private void Start()
@@ -30,6 +34,8 @@ public class City : Singleton<City>
     {
         yield return new WaitForSeconds(24);
 
+        DistributeCitizens();
+            
         CityData.Day++;
 
         CityData.Funds += CityData.Earnings;
@@ -43,16 +49,23 @@ public class City : Singleton<City>
         yield return new WaitForSeconds(1);
         
         ResetValues();
+
+        CityData.Population = citizens.Count;
+        CityData.Unemployed = citizens.Count(citizen => !citizen.IsEmployed);
         
         foreach (var building in cityTiles)
         {
             building.Value.Data.IsConnectedToRoad = CheckTileConnection(building.Key, TileType.Road);
             
+            //TODO: Can pass CityData to our UpdateBuilding() method so it can do this check within the class.
+            if (building.Value.Data.TileType == TileType.Residential)
+            {
+                building.Value.Data.Residents = citizens.Where(citizen => citizen.HomeTile == building.Key).ToList();   
+            }
+            
             building.Value.UpdateBuilding();
             
             UpgradeBuilding(building.Key);
-
-            GenerateCitizen(building.Key, building.Value);
             
             SumValues(building.Value);
         }
@@ -64,9 +77,7 @@ public class City : Singleton<City>
     
     private static void ResetValues()
     {
-        CityData.Population = 0;
         CityData.Earnings = 0;
-        CityData.Unemployed = 0;
         CityData.Power = 0;
         CityData.Water = 0;
         CityData.Goods = 0;
@@ -74,12 +85,8 @@ public class City : Singleton<City>
 
     private void SumValues(IBuildable building)
     {
-        //Better way to do this? Maybe we can just add all the values in our building class then do a sum?
-        CityData.Population += building.Data.CurrentPopulation;
-
-        CityData.Unemployed += building.Data.Unemployed;
-        CityData.Unemployed -= building.Data.Employees;
-
+        //TODO: Look at using .Sum from linq instead of resetting and re-adding.
+        //Somewhat like this: CityData.Power = cityTiles.Values.Sum(building => building.Data.PowerOutput);
         CityData.Power -= building.Data.PowerInput;
         CityData.Power += building.Data.PowerOutput;
             
@@ -93,13 +100,17 @@ public class City : Singleton<City>
         CityData.Earnings += building.Data.Taxes;
     }
 
-    private void GenerateCitizen(Vector3Int tilePosition, IBuildable building)
+    private void DistributeCitizens()
     {
-        if (building.Data.TileType != TileType.Residential) return;
-        if (building.Data.CurrentPopulation > building.Data.MaxPopulation) return;
-        
-        var newCitizen = new Citizen(tilePosition);
-        building.Data.Residents.Add(newCitizen);
+        foreach (var tile in cityTiles)
+        {
+            if (tile.Value.Data.TileType != TileType.Residential) continue;
+            if (tile.Value.Data.CurrentPopulation == tile.Value.Data.MaxPopulation) continue;
+                
+            var newCitizen = new Citizen(tile.Key);
+            
+            citizens.Add(newCitizen);
+        }
     }
 
     public bool NewTile(Vector3Int tilePosition, Preset buildingPreset)
@@ -133,7 +144,7 @@ public class City : Singleton<City>
         cityStatistics.UpdateUI();
     }
     
-    //Should be moved to interface
+    //TODO: Move to interface
     private bool CheckTileConnection(Vector3Int tilePosition, TileType tileToCheck)
     {
         var connected = false;
@@ -151,7 +162,7 @@ public class City : Singleton<City>
         return connected;
     }
     
-    //Should be moved to interface
+    //TODO: Move to interface
     private void UpgradeBuilding(Vector3Int tilePosition)
     {
         if (cityTiles[tilePosition].Data.BuildingLevel != 1) return;
