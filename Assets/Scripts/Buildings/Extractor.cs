@@ -10,9 +10,4 @@ public class Extractor : IBuildable
     {
         throw new System.NotImplementedException();
     }
-
-    public void DestroyBuilding()
-    {
-        throw new System.NotImplementedException();
-    }
 }

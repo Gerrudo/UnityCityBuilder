@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 
@@ -14,6 +15,7 @@ public class BuildingData
     public bool IsConnectedToRoad { get; set; }
     public int Unemployed { get; set; }
     public int Employees { get; set; }
+    public List<Guid> Jobs { get; set; }
     public int MaxEmployees { get; set; }
     public int PowerInput { get; set; }
     public int PowerOutput { get; set; }

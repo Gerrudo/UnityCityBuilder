@@ -1,4 +1,4 @@
-public class Industrial : IBuildable, IGrowable, IEmployable, IPowerable, IWaterable
+public class Industrial : IBuildable, IGrowable, IPowerable, IWaterable
 {
     public BuildingData Data { get; set; }
     
@@ -16,7 +16,6 @@ public class Industrial : IBuildable, IGrowable, IEmployable, IPowerable, IWater
     public void UpdateBuilding()
     {
         CheckBuildingLevel();
-        HireEmployees();
         ConsumePower();
         ConsumeWater();
         ProduceGoods();
@@ -28,19 +27,6 @@ public class Industrial : IBuildable, IGrowable, IEmployable, IPowerable, IWater
         {
             Data.BuildingLevel = 1;
         }
-    }
-    
-    public void HireEmployees()
-    {
-        if (Data.Employees >= Data.MaxEmployees) return;
-
-        Data.Unemployed -= 2;
-        Data.Employees += 2;
-    }
-
-    public void FireEmployees()
-    {
-        Data.Unemployed -= Data.Employees;
     }
     
     private void ProduceGoods()
@@ -56,10 +42,5 @@ public class Industrial : IBuildable, IGrowable, IEmployable, IPowerable, IWater
     public void ConsumeWater()
     {
         Data.WaterInput = Data.Employees * 2;
-    }
-    
-    public void DestroyBuilding()
-    {
-        FireEmployees();
     }
 }

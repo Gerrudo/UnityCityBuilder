@@ -1,4 +1,4 @@
-public class Medical : IBuildable, IPowerable, IWaterable, IEmployable
+public class Medical : IBuildable, IPowerable, IWaterable
 {
     public BuildingData Data { get; set; }
     public BuildingData NewBuildingData(Preset buildingPreset)
@@ -13,22 +13,8 @@ public class Medical : IBuildable, IPowerable, IWaterable, IEmployable
 
     public void UpdateBuilding()
     {
-        HireEmployees();
         ConsumePower();
         ConsumeWater();
-    }
-    
-    public void HireEmployees()
-    {
-        if (Data.Employees >= Data.MaxEmployees) return;
-
-        Data.Unemployed -= 2;
-        Data.Employees += 2;
-    }
-    
-    public void FireEmployees()
-    {
-        Data.Unemployed -= Data.Employees;
     }
 
     private void SellGoods()
@@ -44,10 +30,5 @@ public class Medical : IBuildable, IPowerable, IWaterable, IEmployable
     public void ConsumeWater()
     {
         Data.WaterInput = Data.Employees * 2;
-    }
-
-    public void DestroyBuilding()
-    {
-        FireEmployees();
     }
 }

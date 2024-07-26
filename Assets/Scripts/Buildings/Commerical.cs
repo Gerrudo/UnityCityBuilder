@@ -1,4 +1,7 @@
-public class Commercial : IBuildable, IGrowable, IEmployable, IPowerable, IWaterable
+using System;
+using System.Collections.Generic;
+
+public class Commercial : IBuildable, IGrowable, IPowerable, IWaterable
 {
     public BuildingData Data { get; set; }
     
@@ -10,13 +13,14 @@ public class Commercial : IBuildable, IGrowable, IEmployable, IPowerable, IWater
         Data.Level1TilBase = buildingPreset.Level1TilBase;
         Data.MaxEmployees = buildingPreset.MaxEmployees;
         
+        Data.Jobs = new List<Guid>();
+        
         return Data;
     }
     
     public void UpdateBuilding()
     {
         CheckBuildingLevel();
-        HireEmployees();
         ConsumePower();
         ConsumeWater();
         SellGoods();
@@ -28,16 +32,6 @@ public class Commercial : IBuildable, IGrowable, IEmployable, IPowerable, IWater
         {
             Data.BuildingLevel = 1;
         }
-    }
-    
-    public void HireEmployees()
-    {
-        if (Data.Employees >= Data.MaxEmployees) return;
-    }
-    
-    public void FireEmployees()
-    {
-        Data.Unemployed -= Data.Employees;
     }
 
     private void SellGoods()
@@ -53,10 +47,5 @@ public class Commercial : IBuildable, IGrowable, IEmployable, IPowerable, IWater
     public void ConsumeWater()
     {
         Data.WaterInput = Data.Employees * 2;
-    }
-
-    public void DestroyBuilding()
-    {
-        FireEmployees();
     }
 }

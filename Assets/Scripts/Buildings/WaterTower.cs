@@ -1,4 +1,4 @@
-public class WaterTower : IBuildable, IEmployable, IPowerable
+public class WaterTower : IBuildable, IPowerable
 {
     public BuildingData Data { get; set; }
     
@@ -15,30 +15,11 @@ public class WaterTower : IBuildable, IEmployable, IPowerable
     
     public void UpdateBuilding()
     {
-        HireEmployees();
         ConsumePower();
-    }
-    
-    public void HireEmployees()
-    {
-        if (Data.Employees >= Data.MaxEmployees) return;
-
-        Data.Unemployed -= 2;
-        Data.Employees += 2;
-    }
-
-    public void FireEmployees()
-    {
-        Data.Unemployed -= Data.Employees;
     }
     
     public void ConsumePower()
     {
         Data.PowerInput = Data.Employees * 4;
-    }
-    
-    public void DestroyBuilding()
-    {
-        FireEmployees();
     }
 }

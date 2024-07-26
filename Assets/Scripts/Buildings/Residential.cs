@@ -60,9 +60,4 @@ public class Residential : IBuildable, ITaxable, IGrowable, IPowerable, IWaterab
     {
         Data.WaterInput = Data.CurrentPopulation * 2;
     }
-    
-    public void DestroyBuilding()
-    {
-        Data.Unemployed -= Data.CurrentPopulation;
-    }
 }

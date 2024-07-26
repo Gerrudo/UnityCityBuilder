@@ -2,13 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class City : Singleton<City>
 {
     private Dictionary<Vector3Int, IBuildable> cityTiles;
-    private List<Citizen> citizens;
+    private Dictionary<Guid, Citizen> citizens;
     
     private TileEditor tileEditor;
     private CityStatistics cityStatistics;
@@ -21,7 +20,7 @@ public class City : Singleton<City>
         cityStatistics = CityStatistics.GetInstance();
 
         cityTiles = new Dictionary<Vector3Int, IBuildable>();
-        citizens = new List<Citizen>();
+        citizens = new Dictionary<Guid ,Citizen>();
     }
 
     private void Start()
@@ -33,8 +32,6 @@ public class City : Singleton<City>
     private IEnumerator CountDays()
     {
         yield return new WaitForSeconds(24);
-
-        DistributeCitizens();
             
         CityData.Day++;
 
@@ -49,9 +46,10 @@ public class City : Singleton<City>
         yield return new WaitForSeconds(1);
         
         ResetValues();
-
-        CityData.Population = citizens.Count;
-        CityData.Unemployed = citizens.Count(citizen => !citizen.IsEmployed);
+        
+        DistributeCitizens();
+        
+        DistributeEmployees();
         
         foreach (var building in cityTiles)
         {
@@ -60,7 +58,7 @@ public class City : Singleton<City>
             //TODO: Can pass CityData to our UpdateBuilding() method so it can do this check within the class.
             if (building.Value.Data.TileType == TileType.Residential)
             {
-                building.Value.Data.Residents = citizens.Where(citizen => citizen.HomeTile == building.Key).ToList();   
+                building.Value.Data.Residents = citizens.Values.Where(citizen => citizen.HomeTile == building.Key).ToList(); 
             }
             
             building.Value.UpdateBuilding();
@@ -69,6 +67,9 @@ public class City : Singleton<City>
             
             SumValues(building.Value);
         }
+        
+        CityData.Population = citizens.Count;
+        CityData.Unemployed = citizens.Values.Count(citizen => !citizen.IsEmployed);
         
         cityStatistics.UpdateUI();
         
@@ -102,14 +103,32 @@ public class City : Singleton<City>
 
     private void DistributeCitizens()
     {
-        foreach (var tile in cityTiles)
+        foreach (var tile in cityTiles.Where(tile => tile.Value.Data.TileType == TileType.Residential))
         {
-            if (tile.Value.Data.TileType != TileType.Residential) continue;
             if (tile.Value.Data.CurrentPopulation == tile.Value.Data.MaxPopulation) continue;
+            
+            var id = Guid.NewGuid();
                 
             var newCitizen = new Citizen(tile.Key);
             
-            citizens.Add(newCitizen);
+            citizens.Add(id, newCitizen);
+        }
+    }
+    
+    private void DistributeEmployees()
+    {
+        foreach (var tile in cityTiles.Where(tile => tile.Value.Data.TileType == TileType.Commercial))
+        {
+            if (tile.Value.Data.Jobs.Count == tile.Value.Data.MaxEmployees) continue;
+            
+            var unemployedCitizen = citizens.FirstOrDefault(citizen => !citizen.Value.IsEmployed);
+            
+            if (unemployedCitizen.Value == null) continue;
+            
+            citizens[unemployedCitizen.Key].WorkTile = tile.Key;
+            citizens[unemployedCitizen.Key].IsEmployed = true;
+            
+            tile.Value.Data.Jobs.Add(unemployedCitizen.Key);
         }
     }
 
@@ -137,8 +156,6 @@ public class City : Singleton<City>
 
     public void RemoveTile(Vector3Int tilePosition)
     {
-        cityTiles[tilePosition].DestroyBuilding();
-        
         cityTiles.Remove(tilePosition);
 
         cityStatistics.UpdateUI();
