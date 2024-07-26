@@ -160,6 +160,13 @@ public class City : Singleton<City>
 
         cityStatistics.UpdateUI();
     }
+
+    public BuildingData GetBuildingData(Vector3Int tilePosition)
+    {
+        cityTiles.TryGetValue(tilePosition, out var building);
+        
+        return building.Data;
+    }
     
     //TODO: Move to interface
     private bool CheckTileConnection(Vector3Int tilePosition, TileType tileToCheck)
@@ -171,9 +178,11 @@ public class City : Singleton<City>
         foreach (var neighbour in neighbours)
         {
             if (!cityTiles.TryGetValue(neighbour, out var connectedTile)) continue;
-                if (connectedTile.Data.TileType != tileToCheck) continue;
-                    connected = true;
-                    break;
+            
+            if (connectedTile.Data.TileType != tileToCheck) continue;
+            connected = true;
+            
+            break;
         }
 
         return connected;
