@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public static class CityData
 {
     public static int Day { get; set; }

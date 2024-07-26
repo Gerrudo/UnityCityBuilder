@@ -7,5 +7,4 @@ public interface IBuildable
     }
     BuildingData NewBuildingData(Preset buildingPreset);
     void UpdateBuilding();
-    void DestroyBuilding();
 }

@@ -1,4 +1,4 @@
-public class Generator : IBuildable, IEmployable, IWaterable
+public class Generator : IBuildable, IWaterable
 {
     public BuildingData Data { get; set; }
     
@@ -15,30 +15,11 @@ public class Generator : IBuildable, IEmployable, IWaterable
     
     public void UpdateBuilding()
     {
-        HireEmployees();
         ConsumeWater();
-    }
-    
-    public void HireEmployees()
-    {
-        if (Data.Employees >= Data.MaxEmployees) return;
-
-        Data.Unemployed -= 2;
-        Data.Employees += 2;
-    }
-
-    public void FireEmployees()
-    {
-        Data.Unemployed -= Data.Employees;
     }
 
     public void ConsumeWater()
     {
         Data.WaterInput = Data.Employees * 2;
-    }
-    
-    public void DestroyBuilding()
-    {
-        FireEmployees();
     }
 }
