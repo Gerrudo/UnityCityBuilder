@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.EventSystems;
 
 public class TileEditor : Singleton<TileEditor>
 {
+    //Credit to https://www.youtube.com/@VelvaryGames for a lot of this code.
+    
     PlayerInput playerInput;
 
     Camera camera;
@@ -16,6 +19,10 @@ public class TileEditor : Singleton<TileEditor>
     private Vector2 mousePosition;
     private Vector3Int currentGridPosition;
     private Vector3Int previousGridPosition;
+
+    private bool holdActive;
+    private Vector3Int holdStartPosition;
+    private BoundsInt area;
 
     private City city;
 
@@ -39,13 +46,15 @@ public class TileEditor : Singleton<TileEditor>
 
             Vector3Int gridPos = previewMap.WorldToCell(pos);
 
-            if (gridPos != currentGridPosition)
-            {
-                previousGridPosition = currentGridPosition;
-                currentGridPosition = gridPos;
+            if (gridPos == currentGridPosition) return;
+            
+            previousGridPosition = currentGridPosition;
+            currentGridPosition = gridPos;
 
-                UpdatePreview();
-            }
+            UpdatePreview();
+
+            if (!holdActive) return;
+            HandleDrawing();
         }
     }
 
@@ -54,6 +63,8 @@ public class TileEditor : Singleton<TileEditor>
         playerInput.Enable();
 
         playerInput.Gameplay.MouseLeftClick.performed += OnLeftClick;
+        playerInput.Gameplay.MouseLeftClick.started += OnLeftClick;
+        playerInput.Gameplay.MouseLeftClick.canceled += OnLeftClick;
         playerInput.Gameplay.MouseRightClick.performed += OnRightClick;
         playerInput.Gameplay.MousePosition.performed += OnMouseMove;
 
@@ -65,6 +76,8 @@ public class TileEditor : Singleton<TileEditor>
         playerInput.Disable();
 
         playerInput.Gameplay.MouseLeftClick.performed -= OnLeftClick;
+        playerInput.Gameplay.MouseLeftClick.started += OnLeftClick;
+        playerInput.Gameplay.MouseLeftClick.canceled += OnLeftClick;
         playerInput.Gameplay.MouseRightClick.performed -= OnRightClick;
         playerInput.Gameplay.MousePosition.performed -= OnMouseMove;
     }
@@ -74,6 +87,9 @@ public class TileEditor : Singleton<TileEditor>
         set
         {
             //Do not set this to the name of the setter, will crash unity editor lol
+            holdActive = false;
+            previewMap.ClearAllTiles();
+            
             selectedObj = value;
 
             tileBase = selectedObj != null ? selectedObj.TileBase : null;
@@ -91,7 +107,24 @@ public class TileEditor : Singleton<TileEditor>
     {
         if (selectedObj != null && !EventSystem.current.IsPointerOverGameObject() && PlacementAllowed())
         {
-            HandleDrawing();
+            if (ctx.phase == InputActionPhase.Started)
+            {
+                if (ctx.interaction is SlowTapInteraction)
+                {
+                    holdActive = true;
+                }
+
+                holdStartPosition = currentGridPosition;
+                HandleDrawing();
+            }
+            else
+            {
+                if (holdActive)
+                {
+                    holdActive = false;
+                    HandleDrawingRelease();
+                }
+            }
         }
     }
 
@@ -118,11 +151,67 @@ public class TileEditor : Singleton<TileEditor>
 
     private void HandleDrawing()
     {
-        var cityCheck = city.NewTile(currentGridPosition, selectedObj);
+        if (selectedObj == null) return;
 
-        if (cityCheck)
+        switch (selectedObj.PlacementType)
         {
-            DrawItem(currentGridPosition, tileBase);
+            case PlacementType.Line:
+                break;
+            case PlacementType.Rectangle:
+                RenderRectangle();
+                
+                break;
+            case PlacementType.Single: default:
+                var cityCheck = city.NewTile(currentGridPosition, selectedObj);
+                
+                if (!cityCheck) break;
+                
+                DrawItem(currentGridPosition, tileBase);
+                
+                SelectedObj = null;
+                
+                break;
+        }
+    }
+
+    private void HandleDrawingRelease()
+    {
+        switch (selectedObj.PlacementType)
+        {
+            case PlacementType.Line:
+                break;
+            case PlacementType.Rectangle:
+                DrawArea(defaultMap);
+                previewMap.ClearAllTiles();
+                break;
+        }
+    }
+
+    private void RenderRectangle()
+    {
+        previewMap.ClearAllTiles();
+        
+        //area.xMin = currentGridPosition.x < holdStartPosition.x ? currentGridPosition.x : holdStartPosition.x;
+        //area.xMin = currentGridPosition.x > holdStartPosition.x ? currentGridPosition.x : holdStartPosition.x;
+        //area.yMin = currentGridPosition.y < holdStartPosition.y ? currentGridPosition.y : holdStartPosition.y;
+        //area.yMin = currentGridPosition.y > holdStartPosition.y ? currentGridPosition.y : holdStartPosition.y;
+        
+        area.xMin = Mathf.Min(currentGridPosition.x,holdStartPosition.x);
+        area.xMax = Mathf.Max(currentGridPosition.x,holdStartPosition.x);
+        area.yMin = Mathf.Min(currentGridPosition.y,holdStartPosition.y);
+        area.yMax = Mathf.Max(currentGridPosition.y,holdStartPosition.y);
+        
+        DrawArea(previewMap);
+    }
+
+    private void DrawArea(Tilemap tilemap)
+    {
+        for (var x = area.xMin; x <= area.xMax; x++)
+        {
+            for (var y = area.yMin; y <= area.yMax; y++)
+            {
+                tilemap.SetTile(new Vector3Int(x, y, 0), tileBase);
+            }
         }
     }
 
