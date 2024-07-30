@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 
@@ -7,7 +6,7 @@ public class QueryTool : Singleton<QueryTool>
 {
     [SerializeField] private Tilemap defaultMap;
     private PlayerInput playerInput;
-    private Camera camera;
+    private new Camera camera;
     public bool IsQueryToolActive { get; set; }
     private Vector2 mousePosition;
     private Vector3Int currentGridPosition;
