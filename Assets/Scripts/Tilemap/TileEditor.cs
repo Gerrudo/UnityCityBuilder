@@ -8,9 +8,9 @@ public class TileEditor : Singleton<TileEditor>
 {
     //Credit to https://www.youtube.com/@VelvaryGames for a lot of this code.
     
-    PlayerInput playerInput;
+    private PlayerInput playerInput;
 
-    Camera camera;
+    private new Camera camera;
 
     [SerializeField] private Tilemap previewMap, defaultMap, terrainMap;
     private TileBase tileBase;
@@ -19,6 +19,8 @@ public class TileEditor : Singleton<TileEditor>
     private Vector2 mousePosition;
     private Vector3Int currentGridPosition;
     private Vector3Int previousGridPosition;
+    
+    private bool isPointerOverGameObject;
 
     private bool holdActive;
     private Vector3Int holdStartPosition;
@@ -39,23 +41,24 @@ public class TileEditor : Singleton<TileEditor>
 
     private void Update()
     {
-        if (selectedObj != null)
-        {
-            //Setting pos as a Vector3 causes issues
-            Vector2 pos = camera.ScreenToWorldPoint(mousePosition);
+        isPointerOverGameObject = EventSystem.current.IsPointerOverGameObject();
+        
+        if (!selectedObj) return;
+        
+        //Setting pos as a Vector3 causes issues
+        Vector2 pos = camera.ScreenToWorldPoint(mousePosition);
 
-            Vector3Int gridPos = previewMap.WorldToCell(pos);
+        var gridPos = previewMap.WorldToCell(pos);
 
-            if (gridPos == currentGridPosition) return;
+        if (gridPos == currentGridPosition) return;
             
-            previousGridPosition = currentGridPosition;
-            currentGridPosition = gridPos;
+        previousGridPosition = currentGridPosition;
+        currentGridPosition = gridPos;
 
-            UpdatePreview();
+        UpdatePreview();
 
-            if (!holdActive) return;
-            HandleDrawing();
-        }
+        if (!holdActive) return;
+        HandleDrawing();
     }
 
     private void OnEnable()
@@ -65,7 +68,9 @@ public class TileEditor : Singleton<TileEditor>
         playerInput.Gameplay.MouseLeftClick.performed += OnLeftClick;
         playerInput.Gameplay.MouseLeftClick.started += OnLeftClick;
         playerInput.Gameplay.MouseLeftClick.canceled += OnLeftClick;
+        
         playerInput.Gameplay.MouseRightClick.performed += OnRightClick;
+        
         playerInput.Gameplay.MousePosition.performed += OnMouseMove;
 
         playerInput.Gameplay.KeyboardEsc.performed += OnKeyboardEsc;
@@ -78,7 +83,9 @@ public class TileEditor : Singleton<TileEditor>
         playerInput.Gameplay.MouseLeftClick.performed -= OnLeftClick;
         playerInput.Gameplay.MouseLeftClick.started += OnLeftClick;
         playerInput.Gameplay.MouseLeftClick.canceled += OnLeftClick;
+        
         playerInput.Gameplay.MouseRightClick.performed -= OnRightClick;
+        
         playerInput.Gameplay.MousePosition.performed -= OnMouseMove;
     }
 
@@ -92,7 +99,7 @@ public class TileEditor : Singleton<TileEditor>
             
             selectedObj = value;
 
-            tileBase = selectedObj != null ? selectedObj.TileBase : null;
+            tileBase = selectedObj ? selectedObj.TileBase : null;
 
             UpdatePreview();
         }
@@ -105,7 +112,7 @@ public class TileEditor : Singleton<TileEditor>
 
     private void OnLeftClick(InputAction.CallbackContext ctx)
     {
-        if (selectedObj != null && !EventSystem.current.IsPointerOverGameObject() && PlacementAllowed())
+        if (selectedObj && !isPointerOverGameObject && PlacementAllowed())
         {
             if (ctx.phase == InputActionPhase.Started)
             {
@@ -119,11 +126,10 @@ public class TileEditor : Singleton<TileEditor>
             }
             else
             {
-                if (holdActive)
-                {
-                    holdActive = false;
-                    HandleDrawingRelease();
-                }
+                if (!holdActive) return;
+                
+                holdActive = false;
+                HandleDrawingRelease();
             }
         }
     }
@@ -151,11 +157,13 @@ public class TileEditor : Singleton<TileEditor>
 
     private void HandleDrawing()
     {
-        if (selectedObj == null) return;
+        if (!selectedObj) return;
 
         switch (selectedObj.PlacementType)
         {
             case PlacementType.Line:
+                RenderLine();
+                
                 break;
             case PlacementType.Rectangle:
                 RenderRectangle();
@@ -179,10 +187,11 @@ public class TileEditor : Singleton<TileEditor>
         switch (selectedObj.PlacementType)
         {
             case PlacementType.Line:
-                break;
             case PlacementType.Rectangle:
                 DrawArea(defaultMap);
+                
                 previewMap.ClearAllTiles();
+                
                 break;
         }
     }
@@ -191,15 +200,37 @@ public class TileEditor : Singleton<TileEditor>
     {
         previewMap.ClearAllTiles();
         
-        //area.xMin = currentGridPosition.x < holdStartPosition.x ? currentGridPosition.x : holdStartPosition.x;
-        //area.xMin = currentGridPosition.x > holdStartPosition.x ? currentGridPosition.x : holdStartPosition.x;
-        //area.yMin = currentGridPosition.y < holdStartPosition.y ? currentGridPosition.y : holdStartPosition.y;
-        //area.yMin = currentGridPosition.y > holdStartPosition.y ? currentGridPosition.y : holdStartPosition.y;
-        
         area.xMin = Mathf.Min(currentGridPosition.x,holdStartPosition.x);
         area.xMax = Mathf.Max(currentGridPosition.x,holdStartPosition.x);
         area.yMin = Mathf.Min(currentGridPosition.y,holdStartPosition.y);
         area.yMax = Mathf.Max(currentGridPosition.y,holdStartPosition.y);
+        
+        DrawArea(previewMap);
+    }
+
+    private void RenderLine()
+    {
+        previewMap.ClearAllTiles();
+
+        float diffX = Mathf.Abs(currentGridPosition.x - holdStartPosition.x);
+        float diffY = Mathf.Abs(currentGridPosition.y - holdStartPosition.y);
+
+        var isLineHorizontal = diffX >= diffY;
+
+        if (isLineHorizontal)
+        {
+            area.xMin = Mathf.Min(currentGridPosition.x,holdStartPosition.x);
+            area.xMax = Mathf.Max(currentGridPosition.x,holdStartPosition.x);
+            area.yMin = holdStartPosition.y;
+            area.yMax = holdStartPosition.y;
+        }
+        else
+        {
+            area.xMin = currentGridPosition.x;
+            area.xMax = currentGridPosition.x;
+            area.yMin = Mathf.Min(currentGridPosition.y,holdStartPosition.y);
+            area.yMax = Mathf.Max(currentGridPosition.y,holdStartPosition.y);
+        }
         
         DrawArea(previewMap);
     }
@@ -231,7 +262,7 @@ public class TileEditor : Singleton<TileEditor>
 
         defaultMap.SetTile(currentGridPosition, null);
 
-        //Required for out network tile rules
+        //Required for our network tile rules
         defaultMap.RefreshAllTiles();
     }
 
@@ -240,13 +271,6 @@ public class TileEditor : Singleton<TileEditor>
         bool hasTerrainTile = terrainMap.HasTile(currentGridPosition - new Vector3Int(1, 1, 0));
         bool hasBuildingTile = defaultMap.HasTile(currentGridPosition);
 
-        if (hasTerrainTile && !hasBuildingTile)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return hasTerrainTile && !hasBuildingTile;
     }
 }
