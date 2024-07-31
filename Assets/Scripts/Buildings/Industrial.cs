@@ -9,6 +9,7 @@ public class Industrial : IBuildable, IGrowable, IPowerable, IWaterable
         Data.TileType = buildingPreset.TileType;
         Data.Level1TilBase = buildingPreset.Level1TilBase;
         Data.MaxEmployees = buildingPreset.MaxEmployees;
+        Data.TileBase = buildingPreset.TileBase;
         
         return Data;
     }

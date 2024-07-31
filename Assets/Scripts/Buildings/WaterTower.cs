@@ -9,6 +9,7 @@ public class WaterTower : IBuildable, IPowerable
         Data.Expenses = buildingPreset.Expenses;
         Data.MaxEmployees = buildingPreset.MaxEmployees;
         Data.WaterOutput = 25000;
+        Data.TileBase = buildingPreset.TileBase;
         
         return Data;
     }

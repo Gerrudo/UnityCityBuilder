@@ -9,6 +9,7 @@ public class Generator : IBuildable, IWaterable
         Data.Expenses = buildingPreset.Expenses;
         Data.MaxEmployees = buildingPreset.MaxEmployees;
         Data.PowerOutput = 50000;
+        Data.TileBase = buildingPreset.TileBase;
         
         return Data;
     }

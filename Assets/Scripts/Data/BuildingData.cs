@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 public class BuildingData
 {
     public TileType TileType { get; set; }
+    public TileBase TileBase { get; set; }
     public TileBase Level1TilBase { get; set; }
     public int CurrentPopulation { get; set; }
     public List<Citizen> Residents { get; set; }

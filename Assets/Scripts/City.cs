@@ -29,6 +29,19 @@ public class City : Singleton<City>
         StartCoroutine(CountDays());
     }
 
+    private void Update()
+    {
+        DrawCity();
+    }
+
+    private void DrawCity()
+    {
+        foreach (var tile in cityTiles)
+        {
+            tileEditor.DrawItem(tile.Key, tile.Value.Data.TileBase);
+        }
+    }
+
     private IEnumerator CountDays()
     {
         yield return new WaitForSeconds(24);
@@ -132,13 +145,13 @@ public class City : Singleton<City>
         }
     }
 
-    public bool NewTile(Vector3Int tilePosition, Preset buildingPreset)
+    public bool CanPlaceNewTile(Preset buildingPreset)
     {
-        if (CityData.Funds < buildingPreset.CostToBuild)
-        {
-            return false;
-        }
+        return CityData.Funds >= buildingPreset.CostToBuild;
+    }
 
+    public void NewTile(Vector3Int tilePosition, Preset buildingPreset)
+    {
         CityData.Funds -= buildingPreset.CostToBuild;
         
         IBuildingFactory buildingFactory = new BuildingFactory();
@@ -150,8 +163,6 @@ public class City : Singleton<City>
         cityTiles.Add(tilePosition, buildable);
 
         cityStatistics.UpdateUI();
-
-        return true;
     }
 
     public void RemoveTile(Vector3Int tilePosition)

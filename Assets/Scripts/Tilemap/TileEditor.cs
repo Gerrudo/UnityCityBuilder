@@ -170,9 +170,9 @@ public class TileEditor : Singleton<TileEditor>
                 
                 break;
             case PlacementType.Single: default:
-                var cityCheck = city.NewTile(currentGridPosition, selectedObj);
+                if (!city.CanPlaceNewTile(selectedObj)) break;
                 
-                if (!cityCheck) break;
+                city.NewTile(currentGridPosition, selectedObj);
                 
                 DrawItem(currentGridPosition, tileBase);
                 
@@ -188,7 +188,12 @@ public class TileEditor : Singleton<TileEditor>
         {
             case PlacementType.Line:
             case PlacementType.Rectangle:
-                DrawArea(defaultMap);
+                foreach (var point in TilemapExtension.AllPositionsWithin2D(area))
+                {
+                    if (!city.CanPlaceNewTile(selectedObj)) continue;
+                    
+                    city.NewTile(point, selectedObj);
+                }
                 
                 previewMap.ClearAllTiles();
                 

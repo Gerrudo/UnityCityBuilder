@@ -12,6 +12,7 @@ public class Residential : IBuildable, ITaxable, IGrowable, IPowerable, IWaterab
         Data.TileType = buildingPreset.TileType;
         Data.Level1TilBase = buildingPreset.Level1TilBase;
         Data.MaxPopulation = buildingPreset.MaxPopulation;
+        Data.TileBase = buildingPreset.TileBase;
         
         Data.Residents = new List<Citizen>();
         

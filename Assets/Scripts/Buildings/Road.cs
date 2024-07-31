@@ -8,6 +8,7 @@ public class Road : IBuildable
         
         Data.TileType = buildingPreset.TileType;
         Data.Expenses = buildingPreset.Expenses;
+        Data.TileBase = buildingPreset.TileBase;
         
         return Data;
     }

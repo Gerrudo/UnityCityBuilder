@@ -7,6 +7,7 @@ public class Communications : IBuildable, IPowerable, IWaterable
 
         Data.TileType = buildingPreset.TileType;
         Data.MaxEmployees = buildingPreset.MaxEmployees;
+        Data.TileBase = buildingPreset.TileBase;
         
         return Data;
     }

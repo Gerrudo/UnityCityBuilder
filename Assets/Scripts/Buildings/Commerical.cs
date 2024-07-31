@@ -12,6 +12,7 @@ public class Commercial : IBuildable, IGrowable, IPowerable, IWaterable
         Data.TileType = buildingPreset.TileType;
         Data.Level1TilBase = buildingPreset.Level1TilBase;
         Data.MaxEmployees = buildingPreset.MaxEmployees;
+        Data.TileBase = buildingPreset.TileBase;
         
         Data.Jobs = new List<Guid>();
         
