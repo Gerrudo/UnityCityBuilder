@@ -130,7 +130,8 @@ public class City : Singleton<City>
     
     private void DistributeEmployees()
     {
-        foreach (var tile in cityTiles.Where(tile => tile.Value.Data.TileType == TileType.Commercial))
+        //TODO: Cleanup expression
+        foreach (var tile in cityTiles.Where(tile => tile.Value.Data.TileType is TileType.Commercial or TileType.Industrial))
         {
             if (tile.Value.Data.Jobs.Count == tile.Value.Data.MaxEmployees) continue;
             

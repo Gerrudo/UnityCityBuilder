@@ -21,7 +21,7 @@ public class Residential : IBuildable, ITaxable, IGrowable, IPowerable, IWaterab
     
     public void UpdateBuilding()
     {
-        CheckBuildingLevel();
+        UpgradeBuilding();
         CountPopulation();
         CountUnemployed();
         ConsumePower();
@@ -44,11 +44,11 @@ public class Residential : IBuildable, ITaxable, IGrowable, IPowerable, IWaterab
         Data.Taxes = Data.CurrentPopulation * 2;
     }
 
-    public void CheckBuildingLevel()
+    public void UpgradeBuilding()
     {
-        if (Data.IsConnectedToRoad)
+        if (Data.IsConnectedToRoad && Data.CurrentPopulation > 10)
         {
-            Data.BuildingLevel = 1;
+            Data.TileBase = Data.Level1TilBase;
         }
     }
     

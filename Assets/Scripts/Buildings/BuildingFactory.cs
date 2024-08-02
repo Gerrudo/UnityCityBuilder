@@ -1,3 +1,8 @@
+public abstract class Building
+{
+    
+}
+
 public interface IBuildingFactory
 {
     IBuildable CreateBuilding(TileType tileType);

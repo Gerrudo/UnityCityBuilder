@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 public class Industrial : IBuildable, IGrowable, IPowerable, IWaterable
 {
     public BuildingData Data { get; set; }
@@ -11,22 +14,24 @@ public class Industrial : IBuildable, IGrowable, IPowerable, IWaterable
         Data.MaxEmployees = buildingPreset.MaxEmployees;
         Data.TileBase = buildingPreset.TileBase;
         
+        Data.Jobs = new List<Guid>();
+        
         return Data;
     }
     
     public void UpdateBuilding()
     {
-        CheckBuildingLevel();
+        UpgradeBuilding();
         ConsumePower();
         ConsumeWater();
         ProduceGoods();
     }
     
-    public void CheckBuildingLevel()
+    public void UpgradeBuilding()
     {
-        if (Data.IsConnectedToRoad)
+        if (Data.IsConnectedToRoad && Data.Jobs.Count > 10)
         {
-            Data.BuildingLevel = 1;
+            Data.TileBase = Data.Level1TilBase;
         }
     }
     

@@ -80,13 +80,15 @@ public class TileEditor : Singleton<TileEditor>
     {
         playerInput.Disable();
 
-        playerInput.Gameplay.MouseLeftClick.performed -= OnLeftClick;
+        playerInput.Gameplay.MouseLeftClick.performed += OnLeftClick;
         playerInput.Gameplay.MouseLeftClick.started += OnLeftClick;
         playerInput.Gameplay.MouseLeftClick.canceled += OnLeftClick;
         
-        playerInput.Gameplay.MouseRightClick.performed -= OnRightClick;
+        playerInput.Gameplay.MouseRightClick.performed += OnRightClick;
         
-        playerInput.Gameplay.MousePosition.performed -= OnMouseMove;
+        playerInput.Gameplay.MousePosition.performed += OnMouseMove;
+
+        playerInput.Gameplay.KeyboardEsc.performed += OnKeyboardEsc;
     }
 
     private Preset SelectedObj
@@ -173,8 +175,6 @@ public class TileEditor : Singleton<TileEditor>
                 if (!city.CanPlaceNewTile(selectedObj)) break;
                 
                 city.NewTile(currentGridPosition, selectedObj);
-                
-                DrawItem(currentGridPosition, tileBase);
                 
                 SelectedObj = null;
                 
@@ -273,8 +273,8 @@ public class TileEditor : Singleton<TileEditor>
 
     private bool PlacementAllowed()
     {
-        bool hasTerrainTile = terrainMap.HasTile(currentGridPosition - new Vector3Int(1, 1, 0));
-        bool hasBuildingTile = defaultMap.HasTile(currentGridPosition);
+        var hasTerrainTile = terrainMap.HasTile(currentGridPosition - new Vector3Int(1, 1, 0));
+        var hasBuildingTile = defaultMap.HasTile(currentGridPosition);
 
         return hasTerrainTile && !hasBuildingTile;
     }

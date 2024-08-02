@@ -1,4 +1,4 @@
 public interface IGrowable
 {
-    void CheckBuildingLevel();
+    void UpgradeBuilding();
 }
