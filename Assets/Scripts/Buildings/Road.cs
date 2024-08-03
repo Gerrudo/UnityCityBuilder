@@ -1,25 +1,14 @@
-public class Road : IBuildable
-{
-    public BuildingData Data { get; set; }
-    
-    public BuildingData NewBuildingData(Preset buildingPreset)
-    {
-        Data = new BuildingData();
-        
-        Data.TileType = buildingPreset.TileType;
-        Data.Expenses = buildingPreset.Expenses;
-        Data.TileBase = buildingPreset.TileBase;
-        
-        return Data;
-    }
+using UnityEngine.Tilemaps;
 
-    public void UpdateBuilding()
-    {
-        
-    }
+public class Road : Building
+{
+    public sealed override TileType TileType { get; set; }
+    public sealed override TileBase TileBase { get; set; }
+    public override bool IsConnectedToRoad { get; set; }
     
-    public void DestroyBuilding()
+    public Road(Preset buildingPreset)
     {
-        
+        TileBase = buildingPreset.TileBase;
+        TileType = buildingPreset.TileType;
     }
 }

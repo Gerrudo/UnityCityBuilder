@@ -1,26 +1,14 @@
-public class WaterTower : IBuildable, IPowerable
+using UnityEngine.Tilemaps;
+
+public class WaterTower : Building
 {
-    public BuildingData Data { get; set; }
+    public sealed override TileType TileType { get; set; }
+    public sealed override TileBase TileBase { get; set; }
+    public override bool IsConnectedToRoad { get; set; }
     
-    public BuildingData NewBuildingData(Preset buildingPreset)
+    public WaterTower(Preset buildingPreset)
     {
-        Data = new BuildingData();
-        Data.TileType = buildingPreset.TileType;
-        Data.Expenses = buildingPreset.Expenses;
-        Data.MaxEmployees = buildingPreset.MaxEmployees;
-        Data.WaterOutput = 25000;
-        Data.TileBase = buildingPreset.TileBase;
-        
-        return Data;
-    }
-    
-    public void UpdateBuilding()
-    {
-        ConsumePower();
-    }
-    
-    public void ConsumePower()
-    {
-        Data.PowerInput = Data.Employees * 4;
+        TileBase = buildingPreset.TileBase;
+        TileType = buildingPreset.TileType;
     }
 }

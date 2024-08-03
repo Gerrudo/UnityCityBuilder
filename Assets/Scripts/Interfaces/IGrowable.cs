@@ -1,4 +1,8 @@
+using UnityEngine.Tilemaps;
+
 public interface IGrowable
 {
-    void UpgradeBuilding();
+    TileBase TileBase { get; set; }
+    TileBase Level1TilBase { get; set; }
+    void CanUpgrade();
 }

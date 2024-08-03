@@ -13,9 +13,13 @@ public class CityStatistics : Singleton<CityStatistics>
     [SerializeField] private TextMeshProUGUI approvalText;
     [SerializeField] private TextMeshProUGUI unemployedText;
     
+    private City city;
+    
     protected override void Awake()
     {
         base.Awake();
+        
+        city = City.GetInstance();
 
         UpdateUI();
     }
@@ -25,24 +29,24 @@ public class CityStatistics : Singleton<CityStatistics>
         //Maybe we could have the UI read a value instead of updating it individually?
 
         //Update Toolbar
-        dayText.text = $"Day: {CityData.Day}";
-        populationText.text = $"Population: {CityData.Population}";
-        fundsText.text = $"Funds: ${CityData.Funds}";
+        dayText.text = $"Day: {city.Day}";
+        populationText.text = $"Population: {city.Population}";
+        fundsText.text = $"Funds: ${city.Funds}";
 
-        if (CityData.Earnings > 0)
+        if (city.Earnings > 0)
         {
-            earningsText.text = $"Earnings: ${CityData.Earnings}+";
+            earningsText.text = $"Earnings: ${city.Earnings}+";
         }
         else
         {
-            earningsText.text = $"Earnings: ${CityData.Earnings}";
+            earningsText.text = $"Earnings: ${city.Earnings}";
         }
 
         //Update Panel
-        powerText.text = $"Power: {CityData.Power}kW";
-        waterText.text = $"Water: {CityData.Water}kL";
-        goodsText.text = $"Goods: {CityData.Goods} Ton";
-        approvalText.text = $"Approval: {CityData.ApprovalRating}%";
-        unemployedText.text = $"Unemployed: {CityData.Unemployed}";
+        powerText.text = $"Power: {city.Power}kW";
+        waterText.text = $"Water: {city.Water}kL";
+        goodsText.text = $"Goods: {city.Goods} Ton";
+        approvalText.text = $"Approval: {city.ApprovalRating}%";
+        unemployedText.text = $"Unemployed: {city.Unemployed}";
     }
 }

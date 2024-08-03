@@ -1,12 +1,12 @@
 using UnityEngine.Tilemaps;
 
-public class Generator : Building
+public class PoliceStation : Building
 {
     public sealed override TileType TileType { get; set; }
     public sealed override TileBase TileBase { get; set; }
     public override bool IsConnectedToRoad { get; set; }
     
-    public Generator(Preset buildingPreset)
+    public PoliceStation(Preset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;

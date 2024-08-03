@@ -1,52 +1,31 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine.Tilemaps;
 
-public class Industrial : IBuildable, IGrowable, IPowerable, IWaterable
+public class Industrial : Building, IEmployer, IGrowable
 {
-    public BuildingData Data { get; set; }
-    
-    public BuildingData NewBuildingData(Preset buildingPreset)
-    {
-        Data = new BuildingData();
+    public sealed override TileType TileType { get; set; }
+    public sealed override TileBase TileBase { get; set; }
+    public override bool IsConnectedToRoad { get; set; }
+    public TileBase Level1TilBase { get; set; }
 
-        Data.TileType = buildingPreset.TileType;
-        Data.Level1TilBase = buildingPreset.Level1TilBase;
-        Data.MaxEmployees = buildingPreset.MaxEmployees;
-        Data.TileBase = buildingPreset.TileBase;
-        
-        Data.Jobs = new List<Guid>();
-        
-        return Data;
+    public int MaxEmployees { get; set; }
+    public List<Guid> Jobs { get; set; }
+    
+    public Industrial(Preset buildingPreset)
+    {
+        TileBase = buildingPreset.TileBase;
+        TileType = buildingPreset.TileType;
+        Level1TilBase = buildingPreset.Level1TilBase;
+        MaxEmployees = buildingPreset.MaxEmployees;
+        Jobs = new List<Guid>();
     }
     
-    public void UpdateBuilding()
+    public void CanUpgrade()
     {
-        UpgradeBuilding();
-        ConsumePower();
-        ConsumeWater();
-        ProduceGoods();
-    }
-    
-    public void UpgradeBuilding()
-    {
-        if (Data.IsConnectedToRoad && Data.Jobs.Count > 10)
+        if (IsConnectedToRoad && Jobs.Count > 10)
         {
-            Data.TileBase = Data.Level1TilBase;
+            TileBase = Level1TilBase;
         }
-    }
-    
-    private void ProduceGoods()
-    {
-        Data.GoodsOutput = Data.Employees * 10;
-    }
-    
-    public void ConsumePower()
-    {
-        Data.PowerInput = Data.Employees * 4;
-    }
-
-    public void ConsumeWater()
-    {
-        Data.WaterInput = Data.Employees * 2;
     }
 }
