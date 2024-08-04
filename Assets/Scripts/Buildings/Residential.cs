@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 
-public class Residential : Building, IGrowable, IResidence, IWater, ITaxable
+public class Residential : Building, IGrowable, IResidence, IWater, IEarnings
 {
     public sealed override TileType TileType { get; set; }
     public sealed override TileBase TileBase { get; set; }
@@ -47,8 +47,14 @@ public class Residential : Building, IGrowable, IResidence, IWater, ITaxable
     {
         return Residents.Count * 4;
     }
-    public int CalculateTaxes()
+
+    public int GenerateEarnings()
     {
         return Residents.Count * 10;
+    }
+
+    public int ConsumeEarnings()
+    {
+        return 0;
     }
 }

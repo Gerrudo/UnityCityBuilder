@@ -1,6 +1,6 @@
 using UnityEngine.Tilemaps;
 
-public class Road : Building
+public class Road : Building, IEarnings
 {
     public sealed override TileType TileType { get; set; }
     public sealed override TileBase TileBase { get; set; }
@@ -10,5 +10,15 @@ public class Road : Building
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;
+    }
+    
+    public int GenerateEarnings()
+    {
+        return 0;
+    }
+
+    public int ConsumeEarnings()
+    {
+        return 10;
     }
 }

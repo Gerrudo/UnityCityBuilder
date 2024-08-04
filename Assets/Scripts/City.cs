@@ -102,9 +102,10 @@ public class City : Singleton<City>
             growable.CanUpgrade();
         }
 
-        if (building is ITaxable taxable)
+        if (building is IEarnings earnings)
         {
-            Funds += taxable.CalculateTaxes();
+            Earnings += earnings.GenerateEarnings();
+            Earnings -= earnings.ConsumeEarnings();
         }
 
         if (building is IPower power)
@@ -117,6 +118,12 @@ public class City : Singleton<City>
         {
             Water += water.GenerateWater();
             Water -= water.ConsumeWater();
+        }
+
+        if (building is IGoods goods)
+        {
+            Goods += goods.GenerateGoods();
+            Goods -= goods.ConsumeGoods();
         }
     }
 

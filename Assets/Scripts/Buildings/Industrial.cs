@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 
-public class Industrial : Building, IEmployer, IGrowable, ITaxable, IPower, IWater
+public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods, IEarnings
 {
     public sealed override TileType TileType { get; set; }
     public sealed override TileBase TileBase { get; set; }
@@ -49,8 +49,23 @@ public class Industrial : Building, IEmployer, IGrowable, ITaxable, IPower, IWat
         return Jobs.Count * 4;
     }
     
-    public int CalculateTaxes()
+    public int GenerateEarnings()
     {
-        return Jobs.Count * 5;
+        return Jobs.Count * 10;
+    }
+
+    public int ConsumeEarnings()
+    {
+        return 0;
+    }
+
+    public int GenerateGoods()
+    {
+        return Jobs.Count * 10;
+    }
+
+    public int ConsumeGoods()
+    {
+        return 0;
     }
 }
