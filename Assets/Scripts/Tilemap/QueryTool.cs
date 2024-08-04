@@ -62,6 +62,16 @@ public class QueryTool : Singleton<QueryTool>
         var building = city.GetBuildingData(currentGridPosition);
         
         Debug.Log($"Building clicked was: {building.TileType}");
+
+        if (building is IEmployer growable)
+        {
+            Debug.Log($"Building clicked was: {growable.Jobs.Count}");
+        }
+        
+        if (building is IResidence residence)
+        {
+            Debug.Log($"Building clicked was: {residence.Residents.Count}");
+        }
     }
 
     private void OnKeyboardEsc(InputAction.CallbackContext ctx)

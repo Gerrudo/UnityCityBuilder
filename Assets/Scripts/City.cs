@@ -69,24 +69,7 @@ public class City : Singleton<City>
         
         foreach (var building in cityTiles)
         {
-            building.Value.IsConnectedToRoad = CheckTileConnection(building.Key, TileType.Road);
-            
-            //No switch as it's possible for buildings to implement multiple of these interfaces.
-            if (building.Value is IResidence residence)
-            {
-                //Updates the list of citizens that live at this tile
-                residence.Residents = citizens.Values.Where(citizen => citizen.HomeTile == building.Key).ToList();
-                
-                Funds += residence.Residents.Count * 2;
-            }
-            
-            if (building.Value is IEmployer employer)
-            {
-                //Updates the list of citizens that work at this tile
-                employer.Jobs = citizens.Keys.Where(citizen => citizens[citizen].WorkTile == building.Key).ToList();
-                
-                Funds += employer.Jobs.Count * 2;
-            }
+            GetBuildingValues(building.Key ,building.Value);
         }
         
         Population = citizens.Count;
@@ -95,6 +78,46 @@ public class City : Singleton<City>
         cityStatistics.UpdateUI();
         
         StartCoroutine(UpdateCity());
+    }
+
+    private void GetBuildingValues(Vector3Int tilePosition, Building building)
+    {
+        building.IsConnectedToRoad = CheckTileConnection(tilePosition, TileType.Road);
+            
+        //No switch as it's possible for buildings to implement multiple of these interfaces.
+        if (building is IResidence residence)
+        {
+            //Updates the list of citizens that live at this tile
+            residence.Residents = citizens.Values.Where(citizen => citizen.HomeTile == tilePosition).ToList();
+        }
+            
+        if (building is IEmployer employer)
+        {
+            //Updates the list of citizens that work at this tile
+            employer.Jobs = citizens.Keys.Where(citizen => citizens[citizen].WorkTile == tilePosition).ToList();
+        }
+            
+        if (building is IGrowable growable)
+        {
+            growable.CanUpgrade();
+        }
+
+        if (building is ITaxable taxable)
+        {
+            Funds += taxable.CalculateTaxes();
+        }
+
+        if (building is IPower power)
+        {
+            Power += power.GeneratePower();
+            Power -= power.ConsumePower();
+        }
+            
+        if (building is IWater water)
+        {
+            Water += water.GenerateWater();
+            Water -= water.ConsumeWater();
+        }
     }
 
     private void DistributeCitizens()
@@ -139,11 +162,20 @@ public class City : Singleton<City>
     {
         Funds -= buildingPreset.CostToBuild;
         
-        var buildingFactory = new BuildingFactory();
+        //TODO: Can this be moved into Awake() so we don't create a new building Factory class everytime?
+        IBuildingFactory buildingFactory = new BuildingFactory();
 
         var buildable = buildingFactory.CreateBuilding(buildingPreset);
 
-        cityTiles.Add(tilePosition, buildable);
+        //Need to replace if the tile already exists
+        if (cityTiles.TryGetValue(tilePosition, out _))
+        {
+            cityTiles[tilePosition] = buildable;
+        }
+        else
+        {
+            cityTiles.Add(tilePosition, buildable);   
+        }
 
         cityStatistics.UpdateUI();
     }
@@ -166,7 +198,7 @@ public class City : Singleton<City>
     {
         var connected = false;
         
-        var neighbours = TilemapExtension.Neighbours(tilePosition);
+        var neighbours = tilePosition.Neighbours();
 
         foreach (var neighbour in neighbours)
         {
