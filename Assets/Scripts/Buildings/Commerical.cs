@@ -1,51 +1,71 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine.Tilemaps;
 
-public class Commercial : IBuildable, IGrowable, IPowerable, IWaterable
+public class Commercial : Building, IEmployer, IGrowable, IPower, IWater, IGoods, IEarnings
 {
-    public BuildingData Data { get; set; }
-    
-    public BuildingData NewBuildingData(Preset buildingPreset)
-    {
-        Data = new BuildingData();
+    public sealed override TileType TileType { get; set; }
+    public sealed override TileBase TileBase { get; set; }
+    public override bool IsConnectedToRoad { get; set; }
+    public TileBase Level1TilBase { get; set; }
 
-        Data.TileType = buildingPreset.TileType;
-        Data.Level1TilBase = buildingPreset.Level1TilBase;
-        Data.MaxEmployees = buildingPreset.MaxEmployees;
-        
-        Data.Jobs = new List<Guid>();
-        
-        return Data;
+    public int MaxEmployees { get; set; }
+    public List<Guid> Jobs { get; set; }
+    
+    public Commercial(Preset buildingPreset)
+    {
+        TileBase = buildingPreset.TileBase;
+        TileType = buildingPreset.TileType;
+        Level1TilBase = buildingPreset.Level1TilBase;
+        MaxEmployees = buildingPreset.MaxEmployees;
+        Jobs = new List<Guid>();
     }
     
-    public void UpdateBuilding()
+    public void CanUpgrade()
     {
-        CheckBuildingLevel();
-        ConsumePower();
-        ConsumeWater();
-        SellGoods();
-    }
-    
-    public void CheckBuildingLevel()
-    {
-        if (Data.IsConnectedToRoad)
+        if (IsConnectedToRoad && Jobs.Count > 10)
         {
-            Data.BuildingLevel = 1;
+            TileBase = Level1TilBase;
         }
     }
-
-    private void SellGoods()
+    
+    public int GenerateWater()
     {
-        Data.GoodsInput = Data.Employees * 10;
+        return 0;
+    }
+
+    public int ConsumeWater()
+    {
+        return Jobs.Count * 4;
     }
     
-    public void ConsumePower()
+    public int GeneratePower()
     {
-        Data.PowerInput = Data.Employees * 4;
+        return 0;
     }
 
-    public void ConsumeWater()
+    public int ConsumePower()
     {
-        Data.WaterInput = Data.Employees * 2;
+        return Jobs.Count * 4;
+    }
+    
+    public int GenerateEarnings()
+    {
+        return Jobs.Count * 10;
+    }
+
+    public int ConsumeEarnings()
+    {
+        return 0;
+    }
+
+    public int GenerateGoods()
+    {
+        return 0;
+    }
+
+    public int ConsumeGoods()
+    {
+        return Jobs.Count * 2;
     }
 }

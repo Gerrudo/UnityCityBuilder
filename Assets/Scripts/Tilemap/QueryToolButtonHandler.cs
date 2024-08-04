@@ -1,22 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TileEditButtonHandler : MonoBehaviour
+public class QueryToolButtonHandler : MonoBehaviour
 {
-    [SerializeField] private Preset item;
     private Button button;
 
-    private TileEditor tileEditor;
+    private QueryTool queryTool;
 
     private void Awake()
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(ButtonClicked);
-        tileEditor = TileEditor.GetInstance();
+        queryTool = QueryTool.GetInstance();
     }
 
     private void ButtonClicked()
     {
-        tileEditor.ObjectSelected(item);
+        queryTool.IsQueryToolActive = true;
     }
 }

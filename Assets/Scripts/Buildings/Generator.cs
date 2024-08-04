@@ -1,25 +1,49 @@
-public class Generator : IBuildable, IWaterable
+using System;
+using System.Collections.Generic;
+using UnityEngine.Tilemaps;
+
+public class Generator : Building, IEmployer, IPower, IWater, IEarnings
 {
-    public BuildingData Data { get; set; }
+    public sealed override TileType TileType { get; set; }
+    public sealed override TileBase TileBase { get; set; }
+    public override bool IsConnectedToRoad { get; set; }
+    public int MaxEmployees { get; set; }
+    public List<Guid> Jobs { get; set; }
     
-    public BuildingData NewBuildingData(Preset buildingPreset)
+    public Generator(Preset buildingPreset)
     {
-        Data = new BuildingData();
-        Data.TileType = buildingPreset.TileType;
-        Data.Expenses = buildingPreset.Expenses;
-        Data.MaxEmployees = buildingPreset.MaxEmployees;
-        Data.PowerOutput = 50000;
-        
-        return Data;
+        TileBase = buildingPreset.TileBase;
+        TileType = buildingPreset.TileType;
+        MaxEmployees = buildingPreset.MaxEmployees;
+        Jobs = new List<Guid>();
     }
-    
-    public void UpdateBuilding()
+    public int GenerateWater()
     {
-        ConsumeWater();
+        return 0;
     }
 
-    public void ConsumeWater()
+    public int ConsumeWater()
     {
-        Data.WaterInput = Data.Employees * 2;
+        return Jobs.Count * 25;
+    }
+    
+    public int GeneratePower()
+    {
+        return Jobs.Count * 100;
+    }
+
+    public int ConsumePower()
+    {
+        return 0;
+    }
+    
+    public int GenerateEarnings()
+    {
+        return 0;
+    }
+
+    public int ConsumeEarnings()
+    {
+        return Jobs.Count * 10;
     }
 }

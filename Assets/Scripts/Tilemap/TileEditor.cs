@@ -1,13 +1,16 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.EventSystems;
 
 public class TileEditor : Singleton<TileEditor>
 {
-    PlayerInput playerInput;
+    //Credit to https://www.youtube.com/@VelvaryGames for a lot of this code.
+    
+    private PlayerInput playerInput;
 
-    Camera camera;
+    private new Camera camera;
 
     [SerializeField] private Tilemap previewMap, defaultMap, terrainMap;
     private TileBase tileBase;
@@ -16,6 +19,12 @@ public class TileEditor : Singleton<TileEditor>
     private Vector2 mousePosition;
     private Vector3Int currentGridPosition;
     private Vector3Int previousGridPosition;
+    
+    private bool isPointerOverGameObject;
+
+    private bool holdActive;
+    private Vector3Int holdStartPosition;
+    private BoundsInt area;
 
     private City city;
 
@@ -32,21 +41,24 @@ public class TileEditor : Singleton<TileEditor>
 
     private void Update()
     {
-        if (selectedObj != null)
-        {
-            //Setting pos as a Vector3 causes issues
-            Vector2 pos = camera.ScreenToWorldPoint(mousePosition);
+        isPointerOverGameObject = EventSystem.current.IsPointerOverGameObject();
+        
+        if (!selectedObj) return;
+        
+        //Setting pos as a Vector3 causes issues
+        Vector2 pos = camera.ScreenToWorldPoint(mousePosition);
 
-            Vector3Int gridPos = previewMap.WorldToCell(pos);
+        var gridPos = previewMap.WorldToCell(pos);
 
-            if (gridPos != currentGridPosition)
-            {
-                previousGridPosition = currentGridPosition;
-                currentGridPosition = gridPos;
+        if (gridPos == currentGridPosition) return;
+            
+        previousGridPosition = currentGridPosition;
+        currentGridPosition = gridPos;
 
-                UpdatePreview();
-            }
-        }
+        UpdatePreview();
+
+        if (!holdActive) return;
+        HandleDrawing();
     }
 
     private void OnEnable()
@@ -54,7 +66,11 @@ public class TileEditor : Singleton<TileEditor>
         playerInput.Enable();
 
         playerInput.Gameplay.MouseLeftClick.performed += OnLeftClick;
+        playerInput.Gameplay.MouseLeftClick.started += OnLeftClick;
+        playerInput.Gameplay.MouseLeftClick.canceled += OnLeftClick;
+        
         playerInput.Gameplay.MouseRightClick.performed += OnRightClick;
+        
         playerInput.Gameplay.MousePosition.performed += OnMouseMove;
 
         playerInput.Gameplay.KeyboardEsc.performed += OnKeyboardEsc;
@@ -64,9 +80,15 @@ public class TileEditor : Singleton<TileEditor>
     {
         playerInput.Disable();
 
-        playerInput.Gameplay.MouseLeftClick.performed -= OnLeftClick;
-        playerInput.Gameplay.MouseRightClick.performed -= OnRightClick;
-        playerInput.Gameplay.MousePosition.performed -= OnMouseMove;
+        playerInput.Gameplay.MouseLeftClick.performed += OnLeftClick;
+        playerInput.Gameplay.MouseLeftClick.started += OnLeftClick;
+        playerInput.Gameplay.MouseLeftClick.canceled += OnLeftClick;
+        
+        playerInput.Gameplay.MouseRightClick.performed += OnRightClick;
+        
+        playerInput.Gameplay.MousePosition.performed += OnMouseMove;
+
+        playerInput.Gameplay.KeyboardEsc.performed += OnKeyboardEsc;
     }
 
     private Preset SelectedObj
@@ -74,9 +96,12 @@ public class TileEditor : Singleton<TileEditor>
         set
         {
             //Do not set this to the name of the setter, will crash unity editor lol
+            holdActive = false;
+            previewMap.ClearAllTiles();
+            
             selectedObj = value;
 
-            tileBase = selectedObj != null ? selectedObj.TileBase : null;
+            tileBase = selectedObj ? selectedObj.TileBase : null;
 
             UpdatePreview();
         }
@@ -89,9 +114,25 @@ public class TileEditor : Singleton<TileEditor>
 
     private void OnLeftClick(InputAction.CallbackContext ctx)
     {
-        if (selectedObj != null && !EventSystem.current.IsPointerOverGameObject() && PlacementAllowed())
+        if (selectedObj && !isPointerOverGameObject && PlacementAllowed())
         {
-            HandleDrawing();
+            if (ctx.phase == InputActionPhase.Started)
+            {
+                if (ctx.interaction is SlowTapInteraction)
+                {
+                    holdActive = true;
+                }
+
+                holdStartPosition = currentGridPosition;
+                HandleDrawing();
+            }
+            else
+            {
+                if (!holdActive) return;
+                
+                holdActive = false;
+                HandleDrawingRelease();
+            }
         }
     }
 
@@ -118,11 +159,95 @@ public class TileEditor : Singleton<TileEditor>
 
     private void HandleDrawing()
     {
-        var cityCheck = city.NewTile(currentGridPosition, selectedObj);
+        if (!selectedObj) return;
 
-        if (cityCheck)
+        switch (selectedObj.PlacementType)
         {
-            DrawItem(currentGridPosition, tileBase);
+            case PlacementType.Line:
+                RenderLine();
+                
+                break;
+            case PlacementType.Rectangle:
+                RenderRectangle();
+                
+                break;
+            case PlacementType.Single: default:
+                if (!city.CanPlaceNewTile(selectedObj)) break;
+                
+                city.NewTile(currentGridPosition, selectedObj);
+                
+                SelectedObj = null;
+                
+                break;
+        }
+    }
+
+    private void HandleDrawingRelease()
+    {
+        switch (selectedObj.PlacementType)
+        {
+            case PlacementType.Line:
+            case PlacementType.Rectangle:
+                foreach (var point in TilemapExtension.AllPositionsWithin2D(area))
+                {
+                    if (!city.CanPlaceNewTile(selectedObj)) continue;
+                    
+                    city.NewTile(point, selectedObj);
+                }
+                
+                previewMap.ClearAllTiles();
+                
+                break;
+        }
+    }
+
+    private void RenderRectangle()
+    {
+        previewMap.ClearAllTiles();
+        
+        area.xMin = Mathf.Min(currentGridPosition.x,holdStartPosition.x);
+        area.xMax = Mathf.Max(currentGridPosition.x,holdStartPosition.x);
+        area.yMin = Mathf.Min(currentGridPosition.y,holdStartPosition.y);
+        area.yMax = Mathf.Max(currentGridPosition.y,holdStartPosition.y);
+        
+        DrawArea(previewMap);
+    }
+
+    private void RenderLine()
+    {
+        previewMap.ClearAllTiles();
+
+        float diffX = Mathf.Abs(currentGridPosition.x - holdStartPosition.x);
+        float diffY = Mathf.Abs(currentGridPosition.y - holdStartPosition.y);
+
+        var isLineHorizontal = diffX >= diffY;
+
+        if (isLineHorizontal)
+        {
+            area.xMin = Mathf.Min(currentGridPosition.x,holdStartPosition.x);
+            area.xMax = Mathf.Max(currentGridPosition.x,holdStartPosition.x);
+            area.yMin = holdStartPosition.y;
+            area.yMax = holdStartPosition.y;
+        }
+        else
+        {
+            area.xMin = currentGridPosition.x;
+            area.xMax = currentGridPosition.x;
+            area.yMin = Mathf.Min(currentGridPosition.y,holdStartPosition.y);
+            area.yMax = Mathf.Max(currentGridPosition.y,holdStartPosition.y);
+        }
+        
+        DrawArea(previewMap);
+    }
+
+    private void DrawArea(Tilemap tilemap)
+    {
+        for (var x = area.xMin; x <= area.xMax; x++)
+        {
+            for (var y = area.yMin; y <= area.yMax; y++)
+            {
+                tilemap.SetTile(new Vector3Int(x, y, 0), tileBase);
+            }
         }
     }
 
@@ -142,22 +267,15 @@ public class TileEditor : Singleton<TileEditor>
 
         defaultMap.SetTile(currentGridPosition, null);
 
-        //Required for out network tile rules
+        //Required for our network tile rules
         defaultMap.RefreshAllTiles();
     }
 
     private bool PlacementAllowed()
     {
-        bool hasTerrainTile = terrainMap.HasTile(currentGridPosition - new Vector3Int(1, 1, 0));
-        bool hasBuildingTile = defaultMap.HasTile(currentGridPosition);
+        var hasTerrainTile = terrainMap.HasTile(currentGridPosition - new Vector3Int(1, 1, 0));
+        var hasBuildingTile = defaultMap.HasTile(currentGridPosition);
 
-        if (hasTerrainTile && !hasBuildingTile)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return hasTerrainTile && !hasBuildingTile;
     }
 }

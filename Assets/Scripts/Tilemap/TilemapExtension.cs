@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public static class TilemapExtension
 {
@@ -32,5 +33,17 @@ public static class TilemapExtension
         vector.South(),
         vector.West()
         };
+    }
+    
+    //This helper method was required due to BoundsInt.allPositionsWithin not returning if any point is set to 0.
+    public static IEnumerable<Vector3Int> AllPositionsWithin2D(BoundsInt area)
+    {
+        for (var x = area.xMin; x <= area.xMax; x++)
+        {
+            for (var y = area.yMin; y <= area.yMax; y++)
+            {
+                yield return new Vector3Int(x, y, 0);
+            }
+        }
     }
 }

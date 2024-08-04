@@ -1,46 +1,71 @@
-public class Industrial : IBuildable, IGrowable, IPowerable, IWaterable
-{
-    public BuildingData Data { get; set; }
-    
-    public BuildingData NewBuildingData(Preset buildingPreset)
-    {
-        Data = new BuildingData();
+using System;
+using System.Collections.Generic;
+using UnityEngine.Tilemaps;
 
-        Data.TileType = buildingPreset.TileType;
-        Data.Level1TilBase = buildingPreset.Level1TilBase;
-        Data.MaxEmployees = buildingPreset.MaxEmployees;
-        
-        return Data;
+public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods, IEarnings
+{
+    public sealed override TileType TileType { get; set; }
+    public sealed override TileBase TileBase { get; set; }
+    public override bool IsConnectedToRoad { get; set; }
+    public TileBase Level1TilBase { get; set; }
+
+    public int MaxEmployees { get; set; }
+    public List<Guid> Jobs { get; set; }
+    
+    public Industrial(Preset buildingPreset)
+    {
+        TileBase = buildingPreset.TileBase;
+        TileType = buildingPreset.TileType;
+        Level1TilBase = buildingPreset.Level1TilBase;
+        MaxEmployees = buildingPreset.MaxEmployees;
+        Jobs = new List<Guid>();
     }
     
-    public void UpdateBuilding()
+    public void CanUpgrade()
     {
-        CheckBuildingLevel();
-        ConsumePower();
-        ConsumeWater();
-        ProduceGoods();
-    }
-    
-    public void CheckBuildingLevel()
-    {
-        if (Data.IsConnectedToRoad)
+        if (IsConnectedToRoad && Jobs.Count > 10)
         {
-            Data.BuildingLevel = 1;
+            TileBase = Level1TilBase;
         }
     }
     
-    private void ProduceGoods()
+    public int GenerateWater()
     {
-        Data.GoodsOutput = Data.Employees * 10;
-    }
-    
-    public void ConsumePower()
-    {
-        Data.PowerInput = Data.Employees * 4;
+        return 0;
     }
 
-    public void ConsumeWater()
+    public int ConsumeWater()
     {
-        Data.WaterInput = Data.Employees * 2;
+        return Jobs.Count * 4;
+    }
+    
+    public int GeneratePower()
+    {
+        return 0;
+    }
+
+    public int ConsumePower()
+    {
+        return Jobs.Count * 4;
+    }
+    
+    public int GenerateEarnings()
+    {
+        return Jobs.Count * 10;
+    }
+
+    public int ConsumeEarnings()
+    {
+        return 0;
+    }
+
+    public int GenerateGoods()
+    {
+        return Jobs.Count * 10;
+    }
+
+    public int ConsumeGoods()
+    {
+        return 0;
     }
 }

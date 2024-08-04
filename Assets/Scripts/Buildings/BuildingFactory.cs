@@ -1,26 +1,19 @@
-public interface IBuildingFactory
-{
-    IBuildable CreateBuilding(TileType tileType);
-}
-
 public class BuildingFactory : IBuildingFactory
 {
-    public IBuildable CreateBuilding(TileType tileType)
+    public Building CreateBuilding(Preset buildingPreset)
     {
-        return tileType switch
+        return buildingPreset.TileType switch
         {
-            TileType.Road => new Road(),
-            TileType.Residential => new Residential(),
-            TileType.Commercial => new Commercial(),
-            TileType.Industrial => new Industrial(),
-            TileType.Generator => new Generator(),
-            TileType.WaterTower => new WaterTower(),
-            TileType.Extractor => new Extractor(),
-            TileType.Medical => new Medical(),
-            TileType.Fire => new Fire(),
-            TileType.Police => new Police(),
-            TileType.Communications => new Communications(),
-            _ => throw new System.Exception("No TileType was provided.")
+            TileType.Road => new Road(buildingPreset),
+            TileType.Residential => new Residential(buildingPreset),
+            TileType.Commercial => new Commercial(buildingPreset),
+            TileType.Industrial => new Industrial(buildingPreset),
+            TileType.Generator => new Generator(buildingPreset),
+            TileType.WaterTower => new WaterTower(buildingPreset),
+            TileType.Medical => new Hospital(buildingPreset),
+            TileType.Fire => new FireStation(buildingPreset),
+            TileType.Police => new PoliceStation(buildingPreset),
+            _ => throw new System.Exception("No Preset was provided.")
         };
     }
 }

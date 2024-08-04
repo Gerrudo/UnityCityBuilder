@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 
-public class WaterTower : Building, IEmployer, IPower, IWater
+public class PoliceStation : Building, IEmployer, IPower, IWater, IEarnings
 {
     public sealed override TileType TileType { get; set; }
     public sealed override TileBase TileBase { get; set; }
@@ -10,7 +10,7 @@ public class WaterTower : Building, IEmployer, IPower, IWater
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
     
-    public WaterTower(Preset buildingPreset)
+    public PoliceStation(Preset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;
@@ -20,12 +20,12 @@ public class WaterTower : Building, IEmployer, IPower, IWater
     
     public int GenerateWater()
     {
-        return Jobs.Count * 1000;
+        return 0;
     }
 
     public int ConsumeWater()
     {
-        return 0;
+        return Jobs.Count * 4;
     }
     
     public int GeneratePower()
@@ -36,5 +36,15 @@ public class WaterTower : Building, IEmployer, IPower, IWater
     public int ConsumePower()
     {
         return Jobs.Count * 4;
+    }
+    
+    public int GenerateEarnings()
+    {
+        return 0;
+    }
+
+    public int ConsumeEarnings()
+    {
+        return Jobs.Count * 10;
     }
 }

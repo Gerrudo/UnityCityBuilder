@@ -1,63 +1,60 @@
-using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.Tilemaps;
 
-public class Residential : IBuildable, ITaxable, IGrowable, IPowerable, IWaterable
+public class Residential : Building, IGrowable, IResidence, IWater, IEarnings
 {
-    public BuildingData Data { get; set; }
-    
-    public BuildingData NewBuildingData(Preset buildingPreset)
+    public sealed override TileType TileType { get; set; }
+    public sealed override TileBase TileBase { get; set; }
+    public override bool IsConnectedToRoad { get; set; }
+    public int MaxPopulation { get; set; }
+    public List<Citizen> Residents { get; set; }
+    public TileBase Level1TilBase { get; set; }
+
+    public Residential(Preset buildingPreset)
     {
-        Data = new BuildingData();
+        TileBase = buildingPreset.TileBase;
+        TileType = buildingPreset.TileType;
+        Level1TilBase = buildingPreset.Level1TilBase;
+        MaxPopulation = buildingPreset.MaxPopulation;
         
-        Data.TileType = buildingPreset.TileType;
-        Data.Level1TilBase = buildingPreset.Level1TilBase;
-        Data.MaxPopulation = buildingPreset.MaxPopulation;
-        
-        Data.Residents = new List<Citizen>();
-        
-        return Data;
-    }
-    
-    public void UpdateBuilding()
-    {
-        CheckBuildingLevel();
-        CountPopulation();
-        CountUnemployed();
-        ConsumePower();
-        ConsumeWater();
-        UpdateTaxes();
+        Residents = new List<Citizen>();
     }
 
-    private void CountPopulation()
+    public void CanUpgrade()
     {
-        Data.CurrentPopulation = Data.Residents.Count;
-    }
-
-    private void CountUnemployed()
-    {
-        Data.Unemployed = Data.Residents.Count(citizen => !citizen.IsEmployed);
-    }
-
-    public void UpdateTaxes()
-    {
-        Data.Taxes = Data.CurrentPopulation * 2;
-    }
-
-    public void CheckBuildingLevel()
-    {
-        if (Data.IsConnectedToRoad)
+        if (IsConnectedToRoad && Residents.Count > 10)
         {
-            Data.BuildingLevel = 1;
+            TileBase = Level1TilBase;
         }
     }
     
-    public void ConsumePower()
+    public int GenerateWater()
     {
-        Data.PowerInput = Data.CurrentPopulation * 4;
+        return 0;
     }
 
-    public void ConsumeWater()
+    public int ConsumeWater()
     {
-        Data.WaterInput = Data.CurrentPopulation * 2;
+        return Residents.Count * 4;
+    }
+    
+    public int GeneratePower()
+    {
+        return 0;
+    }
+
+    public int ConsumePower()
+    {
+        return Residents.Count * 4;
+    }
+
+    public int GenerateEarnings()
+    {
+        return Residents.Count * 10;
+    }
+
+    public int ConsumeEarnings()
+    {
+        return 0;
     }
 }
