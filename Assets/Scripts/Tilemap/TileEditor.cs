@@ -118,6 +118,7 @@ public class TileEditor : Singleton<TileEditor>
         {
             if (ctx.phase == InputActionPhase.Started)
             {
+                //TODO: can possibly remove SlowTapInteraction and have only certain tiles able to have click and drag interactions
                 if (ctx.interaction is SlowTapInteraction)
                 {
                     holdActive = true;
@@ -138,7 +139,7 @@ public class TileEditor : Singleton<TileEditor>
 
     private void OnRightClick(InputAction.CallbackContext ctx)
     {
-        RemoveItem();
+        RemoveItem(currentGridPosition);
     }
 
     private void OnKeyboardEsc(InputAction.CallbackContext ctx)
@@ -176,6 +177,8 @@ public class TileEditor : Singleton<TileEditor>
                 
                 city.NewTile(currentGridPosition, selectedObj);
                 
+                DrawItem(currentGridPosition, selectedObj.TileBase);
+                
                 SelectedObj = null;
                 
                 break;
@@ -193,6 +196,8 @@ public class TileEditor : Singleton<TileEditor>
                     if (!city.CanPlaceNewTile(selectedObj)) continue;
                     
                     city.NewTile(point, selectedObj);
+                    
+                    DrawItem(point, selectedObj.TileBase);
                 }
                 
                 previewMap.ClearAllTiles();
@@ -259,13 +264,13 @@ public class TileEditor : Singleton<TileEditor>
         defaultMap.RefreshAllTiles();
     }
 
-    private void RemoveItem()
+    private void RemoveItem(Vector3Int gridPosition)
     {
-        if(!defaultMap.HasTile(currentGridPosition)) return;
+        if(!defaultMap.HasTile(gridPosition)) return;
         
-        city.RemoveTile(currentGridPosition);
+        city.RemoveTile(gridPosition);
 
-        defaultMap.SetTile(currentGridPosition, null);
+        defaultMap.SetTile(gridPosition, null);
 
         //Required for our network tile rules
         defaultMap.RefreshAllTiles();

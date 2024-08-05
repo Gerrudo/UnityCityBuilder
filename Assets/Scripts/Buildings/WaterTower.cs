@@ -20,7 +20,7 @@ public class WaterTower : Building, IEmployer, IPower, IWater
     
     public int GenerateWater()
     {
-        return Jobs.Count * 1000;
+        return 10000;
     }
 
     public int ConsumeWater()
@@ -35,6 +35,6 @@ public class WaterTower : Building, IEmployer, IPower, IWater
 
     public int ConsumePower()
     {
-        return Jobs.Count * 4;
+        return 200;
     }
 }

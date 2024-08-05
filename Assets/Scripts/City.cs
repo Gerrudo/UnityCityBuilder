@@ -39,14 +39,6 @@ public class City : Singleton<City>
         StartCoroutine(CountDays());
     }
 
-    private void Update()
-    {
-        foreach (var tile in cityTiles)
-        {
-            tileEditor.DrawItem(tile.Key, tile.Value.TileBase);
-        }
-    }
-
     private IEnumerator CountDays()
     {
         yield return new WaitForSeconds(24);
@@ -66,6 +58,8 @@ public class City : Singleton<City>
         DistributeCitizens();
         
         DistributeEmployees();
+
+        ResetValues();
         
         foreach (var building in cityTiles)
         {
@@ -96,10 +90,17 @@ public class City : Singleton<City>
             //Updates the list of citizens that work at this tile
             employer.Jobs = citizens.Keys.Where(citizen => citizens[citizen].WorkTile == tilePosition).ToList();
         }
+        
+        if (!building.IsConnectedToRoad) return;
             
         if (building is IGrowable growable)
         {
+            //TODO: Cleanup building level check
+            if (growable.TileBase == growable.Level1TilBase) return;
+
             growable.CanUpgrade();
+            
+            tileEditor.DrawItem(tilePosition, growable.TileBase);
         }
 
         if (building is IEarnings earnings)
@@ -127,12 +128,21 @@ public class City : Singleton<City>
         }
     }
 
+    private void ResetValues()
+    {
+        Earnings = 0;
+        Power = 0;
+        Water = 0;
+        Goods = 0;
+    }
+
     private void DistributeCitizens()
     {
         foreach (var tile in cityTiles)
         {
             if (tile.Value is not IResidence residential) continue;
             if (residential.Residents.Count == residential.MaxPopulation) continue;
+            if (!tile.Value.IsConnectedToRoad) continue;
             
             var id = Guid.NewGuid();
                 
@@ -148,6 +158,7 @@ public class City : Singleton<City>
         {
             if (tile.Value is not IEmployer employer) continue;
             if (employer.Jobs.Count == employer.MaxEmployees) continue;
+            if (!tile.Value.IsConnectedToRoad) continue;
             
             var unemployedCitizen = citizens.FirstOrDefault(citizen => !citizen.Value.IsEmployed);
             

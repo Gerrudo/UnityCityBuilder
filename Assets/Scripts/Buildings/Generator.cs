@@ -24,12 +24,12 @@ public class Generator : Building, IEmployer, IPower, IWater, IEarnings
 
     public int ConsumeWater()
     {
-        return Jobs.Count * 25;
+        return 500;
     }
     
     public int GeneratePower()
     {
-        return Jobs.Count * 100;
+        return 25000;
     }
 
     public int ConsumePower()
@@ -44,6 +44,6 @@ public class Generator : Building, IEmployer, IPower, IWater, IEarnings
 
     public int ConsumeEarnings()
     {
-        return Jobs.Count * 10;
+        return 1000;
     }
 }
