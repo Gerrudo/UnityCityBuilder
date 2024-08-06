@@ -12,7 +12,7 @@ public class Commercial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
     
-    public Commercial(Preset buildingPreset)
+    public Commercial(BuildingPreset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;

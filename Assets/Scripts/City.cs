@@ -171,12 +171,12 @@ public class City : Singleton<City>
         }
     }
 
-    public bool CanPlaceNewTile(Preset buildingPreset)
+    public bool CanPlaceNewTile(BuildingPreset buildingPreset)
     {
         return Funds >= buildingPreset.CostToBuild;
     }
 
-    public void NewTile(Vector3Int tilePosition, Preset buildingPreset)
+    public void NewTile(Vector3Int tilePosition, BuildingPreset buildingPreset)
     {
         Funds -= buildingPreset.CostToBuild;
         

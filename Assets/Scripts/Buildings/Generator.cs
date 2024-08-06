@@ -10,7 +10,7 @@ public class Generator : Building, IEmployer, IPower, IWater, IEarnings
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
     
-    public Generator(Preset buildingPreset)
+    public Generator(BuildingPreset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;

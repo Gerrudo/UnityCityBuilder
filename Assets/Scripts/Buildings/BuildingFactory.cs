@@ -1,6 +1,6 @@
 public class BuildingFactory : IBuildingFactory
 {
-    public Building CreateBuilding(Preset buildingPreset)
+    public Building CreateBuilding(BuildingPreset buildingPreset)
     {
         return buildingPreset.TileType switch
         {

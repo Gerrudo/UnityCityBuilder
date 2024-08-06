@@ -10,7 +10,7 @@ public class FireStation : Building, IEmployer, IPower, IWater, IEarnings
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
     
-    public FireStation(Preset buildingPreset)
+    public FireStation(BuildingPreset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;

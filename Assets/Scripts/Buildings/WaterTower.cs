@@ -10,7 +10,7 @@ public class WaterTower : Building, IEmployer, IPower, IWater
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
     
-    public WaterTower(Preset buildingPreset)
+    public WaterTower(BuildingPreset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;

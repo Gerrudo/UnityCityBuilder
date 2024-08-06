@@ -10,7 +10,7 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings
     public List<Citizen> Residents { get; set; }
     public TileBase Level1TilBase { get; set; }
 
-    public Residential(Preset buildingPreset)
+    public Residential(BuildingPreset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;

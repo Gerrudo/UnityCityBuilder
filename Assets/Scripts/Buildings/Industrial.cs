@@ -12,7 +12,7 @@ public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
     
-    public Industrial(Preset buildingPreset)
+    public Industrial(BuildingPreset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;

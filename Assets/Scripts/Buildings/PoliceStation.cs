@@ -10,7 +10,7 @@ public class PoliceStation : Building, IEmployer, IPower, IWater, IEarnings
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
     
-    public PoliceStation(Preset buildingPreset)
+    public PoliceStation(BuildingPreset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;

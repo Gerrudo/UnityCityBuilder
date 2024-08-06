@@ -10,7 +10,7 @@ public class Hospital : Building, IEmployer, IPower, IWater, IEarnings
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
     
-    public Hospital(Preset buildingPreset)
+    public Hospital(BuildingPreset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;

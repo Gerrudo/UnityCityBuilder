@@ -6,7 +6,7 @@ public class Road : Building, IEarnings
     public sealed override TileBase TileBase { get; set; }
     public override bool IsConnectedToRoad { get; set; }
     
-    public Road(Preset buildingPreset)
+    public Road(BuildingPreset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;

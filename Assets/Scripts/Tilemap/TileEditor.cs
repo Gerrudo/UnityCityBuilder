@@ -14,7 +14,7 @@ public class TileEditor : Singleton<TileEditor>
 
     [SerializeField] private Tilemap previewMap, defaultMap, terrainMap;
     private TileBase tileBase;
-    private Preset selectedObj;
+    private BuildingPreset selectedObj;
 
     private Vector2 mousePosition;
     private Vector3Int currentGridPosition;
@@ -91,7 +91,7 @@ public class TileEditor : Singleton<TileEditor>
         playerInput.Gameplay.KeyboardEsc.performed += OnKeyboardEsc;
     }
 
-    private Preset SelectedObj
+    private BuildingPreset SelectedObj
     {
         set
         {
@@ -147,7 +147,7 @@ public class TileEditor : Singleton<TileEditor>
         SelectedObj = null;
     }
 
-    public void ObjectSelected(Preset obj)
+    public void ObjectSelected(BuildingPreset obj)
     {
         SelectedObj = obj;
     }

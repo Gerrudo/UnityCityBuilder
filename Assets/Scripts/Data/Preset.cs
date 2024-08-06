@@ -2,7 +2,7 @@
 using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(menuName = "Building Preset")]
-public class Preset : ScriptableObject
+public class BuildingPreset : ScriptableObject
 {
     [field: SerializeField] public string TileName { get; private set; }
     [field: SerializeField] public string Description { get; private set; }
