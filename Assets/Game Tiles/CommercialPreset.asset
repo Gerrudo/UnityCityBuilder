@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fba716a8dc494fa7989b75fe7fe9b94, type: 3}
+  m_Name: CommercialPreset
+  m_EditorClassIdentifier: 
+  <TileName>k__BackingField: Commercial Zone
+  <Description>k__BackingField: Buildings grow over time. Must be placed next to
+    a road. Provides jobs. Sells goods from industiral zones. Requires Power and
+    Water.
+  <TileType>k__BackingField: 2
+  <TileBase>k__BackingField: {fileID: 11400000, guid: 597fe624fef8f4850a6e41c16af444a5, type: 2}
+  <Level1TilBase>k__BackingField: {fileID: 11400000, guid: 04c3567177a4849008b61e747f866743, type: 2}
+  <PlacementType>k__BackingField: 2
+  <CostToBuild>k__BackingField: 100
+  <MaxPopulation>k__BackingField: 0
+  <MaxEmployees>k__BackingField: 50
+  <Expenses>k__BackingField: 0

@@ -46,7 +46,6 @@ public class City : Singleton<City>
         Day++;
 
         Funds += Earnings;
-        Earnings = 0;
 
         StartCoroutine(CountDays());
     }
@@ -91,6 +90,7 @@ public class City : Singleton<City>
             employer.Jobs = citizens.Keys.Where(citizen => citizens[citizen].WorkTile == tilePosition).ToList();
         }
         
+        //TODO: Building class should check this instead and return 0 if false.
         if (!building.IsConnectedToRoad) return;
             
         if (building is IGrowable growable)

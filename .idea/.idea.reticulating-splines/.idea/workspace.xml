@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="Fixes #58 and #59">
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City.cs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Gerrudo&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Gerrudo/reticulating-splines&quot;,
+    &quot;accountId&quot;: &quot;446ea931-f249-4064-a31f-1154014c39dc&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f646c7a159d243a7909d5204af0f0c56469200/61/294981ec/CancellationTokenSource.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scenes/Game.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scenes/Game.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scenes/Game.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scenes/Game.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/Buildings/BuildingFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Generator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/WaterTower.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/Data/BuildingData.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/Tilemap/QueryTool.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Tooltip.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/TooltipSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/TooltipTrigger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2j9VBUUuYHHSbeQCh37URsTnKs0" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Attach to Unity Editor.Attach to Unity Editor &amp; Play.executor&quot;: &quot;Debug&quot;,
+    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.44677138&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;52-add-inspectorquery-tool&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/thomasturner/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/thomasturner/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache&quot;,
+      &quot;/Users/thomasturner/Library/Application Support/Symbols/src&quot;
+    ]
+  }
+}</component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../Builds/reticulating-splines/v0.4.0-alpha/v0.4.0-alpha-macos.app/Contents/MacOS/isocitybuilder" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Builds/reticulating-splines/v0.2.0-alpha/v0.2.0-alpha-macos.app/Contents/MacOS" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.13f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath $PROJECT_DIR$ -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2022.3.13f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath $PROJECT_DIR$ -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="1175">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" value="1175" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="" />
+      <created>1720799144395</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1720799144395</updated>
+      <workItem from="1720799145997" duration="9688000" />
+      <workItem from="1720852436762" duration="174754000" />
+      <workItem from="1721981441453" duration="91312000" />
+    </task>
+    <task id="LOCAL-00001" summary="Improvements to ICalculable, restructured City class.">
+      <option name="closed" value="true" />
+      <created>1720858358122</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1720858358122</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Moving stuff around, removed ICalculable interface as it was pointless abstraction">
+      <option name="closed" value="true" />
+      <created>1720955744895</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1720955744895</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added BuildingFactory, no longer using scriptable objects in cityTiles to manipulate data.">
+      <option name="closed" value="true" />
+      <created>1720974187250</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1720974187250</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Split out factory class implemenations, added populations calculations and ITaxable">
+      <option name="closed" value="true" />
+      <created>1721026449964</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1721026449964</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Moved around scripts for readability, added a CityData static data class.">
+      <option name="closed" value="true" />
+      <created>1721112538314</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1721112538314</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added IEmployable, IPowerable and IWaterable interfaces.">
+      <option name="closed" value="true" />
+      <created>1721201092572</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1721201092572</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Removed CityData calls from Buildings">
+      <option name="closed" value="true" />
+      <created>1721369670918</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1721369670918</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Saving state before merge">
+      <option name="closed" value="true" />
+      <created>1721463049107</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1721463049107</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Updated building menu and scriptable object values for UI.">
+      <option name="closed" value="true" />
+      <created>1721564181837</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1721564181837</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added new sprites/presets">
+      <option name="closed" value="true" />
+      <created>1721627698019</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1721627698019</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added new implementations to BuildingFactory.cs.">
+      <option name="closed" value="true" />
+      <created>1721715492922</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1721715492922</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Changed GameTile to Preset, making it easier to understand it's purpose.">
+      <option name="closed" value="true" />
+      <created>1721715759926</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1721715759926</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Updated to Preset in areas that were missed.">
+      <option name="closed" value="true" />
+      <created>1721715976767</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1721715976767</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added DistributeCitizens() and moved Citizens list to our City class.">
+      <option name="closed" value="true" />
+      <created>1721803353687</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1721803353687</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Updated numbers for employment and removed IEmployable.cs">
+      <option name="closed" value="true" />
+      <created>1721972117306</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1721972117306</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Added a new query tool to our toolbar.">
+      <option name="closed" value="true" />
+      <created>1721975859213</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1721975859213</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added rectangle drawing for zoned RCI.">
+      <option name="closed" value="true" />
+      <created>1722233700646</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1722233700646</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Implemented line rendering for roads. Fixed some warning from Event System and Camera components.">
+      <option name="closed" value="true" />
+      <created>1722320662076</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1722320662076</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added updates from QueryTool.cs.">
+      <option name="closed" value="true" />
+      <created>1722320684306</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1722320684306</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Added simple DrawCity Method in City.cs.">
+      <option name="closed" value="true" />
+      <created>1722406840341</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1722406840341</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Commiting before altering building factory.">
+      <option name="closed" value="true" />
+      <created>1722579405833</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1722579405833</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Refactoring for #56">
+      <option name="closed" value="true" />
+      <created>1722683503158</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1722683503158</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Added back parts of power and water">
+      <option name="closed" value="true" />
+      <created>1722751889013</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1722751889013</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Updated interfaces for earnings and utilites">
+      <option name="closed" value="true" />
+      <created>1722756424914</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1722756424914</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Fixes #58 and #59">
+      <option name="closed" value="true" />
+      <created>1722838063824</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1722838063824</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
+    <option name="unityProject" value="true" />
+    <option name="unityProjectFolder" value="true" />
+  </component>
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Improvements to ICalculable, restructured City class." />
+    <MESSAGE value="Moving stuff around, removed ICalculable interface as it was pointless abstraction" />
+    <MESSAGE value="Added BuildingFactory, no longer using scriptable objects in cityTiles to manipulate data." />
+    <MESSAGE value="Split out factory class implemenations, added populations calculations and ITaxable" />
+    <MESSAGE value="Moved around scripts for readability, added a CityData static data class." />
+    <MESSAGE value="Added IEmployable, IPowerable and IWaterable interfaces." />
+    <MESSAGE value="Removed CityData calls from Buildings" />
+    <MESSAGE value="Saving state before merge" />
+    <MESSAGE value="Updated building menu and scriptable object values for UI." />
+    <MESSAGE value="Added new sprites/presets" />
+    <MESSAGE value="Added new implementations to BuildingFactory.cs." />
+    <MESSAGE value="Changed GameTile to Preset, making it easier to understand it's purpose." />
+    <MESSAGE value="Updated to Preset in areas that were missed." />
+    <MESSAGE value="Added DistributeCitizens() and moved Citizens list to our City class." />
+    <MESSAGE value="Updated numbers for employment and removed IEmployable.cs" />
+    <MESSAGE value="Added a new query tool to our toolbar." />
+    <MESSAGE value="Added rectangle drawing for zoned RCI." />
+    <MESSAGE value="Implemented line rendering for roads. Fixed some warning from Event System and Camera components." />
+    <MESSAGE value="Added updates from QueryTool.cs." />
+    <MESSAGE value="Added simple DrawCity Method in City.cs." />
+    <MESSAGE value="Commiting before altering building factory." />
+    <MESSAGE value="Refactoring for #56" />
+    <MESSAGE value="Added back parts of power and water" />
+    <MESSAGE value="Updated interfaces for earnings and utilites" />
+    <MESSAGE value="Fixes #58 and #59" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes #58 and #59" />
+  </component>
+</project>
