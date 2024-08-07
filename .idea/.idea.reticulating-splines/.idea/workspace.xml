@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="Updated Preset name to BuildingPreset">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IApproval.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IApproval.cs.meta" afterDir="false" />
+    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="#60: Added IApproval.cs interface, modifed Residential.cs to include a template for GetApprovalScore().">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +46,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/WaterTower.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
@@ -159,7 +157,7 @@
       <updated>1720799144395</updated>
       <workItem from="1720799145997" duration="9688000" />
       <workItem from="1720852436762" duration="174754000" />
-      <workItem from="1721981441453" duration="99854000" />
+      <workItem from="1721981441453" duration="102448000" />
     </task>
     <task id="LOCAL-00001" summary="Improvements to ICalculable, restructured City class.">
       <option name="closed" value="true" />
@@ -369,7 +367,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722925399967</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="#60: Added IApproval.cs interface, modifed Residential.cs to include a template for GetApprovalScore().">
+      <option name="closed" value="true" />
+      <created>1723010583719</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1723010583719</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -396,8 +402,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Moving stuff around, removed ICalculable interface as it was pointless abstraction" />
-    <MESSAGE value="Added BuildingFactory, no longer using scriptable objects in cityTiles to manipulate data." />
     <MESSAGE value="Split out factory class implemenations, added populations calculations and ITaxable" />
     <MESSAGE value="Moved around scripts for readability, added a CityData static data class." />
     <MESSAGE value="Added IEmployable, IPowerable and IWaterable interfaces." />
@@ -421,6 +425,8 @@
     <MESSAGE value="Updated interfaces for earnings and utilites" />
     <MESSAGE value="Fixes #58 and #59" />
     <MESSAGE value="Updated Preset name to BuildingPreset" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Preset name to BuildingPreset" />
+    <MESSAGE value="Added IApproval.cs interface, modifed Residential.cs to include a template for GetApprovalScore()." />
+    <MESSAGE value="#60: Added IApproval.cs interface, modifed Residential.cs to include a template for GetApprovalScore()." />
+    <option name="LAST_COMMIT_MESSAGE" value="#60: Added IApproval.cs interface, modifed Residential.cs to include a template for GetApprovalScore()." />
   </component>
 </project>
