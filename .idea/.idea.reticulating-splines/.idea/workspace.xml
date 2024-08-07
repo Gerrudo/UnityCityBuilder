@@ -4,24 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="Fixes #58 and #59">
+    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="Updated Preset name to BuildingPreset">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IApproval.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IApproval.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildingFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildingFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/FireStation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/FireStation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Generator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Generator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Hospital.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Hospital.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/PoliceStation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/PoliceStation.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Road.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Road.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/WaterTower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/WaterTower.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/City.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Preset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Preset.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IBuildingFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IBuildingFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TileEditButtonHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TileEditButtonHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TileEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TileEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/TooltipTrigger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/TooltipTrigger.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +42,7 @@
     <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scenes/Game.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scenes/Game.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scenes/Game.unity" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/Buildings/BuildingFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/Buildings/BuildingFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Generator.cs" root0="FORCE_HIGHLIGHTING" />
@@ -170,7 +159,7 @@
       <updated>1720799144395</updated>
       <workItem from="1720799145997" duration="9688000" />
       <workItem from="1720852436762" duration="174754000" />
-      <workItem from="1721981441453" duration="94579000" />
+      <workItem from="1721981441453" duration="99854000" />
     </task>
     <task id="LOCAL-00001" summary="Improvements to ICalculable, restructured City class.">
       <option name="closed" value="true" />
@@ -372,7 +361,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722838063824</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Updated Preset name to BuildingPreset">
+      <option name="closed" value="true" />
+      <created>1722925399967</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1722925399967</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -399,7 +396,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Improvements to ICalculable, restructured City class." />
     <MESSAGE value="Moving stuff around, removed ICalculable interface as it was pointless abstraction" />
     <MESSAGE value="Added BuildingFactory, no longer using scriptable objects in cityTiles to manipulate data." />
     <MESSAGE value="Split out factory class implemenations, added populations calculations and ITaxable" />
@@ -424,6 +420,7 @@
     <MESSAGE value="Added back parts of power and water" />
     <MESSAGE value="Updated interfaces for earnings and utilites" />
     <MESSAGE value="Fixes #58 and #59" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes #58 and #59" />
+    <MESSAGE value="Updated Preset name to BuildingPreset" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Preset name to BuildingPreset" />
   </component>
 </project>

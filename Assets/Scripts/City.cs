@@ -20,7 +20,7 @@ public class City : Singleton<City>
     public int Power { get; private set; }
     public int Water { get; private set; }
     public int Goods { get; private set; }
-    public int ApprovalRating { get; private set; }
+    public float ApprovalRating { get; private set; }
 
     protected override void Awake()
     {
@@ -125,6 +125,11 @@ public class City : Singleton<City>
         {
             Goods += goods.GenerateGoods();
             Goods -= goods.ConsumeGoods();
+        }
+
+        if (building is IApproval approval)
+        {
+            ApprovalRating += approval.GetApprovalScore();
         }
     }
 

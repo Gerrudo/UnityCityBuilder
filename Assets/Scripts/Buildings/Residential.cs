@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 
-public class Residential : Building, IGrowable, IResidence, IWater, IEarnings
+public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, IApproval
 {
     public sealed override TileType TileType { get; set; }
     public sealed override TileBase TileBase { get; set; }
@@ -54,6 +54,30 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings
     }
 
     public int ConsumeEarnings()
+    {
+        return 0;
+    }
+    
+    public float GetApprovalScore()
+    {
+        //TODO: Weight should be count of total values divided by 10. 
+        var employmentWeight = 2.5f;
+        var fireStationWeight = 2.5f;
+        var policeStationWeight = 2.5f;
+        var hospitalWeight = 2.5f;
+
+        return (GetEmploymentScore() * employmentWeight) +
+               (GetServiceScore(TileType.Fire) * fireStationWeight) +
+               (GetServiceScore(TileType.Police) * policeStationWeight) +
+               (GetServiceScore(TileType.Medical) * hospitalWeight);
+    }
+    
+    private int GetEmploymentScore()
+    {
+        return 0;
+    }
+    
+    private int GetServiceScore(TileType tileType)
     {
         return 0;
     }
