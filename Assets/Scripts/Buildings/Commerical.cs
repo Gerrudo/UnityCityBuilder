@@ -21,12 +21,11 @@ public class Commercial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
         Jobs = new List<Guid>();
     }
     
-    public void CanUpgrade()
+    public bool CanUpgrade()
     {
-        if (IsConnectedToRoad && Jobs.Count > 10)
-        {
-            TileBase = Level1TilBase;
-        }
+        if (!IsConnectedToRoad || Jobs.Count <= 10 || TileBase == Level1TilBase) return false;
+        TileBase = Level1TilBase;
+        return true;
     }
     
     public int GenerateWater()

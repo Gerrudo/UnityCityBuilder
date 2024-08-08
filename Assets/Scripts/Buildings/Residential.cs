@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using System.Linq;
+using UnityEngine;
 
 public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, IApproval, IPower
 {
@@ -21,12 +22,11 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
         Residents = new List<Citizen>();
     }
 
-    public void CanUpgrade()
+    public bool CanUpgrade()
     {
-        if (IsConnectedToRoad && Residents.Count > 10)
-        {
-            TileBase = Level1TilBase;
-        }
+        if (!IsConnectedToRoad || Residents.Count <= 10|| TileBase == Level1TilBase) return false;
+        TileBase = Level1TilBase;
+        return true;
     }
     
     public int GenerateWater()
@@ -59,36 +59,38 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
         return 0;
     }
     
-    public float GetApprovalScore()
+    public float GetApprovalScore(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
     {
-        //TODO: Weight should be count of total values divided by 10.
-        var employmentWeight = 2.5f;
-        var fireStationWeight = 2.5f;
-        var policeStationWeight = 2.5f;
-        var hospitalWeight = 2.5f;
+        const float employmentWeight = 0.4f;
+        const float fireStationWeight = 0.2f;
+        const float policeStationWeight = 0.2f;
+        const float hospitalWeight = 0.2f;
 
-        return (GetEmploymentScore() * employmentWeight) +
-               (GetServiceScore(TileType.Fire) * fireStationWeight) +
-               (GetServiceScore(TileType.Police) * policeStationWeight) +
-               (GetServiceScore(TileType.Medical) * hospitalWeight);
+        var approvalScore= (GetEmploymentScore() * employmentWeight) +
+               (GetServiceScore(TileType.Fire, cityTiles) * fireStationWeight) +
+               (GetServiceScore(TileType.Police, cityTiles) * policeStationWeight) +
+               (GetServiceScore(TileType.Medical, cityTiles) * hospitalWeight);
+
+        return approvalScore;
     }
-
-    private double CalculatePercentage(double part, double whole) => (part / whole) * 100;
 
     private int GetEmploymentScore()
     {
-        //Create percentage based on employed citizens/unemployed citizens
-        var unemployed = Residents.Count(resident => !resident.IsEmployed);
+        var employed = Residents.Count(resident => resident.IsEmployed);
         
-        var score = CalculatePercentage(unemployed, Residents.Count);
+        var score = Calculations.GetPercentage(employed, Residents.Count);
         
         return (int)score;
     }
     
-    private int GetServiceScore(TileType tileType)
+    private int GetServiceScore(TileType tileType, IReadOnlyDictionary<Vector3Int, Building> cityTiles)
     {
         //Get nearby tiles here to see if any are a given building type
+        //% score should depend on how close the building is
         //If building is present, return 100 for this score for now
-        return 0;
+        
+        var score = cityTiles.Any(tile => tile.Value.TileType == tileType) ? 100 : 0;
+
+        return score;
     }
 }

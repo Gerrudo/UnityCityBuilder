@@ -64,6 +64,8 @@ public class City : Singleton<City>
         {
             GetBuildingValues(building.Key ,building.Value);
         }
+
+        ApprovalRating = Calculations.Normalise(ApprovalRating, cityTiles.Count(tile => tile.Value is IApproval));
         
         Population = citizens.Count;
         Unemployed = citizens.Count(citizen => !citizen.Value.IsEmployed);
@@ -95,9 +97,6 @@ public class City : Singleton<City>
             
         if (building is IGrowable growable)
         {
-            //TODO: Cleanup building level check
-            if (growable.TileBase == growable.Level1TilBase) return;
-
             growable.CanUpgrade();
             
             tileEditor.DrawItem(tilePosition, growable.TileBase);
@@ -129,7 +128,7 @@ public class City : Singleton<City>
 
         if (building is IApproval approval)
         {
-            ApprovalRating += approval.GetApprovalScore();
+            ApprovalRating += approval.GetApprovalScore(cityTiles);
         }
     }
 
@@ -139,6 +138,7 @@ public class City : Singleton<City>
         Power = 0;
         Water = 0;
         Goods = 0;
+        ApprovalRating = 0;
     }
 
     private void DistributeCitizens()

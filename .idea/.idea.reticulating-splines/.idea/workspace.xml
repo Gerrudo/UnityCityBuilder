@@ -4,9 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="#60: Added IApproval.cs interface, modifed Residential.cs to include a template for GetApprovalScore().">
+    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="Added employment calculation">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Utilities/Calculations.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Utilities/Calculations.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IApproval.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IApproval.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IGrowable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IGrowable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TilemapExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utilities/TilemapExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TilemapExtension.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utilities/TilemapExtension.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +53,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Generator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/Buildings/Residential.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/WaterTower.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
@@ -157,7 +167,7 @@
       <updated>1720799144395</updated>
       <workItem from="1720799145997" duration="9688000" />
       <workItem from="1720852436762" duration="174754000" />
-      <workItem from="1721981441453" duration="102448000" />
+      <workItem from="1721981441453" duration="111297000" />
     </task>
     <task id="LOCAL-00001" summary="Improvements to ICalculable, restructured City class.">
       <option name="closed" value="true" />
@@ -375,7 +385,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723010583719</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Added employment calculation">
+      <option name="closed" value="true" />
+      <created>1723013909488</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1723013909488</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -402,7 +420,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Split out factory class implemenations, added populations calculations and ITaxable" />
     <MESSAGE value="Moved around scripts for readability, added a CityData static data class." />
     <MESSAGE value="Added IEmployable, IPowerable and IWaterable interfaces." />
     <MESSAGE value="Removed CityData calls from Buildings" />
@@ -427,6 +444,7 @@
     <MESSAGE value="Updated Preset name to BuildingPreset" />
     <MESSAGE value="Added IApproval.cs interface, modifed Residential.cs to include a template for GetApprovalScore()." />
     <MESSAGE value="#60: Added IApproval.cs interface, modifed Residential.cs to include a template for GetApprovalScore()." />
-    <option name="LAST_COMMIT_MESSAGE" value="#60: Added IApproval.cs interface, modifed Residential.cs to include a template for GetApprovalScore()." />
+    <MESSAGE value="Added employment calculation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added employment calculation" />
   </component>
 </project>
