@@ -67,9 +67,9 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
         const float hospitalWeight = 0.2f;
 
         var approvalScore= (GetEmploymentScore() * employmentWeight) +
-               (GetServiceScore(TileType.Fire, cityTiles) * fireStationWeight) +
-               (GetServiceScore(TileType.Police, cityTiles) * policeStationWeight) +
-               (GetServiceScore(TileType.Medical, cityTiles) * hospitalWeight);
+               (TileSearch.GetServiceScore(TileType.Fire, cityTiles) * fireStationWeight) +
+               (TileSearch.GetServiceScore(TileType.Police, cityTiles) * policeStationWeight) +
+               (TileSearch.GetServiceScore(TileType.Medical, cityTiles) * hospitalWeight);
 
         return approvalScore;
     }
@@ -77,20 +77,8 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
     private int GetEmploymentScore()
     {
         var employed = Residents.Count(resident => resident.IsEmployed);
-        
         var score = Calculations.GetPercentage(employed, Residents.Count);
         
         return (int)score;
-    }
-    
-    private int GetServiceScore(TileType tileType, IReadOnlyDictionary<Vector3Int, Building> cityTiles)
-    {
-        //Get nearby tiles here to see if any are a given building type
-        //% score should depend on how close the building is
-        //If building is present, return 100 for this score for now
-        
-        var score = cityTiles.Any(tile => tile.Value.TileType == tileType) ? 100 : 0;
-
-        return score;
     }
 }

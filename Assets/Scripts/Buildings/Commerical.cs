@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Commercial : Building, IEmployer, IGrowable, IPower, IWater, IGoods, IEarnings
+public class Commercial : Building, IEmployer, IGrowable, IPower, IWater, IGoods, IEarnings, IApproval
 {
     public sealed override TileType TileType { get; set; }
     public sealed override TileBase TileBase { get; set; }
@@ -66,5 +67,22 @@ public class Commercial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
     public int ConsumeGoods()
     {
         return Jobs.Count * 2;
+    }
+
+    public float GetApprovalScore(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
+    {
+        const float employmentWeight = 0.8f;
+        const float fireStationWeight = 0.2f;
+
+        var approvalScore = (GetEmploymentScore() * employmentWeight) +
+                            (TileSearch.GetServiceScore(TileType.Fire, cityTiles) * fireStationWeight);
+
+        return approvalScore;
+    }
+
+    private int GetEmploymentScore()
+    {
+        var score = Calculations.GetPercentage(Jobs.Count, MaxEmployees);
+        return (int)score;
     }
 }
