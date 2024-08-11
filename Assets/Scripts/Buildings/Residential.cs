@@ -51,7 +51,7 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
 
     public int GenerateEarnings()
     {
-        return Residents.Count * 10;
+        return Residents.Count * 5;
     }
 
     public int ConsumeEarnings()
@@ -72,6 +72,18 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
                (TileSearch.GetServiceScore(TileType.Medical, cityTiles) * hospitalWeight);
 
         return approvalScore;
+    }
+
+    public int GetPopulationMultiplier(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
+    {
+        //Must be < 0, multiplying by 0 will always return 0 so population will never grow.
+        var multiplier = 1;
+
+        if (TileSearch.HasTileType(TileType.Medical, cityTiles)) multiplier++;
+        if (TileSearch.HasTileType(TileType.Fire, cityTiles)) multiplier++;
+        if (TileSearch.HasTileType(TileType.Police, cityTiles)) multiplier++;
+
+        return multiplier;
     }
 
     private int GetEmploymentScore()

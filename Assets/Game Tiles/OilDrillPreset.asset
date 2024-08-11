@@ -19,7 +19,8 @@ MonoBehaviour:
   <TileType>k__BackingField: 6
   <TileBase>k__BackingField: {fileID: 11400000, guid: 0d47cf717bd1a4777bf3c2a37f39257f, type: 2}
   <Level1TilBase>k__BackingField: {fileID: 0}
+  <PlacementType>k__BackingField: 0
   <CostToBuild>k__BackingField: 2000
   <MaxPopulation>k__BackingField: 0
-  <MaxEmployees>k__BackingField: 0
+  <MaxEmployees>k__BackingField: 100
   <Expenses>k__BackingField: 250

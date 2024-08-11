@@ -29,7 +29,7 @@ public class Generator : Building, IEmployer, IPower, IWater, IEarnings
     
     public int GeneratePower()
     {
-        return 25000;
+        return 50000;
     }
 
     public int ConsumePower()

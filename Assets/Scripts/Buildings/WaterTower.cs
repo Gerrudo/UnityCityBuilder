@@ -20,7 +20,7 @@ public class WaterTower : Building, IEmployer, IPower, IWater
     
     public int GenerateWater()
     {
-        return 10000;
+        return 20000;
     }
 
     public int ConsumeWater()

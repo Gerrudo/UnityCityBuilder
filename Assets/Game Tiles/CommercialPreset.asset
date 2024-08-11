@@ -22,5 +22,5 @@ MonoBehaviour:
   <PlacementType>k__BackingField: 2
   <CostToBuild>k__BackingField: 100
   <MaxPopulation>k__BackingField: 0
-  <MaxEmployees>k__BackingField: 50
+  <MaxEmployees>k__BackingField: 100
   <Expenses>k__BackingField: 0

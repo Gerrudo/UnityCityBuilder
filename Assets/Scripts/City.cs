@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = System.Random;
 
 public class City : Singleton<City>
 {
@@ -15,7 +16,7 @@ public class City : Singleton<City>
     public int Day { get; private set; }
     public int Population { get; private set; }
     public int Unemployed { get; private set; }
-    public int Funds { get; private set; } = 4000000;
+    public int Funds { get; private set; } = 25000;
     public int Earnings { get; private set; }
     public int Power { get; private set; }
     public int Water { get; private set; }
@@ -42,6 +43,8 @@ public class City : Singleton<City>
     private IEnumerator CountDays()
     {
         yield return new WaitForSeconds(24);
+        
+        DistributeCitizens();
             
         Day++;
 
@@ -53,14 +56,12 @@ public class City : Singleton<City>
     private IEnumerator UpdateCity()
     {
         yield return new WaitForSeconds(1);
-        
-        DistributeCitizens();
-        
-        DistributeEmployees();
 
         ResetValues();
         
-        foreach (var building in cityTiles)
+        DistributeEmployees();
+        
+        foreach (var building in cityTiles)   
         {
             GetBuildingValues(building.Key ,building.Value);
         }
@@ -140,7 +141,7 @@ public class City : Singleton<City>
         Goods = 0;
         ApprovalRating = 0;
     }
-
+    
     private void DistributeCitizens()
     {
         foreach (var tile in cityTiles)
@@ -148,12 +149,21 @@ public class City : Singleton<City>
             if (tile.Value is not IResidence residential) continue;
             if (residential.Residents.Count == residential.MaxPopulation) continue;
             if (!tile.Value.IsConnectedToRoad) continue;
-            
-            var id = Guid.NewGuid();
+
+            var random = new Random();
+            var residentsToAdd = random.Next(1, 5);
+            residentsToAdd *= residential.GetPopulationMultiplier(cityTiles);
+
+            for (var i = 0; i < residentsToAdd; i++)
+            {
+                if (residential.Residents.Count == residential.MaxPopulation) break;
                 
-            var newCitizen = new Citizen(tile.Key);
+                var id = Guid.NewGuid();
+                
+                var newCitizen = new Citizen(tile.Key);
             
-            citizens.Add(id, newCitizen);
+                citizens.Add(id, newCitizen);
+            }
         }
     }
     

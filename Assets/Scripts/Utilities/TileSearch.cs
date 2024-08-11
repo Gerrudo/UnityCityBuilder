@@ -12,4 +12,9 @@ public class TileSearch
         
         return cityTiles.Any(tile => tile.Value.TileType == tileType) ? 100 : 0;
     }
+
+    public static bool HasTileType(TileType tileType, IReadOnlyDictionary<Vector3Int, Building> cityTiles)
+    {
+        return cityTiles.Any(tile => tile.Value.TileType == tileType);
+    }
 }
