@@ -1,5 +1,5 @@
 public interface IPower
 {
-    int GeneratePower();
-    int ConsumePower();
+    int GeneratePower(int power);
+    int ConsumePower(int power);
 }

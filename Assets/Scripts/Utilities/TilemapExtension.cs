@@ -24,7 +24,7 @@ public static class TilemapExtension
         return vector + Vector3Int.down;
     }
 
-    public static Vector3Int[] Neighbours(this Vector3Int vector)
+    private static Vector3Int[] Neighbours(this Vector3Int vector)
     {
         return new Vector3Int[4]
         {
@@ -45,5 +45,24 @@ public static class TilemapExtension
                 yield return new Vector3Int(x, y, 0);
             }
         }
+    }
+    
+    public static bool CheckTileConnection(Vector3Int tilePosition, TileType tileToCheck, IReadOnlyDictionary<Vector3Int, Building> cityTiles)
+    {
+        var connected = false;
+        
+        var neighbours = tilePosition.Neighbours();
+
+        foreach (var neighbour in neighbours)
+        {
+            if (!cityTiles.TryGetValue(neighbour, out var connectedTile)) continue;
+            
+            if (connectedTile.TileType != tileToCheck) continue;
+            connected = true;
+            
+            break;
+        }
+
+        return connected;
     }
 }

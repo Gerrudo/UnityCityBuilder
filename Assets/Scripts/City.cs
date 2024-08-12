@@ -14,9 +14,11 @@ public class City : Singleton<City>
     private CityStatistics cityStatistics;
     
     public int Day { get; private set; }
+    [field: SerializeField] public int SecondsPerDay { get; private set; }
+    [field: SerializeField] public int SecondsPerUpdate { get; private set; }
     public int Population { get; private set; }
     public int Unemployed { get; private set; }
-    public int Funds { get; private set; } = 25000;
+    [field: SerializeField] public int Funds { get; private set; }
     public int Earnings { get; private set; }
     public int Power { get; private set; }
     public int Water { get; private set; }
@@ -42,7 +44,7 @@ public class City : Singleton<City>
 
     private IEnumerator CountDays()
     {
-        yield return new WaitForSeconds(24);
+        yield return new WaitForSeconds(SecondsPerDay);
         
         DistributeCitizens();
             
@@ -55,7 +57,7 @@ public class City : Singleton<City>
     
     private IEnumerator UpdateCity()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(SecondsPerUpdate);
 
         ResetValues();
         
@@ -78,7 +80,7 @@ public class City : Singleton<City>
 
     private void GetBuildingValues(Vector3Int tilePosition, Building building)
     {
-        building.IsConnectedToRoad = CheckTileConnection(tilePosition, TileType.Road);
+        building.IsConnectedToRoad = TilemapExtension.CheckTileConnection(tilePosition, TileType.Road, cityTiles);
             
         //No switch as it's possible for buildings to implement multiple of these interfaces.
         if (building is IResidence residence)
@@ -93,32 +95,22 @@ public class City : Singleton<City>
             employer.Jobs = citizens.Keys.Where(citizen => citizens[citizen].WorkTile == tilePosition).ToList();
         }
         
-        //TODO: Building class should check this instead and return 0 if false.
-        if (!building.IsConnectedToRoad) return;
-            
-        if (building is IGrowable growable)
+        if (building is IWater water)
         {
-            growable.CanUpgrade();
-            
-            tileEditor.DrawItem(tilePosition, growable.TileBase);
+            Water = water.GenerateWater(Water);
+            Water = water.ConsumeWater(Water);
+        }
+        
+        if (building is IPower power)
+        {
+            Power = power.GeneratePower(Power);
+            Power = power.ConsumePower(Power);
         }
 
         if (building is IEarnings earnings)
         {
             Earnings += earnings.GenerateEarnings();
             Earnings -= earnings.ConsumeEarnings();
-        }
-
-        if (building is IPower power)
-        {
-            Power += power.GeneratePower();
-            Power -= power.ConsumePower();
-        }
-            
-        if (building is IWater water)
-        {
-            Water += water.GenerateWater();
-            Water -= water.ConsumeWater();
         }
 
         if (building is IGoods goods)
@@ -131,13 +123,19 @@ public class City : Singleton<City>
         {
             ApprovalRating += approval.GetApprovalScore(cityTiles);
         }
+        
+        if (building is IGrowable growable)
+        {
+            growable.CanUpgrade();
+            
+            tileEditor.DrawItem(tilePosition, growable.TileBase);
+        }
     }
 
     private void ResetValues()
     {
+        //TODO: Make this redundant, like with water and power.
         Earnings = 0;
-        Power = 0;
-        Water = 0;
         Goods = 0;
         ApprovalRating = 0;
     }
@@ -225,24 +223,5 @@ public class City : Singleton<City>
         cityTiles.TryGetValue(tilePosition, out var building);
         
         return building;
-    }
-    
-    private bool CheckTileConnection(Vector3Int tilePosition, TileType tileToCheck)
-    {
-        var connected = false;
-        
-        var neighbours = tilePosition.Neighbours();
-
-        foreach (var neighbour in neighbours)
-        {
-            if (!cityTiles.TryGetValue(neighbour, out var connectedTile)) continue;
-            
-            if (connectedTile.TileType != tileToCheck) continue;
-            connected = true;
-            
-            break;
-        }
-
-        return connected;
     }
 }    

@@ -11,6 +11,8 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
     public int MaxPopulation { get; set; }
     public List<Citizen> Residents { get; set; }
     public TileBase Level1TilBase { get; set; }
+    public bool IsPowered { get; set; }
+    public bool IsWatered { get; set; }
 
     public Residential(BuildingPreset buildingPreset)
     {
@@ -29,28 +31,46 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
         return true;
     }
     
-    public int GenerateWater()
+    public int GenerateWater(int water)
     {
-        return 0;
+        return water;
     }
 
-    public int ConsumeWater()
+    public int ConsumeWater(int water)
     {
-        return Residents.Count * 4;
+        if (!IsConnectedToRoad) return water;
+
+        var waterConsumed = Residents.Count * 4;
+
+        IsWatered = waterConsumed > water;
+        
+        water -= waterConsumed;
+
+        return water;
     }
     
-    public int GeneratePower()
+    public int GeneratePower(int power)
     {
-        return 0;
+        return power;
     }
 
-    public int ConsumePower()
+    public int ConsumePower(int power)
     {
-        return Residents.Count * 4;
+        if (!IsConnectedToRoad) return power;
+        
+        var powerConsumed = Residents.Count * 4;
+
+        IsPowered = powerConsumed > power;
+        
+        power -= powerConsumed;
+
+        return power;
     }
 
     public int GenerateEarnings()
     {
+        if (!IsConnectedToRoad) return 0;
+        
         return Residents.Count * 5;
     }
 

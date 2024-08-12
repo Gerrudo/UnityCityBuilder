@@ -9,6 +9,8 @@ public class WaterTower : Building, IEmployer, IPower, IWater
     public override bool IsConnectedToRoad { get; set; }
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
+    public bool IsPowered { get; set; }
+
     
     public WaterTower(BuildingPreset buildingPreset)
     {
@@ -18,23 +20,36 @@ public class WaterTower : Building, IEmployer, IPower, IWater
         Jobs = new List<Guid>();
     }
     
-    public int GenerateWater()
+    public int GenerateWater(int water)
     {
-        return 20000;
+        const int maxWater = 20000;
+        const int generatedWater = 2000;
+        
+        //TODO: Replace with a TileSearch
+        //if (!IsPowered) return water;
+        if (water >= maxWater) return water;
+
+        return water + generatedWater;
     }
 
-    public int ConsumeWater()
+    public int ConsumeWater(int water)
     {
-        return 0;
+        return water;
     }
     
-    public int GeneratePower()
+    public int GeneratePower(int power)
     {
-        return 0;
+        return power;
     }
 
-    public int ConsumePower()
+    public int ConsumePower(int power)
     {
-        return 200;
+        var powerConsumed = 200;
+
+        IsPowered = powerConsumed > power;
+        
+        power -= powerConsumed;
+
+        return power;
     }
 }

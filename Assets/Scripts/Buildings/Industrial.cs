@@ -12,6 +12,9 @@ public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
 
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
+    public bool IsPowered { get; set; }
+    public bool IsWatered { get; set; }
+
     
     public Industrial(BuildingPreset buildingPreset)
     {
@@ -29,24 +32,36 @@ public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
         return true;
     }
     
-    public int GenerateWater()
+    public int GenerateWater(int water)
     {
-        return 0;
+        return water;
     }
 
-    public int ConsumeWater()
+    public int ConsumeWater(int water)
     {
-        return Jobs.Count * 4;
+        var waterConsumed = Jobs.Count * 4;
+
+        IsWatered = waterConsumed > water;
+        
+        water -= waterConsumed;
+
+        return water;
     }
     
-    public int GeneratePower()
+    public int GeneratePower(int power)
     {
-        return 0;
+        return power;
     }
 
-    public int ConsumePower()
+    public int ConsumePower(int power)
     {
-        return Jobs.Count * 4;
+        var powerConsumed = Jobs.Count * 4;
+
+        IsPowered = powerConsumed > power;
+        
+        power -= powerConsumed;
+
+        return power;
     }
     
     public int GenerateEarnings()
