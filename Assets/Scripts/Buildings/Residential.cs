@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
+using System.Linq;
+using UnityEngine;
 
-public class Residential : Building, IGrowable, IResidence, IWater, IEarnings
+public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, IApproval, IPower
 {
     public sealed override TileType TileType { get; set; }
     public sealed override TileBase TileBase { get; set; }
@@ -9,8 +11,11 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings
     public int MaxPopulation { get; set; }
     public List<Citizen> Residents { get; set; }
     public TileBase Level1TilBase { get; set; }
+    public bool IsPowered { get; set; }
+    public bool IsWatered { get; set; }
+    public override bool IsActive { get; set; }
 
-    public Residential(Preset buildingPreset)
+    public Residential(BuildingPreset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;
@@ -20,41 +25,107 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings
         Residents = new List<Citizen>();
     }
 
-    public void CanUpgrade()
+    public override void UpdateBuildingStatus()
     {
-        if (IsConnectedToRoad && Residents.Count > 10)
-        {
-            TileBase = Level1TilBase;
-        }
-    }
-    
-    public int GenerateWater()
-    {
-        return 0;
+        var flags = new List<bool> {IsConnectedToRoad, IsPowered, IsWatered};
+
+        var hasFalse =  flags.Contains(false);
+
+        IsActive = !hasFalse;
     }
 
-    public int ConsumeWater()
+    public bool CanUpgrade()
     {
-        return Residents.Count * 4;
+        if (!IsActive || Residents.Count <= 10|| TileBase == Level1TilBase) return false;
+        TileBase = Level1TilBase;
+        return true;
     }
     
-    public int GeneratePower()
+    public int GenerateWater(int water)
     {
-        return 0;
+        return water;
     }
 
-    public int ConsumePower()
+    public int ConsumeWater(int water)
     {
-        return Residents.Count * 4;
+        if (!IsConnectedToRoad) return water;
+
+        var waterConsumed = Residents.Count * 4;
+
+        IsWatered = waterConsumed < water;
+        
+        water -= waterConsumed;
+
+        return water;
+    }
+    
+    public int GeneratePower(int power)
+    {
+        return power;
+    }
+
+    public int ConsumePower(int power)
+    {
+        if (!IsConnectedToRoad) return power;
+        
+        var powerConsumed = Residents.Count * 4;
+
+        IsPowered = powerConsumed < power;
+        
+        power -= powerConsumed;
+
+        return power;
     }
 
     public int GenerateEarnings()
     {
-        return Residents.Count * 10;
+        if (!IsConnectedToRoad) return 0;
+        
+        return Residents.Count * 5;
     }
 
     public int ConsumeEarnings()
     {
         return 0;
+    }
+    
+    public float GetApprovalScore(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
+    {
+        const float employmentWeight = 0.5f;
+        const float fireStationWeight = 0.1f;
+        const float policeStationWeight = 0.1f;
+        const float hospitalWeight = 0.1f;
+        const float isPoweredWeight = 0.1f;
+        const float isWateredWeight = 0.1f;
+
+        var isPoweredScore = IsPowered ? 100 : 0;
+        var isWateredScore = IsPowered ? 100 : 0;
+
+        return (GetEmploymentScore() * employmentWeight) +
+               (TileSearch.GetServiceScore(TileType.Fire, cityTiles) * fireStationWeight) +
+               (TileSearch.GetServiceScore(TileType.Police, cityTiles) * policeStationWeight) +
+               (TileSearch.GetServiceScore(TileType.Medical, cityTiles) * hospitalWeight) +
+               (isPoweredScore * isPoweredWeight) +
+               (isWateredScore * isWateredWeight);
+    }
+
+    public int GetPopulationMultiplier(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
+    {
+        //Must be < 0, multiplying by 0 will always return 0 so population will never grow.
+        var multiplier = 1;
+
+        if (TileSearch.HasTileType(TileType.Medical, cityTiles)) multiplier++;
+        if (TileSearch.HasTileType(TileType.Fire, cityTiles)) multiplier++;
+        if (TileSearch.HasTileType(TileType.Police, cityTiles)) multiplier++;
+
+        return multiplier;
+    }
+
+    private int GetEmploymentScore()
+    {
+        var employed = Residents.Count(resident => resident.IsEmployed);
+        var score = Calculations.GetPercentage(employed, Residents.Count);
+        
+        return (int)score;
     }
 }

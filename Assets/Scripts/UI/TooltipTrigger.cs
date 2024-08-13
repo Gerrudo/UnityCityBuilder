@@ -5,7 +5,7 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 {
     TooltipSystem tooltipSystem;
 
-    [SerializeField] private Preset gameTile;
+    [SerializeField] private BuildingPreset gameTile;
 
     private void Awake()
     {

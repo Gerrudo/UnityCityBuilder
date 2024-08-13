@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public interface IResidence
 {
-    public int MaxPopulation { get; set; }
-    public List<Citizen> Residents { get; set; } 
+    int MaxPopulation { get; set; }
+    List<Citizen> Residents { get; set; }
+    int GetPopulationMultiplier(IReadOnlyDictionary<Vector3Int, Building> cityTiles);
 }

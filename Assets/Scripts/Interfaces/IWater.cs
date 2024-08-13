@@ -1,5 +1,5 @@
 public interface IWater
 {
-    int GenerateWater();
-    int ConsumeWater();
+    int GenerateWater(int water);
+    int ConsumeWater(int water);
 }

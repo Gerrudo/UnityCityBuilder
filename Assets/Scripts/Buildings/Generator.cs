@@ -7,34 +7,61 @@ public class Generator : Building, IEmployer, IPower, IWater, IEarnings
     public sealed override TileType TileType { get; set; }
     public sealed override TileBase TileBase { get; set; }
     public override bool IsConnectedToRoad { get; set; }
+    public override bool IsActive { get; set; }
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
+    public bool IsWatered { get; set; }
+
     
-    public Generator(Preset buildingPreset)
+    public Generator(BuildingPreset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;
         MaxEmployees = buildingPreset.MaxEmployees;
         Jobs = new List<Guid>();
     }
-    public int GenerateWater()
+    
+    public override void UpdateBuildingStatus()
     {
-        return 0;
-    }
+        var flags = new List<bool> {IsConnectedToRoad, IsWatered};
 
-    public int ConsumeWater()
-    {
-        return Jobs.Count * 25;
+        var hasFalse =  flags.Contains(false);
+
+        IsActive = !hasFalse;
     }
     
-    public int GeneratePower()
+    public int GenerateWater(int water)
     {
-        return Jobs.Count * 100;
+        return water;
     }
 
-    public int ConsumePower()
+    public int ConsumeWater(int water)
     {
-        return 0;
+        if (!IsConnectedToRoad) return 0;
+        
+        const int waterConsumed = 200;
+
+        IsWatered = waterConsumed < water;
+        
+        water -= waterConsumed;
+
+        return water;
+    }
+    
+    public int GeneratePower(int power)
+    {
+        if (!IsConnectedToRoad) return power;
+        
+        const int maxPower = 50000;
+        
+        if (power >= maxPower) return power;
+
+        return power + maxPower;
+    }
+
+    public int ConsumePower(int power)
+    {
+        return power;
     }
     
     public int GenerateEarnings()
@@ -44,6 +71,8 @@ public class Generator : Building, IEmployer, IPower, IWater, IEarnings
 
     public int ConsumeEarnings()
     {
-        return Jobs.Count * 10;
+        if (!IsActive) return 0;
+        
+        return 1000;
     }
 }

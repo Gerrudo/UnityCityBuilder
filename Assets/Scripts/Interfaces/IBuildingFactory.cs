@@ -1,4 +1,4 @@
 public interface IBuildingFactory
 {
-    Building CreateBuilding(Preset buildingPreset);
+    Building CreateBuilding(BuildingPreset buildingPreset);
 }

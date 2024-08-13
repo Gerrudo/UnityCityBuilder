@@ -7,10 +7,14 @@ public class Hospital : Building, IEmployer, IPower, IWater, IEarnings
     public sealed override TileType TileType { get; set; }
     public sealed override TileBase TileBase { get; set; }
     public override bool IsConnectedToRoad { get; set; }
+    public override bool IsActive { get; set; }
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
+    public bool IsPowered { get; set; }
+    public bool IsWatered { get; set; }
+
     
-    public Hospital(Preset buildingPreset)
+    public Hospital(BuildingPreset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;
@@ -18,24 +22,49 @@ public class Hospital : Building, IEmployer, IPower, IWater, IEarnings
         Jobs = new List<Guid>();
     }
     
-    public int GenerateWater()
+    public override void UpdateBuildingStatus()
     {
-        return 0;
-    }
+        var flags = new List<bool> {IsConnectedToRoad, IsPowered, IsWatered};
 
-    public int ConsumeWater()
-    {
-        return Jobs.Count * 4;
+        var hasFalse =  flags.Contains(false);
+
+        IsActive = !hasFalse;
     }
     
-    public int GeneratePower()
+    public int GenerateWater(int water)
     {
-        return 0;
+        return water;
     }
 
-    public int ConsumePower()
+    public int ConsumeWater(int water)
     {
-        return Jobs.Count * 4;
+        if (!IsConnectedToRoad) return water;
+        
+        var waterConsumed = Jobs.Count * 4;
+
+        IsWatered = waterConsumed < water;
+        
+        water -= waterConsumed;
+
+        return water;
+    }
+    
+    public int GeneratePower(int power)
+    {
+        return power;
+    }
+
+    public int ConsumePower(int power)
+    {
+        if (!IsConnectedToRoad) return power;
+        
+        var powerConsumed = Jobs.Count * 4;
+
+        IsPowered = powerConsumed < power;
+        
+        power -= powerConsumed;
+
+        return power;
     }
     
     public int GenerateEarnings()
@@ -45,6 +74,8 @@ public class Hospital : Building, IEmployer, IPower, IWater, IEarnings
 
     public int ConsumeEarnings()
     {
+        if (!IsActive) return 0;
+        
         return Jobs.Count * 10;
     }
 }

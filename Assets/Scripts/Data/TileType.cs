@@ -6,10 +6,7 @@ public enum TileType
     Industrial,
     Generator,
     WaterTower,
-    Extractor,
     Medical,
     Police,
     Fire,
-    Communications,
-    Storage
 }

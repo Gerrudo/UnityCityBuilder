@@ -1,0 +1,75 @@
+Index: Assets/Game Tiles/IndustrialPlaceableTile.asset.meta
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>fileFormatVersion: 2\nguid: 7c7832bd251b74563a8849efde4ba11a\nNativeFormatImporter:\n  externalObjects: {}\n  mainObjectFileID: 11400000\n  userData: \n  assetBundleName: \n  assetBundleVariant: \n
+===================================================================
+diff --git a/Assets/Game Tiles/IndustrialPlaceableTile.asset.meta b/Assets/Game Tiles/IndustrialPlaceableTile.asset.meta
+--- a/Assets/Game Tiles/IndustrialPlaceableTile.asset.meta	
++++ b/Assets/Game Tiles/IndustrialPlaceableTile.asset.meta	
+@@ -1,5 +1,5 @@
+ fileFormatVersion: 2
+-guid: 7c7832bd251b74563a8849efde4ba11a
++guid: 6de5aa72d148e42de8bfb9336ef76e7c
+ NativeFormatImporter:
+   externalObjects: {}
+   mainObjectFileID: 11400000
+Index: Assets/Game Tiles/CoalMinePlaceableTile.asset.meta
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>fileFormatVersion: 2\nguid: c360266665a3645278629871ca360cc3\nNativeFormatImporter:\n  externalObjects: {}\n  mainObjectFileID: 11400000\n  userData: \n  assetBundleName: \n  assetBundleVariant: \n
+===================================================================
+diff --git a/Assets/Game Tiles/CoalMinePlaceableTile.asset.meta b/Assets/Game Tiles/CoalMinePlaceableTile.asset.meta
+--- a/Assets/Game Tiles/CoalMinePlaceableTile.asset.meta	
++++ b/Assets/Game Tiles/CoalMinePlaceableTile.asset.meta	
+@@ -1,5 +1,5 @@
+ fileFormatVersion: 2
+-guid: c360266665a3645278629871ca360cc3
++guid: d577df5143d5b47ffbb69041f688bc51
+ NativeFormatImporter:
+   externalObjects: {}
+   mainObjectFileID: 11400000
+Index: Assets/Game Tiles/CommercialPlaceableTile.asset.meta
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>fileFormatVersion: 2\nguid: 461ddb4eb4ef74999a795afa489a193b\nNativeFormatImporter:\n  externalObjects: {}\n  mainObjectFileID: 11400000\n  userData: \n  assetBundleName: \n  assetBundleVariant: \n
+===================================================================
+diff --git a/Assets/Game Tiles/CommercialPlaceableTile.asset.meta b/Assets/Game Tiles/CommercialPlaceableTile.asset.meta
+--- a/Assets/Game Tiles/CommercialPlaceableTile.asset.meta	
++++ b/Assets/Game Tiles/CommercialPlaceableTile.asset.meta	
+@@ -1,5 +1,5 @@
+ fileFormatVersion: 2
+-guid: 461ddb4eb4ef74999a795afa489a193b
++guid: e51aab0254e9b4124ac26b878d102037
+ NativeFormatImporter:
+   externalObjects: {}
+   mainObjectFileID: 11400000
+Index: Assets/Game Tiles/RoadPlaceableTile.asset.meta
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>fileFormatVersion: 2\nguid: e158eeb5c76bd4712a9de0f8a5240802\nNativeFormatImporter:\n  externalObjects: {}\n  mainObjectFileID: 11400000\n  userData: \n  assetBundleName: \n  assetBundleVariant: \n
+===================================================================
+diff --git a/Assets/Game Tiles/RoadPlaceableTile.asset.meta b/Assets/Game Tiles/RoadPlaceableTile.asset.meta
+--- a/Assets/Game Tiles/RoadPlaceableTile.asset.meta	
++++ b/Assets/Game Tiles/RoadPlaceableTile.asset.meta	
+@@ -1,5 +1,5 @@
+ fileFormatVersion: 2
+-guid: e158eeb5c76bd4712a9de0f8a5240802
++guid: f6eb1b7cd0bd045f8adcad16d7b56e2f
+ NativeFormatImporter:
+   externalObjects: {}
+   mainObjectFileID: 11400000
+Index: Assets/Game Tiles/ResidentialPlaceableTile.asset.meta
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>fileFormatVersion: 2\nguid: 2223df4cf122e4a799188ce3a731839b\nNativeFormatImporter:\n  externalObjects: {}\n  mainObjectFileID: 11400000\n  userData: \n  assetBundleName: \n  assetBundleVariant: \n
+===================================================================
+diff --git a/Assets/Game Tiles/ResidentialPlaceableTile.asset.meta b/Assets/Game Tiles/ResidentialPlaceableTile.asset.meta
+--- a/Assets/Game Tiles/ResidentialPlaceableTile.asset.meta	
++++ b/Assets/Game Tiles/ResidentialPlaceableTile.asset.meta	
+@@ -1,5 +1,5 @@
+ fileFormatVersion: 2
+-guid: 2223df4cf122e4a799188ce3a731839b
++guid: 24ac766809fb14fbabe41126dd5d379b
+ NativeFormatImporter:
+   externalObjects: {}
+   mainObjectFileID: 11400000

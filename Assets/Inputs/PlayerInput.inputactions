@@ -11,7 +11,7 @@
                     "id": "6b22fa5c-7542-4175-a782-35fa2b435404",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap,SlowTap",
+                    "interactions": "SlowTap(duration=0.1)",
                     "initialStateCheck": false
                 },
                 {

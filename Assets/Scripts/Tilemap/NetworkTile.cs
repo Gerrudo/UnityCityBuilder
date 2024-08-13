@@ -22,27 +22,27 @@ public class NetworkTile : Tile
     {
         base.GetTileData(position, tilemap, ref tileData);
 
-        Sprite fittingSprite = defaultSprite;
+        var fittingSprite = defaultSprite;
 
-        TileBase n = tilemap.GetTile(position.North());
-        TileBase e = tilemap.GetTile(position.East());
-        TileBase s = tilemap.GetTile(position.South());
-        TileBase w = tilemap.GetTile(position.West());
+        var n = tilemap.GetTile(position.North());
+        var e = tilemap.GetTile(position.East());
+        var s = tilemap.GetTile(position.South());
+        var w = tilemap.GetTile(position.West());
 
         foreach (var rule in rules)
         {
-            int conditionsMet = 0;
+            var conditionsMet = 0;
 
             conditionsMet += ConditionCheck(n, rule.northConnected);
             conditionsMet += ConditionCheck(e, rule.eastConnected);
             conditionsMet += ConditionCheck(s, rule.southConnected);
             conditionsMet += ConditionCheck(w, rule.westConnected);
 
-            if (conditionsMet == 4)
-            {
-                fittingSprite = rule.sprite;
-                break;
-            }
+            if (conditionsMet != 4) continue;
+            
+            fittingSprite = rule.sprite;
+            
+            break;
         }
 
         tileData.sprite = fittingSprite;
@@ -50,27 +50,8 @@ public class NetworkTile : Tile
 
     private static int ConditionCheck(TileBase tile, bool condition)
     {
-        if (condition)
-        {
-            if (tile is NetworkTile)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-        else
-        {
-            if (tile is NetworkTile)
-            {
-                return 0;
-            }
-            else
-            {
-                return 1;
-            }
-        }
+        if (condition) return tile is NetworkTile ? 1 : 0;
+
+        return tile is NetworkTile ? 0 : 1;
     }
 }
