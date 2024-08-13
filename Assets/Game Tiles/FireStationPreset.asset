@@ -15,7 +15,7 @@ MonoBehaviour:
   <TileName>k__BackingField: Fire Station
   <Description>k__BackingField: Must be placed next to a road. Provides jobs. Provides
     an essential service to citizens, increasing happiness. Requires Power.
-  <TileType>k__BackingField: 9
+  <TileType>k__BackingField: 8
   <TileBase>k__BackingField: {fileID: 11400000, guid: 03164d0550c934c84a801db23fdf4f8e, type: 2}
   <Level1TilBase>k__BackingField: {fileID: 0}
   <PlacementType>k__BackingField: 0

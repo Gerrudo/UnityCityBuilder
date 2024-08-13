@@ -8,6 +8,7 @@ public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
     public sealed override TileType TileType { get; set; }
     public sealed override TileBase TileBase { get; set; }
     public override bool IsConnectedToRoad { get; set; }
+    public override bool IsActive { get; set; }
     public TileBase Level1TilBase { get; set; }
 
     public int MaxEmployees { get; set; }
@@ -25,9 +26,18 @@ public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
         Jobs = new List<Guid>();
     }
     
+    public override void UpdateBuildingStatus()
+    {
+        var flags = new List<bool> {IsConnectedToRoad, IsPowered, IsWatered};
+
+        var hasFalse =  flags.Contains(false);
+
+        IsActive = !hasFalse;
+    }
+    
     public bool CanUpgrade()
     {
-        if (!IsConnectedToRoad || Jobs.Count <= 10 || TileBase == Level1TilBase) return false;
+        if (!IsActive || Jobs.Count <= 10 || TileBase == Level1TilBase) return false;
         TileBase = Level1TilBase;
         return true;
     }
@@ -39,9 +49,11 @@ public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
 
     public int ConsumeWater(int water)
     {
+        if (!IsConnectedToRoad) return water;
+        
         var waterConsumed = Jobs.Count * 4;
 
-        IsWatered = waterConsumed > water;
+        IsWatered = waterConsumed < water;
         
         water -= waterConsumed;
 
@@ -55,9 +67,11 @@ public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
 
     public int ConsumePower(int power)
     {
+        if (!IsConnectedToRoad) return power;
+        
         var powerConsumed = Jobs.Count * 4;
 
-        IsPowered = powerConsumed > power;
+        IsPowered = powerConsumed < power;
         
         power -= powerConsumed;
 
@@ -66,6 +80,8 @@ public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
     
     public int GenerateEarnings()
     {
+        if (!IsConnectedToRoad) return 0;
+        
         return Jobs.Count * 10;
     }
 
@@ -76,6 +92,8 @@ public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
 
     public int GenerateGoods()
     {
+        if (!IsActive) return 0;
+        
         return Jobs.Count * 10;
     }
 
@@ -86,13 +104,18 @@ public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
     
     public float GetApprovalScore(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
     {
-        const float employmentWeight = 0.4f;
+        const float employmentWeight = 0.6f;
         const float policeStationWeight = 0.2f;
+        const float isPoweredWeight = 0.1f;
+        const float isWateredWeight = 0.1f;
 
-        var approvalScore = (GetEmploymentScore() * employmentWeight) +
-                            (TileSearch.GetServiceScore(TileType.Police, cityTiles) * policeStationWeight);
+        var isPoweredScore = IsPowered ? 100 : 0;
+        var isWateredScore = IsPowered ? 100 : 0;
 
-        return approvalScore;
+        return (GetEmploymentScore() * employmentWeight) +
+               (TileSearch.GetServiceScore(TileType.Police, cityTiles) * policeStationWeight) +
+               (isPoweredScore * isPoweredWeight) +
+               (isWateredScore * isWateredWeight);
     }
 
     private int GetEmploymentScore()

@@ -7,6 +7,7 @@ public class Generator : Building, IEmployer, IPower, IWater, IEarnings
     public sealed override TileType TileType { get; set; }
     public sealed override TileBase TileBase { get; set; }
     public override bool IsConnectedToRoad { get; set; }
+    public override bool IsActive { get; set; }
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
     public bool IsWatered { get; set; }
@@ -19,6 +20,16 @@ public class Generator : Building, IEmployer, IPower, IWater, IEarnings
         MaxEmployees = buildingPreset.MaxEmployees;
         Jobs = new List<Guid>();
     }
+    
+    public override void UpdateBuildingStatus()
+    {
+        var flags = new List<bool> {IsConnectedToRoad, IsWatered};
+
+        var hasFalse =  flags.Contains(false);
+
+        IsActive = !hasFalse;
+    }
+    
     public int GenerateWater(int water)
     {
         return water;
@@ -26,9 +37,11 @@ public class Generator : Building, IEmployer, IPower, IWater, IEarnings
 
     public int ConsumeWater(int water)
     {
-        var waterConsumed = 200;
+        if (!IsConnectedToRoad) return 0;
+        
+        const int waterConsumed = 200;
 
-        IsWatered = waterConsumed > water;
+        IsWatered = waterConsumed < water;
         
         water -= waterConsumed;
 
@@ -37,14 +50,13 @@ public class Generator : Building, IEmployer, IPower, IWater, IEarnings
     
     public int GeneratePower(int power)
     {
-        const int maxPower = 50000;
-        const int generatedPower = 5000;
+        if (!IsConnectedToRoad) return power;
         
-        //TODO: Replace with a TileSearch
-        //if (!IsWatered) return power;
+        const int maxPower = 50000;
+        
         if (power >= maxPower) return power;
 
-        return power + generatedPower;
+        return power + maxPower;
     }
 
     public int ConsumePower(int power)
@@ -59,6 +71,8 @@ public class Generator : Building, IEmployer, IPower, IWater, IEarnings
 
     public int ConsumeEarnings()
     {
+        if (!IsActive) return 0;
+        
         return 1000;
     }
 }

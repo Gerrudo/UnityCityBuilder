@@ -80,8 +80,11 @@ public class City : Singleton<City>
 
     private void GetBuildingValues(Vector3Int tilePosition, Building building)
     {
+        //TODO: Can be moved into UpdateBuildingStatus()
         building.IsConnectedToRoad = TilemapExtension.CheckTileConnection(tilePosition, TileType.Road, cityTiles);
-            
+        
+        building.UpdateBuildingStatus();
+        
         //No switch as it's possible for buildings to implement multiple of these interfaces.
         if (building is IResidence residence)
         {
@@ -137,7 +140,6 @@ public class City : Singleton<City>
         //TODO: Make this redundant, like with water and power.
         Earnings = 0;
         Goods = 0;
-        ApprovalRating = 0;
     }
     
     private void DistributeCitizens()
@@ -146,7 +148,7 @@ public class City : Singleton<City>
         {
             if (tile.Value is not IResidence residential) continue;
             if (residential.Residents.Count == residential.MaxPopulation) continue;
-            if (!tile.Value.IsConnectedToRoad) continue;
+            if (!tile.Value.IsActive) continue;
 
             var random = new Random();
             var residentsToAdd = random.Next(1, 5);
@@ -171,7 +173,7 @@ public class City : Singleton<City>
         {
             if (tile.Value is not IEmployer employer) continue;
             if (employer.Jobs.Count == employer.MaxEmployees) continue;
-            if (!tile.Value.IsConnectedToRoad) continue;
+            if (!tile.Value.IsActive) continue;
             
             var unemployedCitizen = citizens.FirstOrDefault(citizen => !citizen.Value.IsEmployed);
             

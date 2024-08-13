@@ -13,6 +13,7 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
     public TileBase Level1TilBase { get; set; }
     public bool IsPowered { get; set; }
     public bool IsWatered { get; set; }
+    public override bool IsActive { get; set; }
 
     public Residential(BuildingPreset buildingPreset)
     {
@@ -24,9 +25,18 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
         Residents = new List<Citizen>();
     }
 
+    public override void UpdateBuildingStatus()
+    {
+        var flags = new List<bool> {IsConnectedToRoad, IsPowered, IsWatered};
+
+        var hasFalse =  flags.Contains(false);
+
+        IsActive = !hasFalse;
+    }
+
     public bool CanUpgrade()
     {
-        if (!IsConnectedToRoad || Residents.Count <= 10|| TileBase == Level1TilBase) return false;
+        if (!IsActive || Residents.Count <= 10|| TileBase == Level1TilBase) return false;
         TileBase = Level1TilBase;
         return true;
     }
@@ -42,7 +52,7 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
 
         var waterConsumed = Residents.Count * 4;
 
-        IsWatered = waterConsumed > water;
+        IsWatered = waterConsumed < water;
         
         water -= waterConsumed;
 
@@ -60,7 +70,7 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
         
         var powerConsumed = Residents.Count * 4;
 
-        IsPowered = powerConsumed > power;
+        IsPowered = powerConsumed < power;
         
         power -= powerConsumed;
 
@@ -81,17 +91,22 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
     
     public float GetApprovalScore(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
     {
-        const float employmentWeight = 0.4f;
-        const float fireStationWeight = 0.2f;
-        const float policeStationWeight = 0.2f;
-        const float hospitalWeight = 0.2f;
+        const float employmentWeight = 0.5f;
+        const float fireStationWeight = 0.1f;
+        const float policeStationWeight = 0.1f;
+        const float hospitalWeight = 0.1f;
+        const float isPoweredWeight = 0.1f;
+        const float isWateredWeight = 0.1f;
 
-        var approvalScore= (GetEmploymentScore() * employmentWeight) +
+        var isPoweredScore = IsPowered ? 100 : 0;
+        var isWateredScore = IsPowered ? 100 : 0;
+
+        return (GetEmploymentScore() * employmentWeight) +
                (TileSearch.GetServiceScore(TileType.Fire, cityTiles) * fireStationWeight) +
                (TileSearch.GetServiceScore(TileType.Police, cityTiles) * policeStationWeight) +
-               (TileSearch.GetServiceScore(TileType.Medical, cityTiles) * hospitalWeight);
-
-        return approvalScore;
+               (TileSearch.GetServiceScore(TileType.Medical, cityTiles) * hospitalWeight) +
+               (isPoweredScore * isPoweredWeight) +
+               (isWateredScore * isWateredWeight);
     }
 
     public int GetPopulationMultiplier(IReadOnlyDictionary<Vector3Int, Building> cityTiles)

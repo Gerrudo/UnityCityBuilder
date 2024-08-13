@@ -7,11 +7,11 @@ public class FireStation : Building, IEmployer, IPower, IWater, IEarnings
     public sealed override TileType TileType { get; set; }
     public sealed override TileBase TileBase { get; set; }
     public override bool IsConnectedToRoad { get; set; }
+    public override bool IsActive { get; set; }
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
     public bool IsPowered { get; set; }
     public bool IsWatered { get; set; }
-
     
     public FireStation(BuildingPreset buildingPreset)
     {
@@ -21,6 +21,15 @@ public class FireStation : Building, IEmployer, IPower, IWater, IEarnings
         Jobs = new List<Guid>();
     }
     
+    public override void UpdateBuildingStatus()
+    {
+        var flags = new List<bool> {IsConnectedToRoad, IsPowered, IsWatered};
+
+        var hasFalse =  flags.Contains(false);
+
+        IsActive = !hasFalse;
+    }
+    
     public int GenerateWater(int water)
     {
         return water;
@@ -28,9 +37,11 @@ public class FireStation : Building, IEmployer, IPower, IWater, IEarnings
 
     public int ConsumeWater(int water)
     {
+        if (!IsConnectedToRoad) return water;
+        
         var waterConsumed = Jobs.Count * 4;
 
-        IsWatered = waterConsumed > water;
+        IsWatered = waterConsumed < water;
         
         water -= waterConsumed;
 
@@ -44,9 +55,11 @@ public class FireStation : Building, IEmployer, IPower, IWater, IEarnings
 
     public int ConsumePower(int power)
     {
+        if (!IsConnectedToRoad) return power;
+        
         var powerConsumed = Jobs.Count * 4;
 
-        IsPowered = powerConsumed > power;
+        IsPowered = powerConsumed < power;
         
         power -= powerConsumed;
 
@@ -60,6 +73,8 @@ public class FireStation : Building, IEmployer, IPower, IWater, IEarnings
 
     public int ConsumeEarnings()
     {
+        if (!IsActive) return 0;
+        
         return Jobs.Count * 10;
     }
 }

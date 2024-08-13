@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.Tilemaps;
 
 public class WaterTower : Building, IEmployer, IPower, IWater
@@ -7,6 +8,7 @@ public class WaterTower : Building, IEmployer, IPower, IWater
     public sealed override TileType TileType { get; set; }
     public sealed override TileBase TileBase { get; set; }
     public override bool IsConnectedToRoad { get; set; }
+    public override bool IsActive { get; set; }
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
     public bool IsPowered { get; set; }
@@ -20,16 +22,24 @@ public class WaterTower : Building, IEmployer, IPower, IWater
         Jobs = new List<Guid>();
     }
     
+    public override void UpdateBuildingStatus()
+    {
+        var flags = new List<bool> {IsConnectedToRoad, IsPowered};
+
+        var hasFalse =  flags.Contains(false);
+
+        IsActive = !hasFalse;
+    }
+    
     public int GenerateWater(int water)
     {
-        const int maxWater = 20000;
-        const int generatedWater = 2000;
+        if (!IsConnectedToRoad) return water;
         
-        //TODO: Replace with a TileSearch
-        //if (!IsPowered) return water;
+        const int maxWater = 20000;
+        
         if (water >= maxWater) return water;
 
-        return water + generatedWater;
+        return water + maxWater;
     }
 
     public int ConsumeWater(int water)
@@ -44,9 +54,11 @@ public class WaterTower : Building, IEmployer, IPower, IWater
 
     public int ConsumePower(int power)
     {
-        var powerConsumed = 200;
+        if (!IsConnectedToRoad) return power;
+        
+        const int powerConsumed = 200;
 
-        IsPowered = powerConsumed > power;
+        IsPowered = powerConsumed < power;
         
         power -= powerConsumed;
 

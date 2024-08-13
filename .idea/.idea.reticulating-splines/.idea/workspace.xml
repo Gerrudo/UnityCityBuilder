@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="Added randomisation to population growth, added population multiplier to apply to random int.">
+    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="#60; Added IsPowered and IsWatered state, modified value setting for Power and Water generation and consumption">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/FireStation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/FireStation.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Generator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Generator.cs" afterDir="false" />
@@ -13,13 +14,9 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/PoliceStation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/PoliceStation.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Road.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Road.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/WaterTower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/WaterTower.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/City.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/TileType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/TileType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IPower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IPower.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IWater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IWater.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/NetworkTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tilemap/NetworkTile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utilities/TilemapExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utilities/TilemapExtension.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,11 +45,13 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f646c7a159d243a7909d5204af0f0c56469200/61/294981ec/CancellationTokenSource.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scenes/Game.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Generator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/WaterTower.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Tooltip.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/TooltipSystem.cs" root0="FORCE_HIGHLIGHTING" />
@@ -128,10 +127,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="92727">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="92727" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -160,7 +159,7 @@
       <workItem from="1720799145997" duration="9688000" />
       <workItem from="1720852436762" duration="174754000" />
       <workItem from="1721981441453" duration="122049000" />
-      <workItem from="1723281267577" duration="17742000" />
+      <workItem from="1723281267577" duration="28003000" />
     </task>
     <task id="LOCAL-00001" summary="Improvements to ICalculable, restructured City class.">
       <option name="closed" value="true" />
@@ -410,7 +409,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723358693166</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="#60; Added IsPowered and IsWatered state, modified value setting for Power and Water generation and consumption">
+      <option name="closed" value="true" />
+      <created>1723445684970</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1723445684970</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -437,7 +444,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Saving state before merge" />
     <MESSAGE value="Updated building menu and scriptable object values for UI." />
     <MESSAGE value="Added new sprites/presets" />
     <MESSAGE value="Added new implementations to BuildingFactory.cs." />
@@ -462,6 +468,7 @@
     <MESSAGE value="#60: Residental has working approval rating calculations." />
     <MESSAGE value="#60: Added approval ratings for Commercial and Industrial" />
     <MESSAGE value="Added randomisation to population growth, added population multiplier to apply to random int." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added randomisation to population growth, added population multiplier to apply to random int." />
+    <MESSAGE value="#60; Added IsPowered and IsWatered state, modified value setting for Power and Water generation and consumption" />
+    <option name="LAST_COMMIT_MESSAGE" value="#60; Added IsPowered and IsWatered state, modified value setting for Power and Water generation and consumption" />
   </component>
 </project>

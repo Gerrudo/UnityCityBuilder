@@ -16,7 +16,7 @@ MonoBehaviour:
   <Description>k__BackingField: Must be placed next to a road. Provides jobs. Produces
     Oil which can be used by the Oil Power Plant to reduce costs. Requires Power
     and Water.
-  <TileType>k__BackingField: 6
+  <TileType>k__BackingField: 4
   <TileBase>k__BackingField: {fileID: 11400000, guid: 0d47cf717bd1a4777bf3c2a37f39257f, type: 2}
   <Level1TilBase>k__BackingField: {fileID: 0}
   <PlacementType>k__BackingField: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   <TileName>k__BackingField: Hospital
   <Description>k__BackingField: Must be placed next to a road. Provides jobs. Provides
     an essential service to citizens, increasing happiness. Requires Power.
-  <TileType>k__BackingField: 7
+  <TileType>k__BackingField: 6
   <TileBase>k__BackingField: {fileID: 11400000, guid: a680dfcbf2a4a466da62145435cf1209, type: 2}
   <Level1TilBase>k__BackingField: {fileID: 0}
   <PlacementType>k__BackingField: 0

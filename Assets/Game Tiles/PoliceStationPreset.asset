@@ -15,7 +15,7 @@ MonoBehaviour:
   <TileName>k__BackingField: Police Station
   <Description>k__BackingField: Must be placed next to a road. Provides jobs. Provides
     an essential service to citizens, increasing happiness. Requires Power.
-  <TileType>k__BackingField: 8
+  <TileType>k__BackingField: 7
   <TileBase>k__BackingField: {fileID: 11400000, guid: c83a8c04c8c4648a3af42b73efdf514a, type: 2}
   <Level1TilBase>k__BackingField: {fileID: 0}
   <PlacementType>k__BackingField: 0
