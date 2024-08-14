@@ -29,18 +29,10 @@ public class CityStatistics : Singleton<CityStatistics>
         //Maybe we could have the UI read a value instead of updating it individually?
 
         //Update Toolbar
-        dayText.text = $"Day: {city.Day}";
-        populationText.text = $"Population: {city.Population}";
-        fundsText.text = $"Funds: ${city.Funds}";
-
-        if (city.Earnings > 0)
-        {
-            earningsText.text = $"Earnings: ${city.Earnings}+";
-        }
-        else
-        {
-            earningsText.text = $"Earnings: ${city.Earnings}";
-        }
+        dayText.text = $"{city.Day}";
+        populationText.text = $"{city.Population}";
+        fundsText.text = $"${city.Funds}";
+        earningsText.text = city.Earnings > 0 ? $"${city.Earnings}+" : $"${city.Earnings}";
 
         //Update Panel
         powerText.text = $"Power: {city.Power}kW";

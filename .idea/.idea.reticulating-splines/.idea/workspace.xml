@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="#60; Added IsPowered and IsWatered state, modified value setting for Power and Water generation and consumption">
+    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="Toolbar modifications">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Preset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/BuildingPreset.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Preset.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/BuildingPreset.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/CityStatistics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/CityStatistics.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -410,7 +410,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723445684970</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Toolbar modifications">
+      <option name="closed" value="true" />
+      <created>1723614126382</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1723614126382</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -437,7 +445,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Updated building menu and scriptable object values for UI." />
     <MESSAGE value="Added new sprites/presets" />
     <MESSAGE value="Added new implementations to BuildingFactory.cs." />
     <MESSAGE value="Changed GameTile to Preset, making it easier to understand it's purpose." />
@@ -462,6 +469,7 @@
     <MESSAGE value="#60: Added approval ratings for Commercial and Industrial" />
     <MESSAGE value="Added randomisation to population growth, added population multiplier to apply to random int." />
     <MESSAGE value="#60; Added IsPowered and IsWatered state, modified value setting for Power and Water generation and consumption" />
-    <option name="LAST_COMMIT_MESSAGE" value="#60; Added IsPowered and IsWatered state, modified value setting for Power and Water generation and consumption" />
+    <MESSAGE value="Toolbar modifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="Toolbar modifications" />
   </component>
 </project>
