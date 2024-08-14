@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(menuName = "Building Preset")]
+[CreateAssetMenu(fileName = "Preset", menuName = "Building Preset")]
 public class BuildingPreset : ScriptableObject
 {
     [field: SerializeField] public string TileName { get; private set; }
