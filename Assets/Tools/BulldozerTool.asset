@@ -10,9 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29888a1b3ccac49f2994f6e027a7069c, type: 3}
-  m_Name: Bulldozer
+  m_Name: BulldozerTool
   m_EditorClassIdentifier: 
   <TileName>k__BackingField: Bulldozer
   <Description>k__BackingField: Removes any tiles within a given area.
+  <TileType>k__BackingField: 0
   <TileBase>k__BackingField: {fileID: 11400000, guid: 8c52ec63bddd846a9a8020b98bb9c9f9, type: 2}
-  <PlacementType>k__BackingField: 2
+  <Level1TilBase>k__BackingField: {fileID: 0}
+  <PlacementType>k__BackingField: 0
+  <CostToBuild>k__BackingField: 0
+  <MaxPopulation>k__BackingField: 0
+  <MaxEmployees>k__BackingField: 0
+  <Expenses>k__BackingField: 0
+  <ToolType>k__BackingField: 1

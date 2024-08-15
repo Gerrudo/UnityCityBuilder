@@ -4,10 +4,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="Toolbar modifications">
+    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="More UI Changes">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/ToolType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/ToolType.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TilemapTool.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/CoalMinePreset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/CoalMinePreset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/CoalPowerPlantPreset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/CoalPowerPlantPreset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/CommercialPreset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/CommercialPreset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/FireStationPreset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/FireStationPreset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/HospitalPreset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/HospitalPreset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/IndustrialPreset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/IndustrialPreset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/OilDrillPreset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/OilDrillPreset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/OilPowerPlantPreset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/OilPowerPlantPreset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/PoliceStationPreset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/PoliceStationPreset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/ResidentialPreset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/ResidentialPreset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/RoadPreset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/RoadPreset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/SatellitePreset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/SatellitePreset.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/WaterTowerPreset.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game Tiles/WaterTowerPreset.asset.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/CityStatistics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/CityStatistics.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/BuildingTool.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/BuildingTool.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TilemapTool.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/QueryTool.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/QueryTool.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/QueryToolButtonHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/QueryToolButtonHandler.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TileEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TileEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tools/Bulldozer.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tools/Bulldozer.asset.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +85,7 @@
     <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interfaces/IApproval.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/UI/CityStatistics.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Tooltip.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/TooltipSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/TooltipTrigger.cs" root0="FORCE_HIGHLIGHTING" />
@@ -418,7 +458,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723614126382</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="More UI Changes">
+      <option name="closed" value="true" />
+      <created>1723616932857</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1723616932857</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,7 +493,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added new sprites/presets" />
     <MESSAGE value="Added new implementations to BuildingFactory.cs." />
     <MESSAGE value="Changed GameTile to Preset, making it easier to understand it's purpose." />
     <MESSAGE value="Updated to Preset in areas that were missed." />
@@ -470,6 +517,7 @@
     <MESSAGE value="Added randomisation to population growth, added population multiplier to apply to random int." />
     <MESSAGE value="#60; Added IsPowered and IsWatered state, modified value setting for Power and Water generation and consumption" />
     <MESSAGE value="Toolbar modifications" />
-    <option name="LAST_COMMIT_MESSAGE" value="Toolbar modifications" />
+    <MESSAGE value="More UI Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="More UI Changes" />
   </component>
 </project>

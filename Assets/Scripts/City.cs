@@ -41,6 +41,14 @@ public class City : Singleton<City>
         StartCoroutine(UpdateCity());
         StartCoroutine(CountDays());
     }
+    
+    private void DrawCity()
+    {
+        foreach (var tile in cityTiles)
+        {
+            tileEditor.DrawItem(tileEditor.defaultMap, tile.Key, tile.Value.TileBase);
+        }
+    }
 
     private IEnumerator CountDays()
     {
@@ -63,7 +71,7 @@ public class City : Singleton<City>
         
         DistributeEmployees();
         
-        foreach (var building in cityTiles)   
+        foreach (var building in cityTiles.ToList())   
         {
             GetBuildingValues(building.Key ,building.Value);
         }
@@ -74,6 +82,8 @@ public class City : Singleton<City>
         Unemployed = citizens.Count(citizen => !citizen.Value.IsEmployed);
         
         cityStatistics.UpdateUI();
+
+        DrawCity();
         
         StartCoroutine(UpdateCity());
     }
@@ -131,7 +141,7 @@ public class City : Singleton<City>
         {
             growable.CanUpgrade();
             
-            tileEditor.DrawItem(tilePosition, growable.TileBase);
+            tileEditor.DrawItem(tileEditor.defaultMap, tilePosition, growable.TileBase);
         }
     }
 

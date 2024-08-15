@@ -12,7 +12,7 @@ public class TileEditor : Singleton<TileEditor>
 
     private new Camera camera;
 
-    [SerializeField] private Tilemap previewMap, defaultMap, terrainMap;
+    [SerializeField] public Tilemap previewMap, defaultMap, terrainMap;
     private TileBase tileBase;
     private BuildingPreset selectedObj;
 
@@ -173,11 +173,7 @@ public class TileEditor : Singleton<TileEditor>
                 
                 break;
             case PlacementType.Single: default:
-                if (!city.CanPlaceNewTile(selectedObj)) break;
-                
-                city.NewTile(currentGridPosition, selectedObj);
-                
-                DrawItem(currentGridPosition, selectedObj.TileBase);
+                DrawItem(defaultMap, currentGridPosition, selectedObj.TileBase);
                 
                 SelectedObj = null;
                 
@@ -193,11 +189,7 @@ public class TileEditor : Singleton<TileEditor>
             case PlacementType.Rectangle:
                 foreach (var point in TilemapExtension.AllPositionsWithin2D(area))
                 {
-                    if (!city.CanPlaceNewTile(selectedObj)) continue;
-                    
-                    city.NewTile(point, selectedObj);
-                    
-                    DrawItem(point, selectedObj.TileBase);
+                    DrawItem(defaultMap, point, selectedObj.TileBase);
                 }
                 
                 previewMap.ClearAllTiles();
@@ -256,12 +248,25 @@ public class TileEditor : Singleton<TileEditor>
         }
     }
 
-    public void DrawItem(Vector3Int gridPosition, TileBase tile)
+    public void DrawItem(Tilemap tilemap, Vector3Int gridPosition, TileBase tile)
     {
-        defaultMap.SetTile(gridPosition, tile);
+        if (selectedObj.GetType() == typeof(TilemapTool))
+        {
+            var tool = (TilemapTool)selectedObj;
+            
+            tool.Use(gridPosition, tilemap);
+        }
+        else
+        {
+            if (!city.CanPlaceNewTile(selectedObj)) return;
+                    
+            city.NewTile(gridPosition, selectedObj);
+            
+            tilemap.SetTile(gridPosition, tile);
 
-        //Required for our network tile rules
-        defaultMap.RefreshAllTiles();
+            //Required for our network tile rules
+            tilemap.RefreshAllTiles();   
+        }
     }
 
     private void RemoveItem(Vector3Int gridPosition)
