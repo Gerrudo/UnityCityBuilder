@@ -46,7 +46,7 @@ public class City : Singleton<City>
     {
         foreach (var tile in cityTiles)
         {
-            tileEditor.DrawItem(tileEditor.defaultMap, tile.Key, tile.Value.TileBase);
+            tileEditor.DirectDraw(tileEditor.defaultMap, tile.Key, tile.Value.TileBase);
         }
     }
 
@@ -141,7 +141,7 @@ public class City : Singleton<City>
         {
             growable.CanUpgrade();
             
-            tileEditor.DrawItem(tileEditor.defaultMap, tilePosition, growable.TileBase);
+            tileEditor.DirectDraw(tileEditor.defaultMap, tilePosition, growable.TileBase);
         }
     }
 
