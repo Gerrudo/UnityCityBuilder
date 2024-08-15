@@ -44,9 +44,10 @@ public class City : Singleton<City>
     
     private void DrawCity()
     {
+        //TODO: Update to only draw tiles that need to be changed.
         foreach (var tile in cityTiles)
         {
-            tileEditor.DirectDraw(tileEditor.defaultMap, tile.Key, tile.Value.TileBase);
+            tileEditor.DrawItem(tileEditor.defaultMap, tile.Key, tile.Value.TileBase);
         }
     }
 
@@ -83,7 +84,7 @@ public class City : Singleton<City>
         
         cityStatistics.UpdateUI();
 
-        DrawCity();
+        //DrawCity();
         
         StartCoroutine(UpdateCity());
     }
@@ -132,17 +133,9 @@ public class City : Singleton<City>
             Goods -= goods.ConsumeGoods();
         }
 
-        if (building is IApproval approval)
-        {
-            ApprovalRating += approval.GetApprovalScore(cityTiles);
-        }
+        if (building is IApproval approval) ApprovalRating += approval.GetApprovalScore(cityTiles);
         
-        if (building is IGrowable growable)
-        {
-            growable.CanUpgrade();
-            
-            tileEditor.DirectDraw(tileEditor.defaultMap, tilePosition, growable.TileBase);
-        }
+        if (building is IGrowable growable && growable.CanUpgrade()) DrawCity();
     }
 
     private void ResetValues()
@@ -220,12 +213,16 @@ public class City : Singleton<City>
             cityTiles.Add(tilePosition, buildable);   
         }
 
+        DrawCity();
+
         cityStatistics.UpdateUI();
     }
 
     public void RemoveTile(Vector3Int tilePosition)
     {
         cityTiles.Remove(tilePosition);
+        
+        DrawCity();
 
         cityStatistics.UpdateUI();
     }

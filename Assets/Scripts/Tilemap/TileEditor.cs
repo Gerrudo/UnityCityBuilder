@@ -45,7 +45,6 @@ public class TileEditor : Singleton<TileEditor>
         
         if (!selectedObj) return;
         
-        //Setting pos as a Vector3 causes issues
         Vector2 pos = camera.ScreenToWorldPoint(mousePosition);
 
         var gridPos = previewMap.WorldToCell(pos);
@@ -114,26 +113,25 @@ public class TileEditor : Singleton<TileEditor>
 
     private void OnLeftClick(InputAction.CallbackContext ctx)
     {
-        if (selectedObj && !isPointerOverGameObject && PlacementAllowed())
+        if (!selectedObj || isPointerOverGameObject || !PlacementAllowed()) return;
+        
+        if (ctx.phase == InputActionPhase.Started)
         {
-            if (ctx.phase == InputActionPhase.Started)
+            //TODO: can possibly remove SlowTapInteraction and have only certain tiles able to have click and drag interactions
+            if (ctx.interaction is SlowTapInteraction)
             {
-                //TODO: can possibly remove SlowTapInteraction and have only certain tiles able to have click and drag interactions
-                if (ctx.interaction is SlowTapInteraction)
-                {
-                    holdActive = true;
-                }
+                holdActive = true;
+            }
 
-                holdStartPosition = currentGridPosition;
-                HandleDrawing();
-            }
-            else
-            {
-                if (!holdActive) return;
+            holdStartPosition = currentGridPosition;
+            HandleDrawing();
+        }
+        else
+        {
+            if (!holdActive) return;
                 
-                holdActive = false;
-                HandleDrawingRelease();
-            }
+            holdActive = false;
+            HandleDrawingRelease();
         }
     }
 
@@ -177,7 +175,7 @@ public class TileEditor : Singleton<TileEditor>
                     
                 city.NewTile(currentGridPosition, selectedObj);
                 
-                //DrawItem(defaultMap, currentGridPosition, selectedObj.TileBase);
+                SelectedObj = null;
                 
                 break;
         }
@@ -185,6 +183,8 @@ public class TileEditor : Singleton<TileEditor>
 
     private void HandleDrawingRelease()
     {
+        if (!selectedObj) return;
+        
         switch (selectedObj.PlacementType)
         {
             case PlacementType.Line:
@@ -194,8 +194,6 @@ public class TileEditor : Singleton<TileEditor>
                     if (!city.CanPlaceNewTile(selectedObj)) return;
                     
                     city.NewTile(point, selectedObj);
-                    
-                    //DrawItem(defaultMap, point, selectedObj.TileBase);
                 }
                 
                 previewMap.ClearAllTiles();
@@ -264,16 +262,11 @@ public class TileEditor : Singleton<TileEditor>
         }
         else
         {
-            DirectDraw(tilemap, gridPosition, tile);
+            tilemap.SetTile(gridPosition, tile);
+
+            //Required for our network tile rules
+            tilemap.RefreshAllTiles();   
         }
-    }
-
-    public void DirectDraw(Tilemap tilemap, Vector3Int gridPosition, TileBase tile)
-    {
-        tilemap.SetTile(gridPosition, tile);
-
-        //Required for our network tile rules
-        tilemap.RefreshAllTiles();   
     }
 
     private void RemoveItem(Vector3Int gridPosition)
@@ -281,8 +274,6 @@ public class TileEditor : Singleton<TileEditor>
         if(!defaultMap.HasTile(gridPosition)) return;
         
         city.RemoveTile(gridPosition);
-
-        //defaultMap.SetTile(gridPosition, null);
 
         //Required for our network tile rules
         defaultMap.RefreshAllTiles();
