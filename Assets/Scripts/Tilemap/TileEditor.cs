@@ -170,14 +170,6 @@ public class TileEditor : Singleton<TileEditor>
                 RenderRectangle();
                 
                 break;
-            case PlacementType.Single: default:
-                if (!city.CanPlaceNewTile(selectedObj)) return;
-                    
-                city.NewTile(currentGridPosition, selectedObj);
-                
-                SelectedObj = null;
-                
-                break;
         }
     }
 
@@ -191,12 +183,16 @@ public class TileEditor : Singleton<TileEditor>
             case PlacementType.Rectangle:
                 foreach (var point in TilemapExtension.AllPositionsWithin2D(area))
                 {
-                    if (!city.CanPlaceNewTile(selectedObj)) return;
-                    
-                    city.NewTile(point, selectedObj);
+                    DrawItem(defaultMap, point, tileBase);
                 }
                 
                 previewMap.ClearAllTiles();
+                
+                break;
+            case PlacementType.Single: default:
+                DrawItem(defaultMap, currentGridPosition, tileBase);
+                
+                SelectedObj = null;
                 
                 break;
         }
@@ -247,14 +243,14 @@ public class TileEditor : Singleton<TileEditor>
         {
             for (var y = area.yMin; y <= area.yMax; y++)
             {
-                tilemap.SetTile(new Vector3Int(x, y, 0), tileBase);
+                DrawItem(tilemap, new Vector3Int(x, y, 0), tileBase);
             }
         }
     }
 
     public void DrawItem(Tilemap tilemap, Vector3Int gridPosition, TileBase tile)
     {
-        if (tilemap != previewMap && selectedObj.GetType() == typeof(TilemapTool))
+        if (selectedObj && tilemap != previewMap && selectedObj.GetType() == typeof(TilemapTool))
         {
             var tool = (TilemapTool)selectedObj;
             
@@ -262,21 +258,18 @@ public class TileEditor : Singleton<TileEditor>
         }
         else
         {
+            if (tilemap == defaultMap)
+            {
+                if (!city.CanPlaceNewTile(selectedObj)) return;
+                    
+                city.NewTile(currentGridPosition, selectedObj);   
+            }
+            
             tilemap.SetTile(gridPosition, tile);
 
             //Required for our network tile rules
             tilemap.RefreshAllTiles();   
         }
-    }
-
-    private void RemoveItem(Vector3Int gridPosition)
-    {
-        if(!defaultMap.HasTile(gridPosition)) return;
-        
-        city.RemoveTile(gridPosition);
-
-        //Required for our network tile rules
-        defaultMap.RefreshAllTiles();
     }
 
     private bool PlacementAllowed()

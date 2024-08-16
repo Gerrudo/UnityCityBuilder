@@ -655,9 +655,9 @@ GameObject:
   m_Component:
   - component: {fileID: 149672887}
   - component: {fileID: 149672889}
+  - component: {fileID: 149672892}
   - component: {fileID: 149672891}
   - component: {fileID: 149672890}
-  - component: {fileID: 149672892}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -740,15 +740,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 149672885}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e8be9fe6c1c48d186900842260988c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 08ef2b175d9be41e1b24068bc9b693d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultMap: {fileID: 6527494}
-  camera: {fileID: 0}
-  <IsQueryToolActive>k__BackingField: 0
-  mousePosition: {x: 0, y: 0}
-  currentGridPosition: {x: 0, y: 0, z: 0}
-  city: {fileID: 0}
 --- !u!1 &201475351
 GameObject:
   m_ObjectHideFlags: 0
