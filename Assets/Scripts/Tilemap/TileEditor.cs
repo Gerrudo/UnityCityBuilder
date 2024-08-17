@@ -113,7 +113,7 @@ public class TileEditor : Singleton<TileEditor>
 
     private void OnLeftClick(InputAction.CallbackContext ctx)
     {
-        if (!selectedObj || isPointerOverGameObject || !PlacementAllowed()) return;
+        if (!selectedObj || isPointerOverGameObject) return;
         
         if (ctx.phase == InputActionPhase.Started)
         {
@@ -183,6 +183,8 @@ public class TileEditor : Singleton<TileEditor>
             case PlacementType.Rectangle:
                 foreach (var point in TilemapExtension.AllPositionsWithin2D(area))
                 {
+                    NewCityTile(point);
+                    
                     DrawItem(defaultMap, point, tileBase);
                 }
                 
@@ -190,12 +192,24 @@ public class TileEditor : Singleton<TileEditor>
                 
                 break;
             case PlacementType.Single: default:
+                NewCityTile(currentGridPosition);
+                
                 DrawItem(defaultMap, currentGridPosition, tileBase);
                 
                 SelectedObj = null;
                 
                 break;
         }
+    }
+
+    private void NewCityTile(Vector3Int position)
+    {
+        //Don't add new city tiles for tilemap tools
+        if (selectedObj && selectedObj.GetType() == typeof(TilemapTool)) return;
+        if (!city.CanPlaceNewTile(selectedObj)) return;
+                    
+        //Must provide the point, not currentGridPosition
+        city.NewTile(position, selectedObj);
     }
 
     private void RenderRectangle()
@@ -258,13 +272,6 @@ public class TileEditor : Singleton<TileEditor>
         }
         else
         {
-            if (tilemap == defaultMap)
-            {
-                if (!city.CanPlaceNewTile(selectedObj)) return;
-                    
-                city.NewTile(currentGridPosition, selectedObj);   
-            }
-            
             tilemap.SetTile(gridPosition, tile);
 
             //Required for our network tile rules

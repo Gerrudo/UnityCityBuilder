@@ -37,7 +37,7 @@ public class Generator : Building, IEmployer, IPower, IWater, IEarnings
 
     public int ConsumeWater(int water)
     {
-        if (!IsConnectedToRoad) return 0;
+        if (!IsConnectedToRoad) return water;
         
         const int waterConsumed = 200;
 

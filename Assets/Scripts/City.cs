@@ -23,7 +23,7 @@ public class City : Singleton<City>
     public int Power { get; private set; }
     public int Water { get; private set; }
     public int Goods { get; private set; }
-    public float ApprovalRating { get; private set; }
+    public double ApprovalRating { get; private set; }
 
     protected override void Awake()
     {
@@ -63,19 +63,20 @@ public class City : Singleton<City>
         
         DistributeEmployees();
         
-        foreach (var building in CityTiles.ToList())   
+        foreach (var building in CityTiles.ToList())
         {
             GetBuildingValues(building.Key ,building.Value);
         }
 
-        ApprovalRating = Calculations.Normalise(ApprovalRating, CityTiles.Count(tile => tile.Value is IApproval));
+        if (ApprovalRating != 0)
+        {
+            ApprovalRating = Calculations.Normalise(ApprovalRating, CityTiles.Count(tile => tile.Value is IApproval));   
+        }
         
         Population = citizens.Count;
         Unemployed = citizens.Count(citizen => !citizen.Value.IsEmployed);
         
         cityStatistics.UpdateUI();
-
-        //DrawCity();
         
         StartCoroutine(UpdateCity());
     }
@@ -219,12 +220,5 @@ public class City : Singleton<City>
         CityTiles.Remove(tilePosition);
 
         cityStatistics.UpdateUI();
-    }
-
-    public Building GetBuildingData(Vector3Int tilePosition)
-    {
-        CityTiles.TryGetValue(tilePosition, out var building);
-        
-        return building;
     }
 }    
