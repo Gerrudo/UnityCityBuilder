@@ -8,13 +8,10 @@ public class TilemapTool : BuildingPreset
 
     private ToolController toolController;
 
-    private void Awake()
-    {
-        toolController = ToolController.GetInstance();
-    }
-
     public void Use(Vector3Int position, Tilemap tilemap)
     {
+        toolController = ToolController.GetInstance();
+        
         switch (ToolType)
         {
             case ToolType.Bulldozer:
