@@ -15,7 +15,7 @@ MonoBehaviour:
   <TileName>k__BackingField: Satellite
   <Description>k__BackingField: Must be placed next to a road. Provides jobs. Provides
     an essential service to citizens, increasing happiness. Requires Power.
-  <TileType>k__BackingField: 10
+  <TileType>k__BackingField: 8
   <TileBase>k__BackingField: {fileID: 11400000, guid: b5fbd12e385ab420b831cec9ec6e908c, type: 2}
   <Level1TilBase>k__BackingField: {fileID: 0}
   <PlacementType>k__BackingField: 0

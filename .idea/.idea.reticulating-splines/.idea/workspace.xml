@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="#52: Query tool and Bulldozer now function. Fixed #62.">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CameraController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CameraController.cs.meta" afterDir="false" />
+    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="#63: added basic camera controls, #64: added larger and more detailed map.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Building Presets/CoalMinePreset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Building Presets/CoalMinePreset.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Building Presets/SatellitePreset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Building Presets/SatellitePreset.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tools/BulldozerTool.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tools/BulldozerTool.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -475,7 +476,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723896043463</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="#63: added basic camera controls, #64: added larger and more detailed map.">
+      <option name="closed" value="true" />
+      <created>1723964665987</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1723964665987</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,7 +511,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added a new query tool to our toolbar." />
     <MESSAGE value="Added rectangle drawing for zoned RCI." />
     <MESSAGE value="Implemented line rendering for roads. Fixed some warning from Event System and Camera components." />
     <MESSAGE value="Added updates from QueryTool.cs." />
@@ -527,7 +535,8 @@
     <MESSAGE value="Updated tilemap drawing to be drawn from DrawCity() only." />
     <MESSAGE value="#52: Updated tools, reworking some code within TileEditor.cs to make integrating tools easier" />
     <MESSAGE value="#52: Query tool and Bulldozer now function. Fixed #62." />
-    <option name="LAST_COMMIT_MESSAGE" value="#52: Query tool and Bulldozer now function. Fixed #62." />
+    <MESSAGE value="#63: added basic camera controls, #64: added larger and more detailed map." />
+    <option name="LAST_COMMIT_MESSAGE" value="#63: added basic camera controls, #64: added larger and more detailed map." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
