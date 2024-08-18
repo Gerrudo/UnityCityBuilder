@@ -1,0 +1,154 @@
+Index: Assets/Scenes/Game.unity
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Assets/Scenes/Game.unity b/Assets/Scenes/Game.unity
+--- a/Assets/Scenes/Game.unity	(revision a2039fc75ff43069a045d7b9dea57f14772a2e96)
++++ b/Assets/Scenes/Game.unity	(date 1723970737377)
+@@ -655,10 +655,10 @@
+   m_Component:
+   - component: {fileID: 149672887}
+   - component: {fileID: 149672889}
+-  - component: {fileID: 149672892}
+   - component: {fileID: 149672891}
+   - component: {fileID: 149672890}
+   - component: {fileID: 149672893}
++  - component: {fileID: 149672894}
+   m_Layer: 0
+   m_Name: GameManager
+   m_TagString: Untagged
+@@ -732,7 +732,7 @@
+   goodsText: {fileID: 297435157}
+   approvalText: {fileID: 81976320}
+   unemployedText: {fileID: 7328097}
+---- !u!114 &149672892
++--- !u!114 &149672893
+ MonoBehaviour:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+@@ -741,10 +741,11 @@
+   m_GameObject: {fileID: 149672885}
+   m_Enabled: 1
+   m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 08ef2b175d9be41e1b24068bc9b693d1, type: 3}
++  m_Script: {fileID: 11500000, guid: 59a102ba0abb46ab89500a4347d6b731, type: 3}
+   m_Name: 
+   m_EditorClassIdentifier: 
+---- !u!114 &149672893
++  panLimit: {x: 30, y: 20}
++--- !u!114 &149672894
+ MonoBehaviour:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+@@ -753,10 +754,9 @@
+   m_GameObject: {fileID: 149672885}
+   m_Enabled: 1
+   m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 59a102ba0abb46ab89500a4347d6b731, type: 3}
++  m_Script: {fileID: 11500000, guid: 08ef2b175d9be41e1b24068bc9b693d1, type: 3}
+   m_Name: 
+   m_EditorClassIdentifier: 
+-  panLimit: {x: 30, y: 20}
+ --- !u!1 &201475351
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -296624,50 +296624,6 @@
+   m_PrefabAsset: {fileID: 0}
+   m_GameObject: {fileID: 1044676157}
+   m_CullTransparentMesh: 1
+---- !u!1 &1062590395
+-GameObject:
+-  m_ObjectHideFlags: 0
+-  m_CorrespondingSourceObject: {fileID: 0}
+-  m_PrefabInstance: {fileID: 0}
+-  m_PrefabAsset: {fileID: 0}
+-  serializedVersion: 6
+-  m_Component:
+-  - component: {fileID: 1062590397}
+-  - component: {fileID: 1062590396}
+-  m_Layer: 0
+-  m_Name: ToolController
+-  m_TagString: Untagged
+-  m_Icon: {fileID: 0}
+-  m_NavMeshLayer: 0
+-  m_StaticEditorFlags: 0
+-  m_IsActive: 1
+---- !u!114 &1062590396
+-MonoBehaviour:
+-  m_ObjectHideFlags: 0
+-  m_CorrespondingSourceObject: {fileID: 0}
+-  m_PrefabInstance: {fileID: 0}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 1062590395}
+-  m_Enabled: 1
+-  m_EditorHideFlags: 0
+-  m_Script: {fileID: 11500000, guid: 08ef2b175d9be41e1b24068bc9b693d1, type: 3}
+-  m_Name: 
+-  m_EditorClassIdentifier: 
+---- !u!4 &1062590397
+-Transform:
+-  m_ObjectHideFlags: 0
+-  m_CorrespondingSourceObject: {fileID: 0}
+-  m_PrefabInstance: {fileID: 0}
+-  m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 1062590395}
+-  serializedVersion: 2
+-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+-  m_LocalPosition: {x: 0, y: 0, z: 0}
+-  m_LocalScale: {x: 1, y: 1, z: 1}
+-  m_ConstrainProportionsScale: 0
+-  m_Children: []
+-  m_Father: {fileID: 0}
+-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+ --- !u!1 &1080878663
+ GameObject:
+   m_ObjectHideFlags: 0
+@@ -299181,4 +299137,3 @@
+   - {fileID: 553451575}
+   - {fileID: 149672887}
+   - {fileID: 1979291679}
+-  - {fileID: 1062590397}
+Index: Assets/Scripts/CameraController.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System;\nusing UnityEngine;\nusing UnityEngine.InputSystem;\n\npublic class CameraController : Singleton<CameraController>\n{\n    private const float PanSpeed = 20f;\n    private new Camera camera;\n\n    private const float ZoomSpeed = 2f;\n    private const float MinZoom = 5f;\n    private const float MaxZoom = 20f;\n\n    [field: SerializeField] private Vector2 panLimit;\n\n    protected override void Awake()\n    {\n        base.Awake();\n        \n        camera = Camera.main;\n    }\n\n    private void Update()\n    {\n        Pan();\n        Zoom();\n    }\n\n    private void Pan()\n    {\n        var position = camera.transform.position;\n\n        //TODO: Consider switching to Input System\n        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) position.y += PanSpeed * Time.deltaTime;\n        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) position.x -= PanSpeed * Time.deltaTime;\n        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) position.y -= PanSpeed * Time.deltaTime;\n        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) position.x += PanSpeed * Time.deltaTime;\n\n        position.x = Mathf.Clamp(position.x, -panLimit.x, panLimit.x);\n        position.y = Mathf.Clamp(position.y, -panLimit.y, panLimit.y);\n\n        camera.transform.position = position;\n    }\n\n    private void Zoom()\n    {\n        //TODO: Consider switching to Input System\n        var scroll = Input.GetAxis(\"Mouse ScrollWheel\");\n\n        camera.orthographicSize -= scroll * ZoomSpeed;\n        camera.orthographicSize = Mathf.Clamp(camera.orthographicSize, MinZoom, MaxZoom);\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Assets/Scripts/CameraController.cs b/Assets/Scripts/CameraController.cs
+--- a/Assets/Scripts/CameraController.cs	(revision a2039fc75ff43069a045d7b9dea57f14772a2e96)
++++ b/Assets/Scripts/CameraController.cs	(date 1723969907735)
+@@ -1,6 +1,4 @@
+-using System;
+ using UnityEngine;
+-using UnityEngine.InputSystem;
+ 
+ public class CameraController : Singleton<CameraController>
+ {
+Index: Assets/Scripts/Tilemap/TilemapTool.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using UnityEngine;\nusing UnityEngine.Tilemaps;\n\n[CreateAssetMenu(fileName = \"Tool\", menuName = \"Create Tool\")]\npublic class TilemapTool : BuildingPreset\n{\n    [field: SerializeField] public ToolType ToolType { get; private set; }\n\n    private ToolController toolController;\n\n    private void Awake()\n    {\n        toolController = ToolController.GetInstance();\n    }\n\n    public void Use(Vector3Int position, Tilemap tilemap)\n    {\n        switch (ToolType)\n        {\n            case ToolType.Bulldozer:\n                toolController.Bulldozer(position, tilemap);\n                break;\n            case ToolType.Query:\n                toolController.Query(position, tilemap);\n                break;\n            case ToolType.None:\n            default:\n                break;\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Assets/Scripts/Tilemap/TilemapTool.cs b/Assets/Scripts/Tilemap/TilemapTool.cs
+--- a/Assets/Scripts/Tilemap/TilemapTool.cs	(revision a2039fc75ff43069a045d7b9dea57f14772a2e96)
++++ b/Assets/Scripts/Tilemap/TilemapTool.cs	(date 1723970664232)
+@@ -8,13 +8,10 @@
+ 
+     private ToolController toolController;
+ 
+-    private void Awake()
+-    {
+-        toolController = ToolController.GetInstance();
+-    }
+-
+     public void Use(Vector3Int position, Tilemap tilemap)
+     {
++        toolController = ToolController.GetInstance();
++        
+         switch (ToolType)
+         {
+             case ToolType.Bulldozer:
