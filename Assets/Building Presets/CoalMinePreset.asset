@@ -16,7 +16,7 @@ MonoBehaviour:
   <Description>k__BackingField: Must be placed next to a road. Provides jobs. Produces
     Coal which can be used by the Coal Power Plant to reduce costs. Requires Power
     and Water.
-  <TileType>k__BackingField: 6
+  <TileType>k__BackingField: 4
   <TileBase>k__BackingField: {fileID: 11400000, guid: 766ac17aadf854f1ab303d6ca6d95ba0, type: 2}
   <Level1TilBase>k__BackingField: {fileID: 0}
   <PlacementType>k__BackingField: 0

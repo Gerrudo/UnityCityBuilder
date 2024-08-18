@@ -1,0 +1,549 @@
+Index: Assets/Building Presets/SatellitePreset.asset
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>%YAML 1.1\n%TAG !u! tag:unity3d.com,2011:\n--- !u!114 &11400000\nMonoBehaviour:\n  m_ObjectHideFlags: 0\n  m_CorrespondingSourceObject: {fileID: 0}\n  m_PrefabInstance: {fileID: 0}\n  m_PrefabAsset: {fileID: 0}\n  m_GameObject: {fileID: 0}\n  m_Enabled: 1\n  m_EditorHideFlags: 0\n  m_Script: {fileID: 11500000, guid: 9fba716a8dc494fa7989b75fe7fe9b94, type: 3}\n  m_Name: SatellitePreset\n  m_EditorClassIdentifier: \n  <TileName>k__BackingField: Satellite\n  <Description>k__BackingField: Must be placed next to a road. Provides jobs. Provides\n    an essential service to citizens, increasing happiness. Requires Power.\n  <TileType>k__BackingField: 10\n  <TileBase>k__BackingField: {fileID: 11400000, guid: b5fbd12e385ab420b831cec9ec6e908c, type: 2}\n  <Level1TilBase>k__BackingField: {fileID: 0}\n  <PlacementType>k__BackingField: 0\n  <CostToBuild>k__BackingField: 6500\n  <MaxPopulation>k__BackingField: 0\n  <MaxEmployees>k__BackingField: 50\n  <Expenses>k__BackingField: 500\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Assets/Building Presets/SatellitePreset.asset b/Assets/Building Presets/SatellitePreset.asset
+--- a/Assets/Building Presets/SatellitePreset.asset	(revision 6bcba7252d78eda94faf4e46d7bead528a108fd3)
++++ b/Assets/Building Presets/SatellitePreset.asset	(date 1723965465246)
+@@ -15,7 +15,7 @@
+   <TileName>k__BackingField: Satellite
+   <Description>k__BackingField: Must be placed next to a road. Provides jobs. Provides
+     an essential service to citizens, increasing happiness. Requires Power.
+-  <TileType>k__BackingField: 10
++  <TileType>k__BackingField: 8
+   <TileBase>k__BackingField: {fileID: 11400000, guid: b5fbd12e385ab420b831cec9ec6e908c, type: 2}
+   <Level1TilBase>k__BackingField: {fileID: 0}
+   <PlacementType>k__BackingField: 0
+Index: Assets/Building Presets/CoalMinePreset.asset
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>%YAML 1.1\n%TAG !u! tag:unity3d.com,2011:\n--- !u!114 &11400000\nMonoBehaviour:\n  m_ObjectHideFlags: 0\n  m_CorrespondingSourceObject: {fileID: 0}\n  m_PrefabInstance: {fileID: 0}\n  m_PrefabAsset: {fileID: 0}\n  m_GameObject: {fileID: 0}\n  m_Enabled: 1\n  m_EditorHideFlags: 0\n  m_Script: {fileID: 11500000, guid: 9fba716a8dc494fa7989b75fe7fe9b94, type: 3}\n  m_Name: CoalMinePreset\n  m_EditorClassIdentifier: \n  <TileName>k__BackingField: Coal Mine\n  <Description>k__BackingField: Must be placed next to a road. Provides jobs. Produces\n    Coal which can be used by the Coal Power Plant to reduce costs. Requires Power\n    and Water.\n  <TileType>k__BackingField: 6\n  <TileBase>k__BackingField: {fileID: 11400000, guid: 766ac17aadf854f1ab303d6ca6d95ba0, type: 2}\n  <Level1TilBase>k__BackingField: {fileID: 0}\n  <PlacementType>k__BackingField: 0\n  <CostToBuild>k__BackingField: 1000\n  <MaxPopulation>k__BackingField: 0\n  <MaxEmployees>k__BackingField: 100\n  <Expenses>k__BackingField: 300\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Assets/Building Presets/CoalMinePreset.asset b/Assets/Building Presets/CoalMinePreset.asset
+--- a/Assets/Building Presets/CoalMinePreset.asset	(revision 6bcba7252d78eda94faf4e46d7bead528a108fd3)
++++ b/Assets/Building Presets/CoalMinePreset.asset	(date 1723965465245)
+@@ -16,7 +16,7 @@
+   <Description>k__BackingField: Must be placed next to a road. Provides jobs. Produces
+     Coal which can be used by the Coal Power Plant to reduce costs. Requires Power
+     and Water.
+-  <TileType>k__BackingField: 6
++  <TileType>k__BackingField: 4
+   <TileBase>k__BackingField: {fileID: 11400000, guid: 766ac17aadf854f1ab303d6ca6d95ba0, type: 2}
+   <Level1TilBase>k__BackingField: {fileID: 0}
+   <PlacementType>k__BackingField: 0
+Index: Assets/Scenes/Game.unity
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Assets/Scenes/Game.unity b/Assets/Scenes/Game.unity
+--- a/Assets/Scenes/Game.unity	(revision 6bcba7252d78eda94faf4e46d7bead528a108fd3)
++++ b/Assets/Scenes/Game.unity	(date 1723964835935)
+@@ -275,10 +275,10 @@
+   m_Children: []
+   m_Father: {fileID: 1334108294}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 102.150024, y: -89.73583}
+-  m_SizeDelta: {x: 154.30005, y: 46.490555}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 0, y: 0}
+   m_Pivot: {x: 0.5, y: 0.5}
+ --- !u!114 &7328097
+ MonoBehaviour:
+@@ -409,10 +409,10 @@
+   m_Children: []
+   m_Father: {fileID: 1334108294}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 102.150024, y: -33.245277}
+-  m_SizeDelta: {x: 154.30005, y: 46.490555}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 0, y: 0}
+   m_Pivot: {x: 0.5, y: 0.5}
+ --- !u!114 &81976320
+ MonoBehaviour:
+@@ -543,10 +543,10 @@
+   m_Children: []
+   m_Father: {fileID: 478606320}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 356.795, y: -29.82}
+-  m_SizeDelta: {x: 72.01, y: 50}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 0, y: 50}
+   m_Pivot: {x: 0.5, y: 0.5}
+ --- !u!114 &121301431
+ MonoBehaviour:
+@@ -34118,9 +34118,9 @@
+   m_Children: []
+   m_Father: {fileID: 1258545201}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 891.0499, y: -10}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
+   m_SizeDelta: {x: 80, y: 80}
+   m_Pivot: {x: 0, y: 1}
+ --- !u!114 &222772469
+@@ -34266,9 +34266,9 @@
+   m_Children: []
+   m_Father: {fileID: 1258545201}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 33.736664, y: -10}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
+   m_SizeDelta: {x: 80, y: 80}
+   m_Pivot: {x: 0, y: 1}
+ --- !u!114 &282618007
+@@ -34473,9 +34473,9 @@
+   m_Children: []
+   m_Father: {fileID: 1258545201}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 1135.9967, y: -10}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
+   m_SizeDelta: {x: 80, y: 80}
+   m_Pivot: {x: 0, y: 1}
+ --- !u!114 &286711211
+@@ -34618,10 +34618,10 @@
+   m_Children: []
+   m_Father: {fileID: 1334108294}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 102.150024, y: -259.2075}
+-  m_SizeDelta: {x: 154.30005, y: 46.490555}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 0, y: 0}
+   m_Pivot: {x: 0.5, y: 0.5}
+ --- !u!114 &297435157
+ MonoBehaviour:
+@@ -34755,9 +34755,9 @@
+   m_Children: []
+   m_Father: {fileID: 1258545201}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 646.1033, y: -10}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
+   m_SizeDelta: {x: 80, y: 80}
+   m_Pivot: {x: 0, y: 1}
+ --- !u!114 &438428165
+@@ -34913,7 +34913,7 @@
+   m_AnchorMin: {x: 0.5, y: 0}
+   m_AnchorMax: {x: 0.5, y: 0}
+   m_AnchoredPosition: {x: 32.725002, y: 137}
+-  m_SizeDelta: {x: 666.08, y: 59.64}
++  m_SizeDelta: {x: 0, y: 59.64}
+   m_Pivot: {x: 0.5, y: 0}
+ --- !u!114 &478606321
+ MonoBehaviour:
+@@ -35025,10 +35025,10 @@
+   m_Children: []
+   m_Father: {fileID: 1713357816}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 64.05499, y: -26.771362}
+-  m_SizeDelta: {x: 78.109985, y: 33.542725}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 0, y: 0}
+   m_Pivot: {x: 0.5, y: 0.5}
+ --- !u!114 &485673576
+ MonoBehaviour:
+@@ -35162,9 +35162,9 @@
+   m_Children: []
+   m_Father: {fileID: 1258545201}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 278.68332, y: -10}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
+   m_SizeDelta: {x: 80, y: 80}
+   m_Pivot: {x: 0, y: 1}
+ --- !u!114 &516585226
+@@ -35399,10 +35399,10 @@
+   m_Children: []
+   m_Father: {fileID: 478606320}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 289.035, y: -29.82}
+-  m_SizeDelta: {x: 13.51, y: 50}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 0, y: 50}
+   m_Pivot: {x: 0.5, y: 0.5}
+ --- !u!222 &549681613
+ CanvasRenderer:
+@@ -35863,10 +35863,10 @@
+   m_Children: []
+   m_Father: {fileID: 478606320}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 196.525, y: -29.82}
+-  m_SizeDelta: {x: 121.51, y: 50}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 0, y: 50}
+   m_Pivot: {x: 0.5, y: 0.5}
+ --- !u!114 &645635460
+ MonoBehaviour:
+@@ -35997,10 +35997,10 @@
+   m_Children: []
+   m_Father: {fileID: 478606320}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 48.629997, y: -29.82}
+-  m_SizeDelta: {x: 47.26, y: 50}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 0, y: 50}
+   m_Pivot: {x: 0.5, y: 0.5}
+ --- !u!114 &667218550
+ MonoBehaviour:
+@@ -36134,9 +36134,9 @@
+   m_Children: []
+   m_Father: {fileID: 1258545201}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 156.20999, y: -10}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
+   m_SizeDelta: {x: 80, y: 80}
+   m_Pivot: {x: 0, y: 1}
+ --- !u!114 &684834629
+@@ -36496,9 +36496,9 @@
+   m_Children: []
+   m_Father: {fileID: 1258545201}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 523.63, y: -10}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
+   m_SizeDelta: {x: 80, y: 80}
+   m_Pivot: {x: 0, y: 1}
+ --- !u!114 &740835919
+@@ -36644,9 +36644,9 @@
+   m_Children: []
+   m_Father: {fileID: 1258545201}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 1380.9435, y: -10}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
+   m_SizeDelta: {x: 80, y: 80}
+   m_Pivot: {x: 0, y: 1}
+ --- !u!114 &823487667
+@@ -36789,10 +36789,10 @@
+   m_Children: []
+   m_Father: {fileID: 478606320}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 431.30502, y: -29.82}
+-  m_SizeDelta: {x: 27.01, y: 50}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 0, y: 50}
+   m_Pivot: {x: 0.5, y: 0.5}
+ --- !u!222 &937214637
+ CanvasRenderer:
+@@ -296511,9 +296511,9 @@
+   m_Children: []
+   m_Father: {fileID: 1258545201}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 1013.5233, y: -10}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
+   m_SizeDelta: {x: 80, y: 80}
+   m_Pivot: {x: 0, y: 1}
+ --- !u!114 &1044676159
+@@ -296700,10 +296700,10 @@
+   m_Children: []
+   m_Father: {fileID: 478606320}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 620.825, y: -29.82}
+-  m_SizeDelta: {x: 40.51, y: 50}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 0, y: 50}
+   m_Pivot: {x: 0.5, y: 0.5}
+ --- !u!222 &1080878665
+ CanvasRenderer:
+@@ -296837,9 +296837,9 @@
+   m_Children: []
+   m_Father: {fileID: 1258545201}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 1258.4701, y: -10}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
+   m_SizeDelta: {x: 80, y: 80}
+   m_Pivot: {x: 0, y: 1}
+ --- !u!114 &1192308854
+@@ -297099,10 +297099,10 @@
+   m_Children: []
+   m_Father: {fileID: 1334108294}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 102.150024, y: -202.71695}
+-  m_SizeDelta: {x: 154.30005, y: 46.490555}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 0, y: 0}
+   m_Pivot: {x: 0.5, y: 0.5}
+ --- !u!114 &1295223401
+ MonoBehaviour:
+@@ -297340,10 +297340,10 @@
+   m_Children: []
+   m_Father: {fileID: 478606320}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 522.69, y: -29.82}
+-  m_SizeDelta: {x: 105.76, y: 50}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 0, y: 50}
+   m_Pivot: {x: 0.5, y: 0.5}
+ --- !u!114 &1393206929
+ MonoBehaviour:
+@@ -297477,9 +297477,9 @@
+   m_Children: []
+   m_Father: {fileID: 1258545201}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 401.15665, y: -10}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
+   m_SizeDelta: {x: 80, y: 80}
+   m_Pivot: {x: 0, y: 1}
+ --- !u!114 &1492635401
+@@ -297625,9 +297625,9 @@
+   m_Children: []
+   m_Father: {fileID: 1258545201}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 1625.8903, y: -10}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
+   m_SizeDelta: {x: 80, y: 80}
+   m_Pivot: {x: 0, y: 1}
+ --- !u!114 &1496448029
+@@ -298196,7 +298196,7 @@
+   m_Icon: {fileID: 0}
+   m_NavMeshLayer: 0
+   m_StaticEditorFlags: 0
+-  m_IsActive: 0
++  m_IsActive: 1
+ --- !u!114 &1930987174
+ MonoBehaviour:
+   m_ObjectHideFlags: 0
+@@ -298435,9 +298435,9 @@
+   m_Children: []
+   m_Father: {fileID: 1258545201}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 1748.3636, y: -10}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
+   m_SizeDelta: {x: 80, y: 80}
+   m_Pivot: {x: 0, y: 1}
+ --- !u!114 &1991610959
+@@ -298639,10 +298639,10 @@
+   m_Children: []
+   m_Father: {fileID: 478606320}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 104.01499, y: -29.82}
+-  m_SizeDelta: {x: 13.51, y: 50}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 0, y: 50}
+   m_Pivot: {x: 0.5, y: 0.5}
+ --- !u!222 &2011421310
+ CanvasRenderer:
+@@ -298773,10 +298773,10 @@
+   m_Children: []
+   m_Father: {fileID: 1334108294}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 102.150024, y: -146.22638}
+-  m_SizeDelta: {x: 154.30005, y: 46.490555}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 0, y: 0}
+   m_Pivot: {x: 0.5, y: 0.5}
+ --- !u!114 &2022924898
+ MonoBehaviour:
+@@ -298910,9 +298910,9 @@
+   m_Children: []
+   m_Father: {fileID: 1258545201}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 768.57666, y: -10}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
+   m_SizeDelta: {x: 80, y: 80}
+   m_Pivot: {x: 0, y: 1}
+ --- !u!114 &2110473517
+@@ -299058,9 +299058,9 @@
+   m_Children: []
+   m_Father: {fileID: 1258545201}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_AnchorMin: {x: 0, y: 1}
+-  m_AnchorMax: {x: 0, y: 1}
+-  m_AnchoredPosition: {x: 1503.4169, y: -10}
++  m_AnchorMin: {x: 0, y: 0}
++  m_AnchorMax: {x: 0, y: 0}
++  m_AnchoredPosition: {x: 0, y: 0}
+   m_SizeDelta: {x: 80, y: 80}
+   m_Pivot: {x: 0, y: 1}
+ --- !u!114 &2140802284
+Index: Assets/Tools/BulldozerTool.asset
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>%YAML 1.1\n%TAG !u! tag:unity3d.com,2011:\n--- !u!114 &11400000\nMonoBehaviour:\n  m_ObjectHideFlags: 0\n  m_CorrespondingSourceObject: {fileID: 0}\n  m_PrefabInstance: {fileID: 0}\n  m_PrefabAsset: {fileID: 0}\n  m_GameObject: {fileID: 0}\n  m_Enabled: 1\n  m_EditorHideFlags: 0\n  m_Script: {fileID: 11500000, guid: 29888a1b3ccac49f2994f6e027a7069c, type: 3}\n  m_Name: BulldozerTool\n  m_EditorClassIdentifier: \n  <TileName>k__BackingField: Bulldozer\n  <Description>k__BackingField: Removes any tiles within a given area.\n  <TileType>k__BackingField: 0\n  <TileBase>k__BackingField: {fileID: 11400000, guid: 8c52ec63bddd846a9a8020b98bb9c9f9, type: 2}\n  <Level1TilBase>k__BackingField: {fileID: 0}\n  <PlacementType>k__BackingField: 0\n  <CostToBuild>k__BackingField: 0\n  <MaxPopulation>k__BackingField: 0\n  <MaxEmployees>k__BackingField: 0\n  <Expenses>k__BackingField: 0\n  <ToolType>k__BackingField: 1\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Assets/Tools/BulldozerTool.asset b/Assets/Tools/BulldozerTool.asset
+--- a/Assets/Tools/BulldozerTool.asset	(revision 6bcba7252d78eda94faf4e46d7bead528a108fd3)
++++ b/Assets/Tools/BulldozerTool.asset	(date 1723965465243)
+@@ -17,7 +17,7 @@
+   <TileType>k__BackingField: 0
+   <TileBase>k__BackingField: {fileID: 11400000, guid: 8c52ec63bddd846a9a8020b98bb9c9f9, type: 2}
+   <Level1TilBase>k__BackingField: {fileID: 0}
+-  <PlacementType>k__BackingField: 0
++  <PlacementType>k__BackingField: 2
+   <CostToBuild>k__BackingField: 0
+   <MaxPopulation>k__BackingField: 0
+   <MaxEmployees>k__BackingField: 0
+Index: .idea/.idea.reticulating-splines/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"9d653b74-6d59-4f8a-813b-6cf59a62b0cc\" name=\"Changes\" comment=\"#52: Query tool and Bulldozer now function. Fixed #62.\">\n      <change afterPath=\"$PROJECT_DIR$/Assets/Scripts/CameraController.cs\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/Assets/Scripts/CameraController.cs.meta\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/Assets/Scenes/Game.unity\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Assets/Scenes/Game.unity\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;Gerrudo&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/Gerrudo/reticulating-splines&quot;,\n    &quot;accountId&quot;: &quot;446ea931-f249-4064-a31f-1154014c39dc&quot;\n  }\n}</component>\n  <component name=\"HighlightingSettingsPerFile\">\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/620b3c283008451faac1acc2fa757548292e00/a9/180fdfe1/Component.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f646c7a159d243a7909d5204af0f0c56469200/61/294981ec/CancellationTokenSource.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scenes/Game.unity\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/Buildings/Building.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/Buildings/Generator.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/Buildings/WaterTower.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/Interfaces/IApproval.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/UI/CityStatistics.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/UI/Tooltip.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/UI/TooltipSystem.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Assets/Scripts/UI/TooltipTrigger.cs\" root0=\"FORCE_HIGHLIGHTING\" />\n    <setting file=\"mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/Utilities/Calculations.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Actions/InputActionState.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Actions/InputInteractionContext.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Utilities/DelegateHelpers.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n  </component>\n  <component name=\"KubernetesApiPersistence\">{}</component>\n  <component name=\"KubernetesApiProvider\">{\n  &quot;isMigrated&quot;: true\n}</component>\n  <component name=\"MetaFilesCheckinStateConfiguration\" checkMetaFiles=\"true\" />\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 0\n}</component>\n  <component name=\"ProjectId\" id=\"2j9VBUUuYHHSbeQCh37URsTnKs0\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,\n    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\n    &quot;Attach to Unity Editor.Attach to Unity Editor &amp; Play.executor&quot;: &quot;Debug&quot;,\n    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.44677138&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;63-add-camera-controls&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  },\n  &quot;keyToStringList&quot;: {\n    &quot;rider.external.source.directories&quot;: [\n      &quot;/Users/thomasturner/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache&quot;,\n      &quot;/Users/thomasturner/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache&quot;,\n      &quot;/Users/thomasturner/Library/Application Support/Symbols/src&quot;\n    ]\n  }\n}</component>\n  <component name=\"RunManager\" selected=\"Attach to Unity Editor.Attach to Unity Editor &amp; Play\">\n    <configuration name=\"Standalone Player\" type=\"RunUnityExe\" factoryName=\"Unity Executable\">\n      <option name=\"EXE_PATH\" value=\"$PROJECT_DIR$/../Builds/reticulating-splines/v0.4.0-alpha/v0.4.0-alpha-macos.app/Contents/MacOS/isocitybuilder\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/../Builds/reticulating-splines/v0.2.0-alpha/v0.2.0-alpha-macos.app/Contents/MacOS\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Start Unity\" type=\"RunUnityExe\" factoryName=\"Unity Executable\">\n      <option name=\"EXE_PATH\" value=\"/Applications/Unity/Hub/Editor/2022.3.13f1/Unity.app/Contents/MacOS/Unity\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"-projectPath $PROJECT_DIR$ -debugCodeOptimization\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Unit Tests (batch mode)\" type=\"RunUnityExe\" factoryName=\"Unity Executable\">\n      <option name=\"EXE_PATH\" value=\"/Applications/Unity/Hub/Editor/2022.3.13f1/Unity.app/Contents/MacOS/Unity\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"-runTests -batchmode -projectPath $PROJECT_DIR$ -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Attach to Unity Editor &amp; Play\" type=\"UNITY_DEBUG_RUN_CONFIGURATION\" factoryName=\"UNITY_ATTACH_AND_PLAY\" show_console_on_std_err=\"false\" show_console_on_std_out=\"false\" port=\"50000\" address=\"localhost\">\n      <option name=\"allowRunningInParallel\" value=\"false\" />\n      <option name=\"listenPortForConnections\" value=\"false\" />\n      <option name=\"pid\" />\n      <option name=\"projectPathOnTarget\" />\n      <option name=\"selectedOptions\">\n        <list />\n      </option>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Attach to Unity Editor\" type=\"UNITY_DEBUG_RUN_CONFIGURATION\" factoryName=\"Unity Debug\" show_console_on_std_err=\"false\" show_console_on_std_out=\"false\" port=\"50000\" address=\"localhost\">\n      <option name=\"allowRunningInParallel\" value=\"false\" />\n      <option name=\"listenPortForConnections\" value=\"false\" />\n      <option name=\"pid\" />\n      <option name=\"projectPathOnTarget\" />\n      <option name=\"selectedOptions\">\n        <list />\n      </option>\n      <method v=\"2\" />\n    </configuration>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"9d653b74-6d59-4f8a-813b-6cf59a62b0cc\" name=\"Changes\" comment=\"\" />\n      <created>1720799144395</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1720799144395</updated>\n      <workItem from=\"1720799145997\" duration=\"9688000\" />\n      <workItem from=\"1720852436762\" duration=\"174754000\" />\n      <workItem from=\"1721981441453\" duration=\"122049000\" />\n      <workItem from=\"1723281267577\" duration=\"28003000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"Improvements to ICalculable, restructured City class.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1720858358122</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1720858358122</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Moving stuff around, removed ICalculable interface as it was pointless abstraction\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1720955744895</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1720955744895</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Added BuildingFactory, no longer using scriptable objects in cityTiles to manipulate data.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1720974187250</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1720974187250</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"Split out factory class implemenations, added populations calculations and ITaxable\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1721026449964</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721026449964</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"Moved around scripts for readability, added a CityData static data class.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1721112538314</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721112538314</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"Added IEmployable, IPowerable and IWaterable interfaces.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1721201092572</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721201092572</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"Removed CityData calls from Buildings\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1721369670918</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721369670918</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"Saving state before merge\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1721463049107</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721463049107</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"Updated building menu and scriptable object values for UI.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1721564181837</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721564181837</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"Added new sprites/presets\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1721627698019</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721627698019</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"Added new implementations to BuildingFactory.cs.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1721715492922</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721715492922</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"Changed GameTile to Preset, making it easier to understand it's purpose.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1721715759926</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721715759926</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"Updated to Preset in areas that were missed.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1721715976767</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721715976767</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"Added DistributeCitizens() and moved Citizens list to our City class.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1721803353687</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721803353687</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"Updated numbers for employment and removed IEmployable.cs\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1721972117306</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721972117306</updated>\n    </task>\n    <task id=\"LOCAL-00016\" summary=\"Added a new query tool to our toolbar.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1721975859213</created>\n      <option name=\"number\" value=\"00016\" />\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1721975859213</updated>\n    </task>\n    <task id=\"LOCAL-00017\" summary=\"Added rectangle drawing for zoned RCI.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1722233700646</created>\n      <option name=\"number\" value=\"00017\" />\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722233700646</updated>\n    </task>\n    <task id=\"LOCAL-00018\" summary=\"Implemented line rendering for roads. Fixed some warning from Event System and Camera components.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1722320662076</created>\n      <option name=\"number\" value=\"00018\" />\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722320662076</updated>\n    </task>\n    <task id=\"LOCAL-00019\" summary=\"Added updates from QueryTool.cs.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1722320684306</created>\n      <option name=\"number\" value=\"00019\" />\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722320684306</updated>\n    </task>\n    <task id=\"LOCAL-00020\" summary=\"Added simple DrawCity Method in City.cs.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1722406840341</created>\n      <option name=\"number\" value=\"00020\" />\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722406840341</updated>\n    </task>\n    <task id=\"LOCAL-00021\" summary=\"Commiting before altering building factory.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1722579405833</created>\n      <option name=\"number\" value=\"00021\" />\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722579405833</updated>\n    </task>\n    <task id=\"LOCAL-00022\" summary=\"Refactoring for #56\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1722683503158</created>\n      <option name=\"number\" value=\"00022\" />\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722683503158</updated>\n    </task>\n    <task id=\"LOCAL-00023\" summary=\"Added back parts of power and water\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1722751889013</created>\n      <option name=\"number\" value=\"00023\" />\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722751889013</updated>\n    </task>\n    <task id=\"LOCAL-00024\" summary=\"Updated interfaces for earnings and utilites\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1722756424914</created>\n      <option name=\"number\" value=\"00024\" />\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722756424914</updated>\n    </task>\n    <task id=\"LOCAL-00025\" summary=\"Fixes #58 and #59\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1722838063824</created>\n      <option name=\"number\" value=\"00025\" />\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722838063824</updated>\n    </task>\n    <task id=\"LOCAL-00026\" summary=\"Updated Preset name to BuildingPreset\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1722925399967</created>\n      <option name=\"number\" value=\"00026\" />\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1722925399967</updated>\n    </task>\n    <task id=\"LOCAL-00027\" summary=\"#60: Added IApproval.cs interface, modifed Residential.cs to include a template for GetApprovalScore().\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723010583719</created>\n      <option name=\"number\" value=\"00027\" />\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723010583719</updated>\n    </task>\n    <task id=\"LOCAL-00028\" summary=\"Added employment calculation\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723013909488</created>\n      <option name=\"number\" value=\"00028\" />\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723013909488</updated>\n    </task>\n    <task id=\"LOCAL-00029\" summary=\"#60: Residental has working approval rating calculations.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723100618495</created>\n      <option name=\"number\" value=\"00029\" />\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723100618495</updated>\n    </task>\n    <task id=\"LOCAL-00030\" summary=\"#60: Added approval ratings for Commercial and Industrial\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723184921865</created>\n      <option name=\"number\" value=\"00030\" />\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723184921865</updated>\n    </task>\n    <task id=\"LOCAL-00031\" summary=\"Added randomisation to population growth, added population multiplier to apply to random int.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723358693166</created>\n      <option name=\"number\" value=\"00031\" />\n      <option name=\"presentableId\" value=\"LOCAL-00031\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723358693166</updated>\n    </task>\n    <task id=\"LOCAL-00032\" summary=\"#60; Added IsPowered and IsWatered state, modified value setting for Power and Water generation and consumption\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723445684970</created>\n      <option name=\"number\" value=\"00032\" />\n      <option name=\"presentableId\" value=\"LOCAL-00032\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723445684970</updated>\n    </task>\n    <task id=\"LOCAL-00033\" summary=\"Toolbar modifications\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723614126382</created>\n      <option name=\"number\" value=\"00033\" />\n      <option name=\"presentableId\" value=\"LOCAL-00033\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723614126382</updated>\n    </task>\n    <task id=\"LOCAL-00034\" summary=\"More UI Changes\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723616932857</created>\n      <option name=\"number\" value=\"00034\" />\n      <option name=\"presentableId\" value=\"LOCAL-00034\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723616932857</updated>\n    </task>\n    <task id=\"LOCAL-00035\" summary=\"Commit before switching rendering method for City\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723703980762</created>\n      <option name=\"number\" value=\"00035\" />\n      <option name=\"presentableId\" value=\"LOCAL-00035\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723703980762</updated>\n    </task>\n    <task id=\"LOCAL-00036\" summary=\"#52; Added DirectDraw() as a temporary method to get round issued with SelectedObject being null when attempting to use a tool. Will need to find a better way around this next.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723705319889</created>\n      <option name=\"number\" value=\"00036\" />\n      <option name=\"presentableId\" value=\"LOCAL-00036\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723705319889</updated>\n    </task>\n    <task id=\"LOCAL-00037\" summary=\"Updated tilemap drawing to be drawn from DrawCity() only.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723740984512</created>\n      <option name=\"number\" value=\"00037\" />\n      <option name=\"presentableId\" value=\"LOCAL-00037\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723740984512</updated>\n    </task>\n    <task id=\"LOCAL-00038\" summary=\"#52: Updated tools, reworking some code within TileEditor.cs to make integrating tools easier\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723792127864</created>\n      <option name=\"number\" value=\"00038\" />\n      <option name=\"presentableId\" value=\"LOCAL-00038\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723792127864</updated>\n    </task>\n    <task id=\"LOCAL-00039\" summary=\"#52: Query tool and Bulldozer now function. Fixed #62.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1723896043463</created>\n      <option name=\"number\" value=\"00039\" />\n      <option name=\"presentableId\" value=\"LOCAL-00039\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1723896043463</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"40\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"UnityCheckinConfiguration\" checkUnsavedScenes=\"true\" />\n  <component name=\"UnityProjectConfiguration\" hasMinimizedUI=\"true\" />\n  <component name=\"UnityProjectDiscoverer\">\n    <option name=\"hasUnityReference\" value=\"true\" />\n    <option name=\"unityProject\" value=\"true\" />\n    <option name=\"unityProjectFolder\" value=\"true\" />\n  </component>\n  <component name=\"UnityUnitTestConfiguration\" currentTestLauncher=\"Both\" />\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <option name=\"CLEAR_INITIAL_COMMIT_MESSAGE\" value=\"true\" />\n    <MESSAGE value=\"Added a new query tool to our toolbar.\" />\n    <MESSAGE value=\"Added rectangle drawing for zoned RCI.\" />\n    <MESSAGE value=\"Implemented line rendering for roads. Fixed some warning from Event System and Camera components.\" />\n    <MESSAGE value=\"Added updates from QueryTool.cs.\" />\n    <MESSAGE value=\"Added simple DrawCity Method in City.cs.\" />\n    <MESSAGE value=\"Commiting before altering building factory.\" />\n    <MESSAGE value=\"Refactoring for #56\" />\n    <MESSAGE value=\"Added back parts of power and water\" />\n    <MESSAGE value=\"Updated interfaces for earnings and utilites\" />\n    <MESSAGE value=\"Fixes #58 and #59\" />\n    <MESSAGE value=\"Updated Preset name to BuildingPreset\" />\n    <MESSAGE value=\"Added IApproval.cs interface, modifed Residential.cs to include a template for GetApprovalScore().\" />\n    <MESSAGE value=\"#60: Added IApproval.cs interface, modifed Residential.cs to include a template for GetApprovalScore().\" />\n    <MESSAGE value=\"Added employment calculation\" />\n    <MESSAGE value=\"#60: Residental has working approval rating calculations.\" />\n    <MESSAGE value=\"#60: Added approval ratings for Commercial and Industrial\" />\n    <MESSAGE value=\"Added randomisation to population growth, added population multiplier to apply to random int.\" />\n    <MESSAGE value=\"#60; Added IsPowered and IsWatered state, modified value setting for Power and Water generation and consumption\" />\n    <MESSAGE value=\"Toolbar modifications\" />\n    <MESSAGE value=\"More UI Changes\" />\n    <MESSAGE value=\"Commit before switching rendering method for City\" />\n    <MESSAGE value=\"#52; Added DirectDraw() as a temporary method to get round issued with SelectedObject being null when attempting to use a tool. Will need to find a better way around this next.\" />\n    <MESSAGE value=\"Updated tilemap drawing to be drawn from DrawCity() only.\" />\n    <MESSAGE value=\"#52: Updated tools, reworking some code within TileEditor.cs to make integrating tools easier\" />\n    <MESSAGE value=\"#52: Query tool and Bulldozer now function. Fixed #62.\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"#52: Query tool and Bulldozer now function. Fixed #62.\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <pin-to-top-manager>\n      <pinned-members>\n        <PinnedItemInfo parentTag=\"Frame#ToolController.Query\" memberName=\"this\" />\n      </pinned-members>\n    </pin-to-top-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.idea.reticulating-splines/.idea/workspace.xml b/.idea/.idea.reticulating-splines/.idea/workspace.xml
+--- a/.idea/.idea.reticulating-splines/.idea/workspace.xml	(revision 6bcba7252d78eda94faf4e46d7bead528a108fd3)
++++ b/.idea/.idea.reticulating-splines/.idea/workspace.xml	(date 1723966028698)
+@@ -4,11 +4,12 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="#52: Query tool and Bulldozer now function. Fixed #62.">
+-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CameraController.cs" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CameraController.cs.meta" afterDir="false" />
++    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="#63: added basic camera controls, #64: added larger and more detailed map.">
+       <change beforePath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Assets/Building Presets/CoalMinePreset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Building Presets/CoalMinePreset.asset" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Assets/Building Presets/SatellitePreset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Building Presets/SatellitePreset.asset" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Assets/Tools/BulldozerTool.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tools/BulldozerTool.asset" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -475,7 +476,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1723896043463</updated>
+     </task>
+-    <option name="localTasksCounter" value="40" />
++    <task id="LOCAL-00040" summary="#63: added basic camera controls, #64: added larger and more detailed map.">
++      <option name="closed" value="true" />
++      <created>1723964665987</created>
++      <option name="number" value="00040" />
++      <option name="presentableId" value="LOCAL-00040" />
++      <option name="project" value="LOCAL" />
++      <updated>1723964665987</updated>
++    </task>
++    <option name="localTasksCounter" value="41" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -502,7 +511,6 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+-    <MESSAGE value="Added a new query tool to our toolbar." />
+     <MESSAGE value="Added rectangle drawing for zoned RCI." />
+     <MESSAGE value="Implemented line rendering for roads. Fixed some warning from Event System and Camera components." />
+     <MESSAGE value="Added updates from QueryTool.cs." />
+@@ -527,7 +535,8 @@
+     <MESSAGE value="Updated tilemap drawing to be drawn from DrawCity() only." />
+     <MESSAGE value="#52: Updated tools, reworking some code within TileEditor.cs to make integrating tools easier" />
+     <MESSAGE value="#52: Query tool and Bulldozer now function. Fixed #62." />
+-    <option name="LAST_COMMIT_MESSAGE" value="#52: Query tool and Bulldozer now function. Fixed #62." />
++    <MESSAGE value="#63: added basic camera controls, #64: added larger and more detailed map." />
++    <option name="LAST_COMMIT_MESSAGE" value="#63: added basic camera controls, #64: added larger and more detailed map." />
+   </component>
+   <component name="XDebuggerManager">
+     <pin-to-top-manager>
