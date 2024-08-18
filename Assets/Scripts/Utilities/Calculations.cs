@@ -4,5 +4,5 @@ public class Calculations
 {
     public static double GetPercentage(double part, double whole) => (part / whole) * 100;
 
-    public static float Normalise(float total, int count) => (float)Math.Round(((double)total / count), 1);
+    public static double Normalise(double total, int count) => Math.Round(total / count, 1);
 }

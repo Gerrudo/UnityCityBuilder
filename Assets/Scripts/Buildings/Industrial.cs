@@ -102,7 +102,7 @@ public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
         return 0;
     }
     
-    public float GetApprovalScore(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
+    public double GetApprovalScore(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
     {
         const float employmentWeight = 0.6f;
         const float policeStationWeight = 0.2f;

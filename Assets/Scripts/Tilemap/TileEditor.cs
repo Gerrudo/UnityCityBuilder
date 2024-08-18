@@ -12,7 +12,7 @@ public class TileEditor : Singleton<TileEditor>
 
     private new Camera camera;
 
-    [SerializeField] private Tilemap previewMap, defaultMap, terrainMap;
+    [SerializeField] public Tilemap previewMap, defaultMap, terrainMap;
     private TileBase tileBase;
     private BuildingPreset selectedObj;
 
@@ -45,7 +45,6 @@ public class TileEditor : Singleton<TileEditor>
         
         if (!selectedObj) return;
         
-        //Setting pos as a Vector3 causes issues
         Vector2 pos = camera.ScreenToWorldPoint(mousePosition);
 
         var gridPos = previewMap.WorldToCell(pos);
@@ -114,32 +113,31 @@ public class TileEditor : Singleton<TileEditor>
 
     private void OnLeftClick(InputAction.CallbackContext ctx)
     {
-        if (selectedObj && !isPointerOverGameObject && PlacementAllowed())
+        if (!selectedObj || isPointerOverGameObject) return;
+        
+        if (ctx.phase == InputActionPhase.Started)
         {
-            if (ctx.phase == InputActionPhase.Started)
+            //TODO: can possibly remove SlowTapInteraction and have only certain tiles able to have click and drag interactions
+            if (ctx.interaction is SlowTapInteraction)
             {
-                //TODO: can possibly remove SlowTapInteraction and have only certain tiles able to have click and drag interactions
-                if (ctx.interaction is SlowTapInteraction)
-                {
-                    holdActive = true;
-                }
+                holdActive = true;
+            }
 
-                holdStartPosition = currentGridPosition;
-                HandleDrawing();
-            }
-            else
-            {
-                if (!holdActive) return;
+            holdStartPosition = currentGridPosition;
+            HandleDrawing();
+        }
+        else
+        {
+            if (!holdActive) return;
                 
-                holdActive = false;
-                HandleDrawingRelease();
-            }
+            holdActive = false;
+            HandleDrawingRelease();
         }
     }
 
     private void OnRightClick(InputAction.CallbackContext ctx)
     {
-        RemoveItem(currentGridPosition);
+        SelectedObj = null;
     }
 
     private void OnKeyboardEsc(InputAction.CallbackContext ctx)
@@ -172,12 +170,31 @@ public class TileEditor : Singleton<TileEditor>
                 RenderRectangle();
                 
                 break;
+        }
+    }
+
+    private void HandleDrawingRelease()
+    {
+        if (!selectedObj) return;
+        
+        switch (selectedObj.PlacementType)
+        {
+            case PlacementType.Line:
+            case PlacementType.Rectangle:
+                foreach (var point in TilemapExtension.AllPositionsWithin2D(area))
+                {
+                    NewCityTile(point);
+                    
+                    DrawItem(defaultMap, point, tileBase);
+                }
+                
+                previewMap.ClearAllTiles();
+                
+                break;
             case PlacementType.Single: default:
-                if (!city.CanPlaceNewTile(selectedObj)) break;
+                NewCityTile(currentGridPosition);
                 
-                city.NewTile(currentGridPosition, selectedObj);
-                
-                DrawItem(currentGridPosition, selectedObj.TileBase);
+                DrawItem(defaultMap, currentGridPosition, tileBase);
                 
                 SelectedObj = null;
                 
@@ -185,25 +202,14 @@ public class TileEditor : Singleton<TileEditor>
         }
     }
 
-    private void HandleDrawingRelease()
+    private void NewCityTile(Vector3Int position)
     {
-        switch (selectedObj.PlacementType)
-        {
-            case PlacementType.Line:
-            case PlacementType.Rectangle:
-                foreach (var point in TilemapExtension.AllPositionsWithin2D(area))
-                {
-                    if (!city.CanPlaceNewTile(selectedObj)) continue;
+        //Don't add new city tiles for tilemap tools
+        if (selectedObj && selectedObj.GetType() == typeof(TilemapTool)) return;
+        if (!city.CanPlaceNewTile(selectedObj)) return;
                     
-                    city.NewTile(point, selectedObj);
-                    
-                    DrawItem(point, selectedObj.TileBase);
-                }
-                
-                previewMap.ClearAllTiles();
-                
-                break;
-        }
+        //Must provide the point, not currentGridPosition
+        city.NewTile(position, selectedObj);
     }
 
     private void RenderRectangle()
@@ -251,29 +257,26 @@ public class TileEditor : Singleton<TileEditor>
         {
             for (var y = area.yMin; y <= area.yMax; y++)
             {
-                tilemap.SetTile(new Vector3Int(x, y, 0), tileBase);
+                DrawItem(tilemap, new Vector3Int(x, y, 0), tileBase);
             }
         }
     }
 
-    public void DrawItem(Vector3Int gridPosition, TileBase tile)
+    public void DrawItem(Tilemap tilemap, Vector3Int gridPosition, TileBase tile)
     {
-        defaultMap.SetTile(gridPosition, tile);
+        if (selectedObj && tilemap != previewMap && selectedObj.GetType() == typeof(TilemapTool))
+        {
+            var tool = (TilemapTool)selectedObj;
+            
+            tool.Use(gridPosition, tilemap);
+        }
+        else
+        {
+            tilemap.SetTile(gridPosition, tile);
 
-        //Required for our network tile rules
-        defaultMap.RefreshAllTiles();
-    }
-
-    private void RemoveItem(Vector3Int gridPosition)
-    {
-        if(!defaultMap.HasTile(gridPosition)) return;
-        
-        city.RemoveTile(gridPosition);
-
-        defaultMap.SetTile(gridPosition, null);
-
-        //Required for our network tile rules
-        defaultMap.RefreshAllTiles();
+            //Required for our network tile rules
+            tilemap.RefreshAllTiles();   
+        }
     }
 
     private bool PlacementAllowed()

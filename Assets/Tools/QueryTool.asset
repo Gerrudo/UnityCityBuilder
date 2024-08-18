@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29888a1b3ccac49f2994f6e027a7069c, type: 3}
+  m_Name: QueryTool
+  m_EditorClassIdentifier: 
+  <TileName>k__BackingField: Query
+  <Description>k__BackingField: Query a building to see it's detailed statistics.
+  <TileType>k__BackingField: 0
+  <TileBase>k__BackingField: {fileID: 11400000, guid: 597fe624fef8f4850a6e41c16af444a5, type: 2}
+  <Level1TilBase>k__BackingField: {fileID: 0}
+  <PlacementType>k__BackingField: 0
+  <CostToBuild>k__BackingField: 0
+  <MaxPopulation>k__BackingField: 0
+  <MaxEmployees>k__BackingField: 0
+  <Expenses>k__BackingField: 0
+  <ToolType>k__BackingField: 2

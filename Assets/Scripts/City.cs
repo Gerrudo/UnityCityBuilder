@@ -7,7 +7,7 @@ using Random = System.Random;
 
 public class City : Singleton<City>
 {
-    private Dictionary<Vector3Int, Building> cityTiles;
+    public Dictionary<Vector3Int, Building> CityTiles { get; private set; }
     private Dictionary<Guid, Citizen> citizens;
     
     private TileEditor tileEditor;
@@ -23,7 +23,7 @@ public class City : Singleton<City>
     public int Power { get; private set; }
     public int Water { get; private set; }
     public int Goods { get; private set; }
-    public float ApprovalRating { get; private set; }
+    public double ApprovalRating { get; private set; }
 
     protected override void Awake()
     {
@@ -32,7 +32,7 @@ public class City : Singleton<City>
         tileEditor = TileEditor.GetInstance();
         cityStatistics = CityStatistics.GetInstance();
 
-        cityTiles = new Dictionary<Vector3Int, Building>();
+        CityTiles = new Dictionary<Vector3Int, Building>();
         citizens = new Dictionary<Guid ,Citizen>();
     }
 
@@ -63,12 +63,15 @@ public class City : Singleton<City>
         
         DistributeEmployees();
         
-        foreach (var building in cityTiles)   
+        foreach (var building in CityTiles.ToList())
         {
             GetBuildingValues(building.Key ,building.Value);
         }
 
-        ApprovalRating = Calculations.Normalise(ApprovalRating, cityTiles.Count(tile => tile.Value is IApproval));
+        if (ApprovalRating != 0)
+        {
+            ApprovalRating = Calculations.Normalise(ApprovalRating, CityTiles.Count(tile => tile.Value is IApproval));   
+        }
         
         Population = citizens.Count;
         Unemployed = citizens.Count(citizen => !citizen.Value.IsEmployed);
@@ -81,7 +84,7 @@ public class City : Singleton<City>
     private void GetBuildingValues(Vector3Int tilePosition, Building building)
     {
         //TODO: Can be moved into UpdateBuildingStatus()
-        building.IsConnectedToRoad = TilemapExtension.CheckTileConnection(tilePosition, TileType.Road, cityTiles);
+        building.IsConnectedToRoad = TilemapExtension.CheckTileConnection(tilePosition, TileType.Road, CityTiles);
         
         building.UpdateBuildingStatus();
         
@@ -124,14 +127,13 @@ public class City : Singleton<City>
 
         if (building is IApproval approval)
         {
-            ApprovalRating += approval.GetApprovalScore(cityTiles);
+            ApprovalRating += approval.GetApprovalScore(CityTiles);
         }
-        
-        if (building is IGrowable growable)
+
+        if (building is IGrowable growable && growable.CanUpgrade())
         {
-            growable.CanUpgrade();
-            
-            tileEditor.DrawItem(tilePosition, growable.TileBase);
+            //TODO: Can possibly be moved into the growable method.
+            tileEditor.DrawItem(tileEditor.defaultMap, tilePosition, building.TileBase);
         }
     }
 
@@ -144,7 +146,7 @@ public class City : Singleton<City>
     
     private void DistributeCitizens()
     {
-        foreach (var tile in cityTiles)
+        foreach (var tile in CityTiles)
         {
             if (tile.Value is not IResidence residential) continue;
             if (residential.Residents.Count == residential.MaxPopulation) continue;
@@ -152,7 +154,7 @@ public class City : Singleton<City>
 
             var random = new Random();
             var residentsToAdd = random.Next(1, 5);
-            residentsToAdd *= residential.GetPopulationMultiplier(cityTiles);
+            residentsToAdd *= residential.GetPopulationMultiplier(CityTiles);
 
             for (var i = 0; i < residentsToAdd; i++)
             {
@@ -169,7 +171,7 @@ public class City : Singleton<City>
     
     private void DistributeEmployees()
     {
-        foreach (var tile in cityTiles)
+        foreach (var tile in CityTiles)
         {
             if (tile.Value is not IEmployer employer) continue;
             if (employer.Jobs.Count == employer.MaxEmployees) continue;
@@ -201,13 +203,13 @@ public class City : Singleton<City>
         var buildable = buildingFactory.CreateBuilding(buildingPreset);
 
         //Need to replace if the tile already exists
-        if (cityTiles.TryGetValue(tilePosition, out _))
+        if (CityTiles.TryGetValue(tilePosition, out _))
         {
-            cityTiles[tilePosition] = buildable;
+            CityTiles[tilePosition] = buildable;
         }
         else
         {
-            cityTiles.Add(tilePosition, buildable);   
+            CityTiles.Add(tilePosition, buildable);   
         }
 
         cityStatistics.UpdateUI();
@@ -215,15 +217,8 @@ public class City : Singleton<City>
 
     public void RemoveTile(Vector3Int tilePosition)
     {
-        cityTiles.Remove(tilePosition);
+        CityTiles.Remove(tilePosition);
 
         cityStatistics.UpdateUI();
-    }
-
-    public Building GetBuildingData(Vector3Int tilePosition)
-    {
-        cityTiles.TryGetValue(tilePosition, out var building);
-        
-        return building;
     }
 }    

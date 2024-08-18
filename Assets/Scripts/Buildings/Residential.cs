@@ -36,7 +36,7 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
 
     public bool CanUpgrade()
     {
-        if (!IsActive || Residents.Count <= 10|| TileBase == Level1TilBase) return false;
+        if (!IsActive || Residents.Count <= 10 || TileBase == Level1TilBase) return false;
         TileBase = Level1TilBase;
         return true;
     }
@@ -89,7 +89,7 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
         return 0;
     }
     
-    public float GetApprovalScore(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
+    public double GetApprovalScore(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
     {
         const float employmentWeight = 0.5f;
         const float fireStationWeight = 0.1f;

@@ -102,7 +102,7 @@ public class Commercial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
         return Jobs.Count * 2;
     }
 
-    public float GetApprovalScore(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
+    public double GetApprovalScore(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
     {
         const float employmentWeight = 0.6f;
         const float fireStationWeight = 0.2f;
