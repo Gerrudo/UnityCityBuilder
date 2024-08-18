@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="#52: Updated tools, reworking some code within TileEditor.cs to make integrating tools easier">
+    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="#52: Query tool and Bulldozer now function. Fixed #62.">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CameraController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CameraController.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Generator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Generator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IApproval.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IApproval.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TileEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TileEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/ToolController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tilemap/ToolController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utilities/Calculations.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utilities/Calculations.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +87,7 @@
     &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.44677138&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;52-add-inspectorquery-tool&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;63-add-camera-controls&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -473,7 +467,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723792127864</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="#52: Query tool and Bulldozer now function. Fixed #62.">
+      <option name="closed" value="true" />
+      <created>1723896043463</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1723896043463</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,7 +502,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Updated numbers for employment and removed IEmployable.cs" />
     <MESSAGE value="Added a new query tool to our toolbar." />
     <MESSAGE value="Added rectangle drawing for zoned RCI." />
     <MESSAGE value="Implemented line rendering for roads. Fixed some warning from Event System and Camera components." />
@@ -525,7 +526,8 @@
     <MESSAGE value="#52; Added DirectDraw() as a temporary method to get round issued with SelectedObject being null when attempting to use a tool. Will need to find a better way around this next." />
     <MESSAGE value="Updated tilemap drawing to be drawn from DrawCity() only." />
     <MESSAGE value="#52: Updated tools, reworking some code within TileEditor.cs to make integrating tools easier" />
-    <option name="LAST_COMMIT_MESSAGE" value="#52: Updated tools, reworking some code within TileEditor.cs to make integrating tools easier" />
+    <MESSAGE value="#52: Query tool and Bulldozer now function. Fixed #62." />
+    <option name="LAST_COMMIT_MESSAGE" value="#52: Query tool and Bulldozer now function. Fixed #62." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
