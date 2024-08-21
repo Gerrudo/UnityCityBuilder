@@ -10,9 +10,9 @@ public class BuildingFactory : IBuildingFactory
             TileType.Industrial => new Industrial(buildingPreset),
             TileType.Generator => new Generator(buildingPreset),
             TileType.WaterTower => new WaterTower(buildingPreset),
-            TileType.Medical => new Hospital(buildingPreset),
-            TileType.Fire => new FireStation(buildingPreset),
-            TileType.Police => new PoliceStation(buildingPreset),
+            TileType.Medical => new Service(buildingPreset),
+            TileType.Fire => new Service(buildingPreset),
+            TileType.Police => new Service(buildingPreset),
             _ => throw new System.Exception("No Preset was provided.")
         };
     }

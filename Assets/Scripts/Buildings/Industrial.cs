@@ -3,19 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods, IEarnings, IApproval
+public class Industrial : Building, IEmployable, IGrowable, IPowerable, IWaterable, ITaxable, IApprovable
 {
-    public sealed override TileType TileType { get; set; }
-    public sealed override TileBase TileBase { get; set; }
-    public override bool IsConnectedToRoad { get; set; }
-    public override bool IsActive { get; set; }
     public TileBase Level1TilBase { get; set; }
-
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
-    public bool IsPowered { get; set; }
-    public bool IsWatered { get; set; }
-
+    public int WaterConsumption { get; set; }
+    public int PowerConsumption { get; set; }
+    public int TaxRevenue { get; set; }
+    public int GoodsProduction { get; set; }
     
     public Industrial(BuildingPreset buildingPreset)
     {
@@ -26,8 +22,24 @@ public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
         Jobs = new List<Guid>();
     }
     
-    public override void UpdateBuildingStatus()
+    public override void UpdateBuilding(CityData cityData)
     {
+        WaterConsumption = ConsumeWater();
+        PowerConsumption = ConsumePower();
+        TaxRevenue = GenerateTaxes();
+        GoodsProduction = GenerateGoods();
+
+        cityData.Water -= WaterConsumption;
+        cityData.Power -= PowerConsumption;
+        cityData.Earnings += TaxRevenue;
+        cityData.Goods += GoodsProduction;
+    }
+    
+    public override void UpdateBuildingStatus(CityData cityData)
+    {
+        IsWatered = WaterConsumption < cityData.Water;
+        IsPowered = PowerConsumption < cityData.Power;
+        
         var flags = new List<bool> {IsConnectedToRoad, IsPowered, IsWatered};
 
         var hasFalse =  flags.Contains(false);
@@ -41,53 +53,26 @@ public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
         TileBase = Level1TilBase;
         return true;
     }
-    
-    public int GenerateWater(int water)
-    {
-        return water;
-    }
 
-    public int ConsumeWater(int water)
-    {
-        if (!IsConnectedToRoad) return water;
-        
-        var waterConsumed = Jobs.Count * 4;
-
-        IsWatered = waterConsumed < water;
-        
-        water -= waterConsumed;
-
-        return water;
-    }
-    
-    public int GeneratePower(int power)
-    {
-        return power;
-    }
-
-    public int ConsumePower(int power)
-    {
-        if (!IsConnectedToRoad) return power;
-        
-        var powerConsumed = Jobs.Count * 4;
-
-        IsPowered = powerConsumed < power;
-        
-        power -= powerConsumed;
-
-        return power;
-    }
-    
-    public int GenerateEarnings()
+    public int ConsumeWater()
     {
         if (!IsConnectedToRoad) return 0;
         
-        return Jobs.Count * 10;
+        return Jobs.Count * 4;
     }
-
-    public int ConsumeEarnings()
+    
+    public int ConsumePower()
     {
-        return 0;
+        if (!IsConnectedToRoad) return 0;
+        
+        return Jobs.Count * 4;
+    }
+    
+    public int GenerateTaxes()
+    {
+        if (!IsActive) return 0;
+        
+        return Jobs.Count * 10;
     }
 
     public int GenerateGoods()
@@ -95,11 +80,6 @@ public class Industrial : Building, IEmployer, IGrowable, IPower, IWater, IGoods
         if (!IsActive) return 0;
         
         return Jobs.Count * 10;
-    }
-
-    public int ConsumeGoods()
-    {
-        return 0;
     }
     
     public double GetApprovalScore(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
