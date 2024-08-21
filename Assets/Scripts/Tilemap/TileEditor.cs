@@ -183,8 +183,6 @@ public class TileEditor : Singleton<TileEditor>
             case PlacementType.Rectangle:
                 foreach (var point in TilemapExtension.AllPositionsWithin2D(area))
                 {
-                    NewCityTile(point);
-                    
                     DrawItem(defaultMap, point, tileBase);
                 }
                 
@@ -192,8 +190,6 @@ public class TileEditor : Singleton<TileEditor>
                 
                 break;
             case PlacementType.Single: default:
-                NewCityTile(currentGridPosition);
-                
                 DrawItem(defaultMap, currentGridPosition, tileBase);
                 
                 SelectedObj = null;
@@ -272,6 +268,15 @@ public class TileEditor : Singleton<TileEditor>
         }
         else
         {
+            //If the placement is allowed, we won't even draw the item.
+            if (!PlacementAllowed(gridPosition)) return;
+            
+            //TODO: Replace with a better condition check
+            if (tilemap == defaultMap)
+            {
+                NewCityTile(gridPosition);
+            }
+            
             tilemap.SetTile(gridPosition, tile);
 
             //Required for our network tile rules
@@ -279,10 +284,10 @@ public class TileEditor : Singleton<TileEditor>
         }
     }
 
-    private bool PlacementAllowed()
+    private bool PlacementAllowed(Vector3Int gridPosition)
     {
-        var hasTerrainTile = terrainMap.HasTile(currentGridPosition - new Vector3Int(1, 1, 0));
-        var hasBuildingTile = defaultMap.HasTile(currentGridPosition);
+        var hasTerrainTile = terrainMap.HasTile(gridPosition - new Vector3Int(1, 1, 0));
+        var hasBuildingTile = defaultMap.HasTile(gridPosition);
 
         return hasTerrainTile && !hasBuildingTile;
     }

@@ -4,12 +4,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="#63: added basic camera controls, #64: added larger and more detailed map.">
+    <list default="true" id="9d653b74-6d59-4f8a-813b-6cf59a62b0cc" name="Changes" comment="Updated project settings">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Service.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/CityData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/CityData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IExpensable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IExpensable.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IPowerable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IWaterable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.reticulating-splines/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Building Presets/CoalMinePreset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Building Presets/CoalMinePreset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Building Presets/SatellitePreset.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Building Presets/SatellitePreset.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tools/BulldozerTool.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tools/BulldozerTool.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildingFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildingFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/FireStation.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/FireStation.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Service.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Generator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Generator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Hospital.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Hospital.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/PoliceStation.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/PoliceStation.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Road.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/Road.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/WaterTower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Buildings/WaterTower.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/City.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/City.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IApproval.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IApprovable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IApproval.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IApprovable.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IEarnings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/ITaxable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IEarnings.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/ITaxable.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IEmployer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IEmployable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IEmployer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IEmployable.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IGoods.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IGoods.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IGrowable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IGrowable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IPower.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IPower.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IPowerable.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IResidence.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IResidence.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IWater.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IWater.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interfaces/IWaterable.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TileEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TileEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TilemapTool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tilemap/TilemapTool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tilemap/ToolController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tilemap/ToolController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/CityStatistics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/CityStatistics.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +56,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="66-pre-050-release-bug-fixes" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,26 +77,23 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/620b3c283008451faac1acc2fa757548292e00/a9/180fdfe1/Component.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f646c7a159d243a7909d5204af0f0c56469200/61/294981ec/CancellationTokenSource.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scenes/Game.unity" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/Buildings/Building.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Commerical.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Generator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Industrial.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/Residential.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Buildings/WaterTower.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/City.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interfaces/IApproval.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/UI/CityStatistics.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/CameraController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/CameraController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/CameraController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Interfaces/IApprovable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Tooltip.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/TooltipSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/TooltipTrigger.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/Assets/Scripts/Utilities/Calculations.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Actions/InputActionState.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Actions/InputInteractionContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/thomasturner/Projects/reticulating-splines/ProjectSettings/ProjectSettings.asset" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -80,34 +114,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Attach to Unity Editor.Attach to Unity Editor &amp; Play.executor&quot;: &quot;Debug&quot;,
-    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.44677138&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;63-add-camera-controls&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Attach to Unity Editor.Attach to Unity Editor & Play.executor": "Debug",
+    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "XThreadsFramesViewSplitterKey": "0.44677138",
+    "git-widget-placeholder": "69-return-to-monkey",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.appearance",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;/Users/thomasturner/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache&quot;,
-      &quot;/Users/thomasturner/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache&quot;,
-      &quot;/Users/thomasturner/Library/Application Support/Symbols/src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "/Users/thomasturner/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
+      "/Users/thomasturner/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache",
+      "/Users/thomasturner/Library/Application Support/Symbols/src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor &amp; Play">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../Builds/reticulating-splines/v0.4.0-alpha/v0.4.0-alpha-macos.app/Contents/MacOS/isocitybuilder" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../Builds/reticulating-splines/v0.5.1-alpha/v0.5.1-alpha-macos.app/Contents/MacOS/Reticulating Splines" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../Builds/reticulating-splines/v0.2.0-alpha/v0.2.0-alpha-macos.app/Contents/MacOS" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -130,10 +164,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="59874">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="59874" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -484,7 +518,23 @@
       <option name="project" value="LOCAL" />
       <updated>1723964665987</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Extra fixes for release #66.">
+      <option name="closed" value="true" />
+      <created>1723970905878</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1723970905878</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Updated project settings">
+      <option name="closed" value="true" />
+      <created>1723971404384</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1723971404384</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -511,8 +561,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added rectangle drawing for zoned RCI." />
-    <MESSAGE value="Implemented line rendering for roads. Fixed some warning from Event System and Camera components." />
     <MESSAGE value="Added updates from QueryTool.cs." />
     <MESSAGE value="Added simple DrawCity Method in City.cs." />
     <MESSAGE value="Commiting before altering building factory." />
@@ -536,7 +584,9 @@
     <MESSAGE value="#52: Updated tools, reworking some code within TileEditor.cs to make integrating tools easier" />
     <MESSAGE value="#52: Query tool and Bulldozer now function. Fixed #62." />
     <MESSAGE value="#63: added basic camera controls, #64: added larger and more detailed map." />
-    <option name="LAST_COMMIT_MESSAGE" value="#63: added basic camera controls, #64: added larger and more detailed map." />
+    <MESSAGE value="Extra fixes for release #66." />
+    <MESSAGE value="Updated project settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated project settings" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

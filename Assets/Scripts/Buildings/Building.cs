@@ -2,9 +2,13 @@ using UnityEngine.Tilemaps;
 
 public abstract class Building
 {
-    public abstract TileType TileType { get; set; }
-    public abstract TileBase TileBase { get; set; }
-    public abstract bool IsConnectedToRoad { get; set; }
-    public abstract bool IsActive { get; set; }
-    public abstract void UpdateBuildingStatus();
+    public TileType TileType;
+    public TileBase TileBase;
+    public bool IsConnectedToRoad;
+    public bool IsActive;
+    public bool IsPowered;
+    public bool IsWatered;
+
+    public abstract void UpdateBuildingStatus(CityData cityData);
+    public abstract void UpdateBuilding(CityData cityData);
 }

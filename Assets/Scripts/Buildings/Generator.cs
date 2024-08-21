@@ -1,17 +1,13 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine.Tilemaps;
 
-public class Generator : Building, IEmployer, IPower, IWater, IEarnings
+public class Generator : Building, IEmployable, IWaterable, IExpensable
 {
-    public sealed override TileType TileType { get; set; }
-    public sealed override TileBase TileBase { get; set; }
-    public override bool IsConnectedToRoad { get; set; }
-    public override bool IsActive { get; set; }
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
-    public bool IsWatered { get; set; }
-
+    public int PowerProduction { get; set; }
+    public int WaterConsumption { get; set; }
+    public int Expenses { get; set; }
     
     public Generator(BuildingPreset buildingPreset)
     {
@@ -21,58 +17,40 @@ public class Generator : Building, IEmployer, IPower, IWater, IEarnings
         Jobs = new List<Guid>();
     }
     
-    public override void UpdateBuildingStatus()
+    public override void UpdateBuilding(CityData cityData)
     {
+        WaterConsumption = ConsumeWater();
+        PowerProduction = GeneratePower();
+        Expenses = ConsumeTaxes();
+
+        cityData.Water -= WaterConsumption;
+        cityData.Power += PowerProduction;
+        cityData.Earnings -= Expenses;
+    }
+    
+    public override void UpdateBuildingStatus(CityData cityData)
+    {
+        IsWatered = WaterConsumption < cityData.Water;
+        
         var flags = new List<bool> {IsConnectedToRoad, IsWatered};
 
         var hasFalse =  flags.Contains(false);
 
         IsActive = !hasFalse;
     }
-    
-    public int GenerateWater(int water)
+
+    public int ConsumeWater()
     {
-        return water;
-    }
-
-    public int ConsumeWater(int water)
-    {
-        if (!IsConnectedToRoad) return water;
-        
-        const int waterConsumed = 200;
-
-        IsWatered = waterConsumed < water;
-        
-        water -= waterConsumed;
-
-        return water;
+        return !IsConnectedToRoad ? 0 : 200;
     }
     
-    public int GeneratePower(int power)
+    private int GeneratePower()
     {
-        if (!IsConnectedToRoad) return power;
-        
-        const int maxPower = 50000;
-        
-        if (power >= maxPower) return power;
-
-        return power + maxPower;
+        return !IsActive ? 0 : 50000;
     }
 
-    public int ConsumePower(int power)
+    public int ConsumeTaxes()
     {
-        return power;
-    }
-    
-    public int GenerateEarnings()
-    {
-        return 0;
-    }
-
-    public int ConsumeEarnings()
-    {
-        if (!IsActive) return 0;
-        
-        return 1000;
+        return !IsActive ? 0 : 1000;
     }
 }

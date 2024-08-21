@@ -10,6 +10,7 @@ public class TilemapTool : BuildingPreset
 
     public void Use(Vector3Int position, Tilemap tilemap)
     {
+        //TODO: Better way to do this?
         toolController = ToolController.GetInstance();
         
         switch (ToolType)

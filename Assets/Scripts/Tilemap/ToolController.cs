@@ -4,12 +4,16 @@ using UnityEngine.Tilemaps;
 public class ToolController : Singleton<ToolController>
 {
     private City city;
-    
+
+    protected override void Awake()
+    {
+        base.Awake();
+        
+        city = City.GetInstance();
+    }
+
     public void Bulldozer(Vector3Int position, Tilemap tilemap)
     {
-        //TODO: See why we need to get an instance of our city each time we use these methods.
-        city = City.GetInstance();
-        
         if(!tilemap.HasTile(position)) return;
         city.RemoveTile(position);
         
@@ -19,12 +23,9 @@ public class ToolController : Singleton<ToolController>
 
     public void Query(Vector3Int position, Tilemap tilemap)
     {
-        //TODO: See why we need to get an instance of our city each time we use these methods.
-        city = City.GetInstance();
-        
         if (city.CityTiles.TryGetValue(position, out var building))
         {
-            Debug.Log(building.TileType);
+            //Debug.Log(building.TileType);
         }
     }
 }

@@ -3,17 +3,14 @@ using UnityEngine.Tilemaps;
 using System.Linq;
 using UnityEngine;
 
-public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, IApproval, IPower
+public class Residential : Building, IPowerable, IWaterable, IGrowable, ITaxable, IApprovable
 {
-    public sealed override TileType TileType { get; set; }
-    public sealed override TileBase TileBase { get; set; }
-    public override bool IsConnectedToRoad { get; set; }
-    public int MaxPopulation { get; set; }
+    public readonly int MaxPopulation;
     public List<Citizen> Residents { get; set; }
     public TileBase Level1TilBase { get; set; }
-    public bool IsPowered { get; set; }
-    public bool IsWatered { get; set; }
-    public override bool IsActive { get; set; }
+    public int WaterConsumption { get; set; }
+    public int PowerConsumption { get; set; }
+    public int TaxRevenue { get; set; }
 
     public Residential(BuildingPreset buildingPreset)
     {
@@ -25,8 +22,22 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
         Residents = new List<Citizen>();
     }
 
-    public override void UpdateBuildingStatus()
+    public override void UpdateBuilding(CityData cityData)
     {
+        WaterConsumption = ConsumeWater();
+        PowerConsumption = ConsumePower();
+        TaxRevenue = GenerateTaxes();
+
+        cityData.Water -= WaterConsumption;
+        cityData.Power -= PowerConsumption;
+        cityData.Earnings += TaxRevenue;
+    }
+
+    public override void UpdateBuildingStatus(CityData cityData)
+    {
+        IsWatered = WaterConsumption < cityData.Water;
+        IsPowered = PowerConsumption < cityData.Power;
+        
         var flags = new List<bool> {IsConnectedToRoad, IsPowered, IsWatered};
 
         var hasFalse =  flags.Contains(false);
@@ -40,53 +51,26 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
         TileBase = Level1TilBase;
         return true;
     }
-    
-    public int GenerateWater(int water)
-    {
-        return water;
-    }
 
-    public int ConsumeWater(int water)
-    {
-        if (!IsConnectedToRoad) return water;
-
-        var waterConsumed = Residents.Count * 4;
-
-        IsWatered = waterConsumed < water;
-        
-        water -= waterConsumed;
-
-        return water;
-    }
-    
-    public int GeneratePower(int power)
-    {
-        return power;
-    }
-
-    public int ConsumePower(int power)
-    {
-        if (!IsConnectedToRoad) return power;
-        
-        var powerConsumed = Residents.Count * 4;
-
-        IsPowered = powerConsumed < power;
-        
-        power -= powerConsumed;
-
-        return power;
-    }
-
-    public int GenerateEarnings()
+    public int ConsumeWater()
     {
         if (!IsConnectedToRoad) return 0;
         
-        return Residents.Count * 5;
+        return Residents.Count * 4;
     }
 
-    public int ConsumeEarnings()
+    public int ConsumePower()
     {
-        return 0;
+        if (!IsConnectedToRoad) return 0;
+        
+        return Residents.Count * 4;
+    }
+
+    public int GenerateTaxes()
+    {
+        if (!IsActive) return 0;
+        
+        return Residents.Count * 5;
     }
     
     public double GetApprovalScore(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
@@ -108,6 +92,14 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
                (isPoweredScore * isPoweredWeight) +
                (isWateredScore * isWateredWeight);
     }
+    
+    private int GetEmploymentScore()
+    {
+        var employed = Residents.Count(resident => resident.IsEmployed);
+        var score = Calculations.GetPercentage(employed, Residents.Count);
+        
+        return (int)score;
+    }
 
     public int GetPopulationMultiplier(IReadOnlyDictionary<Vector3Int, Building> cityTiles)
     {
@@ -119,13 +111,5 @@ public class Residential : Building, IGrowable, IResidence, IWater, IEarnings, I
         if (TileSearch.HasTileType(TileType.Police, cityTiles)) multiplier++;
 
         return multiplier;
-    }
-
-    private int GetEmploymentScore()
-    {
-        var employed = Residents.Count(resident => resident.IsEmployed);
-        var score = Calculations.GetPercentage(employed, Residents.Count);
-        
-        return (int)score;
     }
 }

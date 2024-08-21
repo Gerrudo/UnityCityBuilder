@@ -1,52 +1,59 @@
 using System;
 using System.Collections.Generic;
 
-public class WaterTower : Building, IEmployable, IPowerable, IExpensable
+public class Service : Building, IEmployable, IWaterable, IPowerable, IExpensable
 {
     public int MaxEmployees { get; set; }
     public List<Guid> Jobs { get; set; }
-    public int WaterProduction { get; set; }
     public int PowerConsumption { get; set; }
+    public int WaterConsumption { get; set; }
     public int Expenses { get; set; }
     
-    public WaterTower(BuildingPreset buildingPreset)
+    public Service(BuildingPreset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;
         MaxEmployees = buildingPreset.MaxEmployees;
         Jobs = new List<Guid>();
     }
-    
+
     public override void UpdateBuilding(CityData cityData)
     {
+        WaterConsumption = ConsumeWater();
         PowerConsumption = ConsumePower();
-        WaterProduction = GenerateWater();
         Expenses = ConsumeTaxes();
 
-        cityData.Power -= PowerConsumption;
-        cityData.Water += WaterProduction;
+        cityData.Water -= WaterConsumption;
+        cityData.Power += PowerConsumption;
         cityData.Earnings -= Expenses;
     }
     
     public override void UpdateBuildingStatus(CityData cityData)
     {
-        var flags = new List<bool> {IsConnectedToRoad};
+        IsWatered = WaterConsumption < cityData.Water;
+        IsPowered = PowerConsumption < cityData.Power;
+        
+        var flags = new List<bool> {IsConnectedToRoad, IsPowered, IsWatered};
 
         var hasFalse =  flags.Contains(false);
 
         IsActive = !hasFalse;
     }
-    
-    public int GenerateWater()
-    {
-        return !IsActive ? 0 : 75000;
-    }
 
+    public int ConsumeWater()
+    {
+        if (!IsConnectedToRoad) return 0;
+        
+        return Jobs.Count * 4;
+    }
+    
     public int ConsumePower()
     {
-        return !IsConnectedToRoad ? 0 : 200;
+        if (!IsConnectedToRoad) return 0;
+        
+        return Jobs.Count * 4;
     }
-    
+
     public int ConsumeTaxes()
     {
         return !IsActive ? 0 : 1000;
