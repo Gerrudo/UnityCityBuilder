@@ -1,19 +1,25 @@
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(fileName = "Tool", menuName = "Create Tool")]
 public class TilemapTool : BuildingPreset
 {
-    [field: SerializeField] public ToolType ToolType { get; private set; }
+    [SerializeField] private ToolType toolType;
 
     private ToolController toolController;
+
+    private void Awake()
+    {
+        toolController = ToolController.GetInstance();
+    }
 
     public void Use(Vector3Int position, Tilemap tilemap)
     {
         //TODO: Better way to do this?
-        toolController = ToolController.GetInstance();
+
         
-        switch (ToolType)
+        switch (toolType)
         {
             case ToolType.Bulldozer:
                 toolController.Bulldozer(position, tilemap);
