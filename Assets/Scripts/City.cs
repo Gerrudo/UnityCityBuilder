@@ -7,6 +7,8 @@ public class City : Singleton<City>
 {
     public Dictionary<Vector3Int, Building> CityTiles { get; private set; }
 
+    private BuildingFactory buildingFactory;
+
     private Timer updateTimer;
     private Timer dayTimer;
 
@@ -27,6 +29,8 @@ public class City : Singleton<City>
         base.Awake();
         
         CityTiles = new Dictionary<Vector3Int, Building>();
+        
+        buildingFactory = new BuildingFactory();
     }
 
     private void Start()
@@ -75,7 +79,7 @@ public class City : Singleton<City>
     {
         Funds -= buildingPreset.CostToBuild;
 
-        var buildable = new Building(buildingPreset);
+        var buildable = buildingFactory.CreateBuilding(buildingPreset);
 
         //Need to replace if the tile already exists
         if (CityTiles.TryGetValue(tilePosition, out _))
