@@ -4,12 +4,12 @@ public class Road : Building
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;
-
-        Behaviours = Behaviours.None;
+        
+        Earnings = -100;
     }
     
     public override void Update()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

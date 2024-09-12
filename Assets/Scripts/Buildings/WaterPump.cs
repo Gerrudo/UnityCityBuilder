@@ -7,6 +7,9 @@ public class WaterPump : Building
     }
     public override void Update()
     {
-        throw new System.NotImplementedException();
+        if (!IsConnectedToRoad) return;
+        
+        Earnings = -50;
+        Water = 250;
     }
 }

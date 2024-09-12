@@ -21,5 +21,7 @@ MonoBehaviour:
   <CostToBuild>k__BackingField: 0
   <MaxPopulation>k__BackingField: 0
   <MaxEmployees>k__BackingField: 0
+  <PowerProduction>k__BackingField: 0
+  <WaterProduction>k__BackingField: 0
   <Expenses>k__BackingField: 0
-  <ToolType>k__BackingField: 1
+  toolType: 1

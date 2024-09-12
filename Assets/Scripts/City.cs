@@ -57,16 +57,22 @@ public class City : Singleton<City>
             ProcessBuilding(building.Key, building.Value);
         }
         
-        Earnings = CityTiles.Values.Sum(building => building.Taxes);
+        Earnings = CityTiles.Values.Sum(building => building.Earnings);
         Power = CityTiles.Values.Sum(building => building.Power);
-        Water = CityTiles.Values.Sum(building => building.Power);
+        Water = CityTiles.Values.Sum(building => building.Water);
         Population = CityTiles.Values.Sum(building => building.Population);
     }
 
     private void ProcessBuilding(Vector3Int tilePosition, Building building)
     {
+        //Building Requirement Checks
         building.IsConnectedToRoad = TilemapExtension.CheckTileConnection(tilePosition, TileType.Road, CityTiles);
 
+        building.Powered = Power > 0;
+        
+        building.Watered = Water > 0;
+
+        //Ask the building to update it's values
         building.Update();
     }
 

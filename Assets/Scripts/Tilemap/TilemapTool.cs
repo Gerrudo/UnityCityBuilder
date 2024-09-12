@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -9,15 +8,11 @@ public class TilemapTool : BuildingPreset
 
     private ToolController toolController;
 
-    private void Awake()
-    {
-        toolController = ToolController.GetInstance();
-    }
-
     public void Use(Vector3Int position, Tilemap tilemap)
     {
-        //TODO: Better way to do this?
-
+        //TODO: See if we can only call this once rather than each time Use() is called, might be hard though as it's a scriptable object.
+        //Also don't remove this, if you place it in awake it'll result in a different instance of ToolController. It's retarded I know.
+        toolController = ToolController.GetInstance();
         
         switch (toolType)
         {

@@ -4,11 +4,14 @@ public class Residential : Building
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;
-
-        Behaviours = Behaviours.Waterable | Behaviours.Powerable | Behaviours.Taxable;
     }
+    
     public override void Update()
     {
-        throw new System.NotImplementedException();
+        if (!IsConnectedToRoad) return;
+        if (Population >= 100) return;
+        
+        Population++;
+        Earnings = Population * 2;
     }
 }

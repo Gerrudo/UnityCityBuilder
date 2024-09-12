@@ -5,14 +5,12 @@ public abstract class Building
     public TileType TileType;
     public TileBase TileBase;
     public bool IsConnectedToRoad;
-    public bool IsPowered;
-    public bool IsWatered;
-    public int Population;
     public int Power;
+    public bool Powered;
     public int Water;
-    public int Taxes;
-    
-    public Behaviours Behaviours;
+    public bool Watered;
+    public int Earnings;
+    public int Population;
 
     public abstract void Update();
 }
