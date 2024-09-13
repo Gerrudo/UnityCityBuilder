@@ -29,7 +29,7 @@ public class CityStatistics : Singleton<CityStatistics>
         UpdateUI();
     }
 
-    public void UpdateUI()
+    private void UpdateUI()
     {
         //Maybe we could have the UI read a value instead of updating it individually?
 
@@ -44,6 +44,6 @@ public class CityStatistics : Singleton<CityStatistics>
         waterText.text = $"Water: {city.Water}kL";
         goodsText.text = $"Goods: {city.Goods} Ton";
         approvalText.text = $"Approval: {city.ApprovalRating}%";
-        unemployedText.text = $"Unemployed: {city.Unemployed}";
+        unemployedText.text = $"Jobs: {city.Workers}";
     }
 }

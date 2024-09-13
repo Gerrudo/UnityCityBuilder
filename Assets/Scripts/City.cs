@@ -1,13 +1,17 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System.Threading;
+using Random = System.Random;
 
 public class City : Singleton<City>
 {
     public Dictionary<Vector3Int, Building> CityTiles { get; private set; }
 
     private BuildingFactory buildingFactory;
+
+    private Random random;
 
     private Timer updateTimer;
     private Timer dayTimer;
@@ -16,7 +20,7 @@ public class City : Singleton<City>
     [field: SerializeField] public int SecondsPerDay { get; private set; }
     [field: SerializeField] public int SecondsPerUpdate { get; private set; }
     public int Population { get; private set; }
-    public int Unemployed { get; private set; }
+    public int Workers { get; private set; }
     [field: SerializeField] public int Funds { get; private set; }
     public int Earnings { get; private set; }
     public int Power { get; private set; }
@@ -29,8 +33,8 @@ public class City : Singleton<City>
         base.Awake();
         
         CityTiles = new Dictionary<Vector3Int, Building>();
-        
         buildingFactory = new BuildingFactory();
+        random = new Random();
     }
 
     private void Start()
@@ -44,6 +48,10 @@ public class City : Singleton<City>
         //Remember, this is not on main thread!
         
         Day++;
+                
+        //Lose some population each day
+        var populationDecrease = random.Next(0, 25);
+        Population -= populationDecrease;
 
         Funds += Earnings;
     }
@@ -52,25 +60,20 @@ public class City : Singleton<City>
     {
         //Remember, this is not on main thread!
         
-        foreach (var building in CityTiles.ToArray())
-        {
-            ProcessBuilding(building.Key, building.Value);
-        }
+        //cast CityTiles as Array as it's slightly faster
+        foreach (var building in CityTiles.ToArray()) ProcessBuilding(building.Key, building.Value);
         
         Earnings = CityTiles.Values.Sum(building => building.Earnings);
         Power = CityTiles.Values.Sum(building => building.Power);
         Water = CityTiles.Values.Sum(building => building.Water);
         Population = CityTiles.Values.Sum(building => building.Population);
+        Workers = CityTiles.Values.Sum(building => building.Jobs);
     }
 
     private void ProcessBuilding(Vector3Int tilePosition, Building building)
     {
         //Building Requirement Checks
         building.IsConnectedToRoad = TilemapExtension.CheckTileConnection(tilePosition, TileType.Road, CityTiles);
-
-        building.Powered = Power > 0;
-        
-        building.Watered = Water > 0;
 
         //Ask the building to update it's values
         building.Update();

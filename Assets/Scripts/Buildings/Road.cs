@@ -5,7 +5,7 @@ public class Road : Building
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;
         
-        Earnings = -100;
+        Earnings = -10;
     }
     
     public override void Update()

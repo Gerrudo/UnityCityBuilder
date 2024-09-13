@@ -4,9 +4,11 @@ public class Industrial : Building
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;
+
+        Jobs = 50;
     }
     public override void Update()
     {
-        throw new System.NotImplementedException();
+        Earnings = !IsConnectedToRoad ? 100 : 0;
     }
 }

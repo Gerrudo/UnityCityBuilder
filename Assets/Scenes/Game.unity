@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 7328098}
   - component: {fileID: 7328097}
   m_Layer: 5
-  m_Name: UnemployedText
+  m_Name: JobsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Unemployed: 0'
+  m_text: 'Jobs: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 738884343ced24108954a54d9844569a, type: 2}
   m_sharedMaterial: {fileID: -7503263923809491466, guid: 738884343ced24108954a54d9844569a, type: 2}
@@ -744,7 +744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a102ba0abb46ab89500a4347d6b731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panLimit: {x: 30, y: 20}
+  panLimit: {x: 20, y: 10}
 --- !u!114 &149672894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1817,7 +1817,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2221,10 +2221,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Status Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 738884343ced24108954a54d9844569a, type: 2}
+  m_sharedMaterial: {fileID: -7503263923809491466, guid: 738884343ced24108954a54d9844569a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2254,7 +2254,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 17
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -12102,10 +12102,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1713357816}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 55.85498, y: -37.286194}
+  m_SizeDelta: {x: 61.70996, y: 54.572388}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1455172013
 MonoBehaviour:
@@ -12822,7 +12822,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1713357816
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13034,7 +13034,7 @@ Canvas:
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
