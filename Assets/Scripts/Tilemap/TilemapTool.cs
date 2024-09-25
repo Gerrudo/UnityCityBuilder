@@ -4,16 +4,17 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "Tool", menuName = "Create Tool")]
 public class TilemapTool : BuildingPreset
 {
-    [field: SerializeField] public ToolType ToolType { get; private set; }
+    [SerializeField] private ToolType toolType;
 
     private ToolController toolController;
 
     public void Use(Vector3Int position, Tilemap tilemap)
     {
-        //TODO: Better way to do this?
+        //TODO: See if we can only call this once rather than each time Use() is called, might be hard though as it's a scriptable object.
+        //Also don't remove this, if you place it in awake it'll result in a different instance of ToolController. It's retarded I know.
         toolController = ToolController.GetInstance();
         
-        switch (ToolType)
+        switch (toolType)
         {
             case ToolType.Bulldozer:
                 toolController.Bulldozer(position, tilemap);

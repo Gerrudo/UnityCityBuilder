@@ -1,178 +1,92 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System.Threading;
 using Random = System.Random;
 
 public class City : Singleton<City>
 {
     public Dictionary<Vector3Int, Building> CityTiles { get; private set; }
-    private Dictionary<Guid, Citizen> citizens;
-    
-    private TileEditor tileEditor;
-    private CityStatistics cityStatistics;
 
-    public CityData CityData;
+    private BuildingFactory buildingFactory;
+
+    private Random random;
+
+    private Timer updateTimer;
+    private Timer dayTimer;
+
+    public int Day { get; private set; }
+    [field: SerializeField] public int SecondsPerDay { get; private set; }
+    [field: SerializeField] public int SecondsPerUpdate { get; private set; }
+    public int Population { get; private set; }
+    public int Workers { get; private set; }
+    [field: SerializeField] public int Funds { get; private set; }
+    public int Earnings { get; private set; }
+    public int Power { get; private set; }
+    public int Water { get; private set; }
+    public int Goods { get; private set; }
+    public double ApprovalRating { get; private set; }
 
     protected override void Awake()
     {
         base.Awake();
-
-        tileEditor = TileEditor.GetInstance();
-        cityStatistics = CityStatistics.GetInstance();
-
-        CityData = new CityData();
+        
         CityTiles = new Dictionary<Vector3Int, Building>();
-        citizens = new Dictionary<Guid ,Citizen>();
+        buildingFactory = new BuildingFactory();
+        random = new Random();
     }
 
     private void Start()
     {
-        StartCoroutine(UpdateCity());
-        StartCoroutine(CountDays());
+        updateTimer = new Timer(CountDays, null, 0, SecondsPerDay);
+        dayTimer = new Timer(UpdateCity, null, 0, SecondsPerUpdate);
     }
 
-    private IEnumerator CountDays()
+    private void CountDays(object state)
     {
-        yield return new WaitForSeconds(CityData.SecondsPerDay);
+        //Remember, this is not on main thread!
         
-        DistributeCitizens();
-            
-        CityData.Day++;
+        Day++;
+                
+        //Lose some population each day
+        var populationDecrease = random.Next(0, 25);
+        Population -= populationDecrease;
 
-        CityData.Funds += CityData.Earnings;
-
-        StartCoroutine(CountDays());
+        Funds += Earnings;
     }
     
-    private IEnumerator UpdateCity()
+    private void UpdateCity(object state)
     {
-        yield return new WaitForSeconds(CityData.SecondsPerUpdate);
-
-        ResetValues();
+        //Remember, this is not on main thread!
         
-        DistributeEmployees();
+        //cast CityTiles as Array as it's slightly faster
+        foreach (var building in CityTiles.ToArray()) ProcessBuilding(building.Key, building.Value);
         
-        foreach (var building in CityTiles.ToArray())
-        {
-            ProcessBuilding(building.Key, building.Value);
-        }
-        
-        foreach (var building in CityTiles.ToArray())
-        {
-            //Status must be checked after all other checks to have an updated values for Power/Water.
-            building.Value.UpdateBuildingStatus(CityData);
-        }
-
-        if (CityData.ApprovalRating != 0)
-        {
-            CityData.ApprovalRating = Calculations.Normalise(CityData.ApprovalRating, CityTiles.Count(tile => tile.Value is IApprovable));   
-        }
-        
-        CityData.Population = citizens.Count;
-        CityData.Unemployed = citizens.Count(citizen => !citizen.Value.IsEmployed);
-        
-        cityStatistics.UpdateUI();
-        
-        StartCoroutine(UpdateCity());
+        Earnings = CityTiles.Values.Sum(building => building.Earnings);
+        Power = CityTiles.Values.Sum(building => building.Power);
+        Water = CityTiles.Values.Sum(building => building.Water);
+        Population = CityTiles.Values.Sum(building => building.Population);
+        Workers = CityTiles.Values.Sum(building => building.Jobs);
     }
 
     private void ProcessBuilding(Vector3Int tilePosition, Building building)
     {
-        //TODO: Can be moved into UpdateBuildingStatus()
+        //Building Requirement Checks
         building.IsConnectedToRoad = TilemapExtension.CheckTileConnection(tilePosition, TileType.Road, CityTiles);
-        
-        if (building is Residential residential)
-        {
-            //Updates the list of citizens that live at this tile
-            residential.Residents = citizens.Values.Where(citizen => citizen.HomeTile == tilePosition).ToList();
-        }
-            
-        if (building is IEmployable employable)
-        {
-            //Updates the list of citizens that work at this tile
-            employable.Jobs = citizens.Keys.Where(citizen => citizens[citizen].WorkTile == tilePosition).ToList();
-        }
-        
-        building.UpdateBuilding(CityData);
 
-        if (building is IGrowable growable && growable.CanUpgrade())
-        {
-            //TODO: Can possibly be moved into the growable method.
-            //TODO: Find a better way to do this overall.
-            tileEditor.defaultMap.SetTile(tilePosition, building.TileBase);
-        }
-        
-        if (building is IApprovable approvable)
-        {
-            CityData.ApprovalRating += approvable.GetApprovalScore(CityTiles);
-        }
-    }
-
-    private void ResetValues()
-    {
-        CityData.Power = 0;
-        CityData.Water = 0;
-        CityData.Earnings = 0;
-        CityData.Goods = 0;
-    }
-    
-    private void DistributeCitizens()
-    {
-        foreach (var tile in CityTiles)
-        {
-            if (tile.Value is not Residential residential) continue;
-            if (residential.Residents.Count == residential.MaxPopulation) continue;
-            if (!tile.Value.IsActive) continue;
-
-            var random = new Random();
-            var residentsToAdd = random.Next(1, 5);
-            residentsToAdd *= residential.GetPopulationMultiplier(CityTiles);
-
-            for (var i = 0; i < residentsToAdd; i++)
-            {
-                if (residential.Residents.Count == residential.MaxPopulation) break;
-                
-                var id = Guid.NewGuid();
-                
-                var newCitizen = new Citizen(tile.Key);
-            
-                citizens.Add(id, newCitizen);
-            }
-        }
-    }
-    
-    private void DistributeEmployees()
-    {
-        foreach (var tile in CityTiles)
-        {
-            if (tile.Value is not IEmployable employer) continue;
-            if (employer.Jobs.Count == employer.MaxEmployees) continue;
-            if (!tile.Value.IsActive) continue;
-            
-            var unemployedCitizen = citizens.FirstOrDefault(citizen => !citizen.Value.IsEmployed);
-            
-            if (unemployedCitizen.Value == null) continue;
-            
-            citizens[unemployedCitizen.Key].WorkTile = tile.Key;
-            citizens[unemployedCitizen.Key].IsEmployed = true;
-            
-            employer.Jobs.Add(unemployedCitizen.Key);
-        }
+        //Ask the building to update it's values
+        building.Update();
     }
 
     public bool CanPlaceNewTile(BuildingPreset buildingPreset)
     {
-        return CityData.Funds >= buildingPreset.CostToBuild;
+        return Funds >= buildingPreset.CostToBuild;
     }
 
     public void NewTile(Vector3Int tilePosition, BuildingPreset buildingPreset)
     {
-        CityData.Funds -= buildingPreset.CostToBuild;
-        
-        //TODO: Can this be moved into Awake() so we don't create a new building Factory class everytime?
-        IBuildingFactory buildingFactory = new BuildingFactory();
+        Funds -= buildingPreset.CostToBuild;
 
         var buildable = buildingFactory.CreateBuilding(buildingPreset);
 
@@ -185,14 +99,16 @@ public class City : Singleton<City>
         {
             CityTiles.Add(tilePosition, buildable);   
         }
-
-        cityStatistics.UpdateUI();
     }
 
     public void RemoveTile(Vector3Int tilePosition)
     {
         CityTiles.Remove(tilePosition);
+    }
 
-        cityStatistics.UpdateUI();
+    private void OnDisable()
+    {
+        updateTimer?.Dispose();
+        dayTimer?.Dispose();
     }
 }    

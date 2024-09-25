@@ -25,7 +25,7 @@ public class ToolController : Singleton<ToolController>
     {
         if (city.CityTiles.TryGetValue(position, out var building))
         {
-            //Debug.Log(building.TileType);
+            Debug.Log(building.TileType);
         }
     }
 }

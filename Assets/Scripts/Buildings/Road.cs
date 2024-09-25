@@ -1,25 +1,15 @@
-public class Road : Building, IExpensable
+public class Road : Building
 {
-    public int Expenses { get; set; }
-    
     public Road(BuildingPreset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;
+        
+        Earnings = -10;
     }
     
-    public override void UpdateBuilding(CityData cityData)
+    public override void Update()
     {
-        cityData.Earnings -= Expenses;
-    }
-    
-    public override void UpdateBuildingStatus(CityData cityData)
-    {
-        IsActive = true;
-    }
-    
-    public int ConsumeTaxes()
-    {
-        return !IsActive ? 0 : 10;
+        
     }
 }

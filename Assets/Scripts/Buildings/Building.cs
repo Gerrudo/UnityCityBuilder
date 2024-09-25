@@ -1,14 +1,19 @@
 using UnityEngine.Tilemaps;
+using System.Threading;
 
 public abstract class Building
 {
+    protected Timer Tick;
+    
     public TileType TileType;
     public TileBase TileBase;
     public bool IsConnectedToRoad;
-    public bool IsActive;
-    public bool IsPowered;
-    public bool IsWatered;
+    public int Power;
+    public int Water;
+    public int Earnings;
+    public int Population;
+    public int Jobs;
+    public int UpdateTick = 1000;
 
-    public abstract void UpdateBuildingStatus(CityData cityData);
-    public abstract void UpdateBuilding(CityData cityData);
+    public abstract void Update();
 }

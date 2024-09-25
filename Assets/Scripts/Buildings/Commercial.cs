@@ -1,11 +1,11 @@
-public class Industrial : Building
+public class Commercial : Building
 {
-    public Industrial(BuildingPreset buildingPreset)
+    public Commercial(BuildingPreset buildingPreset)
     {
         TileBase = buildingPreset.TileBase;
         TileType = buildingPreset.TileType;
-
-        Jobs = 50;
+        
+        Jobs = 25;
     }
     public override void Update()
     {
